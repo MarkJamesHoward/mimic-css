@@ -3,8 +3,8 @@ import yargs from "yargs";
 
 const argv = yargs(process.argv.slice(2))
   .options({
-    i: { type: "string", default: "./index.html" },
-    o: { type: "string", default: "./ACEcss.css" },
+    i: { type: "string", default: "../test/index.html" },
+    o: { type: "string", default: "../test/ACEcss.css" },
   })
   .parse();
 
@@ -15,14 +15,14 @@ import {
   smallText,
   largeText,
   xtraLargeText,
-} from "../mediaBreakpoints.mjs";
+} from "../src/mediaBreakpoints.mjs";
 import fs from "fs";
 var fsp = fs.promises;
 
 async function UpdateACEcssOutputFile() {
   let output = "";
 
-  const data = await fsp.readFile("./index.html", "utf8");
+  const data = await fsp.readFile(argv.i, "utf8");
 
   let classComplete = /class=\"(?<classComplete>.+)\"/gi;
 

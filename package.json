@@ -1,10 +1,10 @@
 {
   "name": "mimic-css",
-  "version": "0.0.2",
+  "version": "0.0.5-alpha",
   "description": "",
-  "main": "main.mjs",
+  "main": "./bin/index.mjs",
   "bin": {
-    "mimic": "./bin/mimic.mjs"
+    "mimic": "./bin/index.mjs"
   },
   "keywords": [],
   "author": "markjameshoward@hotmail.co.uk",
