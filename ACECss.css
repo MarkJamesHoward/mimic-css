@@ -1,0 +1,17 @@
+.flex-direction-row {
+	flex-direction: row;
+}
+.display-flex {
+	display: flex;
+}
+.border-width-3 {
+	border-width: 3;
+}
+.border-style-solid {
+	border-style: solid;
+}
+@media (min-width: 1024px) {
+.border-width-8 {
+	border-width: 8;
+}
+}
