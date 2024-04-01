@@ -1,6 +1,6 @@
 {
   "name": "mimic-css",
-  "version": "0.0.2-alpha",
+  "version": "0.0.2",
   "description": "",
   "main": "main.mjs",
   "bin": {
