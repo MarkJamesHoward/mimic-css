@@ -15,7 +15,7 @@ import {
   smallText,
   largeText,
   xtraLargeText,
-} from "./mediaBreakpoints.mjs";
+} from "../mediaBreakpoints.mjs";
 import fs from "fs";
 var fsp = fs.promises;
 

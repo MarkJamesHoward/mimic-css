@@ -1,13 +1,13 @@
 {
-  "name": "acecss",
-  "version": "1.0.0",
+  "name": "mimic-css",
+  "version": "0.0.1-alpha",
   "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "main": "main.mjs",
+  "bin": {
+    "mimic": "./bin/mimic.mjs"
   },
   "keywords": [],
-  "author": "",
+  "author": "markjameshoward@hotmail.co.uk",
   "license": "ISC",
   "dependencies": {
     "yargs": "^17.7.2"
