@@ -1,11 +1,10 @@
 #!/usr/bin/env node
 import yargs from "yargs";
-import { hideBin } from "yargs/helpers";
 
 const argv = yargs(process.argv.slice(2))
   .options({
-    i: { type: "string", default: "./" },
-    o: { type: "string", default: "./" },
+    i: { type: "string", default: "./index.html" },
+    o: { type: "string", default: "./ACEcss.css" },
   })
   .parse();
 
@@ -19,110 +18,119 @@ import {
 } from "./mediaBreakpoints.mjs";
 import fs from "fs";
 var fsp = fs.promises;
-let output = "";
 
-const data = await fsp.readFile("./index.html", "utf8");
+async function UpdateACEcssOutputFile() {
+  let output = "";
 
-let classComplete = /class=\"(?<classComplete>.+)\"/gi;
+  const data = await fsp.readFile("./index.html", "utf8");
 
-// border-style-solid border-width-5 flex-direction-row
-const classRegEx3Parts =
-  /\s(?<style>[A-Za-z0-9]+-[A-Za-z0-9]+)-(?<value>[A-Za-z0-9]+)\s/gi;
-const classRegEx3PartsWithMedia =
-  /\s(?<media>small:|large:|xtraLarge:+)(?<style>[A-Za-z0-9]+-[A-Za-z0-9]+)-(?<value>[A-Za-z0-9]+)\s/gi;
+  let classComplete = /class=\"(?<classComplete>.+)\"/gi;
 
-// display: flex
-const classRegExSingleHyphen =
-  /\s(?<style>[A-Za-z0-9]+)-(?<value>[A-Za-z]+)\s/gi;
+  // border-style-solid border-width-5 flex-direction-row
+  const classRegEx3Parts =
+    /\s(?<style>[A-Za-z0-9]+-[A-Za-z0-9]+)-(?<value>[A-Za-z0-9]+)\s/gi;
+  const classRegEx3PartsWithMedia =
+    /\s(?<media>small:|large:|xtraLarge:+)(?<style>[A-Za-z0-9]+-[A-Za-z0-9]+)-(?<value>[A-Za-z0-9]+)\s/gi;
 
-let classCompleteMatch = data.matchAll(classComplete);
+  // display: flex
+  const classRegExSingleHyphen =
+    /\s(?<style>[A-Za-z0-9]+)-(?<value>[A-Za-z]+)\s/gi;
 
-//console.log(classCompleteMatch)
-for (const classIndividual of classCompleteMatch) {
-  //   console.log(
-  //     `Indivisual class found: ${classIndividual.groups["classComplete"]}`
-  //   );
-  let classIndividualString = ` ${classIndividual.groups["classComplete"]} `;
+  let classCompleteMatch = data.matchAll(classComplete);
 
-  // border-style-solid border-width-5 flec-direction-row
-  let classIndividualMatch3Parts =
-    classIndividualString.matchAll(classRegEx3Parts);
+  //console.log(classCompleteMatch)
+  for (const classIndividual of classCompleteMatch) {
+    //   console.log(
+    //     `Indivisual class found: ${classIndividual.groups["classComplete"]}`
+    //   );
+    let classIndividualString = ` ${classIndividual.groups["classComplete"]} `;
 
-  for (const match of classIndividualMatch3Parts) {
-    //console.log(match)
+    // border-style-solid border-width-5 flec-direction-row
+    let classIndividualMatch3Parts =
+      classIndividualString.matchAll(classRegEx3Parts);
 
-    let style = match.groups["style"];
-    let value = match.groups["value"];
+    for (const match of classIndividualMatch3Parts) {
+      //console.log(match)
 
-    // console.log(style);
-    // console.log(value);
+      let style = match.groups["style"];
+      let value = match.groups["value"];
 
-    output +=
-      `.${style}-${value} {\r\n\t` + style + ": " + value + `;\r\n}\r\n`;
-  }
+      // console.log(style);
+      // console.log(value);
 
-  // border-style-solid border-width-5 flec-direction-row ** Plus Media prefix
-  let classIndividualMatch3PartsWithMedia = classIndividualString.matchAll(
-    classRegEx3PartsWithMedia
-  );
+      output +=
+        `.${style}-${value} {\r\n\t` + style + ": " + value + `;\r\n}\r\n`;
+    }
 
-  for (const match of classIndividualMatch3PartsWithMedia) {
-    //console.log(match);
+    // border-style-solid border-width-5 flec-direction-row ** Plus Media prefix
+    let classIndividualMatch3PartsWithMedia = classIndividualString.matchAll(
+      classRegEx3PartsWithMedia
+    );
 
-    let style = match.groups["style"];
-    let value = match.groups["value"];
-    let media = match.groups["media"];
+    for (const match of classIndividualMatch3PartsWithMedia) {
+      //console.log(match);
 
-    //console.log(`MEDIA FOUND ${media} ${style} ${value}`);
+      let style = match.groups["style"];
+      let value = match.groups["value"];
+      let media = match.groups["media"];
 
-    switch (media) {
-      case smallText:
-        output +=
-          `@media (min-width: ${small}px) {\r\n.${style}-${value} {\r\n\t` +
-          style +
-          ": " +
-          value +
-          `;\r\n}\r\n}\r\n`;
-        break;
-      case largeText:
-        output +=
-          `@media (min-width: ${large}px) {\r\n.${style}-${value} {\r\n\t` +
-          style +
-          ": " +
-          value +
-          `;\r\n}\r\n}\r\n`;
-        break;
-      case xtraLargeText:
-        output +=
-          `@media (min-width: ${xtraLarge}px) {\r\n.${style}-${value} {\r\n\t` +
-          style +
-          ": " +
-          value +
-          `;\r\n}\r\n}\r\n`;
-        break;
-      default:
-        console.log("unknown media!!");
+      //console.log(`MEDIA FOUND ${media} ${style} ${value}`);
+
+      switch (media) {
+        case smallText:
+          output +=
+            `@media (min-width: ${small}px) {\r\n.${style}-${value} {\r\n\t` +
+            style +
+            ": " +
+            value +
+            `;\r\n}\r\n}\r\n`;
+          break;
+        case largeText:
+          output +=
+            `@media (min-width: ${large}px) {\r\n.${style}-${value} {\r\n\t` +
+            style +
+            ": " +
+            value +
+            `;\r\n}\r\n}\r\n`;
+          break;
+        case xtraLargeText:
+          output +=
+            `@media (min-width: ${xtraLarge}px) {\r\n.${style}-${value} {\r\n\t` +
+            style +
+            ": " +
+            value +
+            `;\r\n}\r\n}\r\n`;
+          break;
+        default:
+          console.log("unknown media!!");
+      }
+    }
+
+    // display: flex
+    let classIndividualMatchSingleHypen = classIndividualString.matchAll(
+      classRegExSingleHyphen
+    );
+
+    for (const match of classIndividualMatchSingleHypen) {
+      //console.log(match)
+
+      let style = match.groups["style"];
+      let value = match.groups["value"];
+
+      // console.log(style)
+      // console.log(value)
+
+      output +=
+        `.${style}-${value} {\r\n\t` + style + ": " + value + `;\r\n}\r\n`;
     }
   }
 
-  // display: flex
-  let classIndividualMatchSingleHypen = classIndividualString.matchAll(
-    classRegExSingleHyphen
-  );
-
-  for (const match of classIndividualMatchSingleHypen) {
-    //console.log(match)
-
-    let style = match.groups["style"];
-    let value = match.groups["value"];
-
-    // console.log(style)
-    // console.log(value)
-
-    output +=
-      `.${style}-${value} {\r\n\t` + style + ": " + value + `;\r\n}\r\n`;
-  }
+  //console.log(output)
+  await fsp.writeFile(argv.o, output);
 }
-
-//console.log(output)
-await fsp.writeFile(argv.o, output);
+// Now watch for changes to the input file
+fs.watch(argv.i, {}, async () => {
+  console.log("file changed");
+  await UpdateACEcssOutputFile();
+  console.log("Update completed");
+});
