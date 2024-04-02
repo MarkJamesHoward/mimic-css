@@ -4,7 +4,7 @@ import yargs from "yargs";
 const argv = yargs(process.argv.slice(2))
   .options({
     i: { type: "string", default: "../test/index.html" },
-    o: { type: "string", default: "../test/ACEcss.css" },
+    o: { type: "string", default: "../test/mimic.css" },
   })
   .parse();
 
@@ -29,12 +29,23 @@ async function UpdateACEcssOutputFile() {
   // border-style-solid border-width-5 flex-direction-row
   const classRegEx3Parts =
     /\s(?<style>[A-Za-z0-9]+-[A-Za-z0-9]+)-(?<value>[A-Za-z0-9]+)\s/gi;
+
   const classRegEx3PartsWithMedia =
-    /\s(?<media>small:|large:|xtraLarge:+)(?<style>[A-Za-z0-9]+-[A-Za-z0-9]+)-(?<value>[A-Za-z0-9]+)\s/gi;
+    /\s(?<media>small\?|large\?|xtraLarge\?+)(?<style>[A-Za-z0-9]+-[A-Za-z0-9]+)-(?<value>[A-Za-z0-9]+)\s/gi;
+  //////////////  
+
+  //border-width:5 
+  const classRegEx1HyphenThenColumn =
+  /\s(?<style>[A-Za-z0-9]+-[A-Za-z0-9]+):(?<value>[A-Za-z0-9]+)\s/gi;
+
+  const classRegEx1HyphenThenColumnWithMedia =
+    /\s(?<media>small\?|large\?|xtraLarge\?+)(?<style>[A-Za-z0-9]+-[A-Za-z0-9]+):(?<value>[A-Za-z0-9]+)\s/gi;
+  ////////////// 
+
 
   // display: flex
   const classRegExSingleHyphen =
-    /\s(?<style>[A-Za-z0-9]+)-(?<value>[A-Za-z]+)\s/gi;
+    /\s(?<style>[A-Za-z0-9]+):(?<value>[A-Za-z]+)\s/gi;
 
   let classCompleteMatch = data.matchAll(classComplete);
 
@@ -45,12 +56,13 @@ async function UpdateACEcssOutputFile() {
     //   );
     let classIndividualString = ` ${classIndividual.groups["classComplete"]} `;
 
-    // border-style-solid border-width-5 flec-direction-row
+    // border-style-solid border-width-5 flec-direction-row ////
+    //////////////////////////////////
     let classIndividualMatch3Parts =
       classIndividualString.matchAll(classRegEx3Parts);
 
     for (const match of classIndividualMatch3Parts) {
-      //console.log(match)
+      console.log('3 part type match ' + match)
 
       let style = match.groups["style"];
       let value = match.groups["value"];
@@ -62,7 +74,74 @@ async function UpdateACEcssOutputFile() {
         `.${style}-${value} {\r\n\t` + style + ": " + value + `;\r\n}\r\n`;
     }
 
+    // border-width:5  ////
+    //////////////////////////////////
+    let classIndividualMatch_1HyphenThenColumn =
+      classIndividualString.matchAll(classRegEx1HyphenThenColumn);
+
+    for (const match of classIndividualMatch_1HyphenThenColumn) {
+      console.log('1 Hyphen Then Column ' + match)
+
+      let style = match.groups["style"];
+      let value = match.groups["value"];
+
+      // console.log(style);
+      // console.log(value);
+
+      output +=
+        `.${style}\\:${value} {\r\n\t` + style + ": " + value + `;\r\n}\r\n`;
+    }
+
+    // border-width:5 ** Plus Media prefix
+    ////////////////////////////////
+    let classIndividualMatch_1HyphenThenColumnWithMedia = classIndividualString.matchAll(
+      classRegEx1HyphenThenColumnWithMedia
+    );
+
+    for (const match of classIndividualMatch_1HyphenThenColumnWithMedia) {
+      //console.log(match);
+
+      let style = match.groups["style"];
+      let value = match.groups["value"];
+      let media = match.groups["media"];
+
+      //console.log(`MEDIA FOUND ${media} ${style} ${value}`);
+
+      switch (media) {
+        case smallText:
+          output +=
+            `@media (min-width: ${small}px) {\r\n.${style}-${value} {\r\n\t` +
+            style +
+            ": " +
+            value +
+            `;\r\n}\r\n}\r\n`;
+          break;
+        case largeText:
+          output +=
+            `@media (min-width: ${large}px) {\r\n.${style}-${value} {\r\n\t` +
+            style +
+            ": " +
+            value +
+            `;\r\n}\r\n}\r\n`;
+          break;
+        case xtraLargeText:
+          output +=
+            `@media (min-width: ${xtraLarge}px) {\r\n.${style}-${value} {\r\n\t` +
+            style +
+            ": " +
+            value +
+            `;\r\n}\r\n}\r\n`;
+          break;
+        default:
+          console.log("unknown media!!");
+      }
+    }
+
+    
+
+
     // border-style-solid border-width-5 flec-direction-row ** Plus Media prefix
+    ////////////////////////////////
     let classIndividualMatch3PartsWithMedia = classIndividualString.matchAll(
       classRegEx3PartsWithMedia
     );
@@ -106,13 +185,14 @@ async function UpdateACEcssOutputFile() {
       }
     }
 
-    // display: flex
+    // display: flex /////////////////////////////////
+    ////////////////////////////////////////////////
     let classIndividualMatchSingleHypen = classIndividualString.matchAll(
       classRegExSingleHyphen
     );
 
     for (const match of classIndividualMatchSingleHypen) {
-      //console.log(match)
+      //console.log('Display:Flex type match ' + match)
 
       let style = match.groups["style"];
       let value = match.groups["value"];
@@ -121,7 +201,7 @@ async function UpdateACEcssOutputFile() {
       // console.log(value)
 
       output +=
-        `.${style}-${value} {\r\n\t` + style + ": " + value + `;\r\n}\r\n`;
+        `.${style}\\:${value} {\r\n\t` + style + ": " + value + `;\r\n}\r\n`;
     }
   }
 
@@ -130,7 +210,7 @@ async function UpdateACEcssOutputFile() {
 }
 // Now watch for changes to the input file
 fs.watch(argv.i, {}, async () => {
-  console.log("file changed");
+  console.log("file changed1");
   await UpdateACEcssOutputFile();
   console.log("Update completed");
 });

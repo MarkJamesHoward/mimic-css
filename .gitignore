@@ -1,2 +1,4 @@
 node_modules
-ACECss.css
+mimic.css
+.parcel-cache/
+dist/
