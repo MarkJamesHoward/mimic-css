@@ -66,9 +66,7 @@ async function UpdateACEcssOutputFile() {
       // console.log(style);
       // console.log(value);
 
-      snapped = PerformSnap(style, value)
-      if (snapped > 0)
-        value = snapped
+      value = PerformSnap(style, value)
 
       output +=
         `.${style}-${value} {\r\n\t` + style + ": " + value + `;\r\n}\r\n`;

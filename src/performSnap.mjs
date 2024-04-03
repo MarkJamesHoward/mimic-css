@@ -2,8 +2,8 @@ import { paddingSnaps } from './paddingSnaps.mjs'
 
 export function PerformSnap(type, value) {
     let result = 0
-    console.log(type)
-    console.log(value)
+    // console.log(type)
+    // console.log(value)
 
     switch (type) {
         case 'padding-top':
@@ -11,7 +11,7 @@ export function PerformSnap(type, value) {
         case 'padding-bottom':
         case 'padding-right':
             value = value.replace('px', '')
-            console.log('checking snap for padding ' + value)
+            //console.log('checking snap for padding ' + value)
             if (value <= paddingSnaps.small)
                 result = paddingSnaps.tiny + 'px';
             else if (value > paddingSnaps.small && value <= paddingSnaps.medium)
