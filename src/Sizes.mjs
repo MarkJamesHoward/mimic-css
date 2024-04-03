@@ -10,21 +10,21 @@ export const Sizes =
 
 export const FontSizes =
 {
-    xs: 8,
-    sm: 12,
-    md: 16,
-    lg: 24,
-    xl: 48,
-    xl2: 92
+    xs: '8px',
+    sm: '12px',
+    md: '16px',
+    lg: '24px',
+    xl: '48px',
+    xl2: '92px'
 }
 
 export const PaddingSizes =
 {
-    xs: 2,
-    sm: 4,
-    md: 8,
-    lg: 20,
-    xl: 50,
-    xl2: 200
+    xs: '2px',
+    sm: '4px',
+    md: '8px',
+    lg: '20px',
+    xl: '50px',
+    xl2: '200px'
 }
 

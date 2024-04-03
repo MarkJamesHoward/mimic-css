@@ -2,8 +2,8 @@ import { Sizes, PaddingSizes, FontSizes } from './Sizes.mjs'
 
 export function PerformSnap(type, value) {
     let result = 0
-     console.log(type)
-     console.log(value)
+    //  console.log(type)
+    //  console.log(value)
 
     switch (type) {
         case 'padding-top':

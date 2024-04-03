@@ -1,7 +1,11 @@
 #!/usr/bin/env node
 import yargs from "yargs";
-import { ProcessMedia  } from '../src/processMedia.mjs'
+import { ProcessMediaQueries  } from '../src/ProcessMediaQueries.mjs'
 import { PerformSnap } from '../src/performSnap.mjs'
+import {
+    classRegEx3Parts, classRegEx3PartsWithMedia, classRegEx1HyphenThenColumn, 
+    classRegEx1HyphenThenColumnWithMedia, classRegExSingleHyphen
+} from '../src/RegEx.mjs'
 import fs from "fs";
 
 
@@ -17,45 +21,27 @@ var fsp = fs.promises;
 
 async function UpdateACEcssOutputFile() {
   let output = "";
-
   const data = await fsp.readFile(argv.i, "utf8");
 
   let classComplete = /class=\"(?<classComplete>.+)\"/gi;
-
-  // border-style-solid border-width-5 flex-direction-row
-  const classRegEx3Parts =
-    /\s(?<style>[A-Za-z0-9]+-[A-Za-z0-9]+)-(?<value>[A-Za-z0-9]+)\s/gi;
-
-  const classRegEx3PartsWithMedia =
-    /\s(?<media>small|large|xtraLarge+)\?(?<style>[A-Za-z0-9]+-[A-Za-z0-9]+)-(?<value>[A-Za-z0-9]+)\s/gi;
-  //////////////  
-
-  //border-width:5 
-  const classRegEx1HyphenThenColumn =
-  /\s(?<style>[A-Za-z0-9]+-[A-Za-z0-9]+):(?<value>[A-Za-z0-9]+)\s/gi;
-
-  const classRegEx1HyphenThenColumnWithMedia =
-    /\s(?<media>small|large|xtraLarge+)\?(?<style>[A-Za-z0-9]+-[A-Za-z0-9]+):(?<value>[A-Za-z0-9]+)\s/gi;
-  ////////////// 
-
-
-  // display: flex
-  const classRegExSingleHyphen =
-    /\s(?<style>[A-Za-z0-9]+):(?<value>[A-Za-z]+)\s/gi;
-
   let classCompleteMatch = data.matchAll(classComplete);
 
   //console.log(classCompleteMatch)
   for (const classIndividual of classCompleteMatch) {
-    //   console.log(
-    //     `Indivisual class found: ${classIndividual.groups["classComplete"]}`
-    //   );
+      // console.log(
+      //   `Indivisual class found: ${classIndividual.groups["classComplete"]}`
+      // );
     let classIndividualString = ` ${classIndividual.groups["classComplete"]} `;
 
+    let splitIndividualClassItems = classIndividualString.split(' ')
+    
+    splitIndividualClassItems.forEach( (item) => {
+     
+    //console.log(item)
     // border-style-solid border-width-5 flex-direction-row ////
     //////////////////////////////////
     let classIndividualMatch3Parts =
-      classIndividualString.matchAll(classRegEx3Parts);
+    item.matchAll(classRegEx3Parts);
 
     for (const match of classIndividualMatch3Parts) {
      // console.log('3 part type match ' + match)
@@ -75,7 +61,7 @@ async function UpdateACEcssOutputFile() {
     // border-width:5  ////
     //////////////////////////////////
     let classIndividualMatch_1HyphenThenColumn =
-      classIndividualString.matchAll(classRegEx1HyphenThenColumn);
+    item.matchAll(classRegEx1HyphenThenColumn);
 
     for (const match of classIndividualMatch_1HyphenThenColumn) {
       //console.log('1 Hyphen Then Column ' + match)
@@ -93,24 +79,24 @@ async function UpdateACEcssOutputFile() {
 
     // border-width:5 ** Plus Media prefix
     ////////////////////////////////
-    let classIndividualMatch_1HyphenThenColumnWithMedia = classIndividualString.matchAll(
+    let classIndividualMatch_1HyphenThenColumnWithMedia = item.matchAll(
       classRegEx1HyphenThenColumnWithMedia
     );
 
-    output += ProcessMedia(classIndividualMatch_1HyphenThenColumnWithMedia, false)
+    output += ProcessMediaQueries(classIndividualMatch_1HyphenThenColumnWithMedia, false)
 
     
     // border-style-solid border-width-5 flex-direction-row ** Plus Media prefix
     ////////////////////////////////
-    let classIndividualMatch3PartsWithMedia = classIndividualString.matchAll(
+    let classIndividualMatch3PartsWithMedia = item.matchAll(
       classRegEx3PartsWithMedia
     );
     
-    output += ProcessMedia(classIndividualMatch3PartsWithMedia, true)
+    output += ProcessMediaQueries(classIndividualMatch3PartsWithMedia, true)
 
     // display: flex /////////////////////////////////
     ////////////////////////////////////////////////
-    let classIndividualMatchSingleHypen = classIndividualString.matchAll(
+    let classIndividualMatchSingleHypen = item.matchAll(
       classRegExSingleHyphen
     );
 
@@ -126,6 +112,7 @@ async function UpdateACEcssOutputFile() {
       output +=
         `.${style}\\:${value} {\r\n\t` + style + ": " + value + `;\r\n}\r\n`;
     }
+  })
   }
 
   //console.log(output)

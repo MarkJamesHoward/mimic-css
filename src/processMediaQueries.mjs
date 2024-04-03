@@ -1,14 +1,16 @@
 import { PerformSnap } from './performSnap.mjs'
 import {
   small,
+  medium,
   large,
   xtraLarge,
   smallText,
+  mediumText,
   largeText,
   xtraLargeText,
 } from "../src/mediaBreakpoints.mjs";
 
-export function ProcessMedia(matches, colon) {
+export function ProcessMediaQueries(matches, colon) {
     let output = "";
     
         for (const match of matches) {
@@ -25,6 +27,9 @@ export function ProcessMedia(matches, colon) {
             case smallText:
               width=small
               break;
+            case mediumText:
+              width=small
+              break;
             case largeText:
               width=large
               break;
@@ -34,14 +39,15 @@ export function ProcessMedia(matches, colon) {
             default:
               console.log("unknown media!!");
           }
-
+console.log('Process Media with ' + style + ' ' + value)
           let snappedvalue = PerformSnap(style, value) 
+console.log('Snapped Media with ' + snappedvalue)
     
           output +=
-                `@media (min-width: ${width}px) {\r\n.${media}\\?${style}${colon == false ? '\\:' : '-'}${snappedvalue == 0 ? value : snappedvalue} {\r\n\t` +
+                `@media (min-width: ${width}px) {\r\n.${media}\\?${style}${colon == false ? '\\:' : '-'}${value} {\r\n\t` +
                 style +
                 ": " +
-                value +
+                `${snappedvalue == 0 ? value : snappedvalue}` +
                 `;\r\n}\r\n}\r\n`;
             }
             return output

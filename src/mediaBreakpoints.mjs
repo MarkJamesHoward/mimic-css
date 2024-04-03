@@ -6,7 +6,7 @@ export const crazyLarge = '1536'
 
 
 export const smallText = 'small'
-export const mediumText = 'small'
+export const mediumText = 'medium'
 export const largeText = 'large'
 export const xtraLargeText = 'xtraLarge'
 export const crazyLargeText = 'crazyLarge'
