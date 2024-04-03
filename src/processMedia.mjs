@@ -1,4 +1,4 @@
-
+import { PerformSnap } from './performSnap.mjs'
 import {
   small,
   large,
@@ -34,9 +34,11 @@ export function ProcessMedia(matches, colon) {
             default:
               console.log("unknown media!!");
           }
+
+          let snappedvalue = PerformSnap(style, value) 
     
           output +=
-                `@media (min-width: ${width}px) {\r\n.${media}\\?${style}${colon == false ? '\\:' : '-'}${value} {\r\n\t` +
+                `@media (min-width: ${width}px) {\r\n.${media}\\?${style}${colon == false ? '\\:' : '-'}${snappedvalue == 0 ? value : snappedvalue} {\r\n\t` +
                 style +
                 ": " +
                 value +
