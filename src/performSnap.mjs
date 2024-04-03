@@ -21,7 +21,7 @@ export function PerformSnap(type, value) {
             else if (value > paddingSnaps.large && value <= paddingSnaps.xtraLarge)
                 result = paddingSnaps.large + 'px'
             else if (value > paddingSnaps.xtraLarge && value <= paddingSnaps.crazyLarge)
-                result = paddingSnaps.extraLarge + 'px'
+                result = paddingSnaps.xtraLarge + 'px'
             else
                 result = paddingSnaps.crazyLarge + 'px'
             break
@@ -29,6 +29,6 @@ export function PerformSnap(type, value) {
             result = value;
             break
     }
-    console.log('snapping return ' + result)
+    //console.log('snapping return ' + result)
     return result
 }

@@ -66,10 +66,10 @@ async function UpdateACEcssOutputFile() {
       // console.log(style);
       // console.log(value);
 
-      value = PerformSnap(style, value)
+      let snappedvalue = PerformSnap(style, value) 
 
       output +=
-        `.${style}-${value} {\r\n\t` + style + ": " + value + `;\r\n}\r\n`;
+        `.${style}-${value} {\r\n\t` + style + ": " + `${snappedvalue == 0 ? value : snappedvalue}` + `;\r\n}\r\n`;
     }
 
     // border-width:5  ////
@@ -85,10 +85,10 @@ async function UpdateACEcssOutputFile() {
 
       // console.log(style);
       // console.log(value);
-      value = PerformSnap(style, value)
+      let snappedvalue = PerformSnap(style, value) 
 
       output +=
-        `.${style}\\:${value} {\r\n\t` + style + ": " + value + `;\r\n}\r\n`;
+        `.${style}\\:${value} {\r\n\t` + style + ": " + `${snappedvalue == 0 ? value : snappedvalue}` + `;\r\n}\r\n`;
     }
 
     // border-width:5 ** Plus Media prefix
