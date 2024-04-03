@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import yargs from "yargs";
 import { ProcessMedia  } from '../src/processMedia.mjs'
+import { PerformSnap } from '../src/performSnap.mjs'
 import fs from "fs";
 
 
@@ -51,19 +52,23 @@ async function UpdateACEcssOutputFile() {
     //   );
     let classIndividualString = ` ${classIndividual.groups["classComplete"]} `;
 
-    // border-style-solid border-width-5 flec-direction-row ////
+    // border-style-solid border-width-5 flex-direction-row ////
     //////////////////////////////////
     let classIndividualMatch3Parts =
       classIndividualString.matchAll(classRegEx3Parts);
 
     for (const match of classIndividualMatch3Parts) {
-      console.log('3 part type match ' + match)
+     // console.log('3 part type match ' + match)
 
       let style = match.groups["style"];
       let value = match.groups["value"];
 
       // console.log(style);
       // console.log(value);
+
+      snapped = PerformSnap(style, value)
+      if (snapped > 0)
+        value = snapped
 
       output +=
         `.${style}-${value} {\r\n\t` + style + ": " + value + `;\r\n}\r\n`;
@@ -82,6 +87,7 @@ async function UpdateACEcssOutputFile() {
 
       // console.log(style);
       // console.log(value);
+      value = PerformSnap(style, value)
 
       output +=
         `.${style}\\:${value} {\r\n\t` + style + ": " + value + `;\r\n}\r\n`;
@@ -129,7 +135,7 @@ async function UpdateACEcssOutputFile() {
 }
 // Now watch for changes to the input file
 fs.watch(argv.i, {}, async () => {
-  //console.log("file changed1");
+  console.log("file changed");
   await UpdateACEcssOutputFile();
   //console.log("Update completed");
 });
