@@ -1,13 +1,15 @@
 #!/usr/bin/env node
 import yargs from "yargs";
-import { ProcessMediaQueries  } from '../src/ProcessMediaQueries.mjs'
-import { PerformSnap } from '../src/performSnap.mjs'
+import { ProcessMediaQueries } from "../src/ProcessMediaQueries.mjs";
+import { PerformSnap } from "../src/performSnap.mjs";
 import {
-    classRegEx3Parts, classRegEx3PartsWithMedia, classRegEx1HyphenThenColumn, 
-    classRegEx1HyphenThenColumnWithMedia, classRegExSingleHyphen
-} from '../src/RegEx.mjs'
+  classRegEx3Parts,
+  classRegEx3PartsWithMedia,
+  classRegEx1HyphenThenColumn,
+  classRegEx1HyphenThenColumnWithMedia,
+  classRegExSingleHyphen,
+} from "../src/RegEx.mjs";
 import fs from "fs";
-
 
 const argv = yargs(process.argv.slice(2))
   .options({
@@ -15,7 +17,6 @@ const argv = yargs(process.argv.slice(2))
     o: { type: "string", default: "../test/mimic.css" },
   })
   .parse();
-
 
 var fsp = fs.promises;
 
@@ -28,91 +29,100 @@ async function UpdateACEcssOutputFile() {
 
   //console.log(classCompleteMatch)
   for (const classIndividual of classCompleteMatch) {
-      // console.log(
-      //   `Indivisual class found: ${classIndividual.groups["classComplete"]}`
-      // );
+    // console.log(
+    //   `Indivisual class found: ${classIndividual.groups["classComplete"]}`
+    // );
     let classIndividualString = ` ${classIndividual.groups["classComplete"]} `;
 
-    let splitIndividualClassItems = classIndividualString.split(' ')
-    
-    splitIndividualClassItems.forEach( (item) => {
-     
-    //console.log(item)
-    // border-style-solid border-width-5 flex-direction-row ////
-    //////////////////////////////////
-    let classIndividualMatch3Parts =
-    item.matchAll(classRegEx3Parts);
+    let splitIndividualClassItems = classIndividualString.split(" ");
 
-    for (const match of classIndividualMatch3Parts) {
-     // console.log('3 part type match ' + match)
+    splitIndividualClassItems.forEach((item) => {
+      //console.log(item)
+      // border-style-solid border-width-5 flex-direction-row ////
+      //////////////////////////////////
+      let classIndividualMatch3Parts = item.matchAll(classRegEx3Parts);
 
-      let style = match.groups["style"];
-      let value = match.groups["value"];
+      for (const match of classIndividualMatch3Parts) {
+        // console.log('3 part type match ' + match)
 
-      // console.log(style);
-      // console.log(value);
+        let style = match.groups["style"];
+        let value = match.groups["value"];
 
-      let snappedvalue = PerformSnap(style, value) 
+        // console.log(style);
+        // console.log(value);
 
-      output +=
-        `.${style}-${value} {\r\n\t` + style + ": " + `${snappedvalue == 0 ? value : snappedvalue}` + `;\r\n}\r\n`;
-    }
+        let snappedvalue = PerformSnap(style, value);
 
-    // border-width:5  ////
-    //////////////////////////////////
-    let classIndividualMatch_1HyphenThenColumn =
-    item.matchAll(classRegEx1HyphenThenColumn);
+        output +=
+          `.${style}-${value} {\r\n\t` +
+          style +
+          ": " +
+          `${snappedvalue == 0 ? value : snappedvalue}` +
+          `;\r\n}\r\n`;
+      }
 
-    for (const match of classIndividualMatch_1HyphenThenColumn) {
-      //console.log('1 Hyphen Then Column ' + match)
+      // border-width:5  ////
+      //////////////////////////////////
+      let classIndividualMatch_1HyphenThenColumn = item.matchAll(
+        classRegEx1HyphenThenColumn
+      );
 
-      let style = match.groups["style"];
-      let value = match.groups["value"];
+      for (const match of classIndividualMatch_1HyphenThenColumn) {
+        //console.log('1 Hyphen Then Column ' + match)
 
-      // console.log(style);
-      // console.log(value);
-      let snappedvalue = PerformSnap(style, value) 
+        let style = match.groups["style"];
+        let value = match.groups["value"];
 
-      output +=
-        `.${style}\\:${value} {\r\n\t` + style + ": " + `${snappedvalue == 0 ? value : snappedvalue}` + `;\r\n}\r\n`;
-    }
+        // console.log(style);
+        // console.log(value);
+        let snappedvalue = PerformSnap(style, value);
 
-    // border-width:5 ** Plus Media prefix
-    ////////////////////////////////
-    let classIndividualMatch_1HyphenThenColumnWithMedia = item.matchAll(
-      classRegEx1HyphenThenColumnWithMedia
-    );
+        output +=
+          `.${style}\\:${value} {\r\n\t` +
+          style +
+          ": " +
+          `${snappedvalue == 0 ? value : snappedvalue}` +
+          `;\r\n}\r\n`;
+      }
 
-    output += ProcessMediaQueries(classIndividualMatch_1HyphenThenColumnWithMedia, false)
+      // border-width:5 ** Plus Media prefix
+      ////////////////////////////////
+      let classIndividualMatch_1HyphenThenColumnWithMedia = item.matchAll(
+        classRegEx1HyphenThenColumnWithMedia
+      );
 
-    
-    // border-style-solid border-width-5 flex-direction-row ** Plus Media prefix
-    ////////////////////////////////
-    let classIndividualMatch3PartsWithMedia = item.matchAll(
-      classRegEx3PartsWithMedia
-    );
-    
-    output += ProcessMediaQueries(classIndividualMatch3PartsWithMedia, true)
+      output += ProcessMediaQueries(
+        classIndividualMatch_1HyphenThenColumnWithMedia,
+        false
+      );
 
-    // display: flex /////////////////////////////////
-    ////////////////////////////////////////////////
-    let classIndividualMatchSingleHypen = item.matchAll(
-      classRegExSingleHyphen
-    );
+      // border-style-solid border-width-5 flex-direction-row ** Plus Media prefix
+      ////////////////////////////////
+      let classIndividualMatch3PartsWithMedia = item.matchAll(
+        classRegEx3PartsWithMedia
+      );
 
-    for (const match of classIndividualMatchSingleHypen) {
-      //console.log('Display:Flex type match ' + match)
+      output += ProcessMediaQueries(classIndividualMatch3PartsWithMedia, true);
 
-      let style = match.groups["style"];
-      let value = match.groups["value"];
+      // display: flex /////////////////////////////////
+      ////////////////////////////////////////////////
+      let classIndividualMatchSingleHypen = item.matchAll(
+        classRegExSingleHyphen
+      );
 
-      // console.log(style)
-      // console.log(value)
+      for (const match of classIndividualMatchSingleHypen) {
+        //console.log('Display:Flex type match ' + match)
 
-      output +=
-        `.${style}\\:${value} {\r\n\t` + style + ": " + value + `;\r\n}\r\n`;
-    }
-  })
+        let style = match.groups["style"];
+        let value = match.groups["value"];
+
+        // console.log(style)
+        // console.log(value)
+
+        output +=
+          `.${style}\\:${value} {\r\n\t` + style + ": " + value + `;\r\n}\r\n`;
+      }
+    });
   }
 
   //console.log(output)
