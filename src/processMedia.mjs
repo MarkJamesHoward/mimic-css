@@ -12,13 +12,13 @@ export function ProcessMedia(matches, colon) {
     let output = "";
     
         for (const match of matches) {
-            console.log(match);
+            //console.log(match);
       
         let style = match.groups["style"];
           let value = match.groups["value"];
           let media = match.groups["media"];
     
-          console.log(`MEDIA FOUND ${media} ${style} ${value}`);
+         // console.log(`MEDIA FOUND ${media} ${style} ${value}`);
           let width;
     
           switch (media) {
