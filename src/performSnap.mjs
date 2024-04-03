@@ -40,6 +40,40 @@ export function PerformSnap(type, value) {
           break;
       }
       break;
+    case "margin-top":
+    case "margin-left":
+    case "margin-bottom":
+    case "margin-right":
+      switch (value) {
+        case Sizes.xs:
+          result = PaddingSizes.xs;
+          break;
+
+        case Sizes.sm:
+          result = PaddingSizes.sm;
+          break;
+
+        case Sizes.md:
+          result = PaddingSizes.md;
+          break;
+
+        case Sizes.lg:
+          result = PaddingSizes.lg;
+          break;
+
+        case Sizes.xl:
+          result = PaddingSizes.xl;
+          break;
+
+        case Sizes.xl2:
+          result = PaddingSizes.xl2;
+          break;
+
+        default:
+          result = PaddingSizes.xs;
+          break;
+      }
+      break;
 
     case "font-size":
       switch (value) {
@@ -73,35 +107,7 @@ export function PerformSnap(type, value) {
       }
       break;
     default:
-      switch (value) {
-        case Sizes.xs:
-          result = GenericSizes.xs;
-          break;
-
-        case Sizes.sm:
-          result = GenericSizes.sm;
-          break;
-
-        case Sizes.md:
-          result = GenericSizes.md;
-          break;
-
-        case Sizes.lg:
-          result = GenericSizes.lg;
-          break;
-
-        case Sizes.xl:
-          result = GenericSizes.xl;
-          break;
-
-        case Sizes.xl2:
-          result = GenericSizes.xl2;
-          break;
-
-        default:
-          result = GenericSizes.xs;
-          break;
-      }
+      result = value;
       break;
   }
   console.log("snapping return " + result);
