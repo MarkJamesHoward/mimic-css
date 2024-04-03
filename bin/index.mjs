@@ -1,5 +1,8 @@
 #!/usr/bin/env node
 import yargs from "yargs";
+import { ProcessMedia  } from '../src/processMedia.mjs'
+import fs from "fs";
+
 
 const argv = yargs(process.argv.slice(2))
   .options({
@@ -8,15 +11,7 @@ const argv = yargs(process.argv.slice(2))
   })
   .parse();
 
-import {
-  small,
-  large,
-  xtraLarge,
-  smallText,
-  largeText,
-  xtraLargeText,
-} from "../src/mediaBreakpoints.mjs";
-import fs from "fs";
+
 var fsp = fs.promises;
 
 async function UpdateACEcssOutputFile() {
@@ -31,7 +26,7 @@ async function UpdateACEcssOutputFile() {
     /\s(?<style>[A-Za-z0-9]+-[A-Za-z0-9]+)-(?<value>[A-Za-z0-9]+)\s/gi;
 
   const classRegEx3PartsWithMedia =
-    /\s(?<media>small\?|large\?|xtraLarge\?+)(?<style>[A-Za-z0-9]+-[A-Za-z0-9]+)-(?<value>[A-Za-z0-9]+)\s/gi;
+    /\s(?<media>small|large|xtraLarge+)\?(?<style>[A-Za-z0-9]+-[A-Za-z0-9]+)-(?<value>[A-Za-z0-9]+)\s/gi;
   //////////////  
 
   //border-width:5 
@@ -39,7 +34,7 @@ async function UpdateACEcssOutputFile() {
   /\s(?<style>[A-Za-z0-9]+-[A-Za-z0-9]+):(?<value>[A-Za-z0-9]+)\s/gi;
 
   const classRegEx1HyphenThenColumnWithMedia =
-    /\s(?<media>small\?|large\?|xtraLarge\?+)(?<style>[A-Za-z0-9]+-[A-Za-z0-9]+):(?<value>[A-Za-z0-9]+)\s/gi;
+    /\s(?<media>small|large|xtraLarge+)\?(?<style>[A-Za-z0-9]+-[A-Za-z0-9]+):(?<value>[A-Za-z0-9]+)\s/gi;
   ////////////// 
 
 
@@ -80,7 +75,7 @@ async function UpdateACEcssOutputFile() {
       classIndividualString.matchAll(classRegEx1HyphenThenColumn);
 
     for (const match of classIndividualMatch_1HyphenThenColumn) {
-      console.log('1 Hyphen Then Column ' + match)
+      //console.log('1 Hyphen Then Column ' + match)
 
       let style = match.groups["style"];
       let value = match.groups["value"];
@@ -98,92 +93,16 @@ async function UpdateACEcssOutputFile() {
       classRegEx1HyphenThenColumnWithMedia
     );
 
-    for (const match of classIndividualMatch_1HyphenThenColumnWithMedia) {
-      //console.log(match);
-
-      let style = match.groups["style"];
-      let value = match.groups["value"];
-      let media = match.groups["media"];
-
-      //console.log(`MEDIA FOUND ${media} ${style} ${value}`);
-
-      switch (media) {
-        case smallText:
-          output +=
-            `@media (min-width: ${small}px) {\r\n.${style}-${value} {\r\n\t` +
-            style +
-            ": " +
-            value +
-            `;\r\n}\r\n}\r\n`;
-          break;
-        case largeText:
-          output +=
-            `@media (min-width: ${large}px) {\r\n.${style}-${value} {\r\n\t` +
-            style +
-            ": " +
-            value +
-            `;\r\n}\r\n}\r\n`;
-          break;
-        case xtraLargeText:
-          output +=
-            `@media (min-width: ${xtraLarge}px) {\r\n.${style}-${value} {\r\n\t` +
-            style +
-            ": " +
-            value +
-            `;\r\n}\r\n}\r\n`;
-          break;
-        default:
-          console.log("unknown media!!");
-      }
-    }
+    output += ProcessMedia(classIndividualMatch_1HyphenThenColumnWithMedia, false)
 
     
-
-
-    // border-style-solid border-width-5 flec-direction-row ** Plus Media prefix
+    // border-style-solid border-width-5 flex-direction-row ** Plus Media prefix
     ////////////////////////////////
     let classIndividualMatch3PartsWithMedia = classIndividualString.matchAll(
       classRegEx3PartsWithMedia
     );
-
-    for (const match of classIndividualMatch3PartsWithMedia) {
-      //console.log(match);
-
-      let style = match.groups["style"];
-      let value = match.groups["value"];
-      let media = match.groups["media"];
-
-      //console.log(`MEDIA FOUND ${media} ${style} ${value}`);
-
-      switch (media) {
-        case smallText:
-          output +=
-            `@media (min-width: ${small}px) {\r\n.${style}-${value} {\r\n\t` +
-            style +
-            ": " +
-            value +
-            `;\r\n}\r\n}\r\n`;
-          break;
-        case largeText:
-          output +=
-            `@media (min-width: ${large}px) {\r\n.${style}-${value} {\r\n\t` +
-            style +
-            ": " +
-            value +
-            `;\r\n}\r\n}\r\n`;
-          break;
-        case xtraLargeText:
-          output +=
-            `@media (min-width: ${xtraLarge}px) {\r\n.${style}-${value} {\r\n\t` +
-            style +
-            ": " +
-            value +
-            `;\r\n}\r\n}\r\n`;
-          break;
-        default:
-          console.log("unknown media!!");
-      }
-    }
+    
+    output += ProcessMedia(classIndividualMatch3PartsWithMedia, true)
 
     // display: flex /////////////////////////////////
     ////////////////////////////////////////////////
@@ -210,7 +129,7 @@ async function UpdateACEcssOutputFile() {
 }
 // Now watch for changes to the input file
 fs.watch(argv.i, {}, async () => {
-  console.log("file changed1");
+  //console.log("file changed1");
   await UpdateACEcssOutputFile();
-  console.log("Update completed");
+  //console.log("Update completed");
 });
