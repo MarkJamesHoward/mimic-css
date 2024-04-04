@@ -25,6 +25,15 @@ export const PaddingSizes = {
   xl2: "200px",
 };
 
+export const MarginSizes = {
+  xs: "2px",
+  sm: "4px",
+  md: "8px",
+  lg: "20px",
+  xl: "50px",
+  xl2: "200px",
+};
+
 export const GenericSizes = {
   xs: "2px",
   sm: "8px",

@@ -1,4 +1,10 @@
-import { Sizes, PaddingSizes, FontSizes, GenericSizes } from "./Sizes.mjs";
+import {
+  Sizes,
+  PaddingSizes,
+  MarginSizes,
+  FontSizes,
+  GenericSizes,
+} from "./Sizes.mjs";
 
 export function PerformSnap(type, value) {
   let result = 0;
@@ -46,31 +52,31 @@ export function PerformSnap(type, value) {
     case "margin-right":
       switch (value) {
         case Sizes.xs:
-          result = PaddingSizes.xs;
+          result = MarginSizes.xs;
           break;
 
         case Sizes.sm:
-          result = PaddingSizes.sm;
+          result = MarginSizes.sm;
           break;
 
         case Sizes.md:
-          result = PaddingSizes.md;
+          result = MarginSizes.md;
           break;
 
         case Sizes.lg:
-          result = PaddingSizes.lg;
+          result = MarginSizes.lg;
           break;
 
         case Sizes.xl:
-          result = PaddingSizes.xl;
+          result = MarginSizes.xl;
           break;
 
         case Sizes.xl2:
-          result = PaddingSizes.xl2;
+          result = MarginSizes.xl2;
           break;
 
         default:
-          result = PaddingSizes.xs;
+          result = MarginSizes.xs;
           break;
       }
       break;
