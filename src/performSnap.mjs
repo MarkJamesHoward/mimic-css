@@ -116,6 +116,6 @@ export function PerformSnap(type, value) {
       result = value;
       break;
   }
-  console.log("snapping return " + result);
+  //console.log("snapping return " + result);
   return result;
 }
