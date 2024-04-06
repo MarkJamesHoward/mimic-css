@@ -43,7 +43,7 @@ async function UpdateACEcssOutputFile() {
       let classIndividualMatch3Parts = item.matchAll(classRegEx3Parts);
 
       for (const match of classIndividualMatch3Parts) {
-        // console.log('3 part type match ' + match)
+        console.log("3 part type match " + match);
 
         let style = match.groups["style"];
         let value = match.groups["value"];
@@ -68,13 +68,13 @@ async function UpdateACEcssOutputFile() {
       );
 
       for (const match of classIndividualMatch_1HyphenThenColumn) {
-        //console.log('1 Hyphen Then Column ' + match)
+        console.log("1 Hyphen Then Column " + match);
 
         let style = match.groups["style"];
         let value = match.groups["value"];
 
-        // console.log(style);
-        // console.log(value);
+        console.log(style);
+        console.log(value);
         let snappedvalue = PerformSnap(style, value);
 
         output +=
@@ -83,6 +83,8 @@ async function UpdateACEcssOutputFile() {
           ": " +
           `${snappedvalue == 0 ? value : snappedvalue}` +
           `;\r\n}\r\n`;
+
+        console.log(output);
       }
 
       // border-width:5 ** Plus Media prefix
