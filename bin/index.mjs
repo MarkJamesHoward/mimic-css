@@ -1,14 +1,15 @@
 #!/usr/bin/env node
 import yargs from "yargs";
-import { ProcessMediaQueries } from "../src/ProcessMediaQueries.mjs";
-import { PerformSnap } from "../src/performSnap.mjs";
 import {
-  classRegEx3Parts,
-  classRegEx3PartsWithMedia,
-  classRegEx1HyphenThenColumn,
-  classRegEx1HyphenThenColumnWithMedia,
-  classRegExSingleHyphen,
-} from "../src/RegEx.mjs";
+  Single_Colon,
+  Single_Colon_Hover,
+  Single_Hypen_Then_Colon,
+  Single_Hypen_Then_Colon_Hover,
+  Sindle_Hypen_Then_Colon_Media,
+  Single_Hypen_Then_Colon_Media_Hover,
+  Double_Hyphen_No_Colon,
+  Double_Hyphen_No_Colon_Media,
+} from "../src/RegExPerform.mjs";
 import fs from "fs";
 
 const argv = yargs(process.argv.slice(2))
@@ -27,112 +28,49 @@ async function UpdateACEcssOutputFile() {
   let classComplete = /class=\"(?<classComplete>.+)\"/gi;
   let classCompleteMatch = data.matchAll(classComplete);
 
-  //console.log(classCompleteMatch)
   for (const classIndividual of classCompleteMatch) {
-    // console.log(
-    //   `Indivisual class found: ${classIndividual.groups["classComplete"]}`
-    // );
     let classIndividualString = ` ${classIndividual.groups["classComplete"]} `;
-
     let splitIndividualClassItems = classIndividualString.split(" ");
 
     splitIndividualClassItems.forEach((item) => {
-      //console.log(item)
-      // border-style-solid border-width-5 flex-direction-row ////
-      //////////////////////////////////
-      let classIndividualMatch3Parts = item.matchAll(classRegEx3Parts);
+      // display:flex
+      let result = Single_Colon(item);
+      if (result != undefined) output += result;
 
-      for (const match of classIndividualMatch3Parts) {
-        console.log("3 part type match " + match);
+      result = Single_Colon_Hover(item);
+      if (result != undefined) output += result;
 
-        let style = match.groups["style"];
-        let value = match.groups["value"];
-
-        // console.log(style);
-        // console.log(value);
-
-        let snappedvalue = PerformSnap(style, value);
-
-        output +=
-          `.${style}-${value} {\r\n\t` +
-          style +
-          ": " +
-          `${snappedvalue == 0 ? value : snappedvalue}` +
-          `;\r\n}\r\n`;
-      }
-
-      // border-width:5  ////
-      //////////////////////////////////
-      let classIndividualMatch_1HyphenThenColumn = item.matchAll(
-        classRegEx1HyphenThenColumn
-      );
-
-      for (const match of classIndividualMatch_1HyphenThenColumn) {
-        console.log("1 Hyphen Then Column " + match);
-
-        let style = match.groups["style"];
-        let value = match.groups["value"];
-
-        console.log(style);
-        console.log(value);
-        let snappedvalue = PerformSnap(style, value);
-
-        output +=
-          `.${style}\\:${value} {\r\n\t` +
-          style +
-          ": " +
-          `${snappedvalue == 0 ? value : snappedvalue}` +
-          `;\r\n}\r\n`;
-
-        console.log(output);
-      }
-
-      // border-width:5 ** Plus Media prefix
+      // border-width:5
+      // large?border-width:5
+      // border-width:5:hover
+      // large?border-width:5:hover
       ////////////////////////////////
-      let classIndividualMatch_1HyphenThenColumnWithMedia = item.matchAll(
-        classRegEx1HyphenThenColumnWithMedia
-      );
+      result = Single_Hypen_Then_Colon(item);
+      if (result != undefined) output += result;
 
-      output += ProcessMediaQueries(
-        classIndividualMatch_1HyphenThenColumnWithMedia,
-        false
-      );
+      result = Sindle_Hypen_Then_Colon_Media(item);
+      if (result != undefined) output += result;
 
-      // border-style-solid border-width-5 flex-direction-row ** Plus Media prefix
-      ////////////////////////////////
-      let classIndividualMatch3PartsWithMedia = item.matchAll(
-        classRegEx3PartsWithMedia
-      );
+      result = Single_Hypen_Then_Colon_Hover(item);
+      if (result != undefined) output += result;
 
-      output += ProcessMediaQueries(classIndividualMatch3PartsWithMedia, true);
+      result = Single_Hypen_Then_Colon_Media_Hover(item);
+      if (result != undefined) output += result;
 
-      // display: flex /////////////////////////////////
-      ////////////////////////////////////////////////
-      let classIndividualMatchSingleHypen = item.matchAll(
-        classRegExSingleHyphen
-      );
+      // border-style-solid flex-direction-row
+      // large?border-style-solid
+      result = Double_Hyphen_No_Colon(item);
+      if (result != undefined) output += result;
 
-      for (const match of classIndividualMatchSingleHypen) {
-        //console.log('Display:Flex type match ' + match)
-
-        let style = match.groups["style"];
-        let value = match.groups["value"];
-
-        // console.log(style)
-        // console.log(value)
-
-        output +=
-          `.${style}\\:${value} {\r\n\t` + style + ": " + value + `;\r\n}\r\n`;
-      }
+      result = Double_Hyphen_No_Colon_Media(item);
+      if (result != undefined) output += result;
     });
   }
-
-  //console.log(output)
+  output = output.replace("undefined", "");
   await fsp.writeFile(argv.o, output);
 }
-// Now watch for changes to the input file
+
 fs.watch(argv.i, {}, async () => {
   console.log("file changed");
   await UpdateACEcssOutputFile();
-  //console.log("Update completed");
 });
