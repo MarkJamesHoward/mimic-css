@@ -39,7 +39,7 @@ export function ProcessMediaQueries(matches, colon) {
       default:
         console.log("unknown media!!");
     }
-    //console.log('Process Media with ' + style + ' ' + value)
+    console.log('Process Media with ' + style + ' ' + value)
     let snappedvalue = PerformSnap(style, value);
     //console.log('Snapped Media with ' + snappedvalue)
 

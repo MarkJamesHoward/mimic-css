@@ -48,10 +48,10 @@ async function UpdateACEcssOutputFile() {
       result = Single_Hypen_Then_Colon(item);
       if (result != undefined) output += result;
 
-      result = Sindle_Hypen_Then_Colon_Media(item);
+      result = Single_Hypen_Then_Colon_Hover(item);
       if (result != undefined) output += result;
 
-      result = Single_Hypen_Then_Colon_Hover(item);
+      result = Sindle_Hypen_Then_Colon_Media(item);
       if (result != undefined) output += result;
 
       result = Single_Hypen_Then_Colon_Media_Hover(item);
