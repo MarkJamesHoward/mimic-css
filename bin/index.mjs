@@ -24,6 +24,8 @@ var fsp = fs.promises;
 
 async function UpdateACEcssOutputFile() {
   let output = "";
+  let outputMedia = "";
+
   const data = await fsp.readFile(argv.i, "utf8");
 
   let classComplete = /class=\"(?<classComplete>.+)\"/gi;
@@ -53,10 +55,10 @@ async function UpdateACEcssOutputFile() {
       if (result != undefined) output += result;
 
       result = Sindle_Hypen_Then_Colon_Media(item);
-      if (result != undefined) output += result;
+      if (result != undefined) outputMedia += result;
 
       result = Single_Hypen_Then_Colon_Media_Hover(item);
-      if (result != undefined) output += result;
+      if (result != undefined) outputMedia += result;
 
       result = Single_Hypen_Then_Colon_Then_Another_Hyphen(item);
       if (result != undefined) output += result;
@@ -67,10 +69,11 @@ async function UpdateACEcssOutputFile() {
       if (result != undefined) output += result;
 
       result = Double_Hyphen_No_Colon_Media(item);
-      if (result != undefined) output += result;
+      if (result != undefined) outputMedia += result;
     });
   }
   output = output.replace("undefined", "");
+  output += outputMedia;
   await fsp.writeFile(argv.o, output);
 }
 
