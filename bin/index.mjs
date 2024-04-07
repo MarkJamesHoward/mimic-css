@@ -7,6 +7,7 @@ import {
   Single_Hypen_Then_Colon_Hover,
   Sindle_Hypen_Then_Colon_Media,
   Single_Hypen_Then_Colon_Media_Hover,
+  Single_Hypen_Then_Colon_Then_Another_Hyphen,
   Double_Hyphen_No_Colon,
   Double_Hyphen_No_Colon_Media,
 } from "../src/RegExPerform.mjs";
@@ -55,6 +56,9 @@ async function UpdateACEcssOutputFile() {
       if (result != undefined) output += result;
 
       result = Single_Hypen_Then_Colon_Media_Hover(item);
+      if (result != undefined) output += result;
+
+      result = Single_Hypen_Then_Colon_Then_Another_Hyphen(item);
       if (result != undefined) output += result;
 
       // border-style-solid flex-direction-row
