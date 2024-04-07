@@ -7,9 +7,13 @@ import {
   media_single_hyphen_then_colon_hover,
   single_colon,
   single_colon_hover,
+  single_hyphen_then_colon_then_another_hyphen,
 } from "./RegExDefinitions.mjs";
 import { PerformSnap } from "./performSnap.mjs";
-import { ProcessMediaQueries } from "./processMediaQueries.mjs";
+import {
+  ProcessMediaQueries,
+  ProcessMediaQueriesWithHover,
+} from "./processMediaQueries.mjs";
 
 export function Single_Colon_Hover(item) {
   let output = "";
@@ -60,7 +64,7 @@ export function Single_Hypen_Then_Colon_Media_Hover(item) {
     media_single_hyphen_then_colon_hover
   );
 
-  return ProcessMediaQueries(
+  return ProcessMediaQueriesWithHover(
     media_single_hyphen_then_colon_hover_matches,
     false
   );
@@ -111,6 +115,26 @@ export function Single_Hypen_Then_Colon(item) {
       ": " +
       `${snappedvalue == 0 ? value : snappedvalue}` +
       `;\r\n}\r\n`
+    );
+  }
+}
+
+export function Single_Hypen_Then_Colon_Then_Another_Hyphen(item) {
+  let single_hyphen_then_colon_then_another_hyphen_matches = item.matchAll(
+    single_hyphen_then_colon_then_another_hyphen
+  );
+
+  for (const match of single_hyphen_then_colon_then_another_hyphen_matches) {
+    //console.log("single_hyphen_then_colon " + match);
+
+    let style = match.groups["style"];
+    let value = match.groups["value"];
+
+    console.log(style);
+    console.log(value);
+
+    return (
+      `.${style}\\:${value} {\r\n\t` + style + ": " + `${value}` + `;\r\n}\r\n`
     );
   }
 }
