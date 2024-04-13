@@ -6,6 +6,7 @@ import {
   media_single_hyphen_then_colon,
   media_single_hyphen_then_colon_hover,
   single_colon,
+  single_colon_media,
   single_colon_hover,
   single_hyphen_then_colon_then_another_hyphen,
 } from "./RegExDefinitions.mjs";
@@ -56,6 +57,12 @@ export function Single_Colon(item) {
       `;\r\n}\r\n`
     );
   }
+}
+
+export function Single_Colon_Media(item) {
+  let single_colon_media_results = item.matchAll(single_colon_media);
+
+  return ProcessMediaQueries(single_colon_media_results, false);
 }
 
 export function Sindle_Hypen_Then_Colon_Media(item) {

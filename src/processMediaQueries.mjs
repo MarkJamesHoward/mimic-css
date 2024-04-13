@@ -1,13 +1,15 @@
 import { PerformSnap } from "./performSnap.mjs";
 import {
+  extrasmall,
   small,
   medium,
   large,
-  xtraLarge,
+  extraLarge,
+  extrasmallText,
   smallText,
   mediumText,
   largeText,
-  xtraLargeText,
+  extraLargeText,
 } from "../src/mediaBreakpoints.mjs";
 
 export function ProcessMediaQueriesWithHover(matches, colon) {
@@ -24,17 +26,20 @@ export function ProcessMediaQueriesWithHover(matches, colon) {
     let width;
 
     switch (media) {
+      case extrasmallText:
+        width = extrasmall;
+        break;
       case smallText:
         width = small;
         break;
       case mediumText:
-        width = small;
+        width = medium;
         break;
       case largeText:
         width = large;
         break;
-      case xtraLargeText:
-        width = xtraLarge;
+      case extraLargeText:
+        width = extraLarge;
         break;
       default:
         console.log("unknown media!!");

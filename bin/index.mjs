@@ -5,6 +5,7 @@ import { DeDuplication } from "../src/DeDuplication.mjs";
 import {
   Single_Colon,
   Single_Colon_Hover,
+  Single_Colon_Media,
   Single_Hypen_Then_Colon,
   Single_Hypen_Then_Colon_Hover,
   Sindle_Hypen_Then_Colon_Media,
@@ -40,6 +41,9 @@ async function UpdateACEcssOutputFile(filename) {
     splitIndividualClassItems.forEach((item) => {
       // display:flex
       let result = Single_Colon(item);
+      output += DeDuplication(output, result);
+
+      result = Single_Colon_Media(item);
       output += DeDuplication(output, result);
 
       result = Single_Colon_Hover(item);

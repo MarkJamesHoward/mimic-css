@@ -1,12 +1,11 @@
-export const small = '640'
-export const medium = '768'
-export const large = '1024'
-export const xtraLarge = '1280'
-export const crazyLarge = '1536'
+export const extrasmall = "640";
+export const small = "768";
+export const medium = "1024";
+export const large = "1280";
+export const extraLarge = "1536";
 
-
-export const smallText = 'small'
-export const mediumText = 'medium'
-export const largeText = 'large'
-export const xtraLargeText = 'xtraLarge'
-export const crazyLargeText = 'crazyLarge'
+export const extrasmallText = "extrasmall";
+export const smallText = "small";
+export const mediumText = "medium";
+export const largeText = "large";
+export const extraLargeText = "extraLarge";

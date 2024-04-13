@@ -1,3 +1,5 @@
-.padding\:md {
-	padding: 8px;
+@media (min-width: 1280px) {
+.large\?display\:flex {
+	display: flex;
+}
 }
