@@ -18,7 +18,7 @@ import fs from "fs";
 const argv = yargs(process.argv.slice(2))
   .options({
     i: { type: "string", default: "./" },
-    o: { type: "string", default: "./mimic.css" },
+    o: { type: "string", default: "./css-in-class.css" },
   })
   .parse();
 
@@ -106,7 +106,7 @@ await searchFile(argv.i, ".html");
 // Now setup to check for file changes
 fs.watch(argv.i, { recursive: true }, async (eventType, filename) => {
   if (filename?.includes("html")) {
-    console.log("Changed: " + filename);
+    console.log("change detected: " + filename);
     await UpdateACEcssOutputFile(filename);
     await fsp.writeFile(argv.o, output + outputMedia);
   }

@@ -29,8 +29,9 @@ export const single_hyphen_then_colon_then_another_hyphen =
   /(?<!.)(?<style>[A-Za-z0-9]+-[A-Za-z0-9]+):(?<value>[A-Za-z0-9]+-[A-Za-z0-9]+)(?<![hover])/gi;
 
 // display:flex
+// padding:1px
 // display:flex:hover
-export const single_colon = /^(?<style>[A-Za-z0-9]+):(?<value>[A-Za-z]+)$/gi;
+export const single_colon = /^(?<style>[A-Za-z0-9]+):(?<value>[A-Za-z0-9]+)$/gi;
 
 export const single_colon_hover =
   /(?<!.)(?<style>[A-Za-z0-9]+):(?<value>[A-Za-z]+):hover/gi;

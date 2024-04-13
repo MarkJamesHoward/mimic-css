@@ -17,6 +17,7 @@ export function PerformSnap(type, value) {
     case "padding-left":
     case "padding-bottom":
     case "padding-right":
+    case "padding":
       switch (value) {
         case Sizes.xs:
           result = PaddingSizes.xs;

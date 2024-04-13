@@ -46,8 +46,15 @@ export function Single_Colon(item) {
     let style = match.groups["style"];
     let value = match.groups["value"];
     // console.log(`${style} ${value})
+    let snappedvalue = PerformSnap(style, value);
 
-    return `.${style}\\:${value} {\r\n\t` + style + ": " + value + `;\r\n}\r\n`;
+    return (
+      `.${style}\\:${value} {\r\n\t` +
+      style +
+      ": " +
+      snappedvalue +
+      `;\r\n}\r\n`
+    );
   }
 }
 
