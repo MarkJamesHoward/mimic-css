@@ -88,15 +88,12 @@ async function searchFile(dir, fileName) {
     // get the file stats
     const fileStat = fs.statSync(filePath);
 
-    console.log(filePath);
-    console.log(fileName);
-
     // if the file is a directory, recursively search the directory
     if (fileStat.isDirectory()) {
       searchFile(filePath, fileName);
     } else if (file.endsWith(fileName)) {
       // if the file is a match, print it
-      console.log("checking");
+      console.log("Performing first run check on file " + filePath);
       await UpdateACEcssOutputFile(filePath);
     }
   }
