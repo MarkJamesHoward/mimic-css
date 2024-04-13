@@ -76,12 +76,12 @@ export function Single_Hypen_Then_Colon_Hover(item) {
   );
 
   for (const match of single_hyphen_then_colon_hover_matches) {
-    console.log("single_hyphen_then_colon_hover " + match);
+    //console.log("single_hyphen_then_colon_hover " + match);
 
     let style = match.groups["style"];
     let value = match.groups["value"];
 
-    console.log(`${style} ${value}`);
+    //console.log(`${style} ${value}`);
     let snappedvalue = PerformSnap(style, value);
 
     return (
@@ -105,8 +105,8 @@ export function Single_Hypen_Then_Colon(item) {
     let style = match.groups["style"];
     let value = match.groups["value"];
 
-    console.log(style);
-    console.log(value);
+    //console.log(style);
+    //console.log(value);
     let snappedvalue = PerformSnap(style, value);
 
     return (
@@ -130,8 +130,8 @@ export function Single_Hypen_Then_Colon_Then_Another_Hyphen(item) {
     let style = match.groups["style"];
     let value = match.groups["value"];
 
-    console.log(style);
-    console.log(value);
+    //console.log(style);
+    //console.log(value);
 
     return (
       `.${style}\\:${value} {\r\n\t` + style + ": " + `${value}` + `;\r\n}\r\n`
@@ -151,7 +151,7 @@ export function Double_Hyphen_No_Colon(item) {
   let double_hyphen_no_colon_matches = item.matchAll(double_hyphen_no_colon);
 
   for (const match of double_hyphen_no_colon_matches) {
-    console.log("double_hyphen_no_colon " + match);
+    //console.log("double_hyphen_no_colon " + match);
 
     let style = match.groups["style"];
     let value = match.groups["value"];

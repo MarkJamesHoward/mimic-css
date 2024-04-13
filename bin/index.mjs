@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 import yargs from "yargs";
+import path from "path";
+import { DeDuplication } from "../src/DeDuplication.mjs";
 import {
   Single_Colon,
   Single_Colon_Hover,
@@ -15,18 +17,18 @@ import fs from "fs";
 
 const argv = yargs(process.argv.slice(2))
   .options({
-    i: { type: "string", default: "../test/index.html" },
-    o: { type: "string", default: "../test/mimic.css" },
+    i: { type: "string", default: "./" },
+    o: { type: "string", default: "./mimic.css" },
   })
   .parse();
 
 var fsp = fs.promises;
+let output = "";
+let outputMedia = "";
 
-async function UpdateACEcssOutputFile() {
-  let output = "";
-  let outputMedia = "";
-
-  const data = await fsp.readFile(argv.i, "utf8");
+async function UpdateACEcssOutputFile(filename) {
+  let filenamePlusPath = argv.i + filename;
+  const data = await fsp.readFile(filenamePlusPath, "utf8");
 
   let classComplete = /class=\"(?<classComplete>.+)\"/gi;
   let classCompleteMatch = data.matchAll(classComplete);
@@ -38,10 +40,10 @@ async function UpdateACEcssOutputFile() {
     splitIndividualClassItems.forEach((item) => {
       // display:flex
       let result = Single_Colon(item);
-      if (result != undefined) output += result;
+      output += DeDuplication(output, result);
 
       result = Single_Colon_Hover(item);
-      if (result != undefined) output += result;
+      output += DeDuplication(output, result);
 
       // border-width:5
       // large?border-width:5
@@ -49,35 +51,66 @@ async function UpdateACEcssOutputFile() {
       // large?border-width:5:hover
       ////////////////////////////////
       result = Single_Hypen_Then_Colon(item);
-      if (result != undefined) output += result;
+      output += DeDuplication(output, result);
 
       result = Single_Hypen_Then_Colon_Hover(item);
-      if (result != undefined) output += result;
+      output += DeDuplication(output, result);
 
       result = Sindle_Hypen_Then_Colon_Media(item);
-      if (result != undefined) outputMedia += result;
+      outputMedia += DeDuplication(outputMedia, result);
 
       result = Single_Hypen_Then_Colon_Media_Hover(item);
-      if (result != undefined) outputMedia += result;
+      outputMedia += DeDuplication(outputMedia, result);
 
       result = Single_Hypen_Then_Colon_Then_Another_Hyphen(item);
-      if (result != undefined) output += result;
+      output += DeDuplication(output, result);
 
       // border-style-solid flex-direction-row
       // large?border-style-solid
       result = Double_Hyphen_No_Colon(item);
-      if (result != undefined) output += result;
+      output += DeDuplication(output, result);
 
       result = Double_Hyphen_No_Colon_Media(item);
-      if (result != undefined) outputMedia += result;
+      outputMedia += DeDuplication(outputMedia, result);
     });
   }
-  output = output.replace("undefined", "");
-  output += outputMedia;
-  await fsp.writeFile(argv.o, output);
 }
 
-fs.watch(argv.i, {}, async () => {
-  console.log("file changed");
-  await UpdateACEcssOutputFile();
+async function searchFile(dir, fileName) {
+  // read the contents of the directory
+  const files = fs.readdirSync(dir);
+
+  // search through the files
+  for (const file of files) {
+    // build the full path of the file
+    const filePath = path.join(dir, file);
+
+    // get the file stats
+    const fileStat = fs.statSync(filePath);
+
+    console.log(filePath);
+    console.log(fileName);
+
+    // if the file is a directory, recursively search the directory
+    if (fileStat.isDirectory()) {
+      searchFile(filePath, fileName);
+    } else if (file.endsWith(fileName)) {
+      // if the file is a match, print it
+      console.log("checking");
+      await UpdateACEcssOutputFile(filePath);
+    }
+  }
+  await fsp.writeFile(argv.o, output + outputMedia);
+}
+
+// Check all files initially
+await searchFile(argv.i, ".html");
+
+// Now setup to check for file changes
+fs.watch(argv.i, { recursive: true }, async (eventType, filename) => {
+  if (filename?.includes("html")) {
+    console.log("Changed: " + filename);
+    await UpdateACEcssOutputFile(filename);
+    await fsp.writeFile(argv.o, output + outputMedia);
+  }
 });
