@@ -1,6 +1,7 @@
 import {
   Sizes,
   PaddingSizes,
+  BorderSizes,
   MarginSizes,
   FontSizes,
   GenericSizes,
@@ -43,6 +44,37 @@ export function PerformSnap(type, value) {
 
         default:
           result = PaddingSizes.xs;
+          break;
+      }
+      break;
+    case "border-width":
+      switch (value) {
+        case Sizes.xs:
+          result = BorderSizes.xs;
+          break;
+
+        case Sizes.sm:
+          result = BorderSizes.sm;
+          break;
+
+        case Sizes.md:
+          result = BorderSizes.md;
+          break;
+
+        case Sizes.lg:
+          result = BorderSizes.lg;
+          break;
+
+        case Sizes.xl:
+          result = BorderSizes.xl;
+          break;
+
+        case Sizes.xl2:
+          result = BorderSizes.xl2;
+          break;
+
+        default:
+          result = BorderSizes.xs;
           break;
       }
       break;
