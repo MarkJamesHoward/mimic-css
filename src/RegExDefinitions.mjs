@@ -37,3 +37,11 @@ export const single_colon_media =
 // display:flex:hover
 export const single_colon_hover =
   /(?<!.)(?<style>[A-Za-z0-9]+):(?<value>[A-Za-z]+):hover/gi;
+
+//Padding shorthand
+export const single_colon_padding_shorthand =
+  /^(?<style>[A-Za-z0-9]+):(?<value1>[0-9]+)(?<value1type>[a-z]{2})(?<value2>[0-9]+)(?<value2type>[a-z]{2})(?<value3>[0-9]+)(?<value3type>[a-z]{2})(?<value4>[0-9]+)(?<value4type>[a-z]{2})$/gi;
+
+//Padding shorthand snappable
+export const single_colon_padding_shorthand_snappable =
+  /^(?<style>[A-Za-z0-9]+):(?<snap1>[a-z]{2})(?<snap2>[a-z]{2})(?<snap3>[a-z]{2})(?<snap4>[a-z]{2})$/gi;

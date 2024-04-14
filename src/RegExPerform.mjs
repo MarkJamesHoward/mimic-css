@@ -8,6 +8,8 @@ import {
   single_colon,
   single_colon_media,
   single_colon_hover,
+  single_colon_padding_shorthand,
+  single_colon_padding_shorthand_snappable,
   single_hyphen_then_colon_then_another_hyphen,
 } from "./RegExDefinitions.mjs";
 import { PerformSnap } from "./performSnap.mjs";
@@ -55,6 +57,56 @@ export function Single_Colon(item) {
       ": " +
       snappedvalue +
       `;\r\n}\r\n`
+    );
+  }
+}
+
+export function Single_Colon_Padding_Shorthand_Snappable(item) {
+  let single_colon_padding_shorthand_snappable_matches = item.matchAll(
+    single_colon_padding_shorthand_snappable
+  );
+
+  for (const match of single_colon_padding_shorthand_snappable_matches) {
+    let style = match.groups["style"];
+    let snap1 = match.groups["snap1"];
+    let snap2 = match.groups["snap2"];
+    let snap3 = match.groups["snap3"];
+    let snap4 = match.groups["snap4"];
+    let snap1value = PerformSnap(style, snap1);
+    let snap2value = PerformSnap(style, snap2);
+    let snap3value = PerformSnap(style, snap3);
+    let snap4value = PerformSnap(style, snap4);
+
+    return (
+      `.${style}\\:${snap1}${snap2}${snap3}${snap4} {\r\n\t` +
+      style +
+      ": " +
+      `${snap1value} ${snap1value} ${snap1value} ${snap1value};\r\n}\r\n`
+    );
+  }
+}
+
+export function Single_Colon_Padding_Shorthand(item) {
+  let single_colon_padding_shorthand_matches = item.matchAll(
+    single_colon_padding_shorthand
+  );
+
+  for (const match of single_colon_padding_shorthand_matches) {
+    let style = match.groups["style"];
+    let value1 = match.groups["value1"];
+    let value2 = match.groups["value2"];
+    let value3 = match.groups["value3"];
+    let value4 = match.groups["value4"];
+    let value1type = match.groups["value1type"];
+    let value2type = match.groups["value2type"];
+    let value3type = match.groups["value3type"];
+    let value4type = match.groups["value4type"];
+
+    return (
+      `.${style}\\:${value1}${value1type}${value2}${value2type}${value3}${value3type}${value4}${value4type} {\r\n\t` +
+      style +
+      ": " +
+      `${value1}${value1type} ${value2}${value2type} ${value3}${value3type} ${value4}${value4type};\r\n}\r\n`
     );
   }
 }

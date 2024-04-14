@@ -7,6 +7,44 @@ import {
   GenericSizes,
 } from "./Sizes.mjs";
 
+export function PerformSnap4(type, value1, value2, value3, value4) {
+  switch (type) {
+    case "padding":
+      switch (value1) {
+        case Sizes.xs:
+          result = PaddingSizes.xs;
+          break;
+
+        case Sizes.sm:
+          result = PaddingSizes.sm;
+          break;
+
+        case Sizes.md:
+          result = PaddingSizes.md;
+          break;
+
+        case Sizes.lg:
+          result = PaddingSizes.lg;
+          break;
+
+        case Sizes.xl:
+          result = PaddingSizes.xl;
+          break;
+
+        case Sizes.xl2:
+          result = PaddingSizes.xl2;
+          break;
+
+        default:
+          result = PaddingSizes.xs;
+          break;
+      }
+      break;
+  }
+
+  return result;
+}
+
 export function PerformSnap(type, value) {
   let result = 0;
   //  console.log(type)

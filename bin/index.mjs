@@ -6,6 +6,8 @@ import {
   Single_Colon,
   Single_Colon_Hover,
   Single_Colon_Media,
+  Single_Colon_Padding_Shorthand,
+  Single_Colon_Padding_Shorthand_Snappable,
   Single_Hypen_Then_Colon,
   Single_Hypen_Then_Colon_Hover,
   Sindle_Hypen_Then_Colon_Media,
@@ -40,39 +42,42 @@ async function UpdateACEcssOutputFile(filename) {
 
     splitIndividualClassItems.forEach((item) => {
       // display:flex
+      let mostSpecificMatch = "";
+
       let result = Single_Colon(item);
-      output += DeDuplication(output, result);
+      if (result != "" && result != undefined) mostSpecificMatch = result;
 
       result = Single_Colon_Media(item);
-      output += DeDuplication(output, result);
+      if (result != "" && result != undefined) mostSpecificMatch = result;
 
       result = Single_Colon_Hover(item);
-      output += DeDuplication(output, result);
+      if (result != "" && result != undefined) mostSpecificMatch = result;
 
-      // border-width:5
-      // large?border-width:5
-      // border-width:5:hover
-      // large?border-width:5:hover
-      ////////////////////////////////
+      result = Single_Colon_Padding_Shorthand(item);
+      if (result != "" && result != undefined) mostSpecificMatch = result;
+
+      result = Single_Colon_Padding_Shorthand_Snappable(item);
+      if (result != "" && result != undefined) mostSpecificMatch = result;
+
       result = Single_Hypen_Then_Colon(item);
-      output += DeDuplication(output, result);
+      if (result != "" && result != undefined) mostSpecificMatch = result;
 
       result = Single_Hypen_Then_Colon_Hover(item);
-      output += DeDuplication(output, result);
+      if (result != "" && result != undefined) mostSpecificMatch = result;
+
+      result = Single_Hypen_Then_Colon_Then_Another_Hyphen(item);
+      if (result != "" && result != undefined) mostSpecificMatch = result;
+
+      result = Double_Hyphen_No_Colon(item);
+      if (result != "" && result != undefined) mostSpecificMatch = result;
+
+      output += DeDuplication(output, mostSpecificMatch);
 
       result = Sindle_Hypen_Then_Colon_Media(item);
       outputMedia += DeDuplication(outputMedia, result);
 
       result = Single_Hypen_Then_Colon_Media_Hover(item);
       outputMedia += DeDuplication(outputMedia, result);
-
-      result = Single_Hypen_Then_Colon_Then_Another_Hyphen(item);
-      output += DeDuplication(output, result);
-
-      // border-style-solid flex-direction-row
-      // large?border-style-solid
-      result = Double_Hyphen_No_Colon(item);
-      output += DeDuplication(output, result);
 
       result = Double_Hyphen_No_Colon_Media(item);
       outputMedia += DeDuplication(outputMedia, result);
