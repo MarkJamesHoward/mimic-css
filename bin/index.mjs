@@ -21,7 +21,7 @@ import fs from "fs";
 const argv = yargs(process.argv.slice(2))
   .options({
     i: { type: "string", default: "./" },
-    o: { type: "string", default: "./css-in-class.css" },
+    o: { type: "string", default: "./mimic.css" },
   })
   .parse();
 
