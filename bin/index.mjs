@@ -111,10 +111,11 @@ async function searchFile(dir, fileName) {
 
 // Check all files initially
 await searchFile(argv.i, ".html");
+await searchFile(argv.i, ".ts");
 
 // Now setup to check for file changes
 fs.watch(argv.i, { recursive: true }, async (eventType, filename) => {
-  if (filename?.includes("html")) {
+  if (filename?.includes("html") || filename?.includes("ts")) {
     console.log("change detected: " + filename);
     await UpdateACEcssOutputFile(filename);
     await fsp.writeFile(argv.o, output + outputMedia);
