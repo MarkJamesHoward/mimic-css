@@ -1,10 +1,10 @@
 {
-  "name": "css-in-class",
-  "version": "0.0.5-alpha",
+  "name": "mimic-css",
+  "version": "0.0.27-alpha",
   "description": "",
   "main": "./bin/index.mjs",
   "bin": {
-    "css-in-class": "./bin/index.mjs"
+    "mimic": "./bin/index.mjs"
   },
   "keywords": [],
   "author": "markjameshoward@hotmail.co.uk",
