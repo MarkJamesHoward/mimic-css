@@ -22,6 +22,7 @@ const argv = yargs(process.argv.slice(2))
   .options({
     i: { type: "string", default: "./" },
     o: { type: "string", default: "./mimic.css" },
+    e: { type: "string", default: "" },
   })
   .parse();
 
@@ -115,9 +116,16 @@ await searchFile(argv.i, ".ts");
 
 // Now setup to check for file changes
 fs.watch(argv.i, { recursive: true }, async (eventType, filename) => {
-  if (filename?.includes("html") || filename?.includes("ts")) {
-    console.log("change detected: " + filename);
-    await UpdateACEcssOutputFile(filename);
-    await fsp.writeFile(argv.o, output + outputMedia);
+  if (filename?.includes(".html") || filename?.includes(".ts")) {
+    // Check for excluded filenames
+    if (argv.e == "" || !filename?.includes(argv.e)) {
+      console.log("change detected.. performing update: " + filename);
+      await UpdateACEcssOutputFile(filename);
+      await fsp.writeFile(argv.o, output + outputMedia);
+    } else {
+      console.log(`filename excluded ${filename}`);
+    }
+  } else {
+    console.log(`filename not in list to examine ${filename}`);
   }
 });
