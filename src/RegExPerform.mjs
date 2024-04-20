@@ -12,6 +12,7 @@ import {
   single_colon_padding_shorthand_snappable,
   single_hyphen_then_colon_then_another_hyphen,
 } from "./RegExDefinitions.mjs";
+import { Escape } from "./EscapingClassNames.mjs";
 import { PerformSnap } from "./performSnap.mjs";
 import {
   ProcessMediaQueries,
@@ -33,7 +34,7 @@ export function Single_Colon_Hover(item) {
     let snappedvalue = PerformSnap(style, value);
 
     output +=
-      `.${style}\\:${value}\\:hover:hover {\r\n\t` +
+      `.${style}\\:${Escape(value)}\\:hover:hover {\r\n\t` +
       style +
       ": " +
       `${snappedvalue == 0 ? value : snappedvalue}` +
@@ -52,7 +53,7 @@ export function Single_Colon(item) {
     let snappedvalue = PerformSnap(style, value);
 
     return (
-      `.${style}\\:${value} {\r\n\t` +
+      `.${style}\\:${Escape(value)} {\r\n\t` +
       style +
       ": " +
       snappedvalue +
@@ -151,7 +152,7 @@ export function Single_Hypen_Then_Colon_Hover(item) {
     let snappedvalue = PerformSnap(style, value);
 
     return (
-      `.${style}\\:${value}\\:hover:hover {\r\n\t` +
+      `.${style}\\:${Escape(value)}\\:hover:hover {\r\n\t` +
       style +
       ": " +
       `${snappedvalue == 0 ? value : snappedvalue}` +
@@ -176,7 +177,7 @@ export function Single_Hypen_Then_Colon(item) {
     let snappedvalue = PerformSnap(style, value);
 
     return (
-      `.${style}\\:${value} {\r\n\t` +
+      `.${style}\\:${Escape(value)} {\r\n\t` +
       style +
       ": " +
       `${snappedvalue == 0 ? value : snappedvalue}` +
@@ -200,7 +201,11 @@ export function Single_Hypen_Then_Colon_Then_Another_Hyphen(item) {
     //console.log(value);
 
     return (
-      `.${style}\\:${value} {\r\n\t` + style + ": " + `${value}` + `;\r\n}\r\n`
+      `.${style}\\:${Escape(value)} {\r\n\t` +
+      style +
+      ": " +
+      `${value}` +
+      `;\r\n}\r\n`
     );
   }
 }
@@ -227,7 +232,7 @@ export function Double_Hyphen_No_Colon(item) {
     let snappedvalue = PerformSnap(style, value);
 
     return (
-      `.${style}-${value} {\r\n\t` +
+      `.${style}-${Escape(value)} {\r\n\t` +
       style +
       ": " +
       `${snappedvalue == 0 ? value : snappedvalue}` +
