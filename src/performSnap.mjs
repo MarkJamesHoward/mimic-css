@@ -51,6 +51,10 @@ export function PerformSnap(type, value) {
   //  console.log(type)
   //  console.log(value)
 
+  if (value.includes("px") || value.includes("rem") || value.includes("%") || value.includes("ch")) {
+    return value
+  }
+
   switch (type) {
     case "padding-top":
     case "padding-left":
