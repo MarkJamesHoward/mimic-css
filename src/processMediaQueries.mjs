@@ -11,6 +11,7 @@ import {
   largeText,
   extraLargeText,
 } from "../src/mediaBreakpoints.mjs";
+import { Escape } from "./EscapingClassNames.mjs";
 
 export function ProcessMediaQueriesWithHover(matches, colon) {
   let output = "";
@@ -51,7 +52,7 @@ export function ProcessMediaQueriesWithHover(matches, colon) {
     output +=
       `@media (min-width: ${width}px) {\r\n.${media}\\?${style}${
         colon == false ? "\\:" : "-"
-      }${value}\\:hover:hover {\r\n\t` +
+      }${Escape(value)}\\:hover:hover {\r\n\t` +
       style +
       ": " +
       `${snappedvalue == 0 ? value : snappedvalue}` +
@@ -96,7 +97,7 @@ export function ProcessMediaQueries(matches, colon) {
     output +=
       `@media (min-width: ${width}px) {\r\n.${media}\\?${style}${
         colon == false ? "\\:" : "-"
-      }${value} {\r\n\t` +
+      }${Escape(value)} {\r\n\t` +
       style +
       ": " +
       `${snappedvalue == 0 ? value : snappedvalue}` +
