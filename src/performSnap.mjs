@@ -10,6 +10,7 @@ import {
 export function PerformSnap4(type, value1, value2, value3, value4) {
   switch (type) {
     case "padding":
+    case "margin":
       switch (value1) {
         case Sizes.xs:
           result = PaddingSizes.xs;
@@ -121,6 +122,7 @@ export function PerformSnap(type, value) {
     case "margin-left":
     case "margin-bottom":
     case "margin-right":
+    case "margin":
       switch (value) {
         case Sizes.xs:
           result = MarginSizes.xs;

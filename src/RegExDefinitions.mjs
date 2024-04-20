@@ -45,4 +45,4 @@ export const single_colon_padding_shorthand =
 
 //Padding shorthand snappable
 export const single_colon_padding_shorthand_snappable =
-  /^(?<style>[A-Za-z0-9]+):(?<snap1>[a-z]{2})(?<snap2>[a-z]{2})(?<snap3>[a-z]{2})(?<snap4>[a-z]{2})$/gi;
+  /^(?<style>[A-Za-z0-9]+):(?<snap1>[xs|sm|md|lg|xl|2xl])(?<snap2>[a-z]{2})(?<snap3>[a-z]{2})(?<snap4>[a-z]{2})$/gi;
