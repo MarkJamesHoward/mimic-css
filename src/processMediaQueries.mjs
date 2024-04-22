@@ -4,12 +4,12 @@ import {
   small,
   medium,
   large,
-  extraLarge,
-  extrasmallText,
-  smallText,
-  mediumText,
-  largeText,
-  extraLargeText,
+  extralarge,
+  extrasmalltext,
+  smalltext,
+  mediumtext,
+  largetext,
+  extralargetext,
 } from "../src/mediaBreakpoints.mjs";
 import { Escape } from "./EscapingClassNames.mjs";
 
@@ -27,22 +27,23 @@ export function ProcessMediaQueriesWithHover(matches, colon) {
     let width;
 
     switch (media) {
-      case extrasmallText:
+      case extrasmalltext:
         width = extrasmall;
         break;
-      case smallText:
+      case smalltext:
         width = small;
         break;
-      case mediumText:
+      case mediumtext:
         width = medium;
         break;
-      case largeText:
+      case largetext:
         width = large;
         break;
-      case extraLargeText:
-        width = extraLarge;
+      case extralargetext:
+        width = extralarge;
         break;
       default:
+        width = extrasmall;
         console.log("unknown media!!");
     }
     //console.log("Process Media with " + style + " " + value);
@@ -56,7 +57,7 @@ export function ProcessMediaQueriesWithHover(matches, colon) {
       style +
       ": " +
       `${snappedvalue == 0 ? value : snappedvalue}` +
-      `;\r\n}\r\n}\r\n`;
+      `;\r\n\t}\r\n}\r\n`;
   }
   return output;
 }
@@ -75,22 +76,23 @@ export function ProcessMediaQueries(matches, colon) {
     let width;
 
     switch (media) {
-      case extrasmallText:
+      case extrasmalltext:
         width = extrasmall;
         break;
-      case smallText:
+      case smalltext:
         width = small;
         break;
-      case mediumText:
+      case mediumtext:
         width = medium;
         break;
-      case largeText:
+      case largetext:
         width = large;
         break;
-      case extraLargeText:
-        width = extraLarge;
+      case extraLargetext:
+        width = extralarge;
         break;
       default:
+        width = extrasmall;
         console.log("unknown media!!");
     }
     //console.log("Process Media with " + style + " " + value);
@@ -104,7 +106,7 @@ export function ProcessMediaQueries(matches, colon) {
       style +
       ": " +
       `${snappedvalue == 0 ? value : snappedvalue}` +
-      `;\r\n}\r\n}\r\n`;
+      `;\r\n\t}\r\n}\r\n`;
   }
   return output;
 }
