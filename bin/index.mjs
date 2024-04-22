@@ -125,7 +125,6 @@ fs.watch(argv.i, { recursive: true }, async (eventType, filename) => {
 
       await WriteFile(argv.o, output + outputMedia);
 
-      console.log("Lit output? " + argv.l);
       if (argv.l) {
         await WriteLitFile(argv.o, output + outputMedia);
       }
