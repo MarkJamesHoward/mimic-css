@@ -23,6 +23,7 @@ const argv = yargs(process.argv.slice(2))
     i: { type: "string", default: "./" },
     o: { type: "string", default: "./mimic.css" },
     e: { type: "string", default: "" },
+    l: { type: "boolean", default: false },
   })
   .parse();
 
@@ -121,7 +122,13 @@ fs.watch(argv.i, { recursive: true }, async (eventType, filename) => {
     if (argv.e == "" || !filename?.includes(argv.e)) {
       console.log("change detected.. performing update: " + filename);
       await UpdateACEcssOutputFile(filename);
-      await fsp.writeFile(argv.o, output + outputMedia);
+
+      await WriteFile(argv.o, output + outputMedia);
+
+      console.log("Lit output? " + argv.l);
+      if (argv.l) {
+        await WriteLitFile(argv.o, output + outputMedia);
+      }
     } else {
       console.log(`filename excluded ${filename}`);
     }
@@ -129,3 +136,16 @@ fs.watch(argv.i, { recursive: true }, async (eventType, filename) => {
     console.log(`filename not in list to examine ${filename}`);
   }
 });
+
+async function WriteFile(filename, data) {
+  await fsp.writeFile(filename, data);
+}
+
+async function WriteLitFile(filename, data) {
+  let cleanContents = data.replaceAll("`", "");
+  cleanContents = cleanContents.replaceAll("\\", "\\\\");
+
+  const litContents = `import { css } from "lit";\r\nexport const TWStyles = css\`\r\n${cleanContents} \`
+    `;
+  await fsp.writeFile(filename + ".js", litContents);
+}

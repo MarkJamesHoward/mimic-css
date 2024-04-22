@@ -2,3 +2,5 @@ node_modules
 mimic.css
 .parcel-cache/
 dist/
+bin/mimic.css.js
+bin/mimic.css
