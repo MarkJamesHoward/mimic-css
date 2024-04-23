@@ -12,16 +12,16 @@ export const double_hyphen_no_colon_media =
 //large?border-width:5
 //large?border-width:5:hover
 export const single_hyphen_then_colon =
-  /^(?<style>[A-Za-z0-9]+-[A-Za-z0-9]+):(?<value>[A-Za-z0-9]+)$/gi;
+  /^(?<style>[A-Za-z0-9]+-[A-Za-z0-9]+):(?<value>[A-Za-z0-9\%\.#]+)$/gi;
 
 export const single_hyphen_then_colon_hover =
-  /^(?<style>[A-Za-z0-9]+-[A-Za-z0-9]+):(?<value>[A-Za-z0-9]+):hover$/gi;
+  /^(?<style>[A-Za-z0-9]+-[A-Za-z0-9]+):(?<value>[A-Za-z0-9\%\.#]+):hover$/gi;
 
 export const media_single_hyphen_then_colon =
-  /^(?<media>extrasmall|small|medium|large|extralarge+)\?(?<style>[A-Za-z0-9]+-[A-Za-z0-9]+):(?<value>[A-Za-z0-9]+)$/gi;
+  /^(?<media>extrasmall|small|medium|large|extralarge+)\?(?<style>[A-Za-z0-9]+-[A-Za-z0-9]+):(?<value>[A-Za-z0-9\%\.#]+)$/gi;
 
 export const media_single_hyphen_then_colon_hover =
-  /^(?<media>extrasmall|small|medium|large|extralarge+)\?(?<style>[A-Za-z0-9]+-[A-Za-z0-9]+):(?<value>[A-Za-z0-9]+):hover$/gi;
+  /^(?<media>extrasmall|small|medium|large|extralarge+)\?(?<style>[A-Za-z0-9]+-[A-Za-z0-9]+):(?<value>[A-Za-z0-9\%\.#]+):hover$/gi;
 //////////////
 
 //justify-content: space-between
