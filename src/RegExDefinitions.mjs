@@ -33,9 +33,9 @@ export const single_hyphen_then_colon_then_another_hyphen =
 // height:10px
 // height:100%
 export const single_colon =
-  /^(?<style>[A-Za-z]+):(?<value>[A-Za-z0-9\%\.]+)$/gi;
+  /^(?<style>[A-Za-z]+):(?<value>[A-Za-z0-9\%\.#]+)$/gi;
 export const single_colon_media =
-  /^(?<media>extrasmall|small|medium|large|extralarge+)\?(?<style>[A-Za-z0-9]+):(?<value>[A-Za-z0-9\%\.]+)$/gi;
+  /^(?<media>extrasmall|small|medium|large|extralarge+)\?(?<style>[A-Za-z0-9]+):(?<value>[A-Za-z0-9\%\.#]+)$/gi;
 
 // display:flex:hover
 export const single_colon_hover =
