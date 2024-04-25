@@ -11,15 +11,15 @@ import {
   single_colon_padding_shorthand,
   single_colon_padding_shorthand_snappable,
   single_hyphen_then_colon_then_another_hyphen,
-} from "./RegExDefinitions.mjs";
-import { Escape } from "./EscapingClassNames.mjs";
-import { PerformSnap } from "./performSnap.mjs";
+} from "./RegExDefinitions";
+import { Escape } from "./EscapingClassNames.js";
+import { PerformSnap } from "./performSnap.js";
 import {
   ProcessMediaQueries,
   ProcessMediaQueriesWithHover,
-} from "./processMediaQueries.mjs";
+} from "./processMediaQueries";
 
-export function Single_Colon_Hover(item) {
+export function Single_Colon_Hover(item: any) {
   let output = "";
   let single_colon_hover_matches = item.matchAll(single_colon_hover);
 
@@ -37,13 +37,13 @@ export function Single_Colon_Hover(item) {
       `.${style}\\:${Escape(value)}\\:hover:hover {\r\n\t` +
       style +
       ": " +
-      `${snappedvalue == 0 ? value : snappedvalue}` +
+      `${snappedvalue}` +
       `;\r\n}\r\n`;
   }
   return output;
 }
 
-export function Single_Colon(item) {
+export function Single_Colon(item: any) {
   let single_colon_matches = item.matchAll(single_colon);
 
   for (const match of single_colon_matches) {
@@ -62,7 +62,7 @@ export function Single_Colon(item) {
   }
 }
 
-export function Single_Colon_Padding_Shorthand_Snappable(item) {
+export function Single_Colon_Padding_Shorthand_Snappable(item: any) {
   let single_colon_padding_shorthand_snappable_matches = item.matchAll(
     single_colon_padding_shorthand_snappable
   );
@@ -87,7 +87,7 @@ export function Single_Colon_Padding_Shorthand_Snappable(item) {
   }
 }
 
-export function Single_Colon_Padding_Shorthand(item) {
+export function Single_Colon_Padding_Shorthand(item: any) {
   let single_colon_padding_shorthand_matches = item.matchAll(
     single_colon_padding_shorthand
   );
@@ -112,13 +112,13 @@ export function Single_Colon_Padding_Shorthand(item) {
   }
 }
 
-export function Single_Colon_Media(item) {
+export function Single_Colon_Media(item: any) {
   let single_colon_media_results = item.matchAll(single_colon_media);
 
   return ProcessMediaQueries(single_colon_media_results, false);
 }
 
-export function Sindle_Hypen_Then_Colon_Media(item) {
+export function Sindle_Hypen_Then_Colon_Media(item: any) {
   let media_single_hyphen_then_colon_matches = item.matchAll(
     media_single_hyphen_then_colon
   );
@@ -126,7 +126,7 @@ export function Sindle_Hypen_Then_Colon_Media(item) {
   return ProcessMediaQueries(media_single_hyphen_then_colon_matches, false);
 }
 
-export function Single_Hypen_Then_Colon_Media_Hover(item) {
+export function Single_Hypen_Then_Colon_Media_Hover(item: any) {
   let media_single_hyphen_then_colon_hover_matches = item.matchAll(
     media_single_hyphen_then_colon_hover
   );
@@ -137,7 +137,7 @@ export function Single_Hypen_Then_Colon_Media_Hover(item) {
   );
 }
 
-export function Single_Hypen_Then_Colon_Hover(item) {
+export function Single_Hypen_Then_Colon_Hover(item: any) {
   let single_hyphen_then_colon_hover_matches = item.matchAll(
     single_hyphen_then_colon_hover
   );
@@ -155,13 +155,13 @@ export function Single_Hypen_Then_Colon_Hover(item) {
       `.${style}\\:${Escape(value)}\\:hover:hover {\r\n\t` +
       style +
       ": " +
-      `${snappedvalue == 0 ? value : snappedvalue}` +
+      `${snappedvalue}` +
       `;\r\n}\r\n`
     );
   }
 }
 
-export function Single_Hypen_Then_Colon(item) {
+export function Single_Hypen_Then_Colon(item: any) {
   let single_hyphen_then_colon_matches = item.matchAll(
     single_hyphen_then_colon
   );
@@ -180,13 +180,13 @@ export function Single_Hypen_Then_Colon(item) {
       `.${style}\\:${Escape(value)} {\r\n\t` +
       style +
       ": " +
-      `${snappedvalue == 0 ? value : snappedvalue}` +
+      `${snappedvalue}` +
       `;\r\n}\r\n`
     );
   }
 }
 
-export function Single_Hypen_Then_Colon_Then_Another_Hyphen(item) {
+export function Single_Hypen_Then_Colon_Then_Another_Hyphen(item: any) {
   let single_hyphen_then_colon_then_another_hyphen_matches = item.matchAll(
     single_hyphen_then_colon_then_another_hyphen
   );
@@ -210,7 +210,7 @@ export function Single_Hypen_Then_Colon_Then_Another_Hyphen(item) {
   }
 }
 
-export function Double_Hyphen_No_Colon_Media(item) {
+export function Double_Hyphen_No_Colon_Media(item: any) {
   let double_hyphen_no_colon_media_matches = item.matchAll(
     double_hyphen_no_colon_media
   );
@@ -218,7 +218,7 @@ export function Double_Hyphen_No_Colon_Media(item) {
   return ProcessMediaQueries(double_hyphen_no_colon_media_matches, true);
 }
 
-export function Double_Hyphen_No_Colon(item) {
+export function Double_Hyphen_No_Colon(item: any) {
   let double_hyphen_no_colon_matches = item.matchAll(double_hyphen_no_colon);
 
   for (const match of double_hyphen_no_colon_matches) {
@@ -235,7 +235,7 @@ export function Double_Hyphen_No_Colon(item) {
       `.${style}-${Escape(value)} {\r\n\t` +
       style +
       ": " +
-      `${snappedvalue == 0 ? value : snappedvalue}` +
+      `${snappedvalue}` +
       `;\r\n}\r\n`
     );
   }

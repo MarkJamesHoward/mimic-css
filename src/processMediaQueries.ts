@@ -1,4 +1,4 @@
-import { PerformSnap } from "./performSnap.mjs";
+import { PerformSnap } from "./performSnap";
 import {
   extrasmall,
   small,
@@ -10,10 +10,10 @@ import {
   mediumtext,
   largetext,
   extralargetext,
-} from "../src/mediaBreakpoints.mjs";
-import { Escape } from "./EscapingClassNames.mjs";
+} from "./mediaBreakpoints.js";
+import { Escape } from "./EscapingClassNames";
 
-export function ProcessMediaQueriesWithHover(matches, colon) {
+export function ProcessMediaQueriesWithHover(matches: any, colon: boolean) {
   let output = "";
 
   for (const match of matches) {
@@ -56,13 +56,13 @@ export function ProcessMediaQueriesWithHover(matches, colon) {
       }${Escape(value)}\\:hover:hover {\r\n\t` +
       style +
       ": " +
-      `${snappedvalue == 0 ? value : snappedvalue}` +
+      `${snappedvalue}` +
       `;\r\n\t}\r\n}\r\n`;
   }
   return output;
 }
 
-export function ProcessMediaQueries(matches, colon) {
+export function ProcessMediaQueries(matches: any, colon: boolean) {
   let output = "";
 
   for (const match of matches) {
@@ -88,7 +88,7 @@ export function ProcessMediaQueries(matches, colon) {
       case largetext:
         width = large;
         break;
-      case extraLargetext:
+      case extralargetext:
         width = extralarge;
         break;
       default:
@@ -105,7 +105,7 @@ export function ProcessMediaQueries(matches, colon) {
       }${Escape(value)} {\r\n\t` +
       style +
       ": " +
-      `${snappedvalue == 0 ? value : snappedvalue}` +
+      `${snappedvalue}` +
       `;\r\n\t}\r\n}\r\n`;
   }
   return output;

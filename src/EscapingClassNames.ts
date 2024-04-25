@@ -1,4 +1,4 @@
-export function Escape(className) {
+export function Escape(className: string) {
   let final = className.replace("#", "\\#");
   final = final.replace("%", "\\%");
 

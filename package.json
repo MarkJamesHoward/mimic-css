@@ -1,15 +1,21 @@
 {
   "name": "mimic-css",
-  "version": "0.0.40-alpha",
+  "version": "0.0.42-alpha",
   "description": "",
-  "main": "./bin/index.mjs",
+  "main": "./dist/bin/index.js",
   "bin": {
-    "mimic": "./bin/index.mjs"
+    "mimic": "./dist/bin/index.js"
   },
   "keywords": [],
   "author": "markjameshoward@hotmail.co.uk",
   "license": "ISC",
   "dependencies": {
     "yargs": "^17.7.2"
+  },
+  "devDependencies": {
+    "@types/node": "^20.12.7",
+    "@types/yargs": "^17.0.32",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.5"
   }
 }

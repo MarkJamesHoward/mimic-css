@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import yargs from "yargs";
 import path from "path";
-import { DeDuplication } from "../src/DeDuplication.mjs";
+import { DeDuplication } from "../src/DeDuplication";
 import {
   Single_Colon,
   Single_Colon_Hover,
@@ -15,7 +15,7 @@ import {
   Single_Hypen_Then_Colon_Then_Another_Hyphen,
   Double_Hyphen_No_Colon,
   Double_Hyphen_No_Colon_Media,
-} from "../src/RegExPerform.mjs";
+} from "../src/RegExPerform";
 import fs from "fs";
 
 const argv = yargs(process.argv.slice(2))
@@ -27,19 +27,21 @@ const argv = yargs(process.argv.slice(2))
   })
   .parse();
 
-var fsp = fs.promises;
 let output = "";
 let outputMedia = "";
+let InputFolder = argv.i;
+let OutputFilename = argv.o;
+let ExcludeFiles = argv.e;
+let EmitLitFile = argv.l;
 
-async function UpdateACEcssOutputFile(filename) {
-  let filenamePlusPath = argv.i + filename;
-  const data = await fsp.readFile(filenamePlusPath, "utf8");
+function UpdateACEcssOutputFile(filename: string) {
+  const data = fs.readFileSync(filename, "utf8");
 
   let classComplete = /class=\"(?<classComplete>.+)\"/gi;
   let classCompleteMatch = data.matchAll(classComplete);
 
   for (const classIndividual of classCompleteMatch) {
-    let classIndividualString = ` ${classIndividual.groups["classComplete"]} `;
+    let classIndividualString = ` ${classIndividual.groups?.["classComplete"]} `;
     let splitIndividualClassItems = classIndividualString.split(" ");
 
     splitIndividualClassItems.forEach((item) => {
@@ -87,7 +89,7 @@ async function UpdateACEcssOutputFile(filename) {
   }
 }
 
-async function searchFile(dir, fileName) {
+function searchFile(dir: string, extension: string) {
   // read the contents of the directory
   const files = fs.readdirSync(dir);
 
@@ -101,55 +103,61 @@ async function searchFile(dir, fileName) {
 
     // if the file is a directory, recursively search the directory
     if (fileStat.isDirectory()) {
-      searchFile(filePath, fileName);
-    } else if (file.endsWith(fileName)) {
+      searchFile(filePath, extension);
+    } else if (file.endsWith(extension)) {
       // if the file is a match, print it
       console.log("Performing first run check on file " + filePath);
-      await UpdateACEcssOutputFile(filePath);
+      UpdateACEcssOutputFile(filePath);
     }
   }
-  await fsp.writeFile(argv.o, output + outputMedia);
+  fs.writeFileSync(OutputFilename, output + outputMedia);
 }
 
 // Check all files initially
-await searchFile(argv.i, ".html");
-await searchFile(argv.i, ".ts");
-await searchFile(argv.i, ".astro");
+searchFile(InputFolder, ".html");
+searchFile(InputFolder, ".ts");
+searchFile(InputFolder, ".astro");
 
 // Now setup to check for file changes
-fs.watch(argv.i, { recursive: true }, async (eventType, filename) => {
-  if (
-    filename?.includes(".html") ||
-    filename?.includes(".astro") ||
-    filename?.includes(".ts")
-  ) {
-    // Check for excluded filenames
-    if (argv.e == "" || !filename?.includes(argv.e)) {
-      console.log("change detected.. performing update: " + filename);
-      await UpdateACEcssOutputFile(filename);
+fs.watch(
+  InputFolder,
+  { recursive: true },
+  async (eventType: string, filename: string) => {
+    if (
+      filename?.includes(".html") ||
+      filename?.includes(".astro") ||
+      filename?.includes(".ts")
+    ) {
+      // Check for excluded filenames
+      if (ExcludeFiles == "" || !filename?.includes(ExcludeFiles)) {
+        console.log("change detected.. performing update: " + filename);
+        let filenamePlusPath = path.join(InputFolder, filename);
 
-      await WriteFile(argv.o, output + outputMedia);
+        UpdateACEcssOutputFile(filenamePlusPath);
 
-      if (argv.l) {
-        await WriteLitFile(argv.o, output + outputMedia);
+        WriteFile(OutputFilename, output + outputMedia);
+
+        if (EmitLitFile) {
+          WriteLitFile(OutputFilename, output + outputMedia);
+        }
+      } else {
+        console.log(`filename excluded ${filename}`);
       }
     } else {
-      console.log(`filename excluded ${filename}`);
+      console.log(`filename not in list to examine ${filename}`);
     }
-  } else {
-    console.log(`filename not in list to examine ${filename}`);
   }
-});
+);
 
-async function WriteFile(filename, data) {
-  await fsp.writeFile(filename, data);
+function WriteFile(filename: string, data: string) {
+  fs.writeFileSync(filename, data);
 }
 
-async function WriteLitFile(filename, data) {
+async function WriteLitFile(filename: string, data: string) {
   let cleanContents = data.replaceAll("`", "");
   cleanContents = cleanContents.replaceAll("\\", "\\\\");
 
   const litContents = `import { css } from "lit";\r\nexport const TWStyles = css\`\r\n${cleanContents} \`
     `;
-  await fsp.writeFile(filename + ".js", litContents);
+  fs.writeFileSync(filename + ".js", litContents);
 }

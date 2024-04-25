@@ -5,9 +5,17 @@ import {
   MarginSizes,
   FontSizes,
   GenericSizes,
-} from "./Sizes.mjs";
+} from "./Sizes";
 
-export function PerformSnap4(type, value1, value2, value3, value4) {
+export function PerformSnap4(
+  type: string,
+  value1: string,
+  value2: string,
+  value3: string,
+  value4: string
+) {
+  let result;
+
   switch (type) {
     case "padding":
     case "margin":
@@ -46,13 +54,18 @@ export function PerformSnap4(type, value1, value2, value3, value4) {
   return result;
 }
 
-export function PerformSnap(type, value) {
-  let result = 0;
+export function PerformSnap(type: string, value: string) {
+  let result = "";
   //  console.log(type)
   //  console.log(value)
 
-  if (value.includes("px") || value.includes("rem") || value.includes("%") || value.includes("ch")) {
-    return value
+  if (
+    value.includes("px") ||
+    value.includes("rem") ||
+    value.includes("%") ||
+    value.includes("ch")
+  ) {
+    return value;
   }
 
   switch (type) {
