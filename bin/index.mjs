@@ -114,10 +114,15 @@ async function searchFile(dir, fileName) {
 // Check all files initially
 await searchFile(argv.i, ".html");
 await searchFile(argv.i, ".ts");
+await searchFile(argv.i, ".astro");
 
 // Now setup to check for file changes
 fs.watch(argv.i, { recursive: true }, async (eventType, filename) => {
-  if (filename?.includes(".html") || filename?.includes(".ts")) {
+  if (
+    filename?.includes(".html") ||
+    filename?.includes(".astro") ||
+    filename?.includes(".ts")
+  ) {
     // Check for excluded filenames
     if (argv.e == "" || !filename?.includes(argv.e)) {
       console.log("change detected.. performing update: " + filename);
