@@ -37,23 +37,28 @@ at the same time
 
 ## Install:
 
-npm install --save-dev mimic-css
+`npm install --save-dev mimic-css`
 
-mimic-css is a development time process that watches for file changes to your web pages and create classes from them. So
-we can should use the --save-dev (-D) setting here
+mimic-css is a development time process that watches for file changes to your web pages and create classes from them.
 
 ## Usage
 
-npx mimic
+`npx mimic`
 
 This will search in the current folder (and all subfolders) for .html, .ts, .js and .astro files.
 Ouput will be sent to the file mimic-css.css
 
 We can override where to base our scan for web pages using the -i flag
-`npx mimic-css -i ./src/ `
+
+```
+npx mimic-css -i ./src/
+```
 
 We can override where to outut our generated CSS file using the -o flag
-`npx mimic-css -o ./styles/mimic.css `
+
+```
+npx mimic-css -o ./styles/mimic.css
+```
 
 Other options:
 
@@ -61,16 +66,6 @@ Other options:
 - o: { type: "string", default: "./mimic.css", alias: "output" },
 - e: { type: "string", default: "", alias: "exclude" },
 - l: { type: "boolean", default: false, alias: "lit" },
-
-```html
-<head>
-  <link rel="stylesheet" href="./mimic.css" />
-</head>
-```
-
-```html
-<div class="flex-direction:row large?flex-direction:column display:flex"></div>
-```
 
 ## Magic Numbers
 
