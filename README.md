@@ -18,7 +18,7 @@ Which will result in the below class being generated for you and ensuring that t
 }
 ```
 
-You can also apply selectors like **hover** also inline with the class attribute
+You can also apply selectors like **hover** inline with the class attribute
 
 ```html
 <div class="background-color:blue:hover">Some Text</div>
