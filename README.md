@@ -4,25 +4,31 @@
 
 So we can write standard CSS such as `display:flex` and apply a media query inline within the class e.g.
 
-`<div class="large?display:flex"> Some Text </div>`
+```
+<div class="large?display:flex"> Some Text </div>
+```
 
 Which will result in the below class being generated for us and ensuring that the flex container is only applied when the screen size is greater than 1280px wide
 
-`@media (min-width: 1280px) {
+```
+@media (min-width: 1280px) {
 .large\?display\:flex {
 	display: flex;
 	}
-}`
+}
+```
 
 We can also apply selectors like **hover** also inline with the class attribute
 
-`<div class="background-color:blue:hover"> Some Text </div>`
+```
+<div class="background-color:blue:hover"> Some Text </div>
+```
 
 Which will create a class for us like this
 
-`.background-color\:blue\:hover:hover {
-	background-color: blue;
-}`
+```html
+.background-color\:blue\:hover:hover { background-color: blue; }
+```
 
 From this we gain the benefits of using a design system but without the downside of losing your CSS knowledge
 at the same time
@@ -54,9 +60,13 @@ Other options:
 - e: { type: "string", default: "", alias: "exclude" },
 - l: { type: "boolean", default: false, alias: "lit" },
 
-`<head> <link rel="stylesheet" href="./mimic.css" /></head>`
+```
+<head> <link rel="stylesheet" href="./mimic.css" /></head>
+```
 
-`<div class="flex-direction:row large?flex-direction:column display:flex">`
+```
+<div class="flex-direction:row large?flex-direction:column display:flex">
+```
 
 ## Magic Numbers
 
@@ -98,7 +108,9 @@ Whereas for **Padding** the mappings will be different:
 
 ### An example for Padding
 
-`<div class="padding-top:md"> Some Text </div>`
+```html
+<div class="padding-top:md">Some Text</div>
+```
 
 **becomes**
 
