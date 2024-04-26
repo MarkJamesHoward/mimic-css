@@ -41,24 +41,14 @@ Ouput will be sent to the file mimic-css.css
 we can override these defaults as below to specify a specific folder to monitor (**src**) and the output filename to use (**mimic.css**)
 npx mimic-css -i ./src/ -o ./src/mimic.css
 
-<ul>
-   <li>  i: { type: "string", default: "./", alias: "input" },</li>
-    <li> o: { type: "string", default: "./mimic.css", alias: "output" },</li>
-    <li> e: { type: "string", default: "", alias: "exclude" },</li>
-    <li> l: { type: "boolean", default: false, alias: "lit" },</li>
-</ul>
+- i: { type: "string", default: "./", alias: "input" },
+- o: { type: "string", default: "./mimic.css", alias: "output" },
+- e: { type: "string", default: "", alias: "exclude" },
+- l: { type: "boolean", default: false, alias: "lit" },
 
-`
+`<head> <link rel="stylesheet" href="./mimic.css" /></head>`
 
-<head>
-    <link rel="stylesheet" href="./mimic.css" />
-</head>
-`
-
-`
-
-<div class="flex-direction:row large?flex-direction:column display:flex">
-`
+`<div class="flex-direction:row large?flex-direction:column display:flex">`
 
 ## Magic Numbers
 
