@@ -98,16 +98,15 @@ Whereas for **Padding** the mappings will be different:
 
 ### An example for Padding
 
-`
-
-<div class="padding-top:md"> Some Text </div>
-`
+`<div class="padding-top:md"> Some Text </div>`
 
 **becomes**
 
-`.padding-top\:md {
+```
+.padding-top\:md {
 	padding-top: 8px;
-}`
+}
+```
 
 ### And then for Font Size we'd see
 
