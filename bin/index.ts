@@ -52,6 +52,9 @@ function searchFile(dir: string, extension: string) {
       let result = DoWork(filePath, ExistingCSS);
       ExistingCSS += result;
       fs.writeFileSync(OutputFilename, ExistingCSS);
+      if (EmitLitFile) {
+        WriteLitFile(OutputFilename, ExistingCSS);
+      }
     }
   }
 }
@@ -82,7 +85,7 @@ fs.watch(
         WriteFile(OutputFilename, ExistingCSS);
 
         if (EmitLitFile) {
-          WriteLitFile(OutputFilename, result);
+          WriteLitFile(OutputFilename, ExistingCSS);
         }
       } else {
         console.log(`filename excluded ${fileName}`);
