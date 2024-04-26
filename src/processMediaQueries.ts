@@ -10,7 +10,7 @@ import {
   mediumtext,
   largetext,
   extralargetext,
-} from "./mediaBreakpoints.js";
+} from "./mediaBreakpoints";
 import { Escape } from "./EscapingClassNames";
 
 export function ProcessMediaQueriesWithHover(matches: any, colon: boolean) {

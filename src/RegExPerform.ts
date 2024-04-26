@@ -12,8 +12,8 @@ import {
   single_colon_padding_shorthand_snappable,
   single_hyphen_then_colon_then_another_hyphen,
 } from "./RegExDefinitions";
-import { Escape } from "./EscapingClassNames.js";
-import { PerformSnap } from "./performSnap.js";
+import { Escape } from "./EscapingClassNames";
+import { PerformSnap } from "./performSnap";
 import {
   ProcessMediaQueries,
   ProcessMediaQueriesWithHover,

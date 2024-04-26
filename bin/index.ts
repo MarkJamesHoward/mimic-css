@@ -20,12 +20,14 @@ import fs from "fs";
 
 const argv = yargs(process.argv.slice(2))
   .options({
-    i: { type: "string", default: "./" },
-    o: { type: "string", default: "./mimic.css" },
-    e: { type: "string", default: "" },
-    l: { type: "boolean", default: false },
+    i: { type: "string", default: "./", alias: "input" },
+    o: { type: "string", default: "./mimic.css", alias: "output" },
+    e: { type: "string", default: "", alias: "exclude" },
+    l: { type: "boolean", default: false, alias: "lit" },
+    r: { type: "boolean", default: false, alias: "run" },
+    w: { type: "boolean", default: false, alias: "watch" },
   })
-  .parse();
+  .parseSync();
 
 let output = "";
 let outputMedia = "";
@@ -33,8 +35,14 @@ let InputFolder = argv.i;
 let OutputFilename = argv.o;
 let ExcludeFiles = argv.e;
 let EmitLitFile = argv.l;
+let PerformInitialRun = argv.r;
+let Watch = argv.w;
 
-function UpdateACEcssOutputFile(filename: string) {
+export function DoWork(
+  filename: string,
+  outputInternal: string,
+  outputMediaInternal: string
+): string {
   const data = fs.readFileSync(filename, "utf8");
 
   let classComplete = /class=\"(?<classComplete>.+)\"/gi;
@@ -75,18 +83,21 @@ function UpdateACEcssOutputFile(filename: string) {
       result = Double_Hyphen_No_Colon(item);
       if (result != "" && result != undefined) mostSpecificMatch = result;
 
-      output += DeDuplication(output, mostSpecificMatch);
+      outputInternal += DeDuplication(outputInternal, mostSpecificMatch);
 
       result = Sindle_Hypen_Then_Colon_Media(item);
-      outputMedia += DeDuplication(outputMedia, result);
+      outputMediaInternal += DeDuplication(outputMediaInternal, result);
 
       result = Single_Hypen_Then_Colon_Media_Hover(item);
-      outputMedia += DeDuplication(outputMedia, result);
+      outputMediaInternal += DeDuplication(outputMediaInternal, result);
 
       result = Double_Hyphen_No_Colon_Media(item);
-      outputMedia += DeDuplication(outputMedia, result);
+      outputMediaInternal += DeDuplication(outputMediaInternal, result);
     });
   }
+  output = outputInternal;
+  outputMedia = outputMediaInternal;
+  return outputInternal + outputMediaInternal;
 }
 
 function searchFile(dir: string, extension: string) {
@@ -107,47 +118,51 @@ function searchFile(dir: string, extension: string) {
     } else if (file.endsWith(extension)) {
       // if the file is a match, print it
       console.log("Performing first run check on file " + filePath);
-      UpdateACEcssOutputFile(filePath);
+      let outputForFile = DoWork(filePath, output, outputMedia);
+      fs.writeFileSync(OutputFilename, outputForFile);
     }
   }
-  fs.writeFileSync(OutputFilename, output + outputMedia);
 }
 
-// Check all files initially
-searchFile(InputFolder, ".html");
-searchFile(InputFolder, ".ts");
-searchFile(InputFolder, ".astro");
+if (PerformInitialRun) {
+  // Check all files initially
+  searchFile(InputFolder, ".html");
+  searchFile(InputFolder, ".ts");
+  searchFile(InputFolder, ".astro");
+}
 
-// Now setup to check for file changes
-fs.watch(
-  InputFolder,
-  { recursive: true },
-  async (eventType: string, filename: string) => {
-    if (
-      filename?.includes(".html") ||
-      filename?.includes(".astro") ||
-      filename?.includes(".ts")
-    ) {
-      // Check for excluded filenames
-      if (ExcludeFiles == "" || !filename?.includes(ExcludeFiles)) {
-        console.log("change detected.. performing update: " + filename);
-        let filenamePlusPath = path.join(InputFolder, filename);
+if (Watch) {
+  // Now setup to check for file changes
+  fs.watch(
+    InputFolder,
+    { recursive: true, encoding: "buffer" },
+    async (eventType: any, fileName: any) => {
+      if (
+        fileName?.includes(".html") ||
+        fileName?.includes(".astro") ||
+        fileName?.includes(".ts")
+      ) {
+        // Check for excluded filenames
+        if (ExcludeFiles == "" || !fileName?.includes(ExcludeFiles)) {
+          console.log("change detected.. performing update: " + fileName);
+          let filenamePlusPath = path.join(InputFolder, fileName);
 
-        UpdateACEcssOutputFile(filenamePlusPath);
+          let result = DoWork(filenamePlusPath, output, outputMedia);
 
-        WriteFile(OutputFilename, output + outputMedia);
+          WriteFile(OutputFilename, result);
 
-        if (EmitLitFile) {
-          WriteLitFile(OutputFilename, output + outputMedia);
+          if (EmitLitFile) {
+            WriteLitFile(OutputFilename, result);
+          }
+        } else {
+          console.log(`filename excluded ${fileName}`);
         }
       } else {
-        console.log(`filename excluded ${filename}`);
+        console.log(`filename not in list to examine ${fileName}`);
       }
-    } else {
-      console.log(`filename not in list to examine ${filename}`);
     }
-  }
-);
+  );
+}
 
 function WriteFile(filename: string, data: string) {
   fs.writeFileSync(filename, data);
