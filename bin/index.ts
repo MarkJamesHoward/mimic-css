@@ -3,6 +3,7 @@ import yargs from "yargs";
 import path from "path";
 import fs from "fs";
 import { DoWork } from "../src/main";
+import { ExcludeFolders } from "../src/FolderExclusions";
 
 const argv = yargs(process.argv.slice(2))
   .options({
@@ -15,17 +16,22 @@ const argv = yargs(process.argv.slice(2))
   })
   .parseSync();
 
-// let output = "";
-// let outputMedia = "";
 let ExistingCSS = "";
 let InputFolder = argv.i;
 let OutputFilename = argv.o;
 let ExcludeFiles = argv.e;
 let EmitLitFile = argv.l;
-let PerformInitialRun = argv.r;
-let Watch = argv.w;
 
 function searchFile(dir: string, extension: string) {
+  let exit = false;
+
+  // Check if this is a folder we don't want to look in (e.g. node_modules)
+  ExcludeFolders.forEach((element) => {
+    if (dir.includes(element)) exit = true;
+  });
+
+  if (exit) return;
+
   // read the contents of the directory
   const files = fs.readdirSync(dir);
 
@@ -58,7 +64,7 @@ searchFile(InputFolder, ".astro");
 // Now setup to check for file changes
 fs.watch(
   InputFolder,
-  { recursive: true, encoding: "buffer" },
+  { recursive: true },
   async (eventType: any, fileName: any) => {
     if (
       fileName?.includes(".html") ||
