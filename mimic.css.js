@@ -1,10 +1,16 @@
 import { css } from "lit";
 export const TWStyles = css`
-.display\\:flex {
-	display: flex;
+.font-size\\:md {
+	font-size: 16px;
 }
-.flex-direction\\:row {
-	flex-direction: row;
+.paddinge\\:md {
+	paddinge: md;
+}
+.padding\\:md {
+	padding: 8px;
+}
+.border-color\\:red {
+	border-color: red;
 }
  `
     
