@@ -29,17 +29,25 @@ at the same time
 
 ## Install:
 
-npm i -D mimic-css
+npm install --save-dev mimic-css
+
+mimic-css is a development time process that watches for file changes to your web pages and create classes from them. So
+we can should use the --save-dev (-D) setting here
 
 ## Usage
 
-npx mimic-css
+npx mimic
 
 This will search in the current folder (and all subfolders) for .html, .ts, .js and .astro files.
 Ouput will be sent to the file mimic-css.css
 
-we can override these defaults as below to specify a specific folder to monitor (**src**) and the output filename to use (**mimic.css**)
-npx mimic-css -i ./src/ -o ./src/mimic.css
+We can override where to base our scan for web pages using the -i flag
+`npx mimic-css -i ./src/ `
+
+We can override where to outut our generated CSS file using the -o flag
+`npx mimic-css -o ./styles/mimic.css `
+
+Other options:
 
 - i: { type: "string", default: "./", alias: "input" },
 - o: { type: "string", default: "./mimic.css", alias: "output" },
