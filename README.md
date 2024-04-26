@@ -1,14 +1,14 @@
 # mimic-css
 
-**mimic-css** is a design system that allows you use standard CSS styles within the class attribute ALONG with Media Queries and modifiers.
+**mimic-css** is a design system that allows you use standard CSS styles within the class attribute ALONG with Media Queries and Modifiers.
 
-So we can write standard CSS such as `display:flex` and apply a media query inline within the class e.g.
+So you are enabled to write standard CSS such as `display:flex` and apply a media query inline within the class e.g.
 
 ```html
 <div class="large?display:flex">Some Text</div>
 ```
 
-Which will result in the below class being generated for us and ensuring that the flex container is only applied when the screen size is greater than 1280px wide
+Which will result in the below class being generated for you and ensuring that the flex container is only applied when the screen size is greater than 1280px wide
 
 ```css
 @media (min-width: 1280px) {
@@ -18,13 +18,13 @@ Which will result in the below class being generated for us and ensuring that th
 }
 ```
 
-We can also apply selectors like **hover** also inline with the class attribute
+You can also apply selectors like **hover** also inline with the class attribute
 
 ```html
 <div class="background-color:blue:hover">Some Text</div>
 ```
 
-Which will create a class for us like this
+Which will create a class for you like this
 
 ```css
 .background-color\:blue\:hover:hover {
@@ -32,7 +32,7 @@ Which will create a class for us like this
 }
 ```
 
-From this we gain the benefits of using a design system but without the downside of losing your CSS knowledge
+From this you gain the benefits of using a design system but without the downside of losing your CSS knowledge
 at the same time
 
 ## Install:
@@ -45,16 +45,16 @@ mimic-css is a development time process that watches for file changes to your we
 
 `npx mimic`
 
-This will search in the current folder (and all subfolders) for .html, .ts, .js and .astro files.
-Ouput will be sent to the file mimic-css.css
+The app will search in the current folder (and all subfolders) for .html, .ts, .js and .astro files.
+Ouput will be sent to the file mimic.css
 
-We can override where to base our scan for web pages using the -i flag
+You can override where to base your scan for web pages using the -i flag
 
 ```
 npx mimic-css -i ./src/
 ```
 
-We can override where to outut our generated CSS file using the -o flag
+You can also override where to output the generated CSS file using the -o flag
 
 ```
 npx mimic-css -o ./styles/mimic.css
@@ -83,7 +83,7 @@ is **one** set of values used across the board:
 
 These specifiers will map to different **Pixel Values** depending upon the usage.
 
-So for **Fonts** we'll have the below mapping:
+So for **Fonts** you'll have the below mapping:
 
 <ul>
 <li>xs:     8px</li>
@@ -119,7 +119,7 @@ Whereas for **Padding** the mappings will be different:
 }
 ```
 
-### And then for Font Size we'd see
+### And then for Font Size you will see
 
 ```html
 <div class="font-size:md">Some Text</div>
@@ -131,12 +131,12 @@ Whereas for **Padding** the mappings will be different:
 }
 ```
 
-Normal CSS will simply be mapped to the same but with a space included
+Normal CSS will remain unchanged (bar a space inserted)
 
 **So the below:**
 
 ```html
-<div class="flex-direction:row">Some Text</div>
+<div class="display:flex">Some Text</div>
 ```
 
 **Becomes:**
