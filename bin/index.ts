@@ -11,8 +11,7 @@ const argv = yargs(process.argv.slice(2))
     o: { type: "string", default: "./mimic.css", alias: "output" },
     e: { type: "string", default: "", alias: "exclude" },
     l: { type: "boolean", default: false, alias: "lit" },
-    r: { type: "boolean", default: true, alias: "run" },
-    w: { type: "boolean", default: true, alias: "watch" },
+    d: { type: "boolean", default: false, alias: "debug" },
   })
   .parseSync();
 
@@ -21,6 +20,7 @@ let InputFolder = argv.i;
 let OutputFilename = argv.o;
 let ExcludeFiles = argv.e;
 let EmitLitFile = argv.l;
+let debug = argv.d;
 
 function searchFile(dir: string, extension: string) {
   let exit = false;
@@ -77,8 +77,9 @@ fs.watch(
         let filenamePlusPath = path.join(InputFolder, fileName);
 
         let result = DoWork(filenamePlusPath, ExistingCSS);
+        ExistingCSS += result;
 
-        WriteFile(OutputFilename, result);
+        WriteFile(OutputFilename, ExistingCSS);
 
         if (EmitLitFile) {
           WriteLitFile(OutputFilename, result);
@@ -87,7 +88,9 @@ fs.watch(
         console.log(`filename excluded ${fileName}`);
       }
     } else {
-      console.log(`filename not in list to examine ${fileName}`);
+      if (debug) {
+        console.log(`filename not in list to examine ${fileName}`);
+      }
     }
   }
 );
