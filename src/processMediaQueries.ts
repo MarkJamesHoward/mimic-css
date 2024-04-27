@@ -1,15 +1,7 @@
 import { PerformSnap } from "./performSnap";
 import {
-  extrasmall,
-  small,
-  medium,
-  large,
-  extralarge,
-  extrasmalltext,
-  smalltext,
-  mediumtext,
-  largetext,
-  extralargetext,
+  MediaBreakPointsText,
+  MediaBreakPointsValue,
 } from "./mediaBreakpoints";
 import { Escape } from "./EscapingClassNames";
 
@@ -27,23 +19,23 @@ export function ProcessMediaQueriesWithHover(matches: any, colon: boolean) {
     let width;
 
     switch (media) {
-      case extrasmalltext:
-        width = extrasmall;
+      case MediaBreakPointsText.extrasmall:
+        width = MediaBreakPointsValue.extrasmall;
         break;
-      case smalltext:
-        width = small;
+      case MediaBreakPointsText.small:
+        width = MediaBreakPointsValue.small;
         break;
-      case mediumtext:
-        width = medium;
+      case MediaBreakPointsText.medium:
+        width = MediaBreakPointsValue.medium;
         break;
-      case largetext:
-        width = large;
+      case MediaBreakPointsText.large:
+        width = MediaBreakPointsValue.large;
         break;
-      case extralargetext:
-        width = extralarge;
+      case MediaBreakPointsText.extralarge:
+        width = MediaBreakPointsValue.extralarge;
         break;
       default:
-        width = extrasmall;
+        width = MediaBreakPointsValue.large;
         console.log("unknown media!!");
     }
     //console.log("Process Media with " + style + " " + value);
@@ -76,23 +68,23 @@ export function ProcessMediaQueries(matches: any, colon: boolean) {
     let width;
 
     switch (media) {
-      case extrasmalltext:
-        width = extrasmall;
+      case MediaBreakPointsText.extrasmall:
+        width = MediaBreakPointsValue.extrasmall;
         break;
-      case smalltext:
-        width = small;
+      case MediaBreakPointsText.small:
+        width = MediaBreakPointsValue.small;
         break;
-      case mediumtext:
-        width = medium;
+      case MediaBreakPointsText.medium:
+        width = MediaBreakPointsValue.medium;
         break;
-      case largetext:
-        width = large;
+      case MediaBreakPointsText.large:
+        width = MediaBreakPointsValue.large;
         break;
-      case extralargetext:
-        width = extralarge;
+      case MediaBreakPointsText.extralarge:
+        width = MediaBreakPointsValue.extralarge;
         break;
       default:
-        width = extrasmall;
+        width = MediaBreakPointsValue.large;
         console.log("unknown media!!");
     }
     //console.log("Process Media with " + style + " " + value);
