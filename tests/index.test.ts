@@ -32,6 +32,12 @@ describe("flex direction", () => {
       `@media (min-width: ${MediaBreakPointsValue.small}px) {\r\n.${MediaBreakPointsText.small}\\?flex-direction\\:row {\r\n\tflex-direction: row;\r\n\t}\r\n}`
     );
   });
+
+  test("flex gap", () => {
+    expect(DoWork("./tests/flex/flex_gap.html", "")).toContain(
+      `.flex-direction\\:row {\r\n\tflex-direction: row;\r\n}`
+    );
+  });
 });
 
 /////////////////////////////
