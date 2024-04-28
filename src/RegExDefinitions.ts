@@ -1,10 +1,10 @@
 //border-style-solid
 //flex-direction-row
 export const double_hyphen_no_colon =
-  /^(?<style>[A-Za-z0-9]+-[A-Za-z0-9]+)-(?<value>[A-Za-z0-9]+)(?<![hover|-])$/gi;
+  /^(?<style>[A-Za-z0-9]+-[A-Za-z0-9]+)-(?<value>[A-Za-z0-9]+)(?<![hover|focus|-])$/gi;
 
 export const double_hyphen_no_colon_media =
-  /^(?<media>extrasmall|small|large|extralarge+)\?(?<style>[A-Za-z0-9]+-[A-Za-z0-9]+)-(?<value>[A-Za-z0-9]+)$/gi;
+  /^(?<media>extrasmall|small|medium|large|extralarge+)\?(?<style>[A-Za-z0-9]+-[A-Za-z0-9]+)-(?<value>[A-Za-z0-9]+)$/gi;
 //////////////
 
 //border-width:5
@@ -14,14 +14,14 @@ export const double_hyphen_no_colon_media =
 export const single_hyphen_then_colon =
   /^(?<style>[A-Za-z0-9]+-[A-Za-z0-9]+):(?<value>[A-Za-z0-9\%\.#]+)$/gi;
 
-export const single_hyphen_then_colon_hover =
-  /^(?<style>[A-Za-z0-9]+-[A-Za-z0-9]+):(?<value>[A-Za-z0-9\%\.#]+):hover$/gi;
+export const single_hyphen_then_colon_pseudo_class =
+  /^(?<style>[A-Za-z0-9]+-[A-Za-z0-9]+):(?<value>[A-Za-z0-9\%\.#]+):(?<pseudo_class>[hover|focus]+)$/gi;
 
 export const media_single_hyphen_then_colon =
   /^(?<media>extrasmall|small|medium|large|extralarge+)\?(?<style>[A-Za-z0-9]+-[A-Za-z0-9]+):(?<value>[A-Za-z0-9\%\.#]+)$/gi;
 
-export const media_single_hyphen_then_colon_hover =
-  /^(?<media>extrasmall|small|medium|large|extralarge+)\?(?<style>[A-Za-z0-9]+-[A-Za-z0-9]+):(?<value>[A-Za-z0-9\%\.#]+):hover$/gi;
+export const media_single_hyphen_then_colon_pseudo_class =
+  /^(?<media>extrasmall|small|medium|large|extralarge+)\?(?<style>[A-Za-z0-9]+-[A-Za-z0-9]+):(?<value>[A-Za-z0-9\%\.#]+)(?<pseudo_class>:[hover|focus]+)$/gi;
 //////////////
 
 //justify-content: space-between
@@ -30,16 +30,19 @@ export const single_hyphen_then_colon_then_another_hyphen =
 
 // display:flex
 // padding:1px
+// padding:1px:focus
 // height:10px
 // height:100%
 export const single_colon =
   /^(?<style>[A-Za-z]+):(?<value>[A-Za-z0-9\%\.#]+)$/gi;
+
 export const single_colon_media =
   /^(?<media>extrasmall|small|medium|large|extralarge+)\?(?<style>[A-Za-z0-9]+):(?<value>[A-Za-z0-9\%\.#]+)$/gi;
 
 // display:flex:hover
-export const single_colon_hover =
-  /(?<!.)(?<style>[A-Za-z0-9]+):(?<value>[A-Za-z]+):hover/gi;
+// display:flex:focus
+export const single_colon_pseudo_class =
+  /^(?<style>[A-Za-z0-9]+):(?<value>[A-Za-z0-9]+):(?<pseudo_class>[hover|focus]+)$/gi;
 
 //Padding shorthand - all 4 sides speecified
 export const single_colon_padding_shorthand =

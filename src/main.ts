@@ -1,7 +1,7 @@
 import { DeDuplication } from "../src/DeDuplication";
 import {
   Single_Colon,
-  Single_Colon_Hover,
+  Single_Colon_Pseudo_Class,
   Single_Colon_Media,
   Single_Colon_Padding_Shorthand,
   Single_Colon_Padding_Shorthand_Snappable,
@@ -41,7 +41,7 @@ export function DoWork(filename: string, ExistingCSS: string): string {
       result = Single_Colon_Media(item);
       if (result != "" && result != undefined) mostSpecificMatch = result;
 
-      result = Single_Colon_Hover(item);
+      result = Single_Colon_Pseudo_Class(item);
       if (result != "" && result != undefined) mostSpecificMatch = result;
 
       result = Single_Colon_Padding_Shorthand(item);

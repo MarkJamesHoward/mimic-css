@@ -119,6 +119,12 @@ describe("Background Color", () => {
       `.background-color\\:red\\:hover:hover {\r\n\tbackground-color: red;\r\n}`
     );
   });
+
+  test("BackGround Color Focus", () => {
+    expect(DoWork("./tests/focus/focus.html", "")).toContain(
+      `.background-color\\:red\\:focus:focus {\r\n\tbackground-color: red;\r\n}`
+    );
+  });
 });
 
 /////////////////////////////
@@ -151,6 +157,12 @@ describe("Border", () => {
   test("Border Width Snapping 2XL", () => {
     expect(DoWork("./tests/border-width/border_2xl.html", "")).toContain(
       `.border-width\\:2xl {\r\n\tborder-width: ${BorderSizes.xl2};\r\n}`
+    );
+  });
+
+  test("Border Width Focus", () => {
+    expect(DoWork("./tests/border-width/border_focus.html", "")).toContain(
+      `.border-width\\:lg\\:focus:focus {\r\n\tborder-width: ${BorderSizes.lg};\r\n}`
     );
   });
 });

@@ -2,12 +2,12 @@ import {
   double_hyphen_no_colon,
   double_hyphen_no_colon_media,
   single_hyphen_then_colon,
-  single_hyphen_then_colon_hover,
+  single_hyphen_then_colon_pseudo_class,
   media_single_hyphen_then_colon,
-  media_single_hyphen_then_colon_hover,
+  media_single_hyphen_then_colon_pseudo_class,
   single_colon,
   single_colon_media,
-  single_colon_hover,
+  single_colon_pseudo_class,
   single_colon_padding_shorthand,
   single_colon_padding_shorthand_snappable,
   single_colon_padding_shorthand_2_values,
@@ -21,22 +21,26 @@ import {
   ProcessMediaQueriesWithHover,
 } from "./processMediaQueries";
 
-export function Single_Colon_Hover(item: any) {
+export function Single_Colon_Pseudo_Class(item: any) {
   let output = "";
-  let single_colon_hover_matches = item.matchAll(single_colon_hover);
+  let single_colon_pseudo_class_matches = item.matchAll(
+    single_colon_pseudo_class
+  );
 
   // Check matches with HOVER
-  for (const match of single_colon_hover_matches) {
+  for (const match of single_colon_pseudo_class_matches) {
     let style = match.groups["style"];
     let value = match.groups["value"];
+    let pseudo_class = match.groups["pseudo_class"];
 
     // console.log(style);
     // console.log(value);
+    // console.log(pseudo_class);
 
     let snappedvalue = PerformSnap(style, value);
 
     output +=
-      `.${style}\\:${Escape(value)}\\:hover:hover {\r\n\t` +
+      `.${style}\\:${Escape(value)}\\:${pseudo_class}:${pseudo_class} {\r\n\t` +
       style +
       ": " +
       `${snappedvalue}` +
@@ -173,32 +177,33 @@ export function Sindle_Hypen_Then_Colon_Media(item: any) {
 }
 
 export function Single_Hypen_Then_Colon_Media_Hover(item: any) {
-  let media_single_hyphen_then_colon_hover_matches = item.matchAll(
-    media_single_hyphen_then_colon_hover
+  let media_single_hyphen_then_colon_pseudo_class_matches = item.matchAll(
+    media_single_hyphen_then_colon_pseudo_class
   );
 
   return ProcessMediaQueriesWithHover(
-    media_single_hyphen_then_colon_hover_matches,
+    media_single_hyphen_then_colon_pseudo_class_matches,
     false
   );
 }
 
 export function Single_Hypen_Then_Colon_Hover(item: any) {
-  let single_hyphen_then_colon_hover_matches = item.matchAll(
-    single_hyphen_then_colon_hover
+  let single_hyphen_then_colon_pseudo_class_matches = item.matchAll(
+    single_hyphen_then_colon_pseudo_class
   );
 
-  for (const match of single_hyphen_then_colon_hover_matches) {
+  for (const match of single_hyphen_then_colon_pseudo_class_matches) {
     //console.log("single_hyphen_then_colon_hover " + match);
 
     let style = match.groups["style"];
     let value = match.groups["value"];
+    let pseudo_class = match.groups["pseudo_class"];
 
     //console.log(`${style} ${value}`);
     let snappedvalue = PerformSnap(style, value);
 
     return (
-      `.${style}\\:${Escape(value)}\\:hover:hover {\r\n\t` +
+      `.${style}\\:${Escape(value)}\\:${pseudo_class}:${pseudo_class} {\r\n\t` +
       style +
       ": " +
       `${snappedvalue}` +
