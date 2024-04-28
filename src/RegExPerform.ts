@@ -10,6 +10,8 @@ import {
   single_colon_hover,
   single_colon_padding_shorthand,
   single_colon_padding_shorthand_snappable,
+  single_colon_padding_shorthand_2_values,
+  single_colon_padding_shorthand_2_values_snappable,
   single_hyphen_then_colon_then_another_hyphen,
 } from "./RegExDefinitions";
 import { Escape } from "./EscapingClassNames";
@@ -82,7 +84,7 @@ export function Single_Colon_Padding_Shorthand_Snappable(item: any) {
       `.${style}\\:${snap1}${snap2}${snap3}${snap4} {\r\n\t` +
       style +
       ": " +
-      `${snap1value} ${snap1value} ${snap1value} ${snap1value};\r\n}\r\n`
+      `${snap1value} ${snap2value} ${snap3value} ${snap4value};\r\n}\r\n`
     );
   }
 }
@@ -110,6 +112,50 @@ export function Single_Colon_Padding_Shorthand(item: any) {
       `${value1}${value1type} ${value2}${value2type} ${value3}${value3type} ${value4}${value4type};\r\n}\r\n`
     );
   }
+}
+
+export function Single_Colon_Padding_Shorthand_2_Values(item: any) {
+  let single_colon_padding_shorthand_2_values_matches = item.matchAll(
+    single_colon_padding_shorthand_2_values
+  );
+
+  for (const match of single_colon_padding_shorthand_2_values_matches) {
+    let style = match.groups["style"];
+    let value1 = match.groups["value1"];
+    let value2 = match.groups["value2"];
+    let value1type = match.groups["value1type"];
+    let value2type = match.groups["value2type"];
+
+    return (
+      `.${style}\\:${value1}${value1type}${value2}${value2type}{\r\n\t` +
+      style +
+      ": " +
+      `${value1}${value1type} ${value2}${value2type} ${value1}${value1type} ${value2}${value2type};\r\n}\r\n`
+    );
+  }
+}
+
+export function Single_Colon_Padding_Shorthand_2_Values_Snappable(item: any) {
+  let single_colon_padding_shorthand_2_values_snappable_matches = item.matchAll(
+    single_colon_padding_shorthand_2_values_snappable
+  );
+
+  let result = "";
+
+  for (const match of single_colon_padding_shorthand_2_values_snappable_matches) {
+    let style = match.groups["style"];
+    let snap1 = match.groups["snap1"];
+    let snap2 = match.groups["snap2"];
+    let snap1value = PerformSnap(style, snap1);
+    let snap2value = PerformSnap(style, snap2);
+
+    result =
+      `.${style}\\:${snap1}${snap2} {\r\n\t` +
+      style +
+      ": " +
+      `${snap1value} ${snap2value};\r\n}\r\n`;
+  }
+  return result;
 }
 
 export function Single_Colon_Media(item: any) {

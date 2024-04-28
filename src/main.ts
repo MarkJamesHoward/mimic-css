@@ -5,6 +5,8 @@ import {
   Single_Colon_Media,
   Single_Colon_Padding_Shorthand,
   Single_Colon_Padding_Shorthand_Snappable,
+  Single_Colon_Padding_Shorthand_2_Values,
+  Single_Colon_Padding_Shorthand_2_Values_Snappable,
   Single_Hypen_Then_Colon,
   Single_Hypen_Then_Colon_Hover,
   Sindle_Hypen_Then_Colon_Media,
@@ -46,6 +48,12 @@ export function DoWork(filename: string, ExistingCSS: string): string {
       if (result != "" && result != undefined) mostSpecificMatch = result;
 
       result = Single_Colon_Padding_Shorthand_Snappable(item);
+      if (result != "" && result != undefined) mostSpecificMatch = result;
+
+      // result = Single_Colon_Padding_Shorthand_2_Values(item);
+      // if (result != "" && result != undefined) mostSpecificMatch = result;
+
+      result = Single_Colon_Padding_Shorthand_2_Values_Snappable(item);
       if (result != "" && result != undefined) mostSpecificMatch = result;
 
       result = Single_Hypen_Then_Colon(item);

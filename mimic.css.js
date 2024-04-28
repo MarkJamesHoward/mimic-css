@@ -1,10 +1,10 @@
 import { css } from "lit";
 export const TWStyles = css`
-.background-color\\:blue\\:hover:hover {
-	background-color: blue;
+.padding\\:mdmd {
+	padding: 2px;
 }
-.padding\\:md {
-	padding: 8px;
+.padding\\:10px20px {
+	padding: 10px20px;
 }
  `
     

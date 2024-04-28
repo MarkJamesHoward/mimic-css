@@ -5,6 +5,7 @@ import {
   MarginSizes,
   FontSizes,
   GenericSizes,
+  GapSizes,
 } from "./Sizes";
 
 export function PerformSnap4(
@@ -101,6 +102,37 @@ export function PerformSnap(type: string, value: string) {
 
         default:
           result = PaddingSizes.xs;
+          break;
+      }
+      break;
+    case "gap":
+      switch (value) {
+        case Sizes.xs:
+          result = GapSizes.xs;
+          break;
+
+        case Sizes.sm:
+          result = GapSizes.sm;
+          break;
+
+        case Sizes.md:
+          result = GapSizes.md;
+          break;
+
+        case Sizes.lg:
+          result = GapSizes.lg;
+          break;
+
+        case Sizes.xl:
+          result = GapSizes.xl;
+          break;
+
+        case Sizes.xl2:
+          result = GapSizes.xl2;
+          break;
+
+        default:
+          result = GapSizes.xs;
           break;
       }
       break;

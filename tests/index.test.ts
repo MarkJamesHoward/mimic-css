@@ -1,5 +1,5 @@
 import { DoWork } from "../src/main";
-import { BorderSizes, FontSizes, PaddingSizes } from "../src/Sizes";
+import { BorderSizes, FontSizes, PaddingSizes, GapSizes } from "../src/Sizes";
 import {
   MediaBreakPointsValue,
   MediaBreakPointsText,
@@ -17,6 +17,12 @@ describe("display flex", () => {
       `@media (min-width: ${MediaBreakPointsValue.large}px) {\r\n.${MediaBreakPointsText.large}\\?display\\:flex {\r\n\tdisplay: flex;\r\n\t}\r\n}`
     );
   });
+
+  test("flex gap", () => {
+    expect(DoWork("./tests/flex/flex_gap.html", "")).toContain(
+      `.gap\\:md {\r\n\tgap: ${GapSizes.md};\r\n}`
+    );
+  });
 });
 
 /////////////////////////
@@ -30,12 +36,6 @@ describe("flex direction", () => {
   test("flex direction with Media", () => {
     expect(DoWork("./tests/flex/flex_direction.html", "")).toContain(
       `@media (min-width: ${MediaBreakPointsValue.small}px) {\r\n.${MediaBreakPointsText.small}\\?flex-direction\\:row {\r\n\tflex-direction: row;\r\n\t}\r\n}`
-    );
-  });
-
-  test("flex gap", () => {
-    expect(DoWork("./tests/flex/flex_gap.html", "")).toContain(
-      `.flex-direction\\:row {\r\n\tflex-direction: row;\r\n}`
     );
   });
 });
@@ -70,6 +70,28 @@ describe("Padding Snap", () => {
   test("Padding Snapping 2XL", () => {
     expect(DoWork("./tests/padding/padding_2xl.html", "")).toContain(
       `.padding\\:2xl {\r\n\tpadding: ${PaddingSizes.xl2};\r\n}`
+    );
+  });
+
+  test("Padding Snapping 2 Value shorthand", () => {
+    expect(
+      DoWork("./tests/padding/padding_2_value_shorthand.html", "")
+    ).toContain(
+      `.padding\\:xsxl {\r\n\tpadding: ${PaddingSizes.xs} ${PaddingSizes.xl};\r\n}`
+    );
+  });
+
+  test("Padding Snapping 1 Value shorthand", () => {
+    expect(
+      DoWork("./tests/padding/padding_1_value_shorthand.html", "")
+    ).toContain(`.padding\\:2xl {\r\n\tpadding: ${PaddingSizes.xl2};\r\n}`);
+  });
+
+  test("Padding Snapping 4 Value shorthand", () => {
+    expect(
+      DoWork("./tests/padding/padding_4_value_shorthand.html", "")
+    ).toContain(
+      `.padding\\:xssmmdlg {\r\n\tpadding: ${PaddingSizes.xs} ${PaddingSizes.sm} ${PaddingSizes.md} ${PaddingSizes.lg};\r\n}`
     );
   });
 });

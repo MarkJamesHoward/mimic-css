@@ -41,10 +41,17 @@ export const single_colon_media =
 export const single_colon_hover =
   /(?<!.)(?<style>[A-Za-z0-9]+):(?<value>[A-Za-z]+):hover/gi;
 
-//Padding shorthand
+//Padding shorthand - all 4 sides speecified
 export const single_colon_padding_shorthand =
-  /^(?<style>[A-Za-z0-9]+):(?<value1>[0-9]+)(?<value1type>[a-z]{2})(?<value2>[0-9]+)(?<value2type>[a-z]{2})(?<value3>[0-9]+)(?<value3type>[a-z]{2})(?<value4>[0-9]+)(?<value4type>[a-z]{2})$/gi;
+  /^(?<style>[A-Za-z]+):(?<value1>[0-9]+)(?<value1type>[a-z]{2})(?<value2>[0-9]+)(?<value2type>[a-z]{2})(?<value3>[0-9]+)(?<value3type>[a-z]{2})(?<value4>[0-9]+)(?<value4type>[a-z]{2})$/gi;
 
-//Padding shorthand snappable
+//Padding shorthand snappable - all 4 sides specified
 export const single_colon_padding_shorthand_snappable =
-  /^(?<style>[A-Za-z0-9]+):(?<snap1>[xs|sm|md|lg|xl|2xl])(?<snap2>[a-z]{2})(?<snap3>[a-z]{2})(?<snap4>[a-z]{2})$/gi;
+  /^(?<style>[A-Za-z]+):(?<snap1>xs|sm|md|lg|xl|2xl)(?<snap2>xs|sm|md|lg|xl|2xl)(?<snap3>xs|sm|md|lg|xl|2xl)(?<snap4>xs|sm|md|lg|xl|2xl)$/gi;
+
+//Padding shorthand - 2 values specified - one for top+bottom and one for left+right
+export const single_colon_padding_shorthand_2_values =
+  /^(?<style>[A-Za-z]+):(?<value1>[0-9]+)(?<value1type>[a-z]{2})(?<value2>[0-9]+)(?<value2type>[a-z]{2})$/gi;
+
+export const single_colon_padding_shorthand_2_values_snappable =
+  /^(?<style>[A-Za-z]+):(?<snap1>xs|sm|md|lg|xl|2xl)(?<snap2>xs|sm|md|lg|xl|2xl)$/gi;

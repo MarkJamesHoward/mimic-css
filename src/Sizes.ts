@@ -25,6 +25,15 @@ export const PaddingSizes = {
   xl2: "200px",
 };
 
+export const GapSizes = {
+  xs: "1px",
+  sm: "2px",
+  md: "4px",
+  lg: "6px",
+  xl: "8px",
+  xl2: "10px",
+};
+
 export const BorderSizes = {
   xs: "1px",
   sm: "2px",

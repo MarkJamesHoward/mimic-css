@@ -46,18 +46,22 @@ mimic-css is a development time process that watches for file changes to your we
 `npx mimic`
 
 The app will search in the current folder (and all subfolders) for .html, .ts, .js and .astro files.
-Ouput will be sent to the file mimic.css
+Ouput will be sent to the file mimic.css which you can link:
+
+```html
+<link rel="stylesheet" href="mimic.css" />
+```
 
 You can override where to base your scan for web pages using the -i flag
 
 ```
-npx mimic-css -i ./src/
+npx mimic-css -i ./src
 ```
 
 You can also override where to output the generated CSS file using the -o flag
 
 ```
-npx mimic-css -o ./styles/mimic.css
+npx mimic-css -o ./styles/customname.css
 ```
 
 Other options:
@@ -158,3 +162,16 @@ The 5 options we have for specifying media breakpoints are below:
 <li>large</li>
 <li>extralarge</li>
 </ul>
+
+## Lit Integration
+
+To include CSS in LitElements a good approach to take is Constructable Style Sheets. These require the CSS to be in a JS string and mimic-css provide this output in the file **mimic.css.js** for us when using the -l flag.
+
+The generated file can be imported to a LitElement using the below syntax
+
+```javascript
+import { TWStyles } from "../styles/mimic.css.js";
+
+export class Header extends
+  LitElement { static styles = [css``, TWStyles];
+```
