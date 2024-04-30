@@ -213,6 +213,8 @@ export function Single_Hypen_Then_Colon_Hover(item: any) {
 }
 
 export function Single_Hypen_Then_Colon(item: any) {
+  let result;
+
   let single_hyphen_then_colon_matches = item.matchAll(
     single_hyphen_then_colon
   );
@@ -227,14 +229,15 @@ export function Single_Hypen_Then_Colon(item: any) {
     //console.log(value);
     let snappedvalue = PerformSnap(style, value);
 
-    return (
+    result =
       `.${style}\\:${Escape(value)} {\r\n\t` +
       style +
       ": " +
       `${snappedvalue}` +
-      `;\r\n}\r\n`
-    );
+      `;\r\n}\r\n`;
   }
+
+  return result;
 }
 
 export function Single_Hypen_Then_Colon_Then_Another_Hyphen(item: any) {

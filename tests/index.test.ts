@@ -1,9 +1,35 @@
 import { DoWork } from "../src/main";
-import { BorderSizes, FontSizes, PaddingSizes, GapSizes } from "../src/Sizes";
+import {
+  BorderSizes,
+  FontSizes,
+  PaddingSizes,
+  GapSizes,
+  BorderRadius,
+} from "../src/Sizes";
 import {
   MediaBreakPointsValue,
   MediaBreakPointsText,
 } from "../src/mediaBreakpoints";
+
+describe("Border Radius", () => {
+  test("Border Radius Snapping - XS", () => {
+    expect(DoWork("./tests/border-radius/border_radius_xs.html", "")).toContain(
+      `.border-radius\\:xs {\r\n\tborder-radius: ${BorderRadius.xs};\r\n}`
+    );
+  });
+
+  test("Border Radius Snapping - SM", () => {
+    expect(DoWork("./tests/border-radius/border_radius_sm.html", "")).toContain(
+      `.border-radius\\:sm {\r\n\tborder-radius: ${BorderRadius.sm};\r\n}`
+    );
+  });
+
+  test("Border Radius Snapping - XL", () => {
+    expect(DoWork("./tests/border-radius/border_radius_xl.html", "")).toContain(
+      `.border-radius\\:xl {\r\n\tborder-radius: ${BorderRadius.xl};\r\n}`
+    );
+  });
+});
 
 describe("display flex", () => {
   test("display flex", () => {

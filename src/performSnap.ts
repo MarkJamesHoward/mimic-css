@@ -5,6 +5,7 @@ import {
   MarginSizes,
   FontSizes,
   GenericSizes,
+  BorderRadius,
   GapSizes,
 } from "./Sizes";
 
@@ -231,6 +232,37 @@ export function PerformSnap(type: string, value: string) {
 
         default:
           result = FontSizes.xs;
+          break;
+      }
+      break;
+    case "border-radius":
+      switch (value) {
+        case Sizes.xs:
+          result = BorderRadius.xs;
+          break;
+
+        case Sizes.sm:
+          result = BorderRadius.sm;
+          break;
+
+        case Sizes.md:
+          result = BorderRadius.md;
+          break;
+
+        case Sizes.lg:
+          result = BorderRadius.lg;
+          break;
+
+        case Sizes.xl:
+          result = BorderRadius.xl;
+          break;
+
+        case Sizes.xl2:
+          result = BorderRadius.xl2;
+          break;
+
+        default:
+          result = BorderRadius.xs;
           break;
       }
       break;

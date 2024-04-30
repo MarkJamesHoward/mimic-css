@@ -7,6 +7,15 @@ export const Sizes = {
   xl2: "2xl",
 };
 
+export const BorderRadius = {
+  xs: "2px",
+  sm: "5px",
+  md: "10px",
+  lg: "20px",
+  xl: "30px",
+  xl2: "50px",
+};
+
 export const FontSizes = {
   xs: "8px",
   sm: "12px",
