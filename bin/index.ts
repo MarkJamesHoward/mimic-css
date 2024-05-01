@@ -4,6 +4,7 @@ import path from "path";
 import fs from "fs";
 import { DoWork } from "../src/main";
 import { ExcludeFolders } from "../src/FolderExclusions";
+import { LoadConfig } from "../src/configurationLoader";
 
 const argv = yargs(process.argv.slice(2))
   .options({
@@ -21,6 +22,7 @@ let OutputFilename = argv.o;
 let ExcludeFiles = argv.e;
 let EmitLitFile = argv.l;
 let debug = argv.d;
+let fileExtensions = [];
 
 function searchFile(dir: string, extension: string) {
   let exit = false;
@@ -59,44 +61,55 @@ function searchFile(dir: string, extension: string) {
   }
 }
 
-// Check all files initially
-searchFile(InputFolder, ".html");
-searchFile(InputFolder, ".ts");
-searchFile(InputFolder, ".astro");
+async function Start() {
+  //Load Configuration
+  fileExtensions = await LoadConfig();
 
-// Now setup to check for file changes
-fs.watch(
-  InputFolder,
-  { recursive: true },
-  async (eventType: any, fileName: any) => {
-    if (
-      fileName?.includes(".html") ||
-      fileName?.includes(".astro") ||
-      fileName?.includes(".ts")
-    ) {
-      // Check for excluded filenames
-      if (ExcludeFiles == "" || !fileName?.includes(ExcludeFiles)) {
-        console.log("change detected.. performing update: " + fileName);
-        let filenamePlusPath = path.join(InputFolder, fileName);
+  if (fileExtensions?.extensions.length == 0) {
+    fileExtensions = [".html"];
+  }
 
-        let result = DoWork(filenamePlusPath, ExistingCSS);
-        ExistingCSS += result;
+  fileExtensions.extensions.forEach((extension: string) => {
+    searchFile(InputFolder, extension);
+  });
 
-        WriteFile(OutputFilename, ExistingCSS);
+  // Now setup to check for file changes
+  fs.watch(
+    InputFolder,
+    { recursive: true },
+    async (eventType: any, fileName: any) => {
+      let validFile = false;
+      fileExtensions?.extensions.forEach((extension: string) => {
+        if (fileName?.includes(extension)) {
+          validFile = true;
+        }
+      });
 
-        if (EmitLitFile) {
-          WriteLitFile(OutputFilename, ExistingCSS);
+      if (validFile) {
+        // Check for excluded filenames
+        if (ExcludeFiles == "" || !fileName?.includes(ExcludeFiles)) {
+          console.log("change detected.. performing update: " + fileName);
+          let filenamePlusPath = path.join(InputFolder, fileName);
+
+          let result = DoWork(filenamePlusPath, ExistingCSS);
+          ExistingCSS += result;
+
+          WriteFile(OutputFilename, ExistingCSS);
+
+          if (EmitLitFile) {
+            WriteLitFile(OutputFilename, ExistingCSS);
+          }
+        } else {
+          console.log(`filename excluded ${fileName}`);
         }
       } else {
-        console.log(`filename excluded ${fileName}`);
-      }
-    } else {
-      if (debug) {
-        console.log(`filename not in list to examine ${fileName}`);
+        if (debug) {
+          console.log(`filename not in list to examine ${fileName}`);
+        }
       }
     }
-  }
-);
+  );
+}
 
 function WriteFile(filename: string, data: string) {
   fs.writeFileSync(filename, data);
@@ -110,3 +123,5 @@ async function WriteLitFile(filename: string, data: string) {
     `;
   fs.writeFileSync(filename + ".js", litContents);
 }
+
+Start();

@@ -1,6 +1,6 @@
 {
   "name": "mimic-css",
-  "version": "0.0.62-alpha",
+  "version": "0.0.67-alpha",
   "description": "",
   "main": "./dist/bin/index.js",
   "bin": {
@@ -10,6 +10,7 @@
   "author": "markjameshoward@hotmail.co.uk",
   "license": "ISC",
   "dependencies": {
+    "@web/config-loader": "^0.3.1",
     "yargs": "^17.7.2"
   },
   "repository": {
