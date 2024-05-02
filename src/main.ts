@@ -13,6 +13,7 @@ import {
   Single_Hypen_Then_Colon_Media_Hover,
   Single_Hypen_Then_Colon_Then_Another_Hyphen,
   Double_Hyphen_No_Colon,
+  Double_hyphen_then_colon,
   Double_Hyphen_No_Colon_Media,
 } from "../src/RegExPerform";
 
@@ -66,6 +67,9 @@ export function DoWork(filename: string, ExistingCSS: string): string {
       if (result != "" && result != undefined) mostSpecificMatch = result;
 
       result = Double_Hyphen_No_Colon(item);
+      if (result != "" && result != undefined) mostSpecificMatch = result;
+
+      result = Double_hyphen_then_colon(item);
       if (result != "" && result != undefined) mostSpecificMatch = result;
 
       NonMediaCSS += DeDuplication(ExistingCSS, mostSpecificMatch);

@@ -1,7 +1,10 @@
-//border-style-solid
-//flex-direction-row
+//border-style:solid
+//flex-direction:row
+export const double_hyphen_then_colon =
+  /^(?<style>[A-Za-z]+-[A-Za-z]+-[A-Za-z]+):(?<value>[A-Za-z0-9\%\.#]+)$/gi;
+
 export const double_hyphen_no_colon =
-  /^(?<style>[A-Za-z0-9]+-[A-Za-z0-9]+)-(?<value>[A-Za-z0-9]+)(?<![hover|focus|-])$/gi;
+  /^(?<style>[A-Za-z0-9]+-[A-Za-z0-9]+)-(?<value>[A-Za-z0-9]+)$/gi;
 
 export const double_hyphen_no_colon_media =
   /^(?<media>extrasmall|small|medium|large|extralarge+)\?(?<style>[A-Za-z0-9]+-[A-Za-z0-9]+)-(?<value>[A-Za-z0-9]+)$/gi;

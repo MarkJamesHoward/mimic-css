@@ -11,6 +11,22 @@ import {
   MediaBreakPointsText,
 } from "../src/mediaBreakpoints";
 
+describe("Text Decoration", () => {
+  test("Text Decoration", () => {
+    expect(
+      DoWork("./tests/text-decoration/text-decoration.html", "")
+    ).toContain(`.text-decoration\\:none {\r\n\ttext-decoration: none;\r\n}`);
+  });
+
+  test("Text Decoration Color", () => {
+    expect(
+      DoWork("./tests/text-decoration/text-decoration-color.html", "")
+    ).toContain(
+      `.text-decoration-color\\:#444444 {\r\n\ttext-decoration-color: #444444;\r\n}`
+    );
+  });
+});
+
 describe("Border Radius", () => {
   test("Border Radius Snapping - XS", () => {
     expect(DoWork("./tests/border-radius/border_radius_xs.html", "")).toContain(

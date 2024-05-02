@@ -1,5 +1,6 @@
 import {
   double_hyphen_no_colon,
+  double_hyphen_then_colon,
   double_hyphen_no_colon_media,
   single_hyphen_then_colon,
   single_hyphen_then_colon_pseudo_class,
@@ -270,6 +271,32 @@ export function Double_Hyphen_No_Colon_Media(item: any) {
   );
 
   return ProcessMediaQueries(double_hyphen_no_colon_media_matches, true);
+}
+
+export function Double_hyphen_then_colon(item: any) {
+  let double_hyphen_then_colon_matches = item.matchAll(
+    double_hyphen_then_colon
+  );
+  let result: string = "";
+
+  for (const match of double_hyphen_then_colon_matches) {
+    //console.log("double_hyphen_no_colon " + match);
+
+    let style = match.groups["style"];
+    let value = match.groups["value"];
+
+    //console.log(`${style} {value}`);
+
+    let snappedvalue = PerformSnap(style, value);
+
+    result =
+      `.${style}\\:${Escape(value)} {\r\n\t` +
+      style +
+      ": " +
+      `${snappedvalue}` +
+      `;\r\n}\r\n`;
+  }
+  return result;
 }
 
 export function Double_Hyphen_No_Colon(item: any) {

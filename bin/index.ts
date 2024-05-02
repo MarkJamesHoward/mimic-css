@@ -5,6 +5,7 @@ import fs from "fs";
 import { DoWork } from "../src/main";
 import { ExcludeFolders } from "../src/FolderExclusions";
 import { LoadConfig } from "../src/configurationLoader";
+import { FileExtensions } from "../interfaces/IFileExtensions";
 
 const argv = yargs(process.argv.slice(2))
   .options({
@@ -22,7 +23,7 @@ let OutputFilename = argv.o;
 let ExcludeFiles = argv.e;
 let EmitLitFile = argv.l;
 let debug = argv.d;
-let fileExtensions = [];
+let fileExtensions: FileExtensions;
 
 function searchFile(dir: string, extension: string) {
   let exit = false;
@@ -63,10 +64,10 @@ function searchFile(dir: string, extension: string) {
 
 async function Start() {
   //Load Configuration
-  fileExtensions = await LoadConfig();
+  fileExtensions: fileExtensions = await LoadConfig();
 
   if (fileExtensions?.extensions.length == 0) {
-    fileExtensions = [".html"];
+    fileExtensions = { extensions: [".html"] };
   }
 
   fileExtensions.extensions.forEach((extension: string) => {
