@@ -70,11 +70,17 @@ async function Start() {
     console.log("Config file not found");
   }
 
-  if (fileExtensions?.extensions.length == 0) {
+  if (
+    fileExtensions == undefined ||
+    fileExtensions == null ||
+    fileExtensions?.extensions.length == 0
+  ) {
     fileExtensions = { extensions: [".html"] };
   }
 
-  fileExtensions.extensions.forEach((extension: string) => {
+  console.dir(fileExtensions);
+
+  fileExtensions?.extensions.forEach((extension: string) => {
     searchFile(InputFolder, extension);
   });
 

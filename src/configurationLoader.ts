@@ -10,7 +10,6 @@ export async function LoadConfig(): Promise<FileExtensions> {
     // process.cwd() + 'my-project.config.cjs'
     // process.cwd() + 'my-project.config.js'
     let config: FileExtensions = await readConfig("mimic.config");
-    console.dir(config);
     return config;
   } catch (error) {
     if (error instanceof ConfigLoaderError) {
