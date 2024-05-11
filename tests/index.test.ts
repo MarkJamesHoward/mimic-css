@@ -22,7 +22,7 @@ describe("Text Decoration", () => {
     expect(
       DoWork("./tests/text-decoration/text-decoration-color.html", "")
     ).toContain(
-      `.text-decoration-color\\:#444444 {\r\n\ttext-decoration-color: #444444;\r\n}`
+      `.text-decoration-color\\:\\#444444 {\r\n\ttext-decoration-color: #444444;\r\n}`
     );
   });
 });

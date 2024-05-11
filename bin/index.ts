@@ -64,7 +64,11 @@ function searchFile(dir: string, extension: string) {
 
 async function Start() {
   //Load Configuration
-  fileExtensions: fileExtensions = await LoadConfig();
+  try {
+    fileExtensions = await LoadConfig();
+  } catch (e) {
+    console.log("Config file not found");
+  }
 
   if (fileExtensions?.extensions.length == 0) {
     fileExtensions = { extensions: [".html"] };
