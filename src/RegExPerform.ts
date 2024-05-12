@@ -131,14 +131,20 @@ export function Single_Colon_Box_Shadow_Shorthand_2_Values(item: any) {
     let style = match.groups["style"];
     let value1 = match.groups["value1"];
     let value2 = match.groups["value2"];
+    let value3 = match.groups["value3"];
+    let value4 = match.groups["value4"];
+    let color = match.groups["color"];
+
     let value1type = match.groups["value1type"];
     let value2type = match.groups["value2type"];
+    let value3type = match.groups["value3type"];
+    let value4type = match.groups["value4type"];
 
     result =
-      `.${style}\\:${value1}${value1type}${value2}${value2type}{\r\n\t` +
+      `.${style}\\:${value1}${value1type}${value2}${value2type}${value3}${value3type}${value4}${value4type}${color}{\r\n\t` +
       style +
       ": " +
-      `${value1}${value1type} ${value2}${value2type};\r\n}\r\n`;
+      `${value1}${value1type} ${value2}${value2type} ${value3}${value3type} ${value4}${value4type} ${color};\r\n}\r\n`;
   }
   return result;
 }
