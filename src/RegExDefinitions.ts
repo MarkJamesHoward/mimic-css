@@ -42,6 +42,10 @@ export const single_colon =
 export const single_colon_media =
   /^(?<media>extrasmall|small|medium|large|extralarge+)\?(?<style>[A-Za-z0-9]+):(?<value>[A-Za-z0-9\%\.#]+)$/gi;
 
+// box-shadow
+export const single_colon_box_shadow_shorthand_2_values =
+  /^(?<style>[A-Za-z]+-[A-Za-z]+):(?<value1>[0-9]+)(?<value1type>[a-z]{2})(?<value2>[0-9]+)(?<value2type>[a-z]{2})$/gi;
+
 // display:flex:hover
 // display:flex:focus
 export const single_colon_pseudo_class =

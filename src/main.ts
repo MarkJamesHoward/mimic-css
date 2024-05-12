@@ -7,6 +7,7 @@ import {
   Single_Colon_Padding_Shorthand_Snappable,
   Single_Colon_Padding_Shorthand_2_Values,
   Single_Colon_Padding_Shorthand_2_Values_Snappable,
+  Single_Colon_Box_Shadow_Shorthand_2_Values,
   Single_Hypen_Then_Colon,
   Single_Hypen_Then_Colon_Hover,
   Sindle_Hypen_Then_Colon_Media,
@@ -51,8 +52,8 @@ export function DoWork(filename: string, ExistingCSS: string): string {
       result = Single_Colon_Padding_Shorthand_Snappable(item);
       if (result != "" && result != undefined) mostSpecificMatch = result;
 
-      // result = Single_Colon_Padding_Shorthand_2_Values(item);
-      // if (result != "" && result != undefined) mostSpecificMatch = result;
+      result = Single_Colon_Padding_Shorthand_2_Values(item);
+      if (result != "" && result != undefined) mostSpecificMatch = result;
 
       result = Single_Colon_Padding_Shorthand_2_Values_Snappable(item);
       if (result != "" && result != undefined) mostSpecificMatch = result;
@@ -70,6 +71,9 @@ export function DoWork(filename: string, ExistingCSS: string): string {
       if (result != "" && result != undefined) mostSpecificMatch = result;
 
       result = Double_hyphen_then_colon(item);
+      if (result != "" && result != undefined) mostSpecificMatch = result;
+
+      result = Single_Colon_Box_Shadow_Shorthand_2_Values(item);
       if (result != "" && result != undefined) mostSpecificMatch = result;
 
       NonMediaCSS += DeDuplication(ExistingCSS, mostSpecificMatch);

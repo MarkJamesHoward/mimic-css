@@ -11,6 +11,14 @@ import {
   MediaBreakPointsText,
 } from "../src/mediaBreakpoints";
 
+describe("Box Shadow", () => {
+  test("Box Shadow", () => {
+    expect(DoWork("./tests/box-shadow/box-shadow.html", "")).toContain(
+      `.box-shadow\\:10px10px {\r\n\tbox-shadow: 10px 10px;\r\n}`
+    );
+  });
+});
+
 describe("Text Decoration", () => {
   test("Text Decoration", () => {
     expect(

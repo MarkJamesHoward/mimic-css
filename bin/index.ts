@@ -63,18 +63,18 @@ function searchFile(dir: string, extension: string) {
 }
 
 async function Start() {
+  //Default Configuration
+  fileExtensions = { extensions: [".html"] };
+
   //Load Configuration
   try {
     fileExtensions = await LoadConfig();
+    if (fileExtensions == null) {
+      fileExtensions = { extensions: [".html"] };
+    } else {
+      console.log("Configuration file found - mimic.config");
+    }
   } catch (e) {
-    console.log("Config file not found");
-  }
-
-  if (
-    fileExtensions == undefined ||
-    fileExtensions == null ||
-    fileExtensions?.extensions.length == 0
-  ) {
     fileExtensions = { extensions: [".html"] };
   }
 

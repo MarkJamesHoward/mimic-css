@@ -14,6 +14,7 @@ import {
   single_colon_padding_shorthand_2_values,
   single_colon_padding_shorthand_2_values_snappable,
   single_hyphen_then_colon_then_another_hyphen,
+  single_colon_box_shadow_shorthand_2_values,
 } from "./RegExDefinitions";
 import { Escape } from "./EscapingClassNames";
 import { PerformSnap } from "./performSnap";
@@ -117,6 +118,29 @@ export function Single_Colon_Padding_Shorthand(item: any) {
       `${value1}${value1type} ${value2}${value2type} ${value3}${value3type} ${value4}${value4type};\r\n}\r\n`
     );
   }
+}
+
+export function Single_Colon_Box_Shadow_Shorthand_2_Values(item: any) {
+  let single_colon_box_shadow_shorthand_2_values_matches = item.matchAll(
+    single_colon_box_shadow_shorthand_2_values
+  );
+
+  let result;
+
+  for (const match of single_colon_box_shadow_shorthand_2_values_matches) {
+    let style = match.groups["style"];
+    let value1 = match.groups["value1"];
+    let value2 = match.groups["value2"];
+    let value1type = match.groups["value1type"];
+    let value2type = match.groups["value2type"];
+
+    result =
+      `.${style}\\:${value1}${value1type}${value2}${value2type}{\r\n\t` +
+      style +
+      ": " +
+      `${value1}${value1type} ${value2}${value2type};\r\n}\r\n`;
+  }
+  return result;
 }
 
 export function Single_Colon_Padding_Shorthand_2_Values(item: any) {
