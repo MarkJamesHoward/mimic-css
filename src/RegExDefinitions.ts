@@ -44,7 +44,7 @@ export const single_colon_media =
 
 // box-shadow
 export const single_colon_box_shadow_shorthand_2_values =
-  /^(?<style>[A-Za-z]+-[A-Za-z]+):(?<value1>[0-9]+)(?<value1type>px|ch|rem)(?<value2>[0-9]+)(?<value2type>px|ch|rem)(?<value3>[0-9]+)(?<value3type>px|ch|rem)(?<value4>[0-9]+)(?<value4type>px|ch|rem)(?<color>[a-zA-Z]+)$/gi;
+  /^(?<style>[A-Za-z]+-[A-Za-z]+):(?<value1>[0-9]+)(?<value1type>px|ch|rem)(?<value2>[0-9]+)(?<value2type>px|ch|rem)(?<value3>[0-9]+)?(?<value3type>px|ch|rem)?(?<value4>[0-9]+)?(?<value4type>px|ch|rem)?(?<color>[a-zA-Z]+)?$/gi;
 
 // display:flex:hover
 // display:flex:focus
