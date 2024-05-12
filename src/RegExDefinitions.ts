@@ -42,9 +42,10 @@ export const single_colon =
 export const single_colon_media =
   /^(?<media>extrasmall|small|medium|large|extralarge+)\?(?<style>[A-Za-z0-9]+):(?<value>[A-Za-z0-9\%\.#]+)$/gi;
 
+//////////////////////////////////
 // box-shadow
-export const single_colon_box_shadow_shorthand_2_values =
-  /^(?<style>[A-Za-z]+-[A-Za-z]+):(?<value1>[0-9]+)(?<value1type>px|ch|rem)(?<value2>[0-9]+)(?<value2type>px|ch|rem)(?<value3>[0-9]+)?(?<value3type>px|ch|rem)?(?<value4>[0-9]+)?(?<value4type>px|ch|rem)?(?<color>[a-zA-Z]+)?$/gi;
+export const single_hyphen_then_colon_box_shadow =
+  /^(?<media>extrasmall\?|small\?|medium\?|large\?|extralarge\?)?(?<style>[A-Za-z]+-[A-Za-z]+):(?<value1>[0-9]+)(?<value1type>px|ch|rem)(?<value2>[0-9]+)(?<value2type>px|ch|rem)(?<value3>[0-9]+)?(?<value3type>px|ch|rem)?(?<value4>[0-9]+)?(?<value4type>px|ch|rem)?(?<color>[a-zA-Z]+)?(?<hover>:hover)?$/gi;
 
 // display:flex:hover
 // display:flex:focus

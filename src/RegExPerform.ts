@@ -14,14 +14,17 @@ import {
   single_colon_padding_shorthand_2_values,
   single_colon_padding_shorthand_2_values_snappable,
   single_hyphen_then_colon_then_another_hyphen,
-  single_colon_box_shadow_shorthand_2_values,
+  single_hyphen_then_colon_box_shadow,
 } from "./RegExDefinitions";
 import { Escape } from "./EscapingClassNames";
 import { PerformSnap } from "./performSnap";
 import {
   ProcessMediaQueries,
   ProcessMediaQueriesWithHover,
+  MapMediaQuery,
 } from "./processMediaQueries";
+
+let debug = true;
 
 export function Single_Colon_Pseudo_Class(item: any) {
   let output = "";
@@ -42,7 +45,9 @@ export function Single_Colon_Pseudo_Class(item: any) {
     let snappedvalue = PerformSnap(style, value);
 
     output +=
-      `.${style}\\:${Escape(value)}\\:${pseudo_class}:${pseudo_class} {\r\n\t` +
+      `
+      ${debug ? "/* Single_Colon_Pseudo_Class */" : ""}
+      .${style}\\:${Escape(value)}\\:${pseudo_class}:${pseudo_class} {\r\n\t` +
       style +
       ": " +
       `${snappedvalue}` +
@@ -61,7 +66,9 @@ export function Single_Colon(item: any) {
     let snappedvalue = PerformSnap(style, value);
 
     return (
-      `.${style}\\:${Escape(value)} {\r\n\t` +
+      `
+      ${debug ? "/* Single_Colon */" : ""}
+      .${style}\\:${Escape(value)} {\r\n\t` +
       style +
       ": " +
       snappedvalue +
@@ -87,7 +94,9 @@ export function Single_Colon_Padding_Shorthand_Snappable(item: any) {
     let snap4value = PerformSnap(style, snap4);
 
     return (
-      `.${style}\\:${snap1}${snap2}${snap3}${snap4} {\r\n\t` +
+      `
+      ${debug ? "/* Single_Colon_Padding_Shorthand_Snappable */" : ""}
+      .${style}\\:${snap1}${snap2}${snap3}${snap4} {\r\n\t` +
       style +
       ": " +
       `${snap1value} ${snap2value} ${snap3value} ${snap4value};\r\n}\r\n`
@@ -112,7 +121,9 @@ export function Single_Colon_Padding_Shorthand(item: any) {
     let value4type = match.groups["value4type"];
 
     return (
-      `.${style}\\:${value1}${value1type}${value2}${value2type}${value3}${value3type}${value4}${value4type} {\r\n\t` +
+      `
+      ${debug ? "/* Single_Colon_Padding_Shorthand */" : ""}
+      .${style}\\:${value1}${value1type}${value2}${value2type}${value3}${value3type}${value4}${value4type} {\r\n\t` +
       style +
       ": " +
       `${value1}${value1type} ${value2}${value2type} ${value3}${value3type} ${value4}${value4type};\r\n}\r\n`
@@ -120,20 +131,22 @@ export function Single_Colon_Padding_Shorthand(item: any) {
   }
 }
 
-export function Single_Colon_Box_Shadow_Shorthand_2_Values(item: any) {
-  let single_colon_box_shadow_shorthand_2_values_matches = item.matchAll(
-    single_colon_box_shadow_shorthand_2_values
+export function Single_Hyphen_Then_Colon_Box_Shadow(item: any) {
+  let Single_Hyphen_Then_Colon_Box_Shadow_matches = item.matchAll(
+    single_hyphen_then_colon_box_shadow
   );
 
   let result;
 
-  for (const match of single_colon_box_shadow_shorthand_2_values_matches) {
+  for (const match of Single_Hyphen_Then_Colon_Box_Shadow_matches) {
     let style = match.groups["style"];
     let value1 = match.groups["value1"] ?? "";
     let value2 = match.groups["value2"] ?? "";
     let value3 = match.groups["value3"] ?? "";
     let value4 = match.groups["value4"] ?? "";
     let color = match.groups["color"] ?? "";
+    let hover = match.groups["hover"] ?? "";
+    let media = match.groups["media"] ?? "";
 
     value2 = value2 == "" ? "" : " " + value2;
     value3 = value3 == "" ? "" : " " + value3;
@@ -145,11 +158,26 @@ export function Single_Colon_Box_Shadow_Shorthand_2_Values(item: any) {
     let value3type = match.groups["value3type"] ?? "";
     let value4type = match.groups["value4type"] ?? "";
 
+    let width = MapMediaQuery(media.replace("?", ""));
+
     result =
-      `.${style}\\:${value1}${value1type}${value2.trim()}${value2type}${value3.trim()}${value3type}${value4.trim()}${value4type}${color.trim()}{\r\n\t` +
+      `${
+        debug
+          ? "/* Single_Hyphen_Then_Colon_Box_Shadow " +
+            `Media=${media ? media.replace("?", "") : "none"}` +
+            "*/"
+          : ""
+      }\r\n` +
+      `@media (min-width: ${width}px) {\r\n.${media.replace("?", "\\?")}` +
+      `${style}\\:${value1}${value1type}${value2.trim()}${value2type}${value3.trim()}${value3type}${value4.trim()}${value4type}${color.trim()}${
+        hover ? "\\:hover:hover" : ""
+      } {\r\n\t` +
       style +
       ": " +
-      `${value1}${value1type}${value2}${value2type}${value3}${value3type}${value4}${value4type}${color};\r\n}\r\n`;
+      `${value1}${value1type}${value2}${value2type}${value3}${value3type}${value4}${value4type}${color};\r\n${
+        media ? "\t" : ""
+      }}\r\n` +
+      `${media ? "}\r\n\r\n" : ""}`;
   }
   return result;
 }
@@ -167,6 +195,7 @@ export function Single_Colon_Padding_Shorthand_2_Values(item: any) {
     let value2type = match.groups["value2type"];
 
     return (
+      `${debug ? "/* Single_Colon_Padding_Shorthand_2_Values */" : ""}\r\n` +
       `.${style}\\:${value1}${value1type}${value2}${value2type}{\r\n\t` +
       style +
       ": " +
@@ -190,6 +219,9 @@ export function Single_Colon_Padding_Shorthand_2_Values_Snappable(item: any) {
     let snap2value = PerformSnap(style, snap2);
 
     result =
+      `${
+        debug ? "/* Single_Colon_Padding_Shorthand_2_Values_Snappable */" : ""
+      }\r\n` +
       `.${style}\\:${snap1}${snap2} {\r\n\t` +
       style +
       ": " +
@@ -266,6 +298,7 @@ export function Single_Hypen_Then_Colon(item: any) {
     let snappedvalue = PerformSnap(style, value);
 
     result =
+      `${debug ? "/* Single_Hypen_Then_Colon */" : ""}\r\n` +
       `.${style}\\:${Escape(value)} {\r\n\t` +
       style +
       ": " +

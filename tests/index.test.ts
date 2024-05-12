@@ -17,6 +17,26 @@ describe("Box Shadow", () => {
       `.box-shadow\\:10px10px {\r\n\tbox-shadow: 10px 10px;\r\n}`
     );
   });
+
+  test("Box Shadow 4 Values With Color", () => {
+    expect(
+      DoWork("./tests/box-shadow/box-shadow-with-color.html", "")
+    ).toContain(
+      `.box-shadow\\:10px10px20px30pxred {\r\n\tbox-shadow: 10px 10px 20px 30px red;\r\n}`
+    );
+  });
+
+  test("Box Shadow Hover", () => {
+    expect(DoWork("./tests/box-shadow/box-shadow-hover.html", "")).toContain(
+      `.box-shadow\\:10px10px\\:hover:hover {\r\n\tbox-shadow: 10px 10px;\r\n}`
+    );
+  });
+
+  test("Box Shadow Media Large", () => {
+    expect(DoWork("./tests/box-shadow/box-shadow-media.html", "")).toContain(
+      `@media (min-width: ${MediaBreakPointsValue.large}px) {\r\n.${MediaBreakPointsText.large}\\?box-shadow\\:10px10px {\r\n\tbox-shadow: 10px 10px;\r\n\t}\r\n}`
+    );
+  });
 });
 
 describe("Text Decoration", () => {

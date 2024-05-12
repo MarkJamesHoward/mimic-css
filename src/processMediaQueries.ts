@@ -5,6 +5,31 @@ import {
 } from "./mediaBreakpoints";
 import { Escape } from "./EscapingClassNames";
 
+export function MapMediaQuery(media: string) {
+  let width;
+
+  switch (media) {
+    case MediaBreakPointsText.extrasmall:
+      width = MediaBreakPointsValue.extrasmall;
+      break;
+    case MediaBreakPointsText.small:
+      width = MediaBreakPointsValue.small;
+      break;
+    case MediaBreakPointsText.medium:
+      width = MediaBreakPointsValue.medium;
+      break;
+    case MediaBreakPointsText.large:
+      width = MediaBreakPointsValue.large;
+      break;
+    case MediaBreakPointsText.extralarge:
+      width = MediaBreakPointsValue.extralarge;
+      break;
+    default:
+      width = MediaBreakPointsValue.large;
+      console.log("unknown media!!");
+  }
+  return width;
+}
 export function ProcessMediaQueriesWithHover(matches: any, colon: boolean) {
   let output = "";
 
