@@ -102,7 +102,7 @@ export function PerformSnap(type: string, value: string) {
           break;
 
         default:
-          result = PaddingSizes.xs;
+          result = value;
           break;
       }
       break;
@@ -133,7 +133,7 @@ export function PerformSnap(type: string, value: string) {
           break;
 
         default:
-          result = GapSizes.xs;
+          result = value;
           break;
       }
       break;
@@ -164,7 +164,7 @@ export function PerformSnap(type: string, value: string) {
           break;
 
         default:
-          result = BorderSizes.xs;
+          result = value;
           break;
       }
       break;
@@ -199,7 +199,7 @@ export function PerformSnap(type: string, value: string) {
           break;
 
         default:
-          result = MarginSizes.xs;
+          result = value;
           break;
       }
       break;
@@ -231,7 +231,7 @@ export function PerformSnap(type: string, value: string) {
           break;
 
         default:
-          result = FontSizes.xs;
+          result = value;
           break;
       }
       break;
@@ -262,7 +262,7 @@ export function PerformSnap(type: string, value: string) {
           break;
 
         default:
-          result = BorderRadius.xs;
+          result = value;
           break;
       }
       break;

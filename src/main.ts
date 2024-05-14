@@ -2,15 +2,15 @@ import { DeDuplication } from "../src/DeDuplication";
 import {
   Single_Colon,
   Single_Colon_Pseudo_Class,
-  Single_Colon_Media,
+  // Single_Colon_Media,
   Single_Colon_Padding_Shorthand,
-  Single_Colon_Padding_Shorthand_Snappable,
+  // Single_Colon_Padding_Shorthand_Snappable,
   Single_Colon_Padding_Shorthand_2_Values,
   Single_Colon_Padding_Shorthand_2_Values_Snappable,
   Single_Hyphen_Then_Colon_Box_Shadow,
   Single_Hypen_Then_Colon,
   Single_Hypen_Then_Colon_Hover,
-  Sindle_Hypen_Then_Colon_Media,
+  // Sindle_Hypen_Then_Colon_Media,
   Single_Hypen_Then_Colon_Media_Hover,
   Single_Hypen_Then_Colon_Then_Another_Hyphen,
   Double_Hyphen_No_Colon,
@@ -40,8 +40,8 @@ export function DoWork(filename: string, ExistingCSS: string): string {
       let result = Single_Colon(item);
       if (result != "" && result != undefined) mostSpecificMatch = result;
 
-      result = Single_Colon_Media(item);
-      if (result != "" && result != undefined) mostSpecificMatch = result;
+      // result = Single_Colon_Media(item);
+      // if (result != "" && result != undefined) mostSpecificMatch = result;
 
       result = Single_Colon_Pseudo_Class(item);
       if (result != "" && result != undefined) mostSpecificMatch = result;
@@ -49,8 +49,8 @@ export function DoWork(filename: string, ExistingCSS: string): string {
       result = Single_Colon_Padding_Shorthand(item);
       if (result != "" && result != undefined) mostSpecificMatch = result;
 
-      result = Single_Colon_Padding_Shorthand_Snappable(item);
-      if (result != "" && result != undefined) mostSpecificMatch = result;
+      // result = Single_Colon_Padding_Shorthand_Snappable(item);
+      // if (result != "" && result != undefined) mostSpecificMatch = result;
 
       result = Single_Colon_Padding_Shorthand_2_Values(item);
       if (result != "" && result != undefined) mostSpecificMatch = result;
@@ -78,8 +78,8 @@ export function DoWork(filename: string, ExistingCSS: string): string {
 
       NonMediaCSS += DeDuplication(ExistingCSS, mostSpecificMatch);
 
-      result = Sindle_Hypen_Then_Colon_Media(item);
-      MediaCSS += DeDuplication(ExistingCSS, result);
+      // result = Sindle_Hypen_Then_Colon_Media(item);
+      // MediaCSS += DeDuplication(ExistingCSS, result);
 
       result = Single_Hypen_Then_Colon_Media_Hover(item);
       MediaCSS += DeDuplication(ExistingCSS, result);

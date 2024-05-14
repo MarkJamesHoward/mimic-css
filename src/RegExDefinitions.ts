@@ -37,10 +37,10 @@ export const single_hyphen_then_colon_then_another_hyphen =
 // height:10px
 // height:100%
 export const single_colon =
-  /^(?<style>[A-Za-z]+):(?<value>[A-Za-z0-9\%\.#]+)$/gi;
+  /^(?<media>extrasmall\?|small\?|medium\?|large\?|extralarge\?)?(?<style>[A-Za-z]+):(?<value>[A-Za-z0-9\%\.#]+)$/gi;
 
-export const single_colon_media =
-  /^(?<media>extrasmall|small|medium|large|extralarge+)\?(?<style>[A-Za-z0-9]+):(?<value>[A-Za-z0-9\%\.#]+)$/gi;
+// export const single_colon_media =
+//   /^(?<media>extrasmall|small|medium|large|extralarge+)\?(?<style>[A-Za-z0-9]+):(?<value>[A-Za-z0-9\%\.#]+)$/gi;
 
 //////////////////////////////////
 // box-shadow
@@ -52,13 +52,13 @@ export const single_hyphen_then_colon_box_shadow =
 export const single_colon_pseudo_class =
   /^(?<style>[A-Za-z0-9]+):(?<value>[A-Za-z0-9]+):(?<pseudo_class>[hover|focus]+)$/gi;
 
-//Padding shorthand - all 4 sides speecified
+//Padding shorthand - all 4 sides specified
 export const single_colon_padding_shorthand =
   /^(?<style>[A-Za-z]+):(?<value1>[0-9]+)(?<value1type>[a-z]{2})(?<value2>[0-9]+)(?<value2type>[a-z]{2})(?<value3>[0-9]+)(?<value3type>[a-z]{2})(?<value4>[0-9]+)(?<value4type>[a-z]{2})$/gi;
 
-//Padding shorthand snappable - all 4 sides specified
-export const single_colon_padding_shorthand_snappable =
-  /^(?<style>[A-Za-z]+):(?<snap1>xs|sm|md|lg|xl|2xl)(?<snap2>xs|sm|md|lg|xl|2xl)(?<snap3>xs|sm|md|lg|xl|2xl)(?<snap4>xs|sm|md|lg|xl|2xl)$/gi;
+// //Padding shorthand snappable - all 4 sides specified
+// export const single_colon_padding_shorthand_snappable =
+//   /^(?<style>[A-Za-z]+):(?<snap1>xs|sm|md|lg|xl|2xl)(?<snap2>xs|sm|md|lg|xl|2xl)(?<snap3>xs|sm|md|lg|xl|2xl)(?<snap4>xs|sm|md|lg|xl|2xl)$/gi;
 
 //Padding shorthand - 2 values specified - one for top+bottom and one for left+right
 export const single_colon_padding_shorthand_2_values =
