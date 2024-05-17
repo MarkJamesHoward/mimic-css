@@ -10,7 +10,7 @@ import {
   // single_colon_media,
   single_colon_pseudo_class,
   single_colon_padding_shorthand,
-  // single_colon_padding_shorthand_snappable,
+  single_colon_padding_shorthand_snappable,
   single_colon_padding_shorthand_2_values,
   single_colon_padding_shorthand_2_values_snappable,
   single_hyphen_then_colon_then_another_hyphen,
@@ -63,21 +63,28 @@ export function Single_Colon(item: any) {
 
   for (const match of single_colon_matches) {
     let style = match.groups["style"];
-    let value = match.groups["value"];
-    let media = match.groups["media"] ?? "";
-    let hover = match.groups["hover"] ?? "";
+    let value1 = match.groups["value1"];
+    let value2 = match.groups["value2"];
+    let value3 = match.groups["value3"];
+    let value4 = match.groups["value4"];
+    let media = match.groups["media"];
+    let hover = match.groups["hover"];
+    let value1type = match.groups["value1type"];
+    let value2type = match.groups["value2type"];
+    let value3type = match.groups["value3type"];
+    let value4type = match.groups["value4type"];
 
-    result = result = GenerateMimicClass(
-      "SingleColon",
+    result = GenerateMimicClass(
+      "Single_Colon",
       style,
-      value,
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
+      value1,
+      value2,
+      value3,
+      value4,
+      value1type,
+      value2type,
+      value3type,
+      value4type,
       media,
       hover,
       ""
@@ -86,32 +93,32 @@ export function Single_Colon(item: any) {
   return result;
 }
 
-// export function Single_Colon_Padding_Shorthand_Snappable(item: any) {
-//   let single_colon_padding_shorthand_snappable_matches = item.matchAll(
-//     single_colon_padding_shorthand_snappable
-//   );
+export function Single_Colon_Padding_Shorthand_Snappable(item: any) {
+  let single_colon_padding_shorthand_snappable_matches = item.matchAll(
+    single_colon_padding_shorthand_snappable
+  );
 
-//   for (const match of single_colon_padding_shorthand_snappable_matches) {
-//     let style = match.groups["style"];
-//     let snap1 = match.groups["snap1"];
-//     let snap2 = match.groups["snap2"];
-//     let snap3 = match.groups["snap3"];
-//     let snap4 = match.groups["snap4"];
-//     let snap1value = PerformSnap(style, snap1);
-//     let snap2value = PerformSnap(style, snap2);
-//     let snap3value = PerformSnap(style, snap3);
-//     let snap4value = PerformSnap(style, snap4);
+  for (const match of single_colon_padding_shorthand_snappable_matches) {
+    let style = match.groups["style"];
+    let snap1 = match.groups["snap1"];
+    let snap2 = match.groups["snap2"];
+    let snap3 = match.groups["snap3"];
+    let snap4 = match.groups["snap4"];
+    let snap1value = PerformSnap(style, snap1);
+    let snap2value = PerformSnap(style, snap2);
+    let snap3value = PerformSnap(style, snap3);
+    let snap4value = PerformSnap(style, snap4);
 
-//     return (
-//       `
-//       ${debug ? "/* Single_Colon_Padding_Shorthand_Snappable */" : ""}
-//       .${style}\\:${snap1}${snap2}${snap3}${snap4} {\r\n\t` +
-//       style +
-//       ": " +
-//       `${snap1value} ${snap2value} ${snap3value} ${snap4value};\r\n}\r\n`
-//     );
-//   }
-// }
+    return (
+      `
+      ${debug ? "/* Single_Colon_Padding_Shorthand_Snappable */" : ""}
+      .${style}\\:${snap1}${snap2}${snap3}${snap4} {\r\n\t` +
+      style +
+      ": " +
+      `${snap1value} ${snap2value} ${snap3value} ${snap4value};\r\n}\r\n`
+    );
+  }
+}
 
 export function Single_Colon_Padding_Shorthand(item: any) {
   let single_colon_padding_shorthand_matches = item.matchAll(
@@ -298,19 +305,34 @@ export function Single_Hypen_Then_Colon(item: any) {
     //console.log("single_hyphen_then_colon " + match);
 
     let style = match.groups["style"];
-    let value = match.groups["value"];
+    let value1 = match.groups["value1"] ?? "";
+    let value2 = match.groups["value2"] ?? "";
+    let value3 = match.groups["value3"] ?? "";
+    let value4 = match.groups["value4"] ?? "";
+    let color = match.groups["color"] ?? "";
+    let hover = match.groups["hover"] ?? "";
+    let media = match.groups["media"] ?? "";
 
-    //console.log(style);
-    //console.log(value);
-    let snappedvalue = PerformSnap(style, value);
+    let value1type = match.groups["value1type"] ?? "";
+    let value2type = match.groups["value2type"] ?? "";
+    let value3type = match.groups["value3type"] ?? "";
+    let value4type = match.groups["value4type"] ?? "";
 
-    result =
-      `${debug ? "/* Single_Hypen_Then_Colon */" : ""}\r\n` +
-      `.${style}\\:${Escape(value)} {\r\n\t` +
-      style +
-      ": " +
-      `${snappedvalue}` +
-      `;\r\n}\r\n`;
+    result = GenerateMimicClass(
+      "SingleHyphenThenColon",
+      style,
+      value1,
+      value2,
+      value3,
+      value4,
+      value1type,
+      value2type,
+      value3type,
+      value4type,
+      media,
+      hover,
+      color
+    );
   }
 
   return result;
@@ -376,23 +398,37 @@ export function Double_hyphen_then_colon(item: any) {
 
 export function Double_Hyphen_No_Colon(item: any) {
   let double_hyphen_no_colon_matches = item.matchAll(double_hyphen_no_colon);
-
+  let result;
   for (const match of double_hyphen_no_colon_matches) {
-    //console.log("double_hyphen_no_colon " + match);
-
     let style = match.groups["style"];
-    let value = match.groups["value"];
+    let value1 = match.groups["value1"] ?? "";
+    let value2 = match.groups["value2"] ?? "";
+    let value3 = match.groups["value3"] ?? "";
+    let value4 = match.groups["value4"] ?? "";
+    let color = match.groups["color"] ?? "";
+    let hover = match.groups["hover"] ?? "";
+    let media = match.groups["media"] ?? "";
 
-    //console.log(`${style} {value}`);
+    let value1type = match.groups["value1type"] ?? "";
+    let value2type = match.groups["value2type"] ?? "";
+    let value3type = match.groups["value3type"] ?? "";
+    let value4type = match.groups["value4type"] ?? "";
 
-    let snappedvalue = PerformSnap(style, value);
-
-    return (
-      `.${style}-${Escape(value)} {\r\n\t` +
-      style +
-      ": " +
-      `${snappedvalue}` +
-      `;\r\n}\r\n`
+    result = GenerateMimicClass(
+      "SingleHyphenThenColon",
+      style,
+      value1,
+      value2,
+      value3,
+      value4,
+      value1type,
+      value2type,
+      value3type,
+      value4type,
+      media,
+      hover,
+      color
     );
+    return result;
   }
 }

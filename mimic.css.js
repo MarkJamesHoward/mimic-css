@@ -1,12 +1,8 @@
 import { css } from "lit";
 export const TWStyles = css`
-/* SingleHyphenThenColon Media=none*/
-.box-shadow\\:10px10px {
-	box-shadow: 10px 10px;
-}
-/* SingleColon Media=none*/
-.padding\\:10px {
-	padding: 10px 2px 2px 2px;
+/* Single_Colon_Padding_Shorthand_2_Values_Snappable */
+.padding\\:mdmd {
+	padding: 8px 8px;
 }
  `
     

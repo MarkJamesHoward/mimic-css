@@ -62,10 +62,10 @@ export function PerformSnap(type: string, value: string) {
   //  console.log(value)
 
   if (
-    value.includes("px") ||
-    value.includes("rem") ||
-    value.includes("%") ||
-    value.includes("ch")
+    value?.includes("px") ||
+    value?.includes("rem") ||
+    value?.includes("%") ||
+    value?.includes("ch")
   ) {
     return value;
   }

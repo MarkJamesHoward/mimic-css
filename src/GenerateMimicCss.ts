@@ -18,18 +18,37 @@ export function GenerateMimicClass(
   hover: string,
   color: string
 ) {
-  let width = MapMediaQuery(media.replace("?", ""));
+  let width = MapMediaQuery(media?.replace("?", ""));
 
   let snappedvalue1 = PerformSnap(style, value1);
   let snappedvalue2 = value2 == "" ? "" : PerformSnap(style, value2);
-  let snappedvalue3 = value4 == "" ? "" : PerformSnap(style, value3);
-  let snappedvalue4 = value2 == "" ? "" : PerformSnap(style, value4);
+  let snappedvalue3 = value3 == "" ? "" : PerformSnap(style, value3);
+  let snappedvalue4 = value4 == "" ? "" : PerformSnap(style, value4);
 
-  snappedvalue2 = snappedvalue2 == "" ? "" : " " + snappedvalue2;
-  snappedvalue3 = snappedvalue3 == "" ? "" : " " + snappedvalue3;
-  snappedvalue4 = snappedvalue4 == "" ? "" : " " + snappedvalue4;
+  value1type = value1type == "" || value1type == undefined ? "" : value1type;
+  value2type = value2type == "" || value2type == undefined ? "" : value2type;
+  value3type = value3type == "" || value3type == undefined ? "" : value3type;
+  value4type = value4type == "" || value4type == undefined ? "" : value4type;
+
+  value1 = value1 == "" || value1 == undefined ? "" : value1;
+  value2 = value2 == "" || value2 == undefined ? "" : value2;
+  value3 = value3 == "" || value3 == undefined ? "" : value3;
+  value4 = value4 == "" || value4 == undefined ? "" : value4;
+
+  snappedvalue2 =
+    snappedvalue2 == "" || snappedvalue2 == undefined
+      ? ""
+      : " " + snappedvalue2;
+  snappedvalue3 =
+    snappedvalue3 == "" || snappedvalue3 == undefined
+      ? ""
+      : " " + snappedvalue3;
+  snappedvalue4 =
+    snappedvalue4 == "" || snappedvalue4 == undefined
+      ? ""
+      : " " + snappedvalue4;
   color = color == "" ? "" : " " + color;
-  let mediaString = `@media (min-width: ${width}px) {\r\n.${media.replace(
+  let mediaString = `@media (min-width: ${width}px) {\r\n.${media?.replace(
     "?",
     "\\?"
   )}`;
@@ -38,14 +57,14 @@ export function GenerateMimicClass(
     `${
       debug
         ? `/* ${source} ` +
-          `Media=${media ? media.replace("?", "") : "none"}` +
+          `Media=${media ? media?.replace("?", "") : "none"}` +
           "*/"
         : ""
     }\r\n` +
     `${media ? mediaString : ""}` +
     `${
       media ? "" : "."
-    }${style}\\:${value1}${value1type}${value2.trim()}${value2type}${value3.trim()}${value3type}${value4.trim()}${value4type}${color.trim()}${
+    }${style}\\:${value1}${value1type}${value2?.trim()}${value2type}${value3?.trim()}${value3type}${value4?.trim()}${value4type}${color?.trim()}${
       hover ? "\\:hover:hover" : ""
     } {\r\n\t` +
     style +

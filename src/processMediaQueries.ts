@@ -25,8 +25,8 @@ export function MapMediaQuery(media: string) {
       width = MediaBreakPointsValue.extralarge;
       break;
     default:
-      width = MediaBreakPointsValue.large;
-      console.log("unknown media!!");
+      width = "unknown";
+    //console.log("unknown media!!");
   }
   return width;
 }
