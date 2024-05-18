@@ -25,6 +25,15 @@ export const FontSizes = {
   xl2: "92px",
 };
 
+export const BoxShadowSizes = {
+  xs: "2px",
+  sm: "4px",
+  md: "8px",
+  lg: "20px",
+  xl: "50px",
+  xl2: "200px",
+};
+
 export const PaddingSizes = {
   xs: "2px",
   sm: "4px",

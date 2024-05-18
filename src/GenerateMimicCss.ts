@@ -1,5 +1,6 @@
 import { PerformSnap } from "./performSnap";
 import { MapMediaQuery } from "./processMediaQueries";
+import { Escape } from "./EscapingClassNames";
 
 let debug = true;
 
@@ -15,7 +16,7 @@ export function GenerateMimicClass(
   value3type: string,
   value4type: string,
   media: string,
-  hover: string,
+  pseudo: string,
   color: string
 ) {
   let width = MapMediaQuery(media?.replace("?", ""));
@@ -47,7 +48,7 @@ export function GenerateMimicClass(
     snappedvalue4 == "" || snappedvalue4 == undefined
       ? ""
       : " " + snappedvalue4;
-  color = color == "" ? "" : " " + color;
+  color = color == "" ? "" : " " + Escape(color);
   let mediaString = `@media (min-width: ${width}px) {\r\n.${media?.replace(
     "?",
     "\\?"
@@ -62,10 +63,10 @@ export function GenerateMimicClass(
         : ""
     }\r\n` +
     `${media ? mediaString : ""}` +
-    `${
-      media ? "" : "."
-    }${style}\\:${value1}${value1type}${value2?.trim()}${value2type}${value3?.trim()}${value3type}${value4?.trim()}${value4type}${color?.trim()}${
-      hover ? "\\:hover:hover" : ""
+    `${media ? "" : "."}${style}\\:${Escape(
+      value1
+    )}${value1type}${value2?.trim()}${value2type}${value3?.trim()}${value3type}${value4?.trim()}${value4type}${color?.trim()}${
+      pseudo ? `\\${pseudo}${pseudo}` : ""
     } {\r\n\t` +
     style +
     ": " +

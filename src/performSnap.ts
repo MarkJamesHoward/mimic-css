@@ -4,6 +4,7 @@ import {
   BorderSizes,
   MarginSizes,
   FontSizes,
+  BoxShadowSizes,
   GenericSizes,
   BorderRadius,
   GapSizes,
@@ -71,6 +72,37 @@ export function PerformSnap(type: string, value: string) {
   }
 
   switch (type) {
+    case "box-shadow":
+      switch (value) {
+        case Sizes.xs:
+          result = PaddingSizes.xs;
+          break;
+
+        case Sizes.sm:
+          result = PaddingSizes.sm;
+          break;
+
+        case Sizes.md:
+          result = PaddingSizes.md;
+          break;
+
+        case Sizes.lg:
+          result = PaddingSizes.lg;
+          break;
+
+        case Sizes.xl:
+          result = PaddingSizes.xl;
+          break;
+
+        case Sizes.xl2:
+          result = PaddingSizes.xl2;
+          break;
+
+        default:
+          result = value;
+          break;
+      }
+      break;
     case "padding-top":
     case "padding-left":
     case "padding-bottom":

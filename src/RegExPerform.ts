@@ -3,9 +3,9 @@ import {
   double_hyphen_then_colon,
   double_hyphen_no_colon_media,
   single_hyphen_then_colon,
-  single_hyphen_then_colon_pseudo_class,
-  media_single_hyphen_then_colon,
-  media_single_hyphen_then_colon_pseudo_class,
+  // single_hyphen_then_colon_pseudo_class,
+  // media_single_hyphen_then_colon,
+  // media_single_hyphen_then_colon_pseudo_class,
   single_colon,
   // single_colon_media,
   single_colon_pseudo_class,
@@ -68,7 +68,7 @@ export function Single_Colon(item: any) {
     let value3 = match.groups["value3"];
     let value4 = match.groups["value4"];
     let media = match.groups["media"];
-    let hover = match.groups["hover"];
+    let pseudo = match.groups["pseudo"];
     let value1type = match.groups["value1type"];
     let value2type = match.groups["value2type"];
     let value3type = match.groups["value3type"];
@@ -86,7 +86,7 @@ export function Single_Colon(item: any) {
       value3type,
       value4type,
       media,
-      hover,
+      pseudo,
       ""
     );
   }
@@ -132,14 +132,14 @@ export function Single_Colon_Padding_Shorthand(item: any) {
     let value3 = match.groups["value3"];
     let value4 = match.groups["value4"];
     let media = match.groups["media"];
-    let hover = match.groups["hover"];
+    let pseudo = match.groups["pseudo"];
     let value1type = match.groups["value1type"];
     let value2type = match.groups["value2type"];
     let value3type = match.groups["value3type"];
     let value4type = match.groups["value4type"];
 
     return GenerateMimicClass(
-      "SingleHyphenThenColon",
+      "SingleColonPaddingShorthand",
       style,
       value1,
       value2,
@@ -150,7 +150,7 @@ export function Single_Colon_Padding_Shorthand(item: any) {
       value3type,
       value4type,
       media,
-      hover,
+      pseudo,
       ""
     );
   }
@@ -170,7 +170,7 @@ export function Single_Hyphen_Then_Colon_Box_Shadow(item: any) {
     let value3 = match.groups["value3"] ?? "";
     let value4 = match.groups["value4"] ?? "";
     let color = match.groups["color"] ?? "";
-    let hover = match.groups["hover"] ?? "";
+    let pseudo = match.groups["pseudo"] ?? "";
     let media = match.groups["media"] ?? "";
 
     let value1type = match.groups["value1type"] ?? "";
@@ -178,7 +178,7 @@ export function Single_Hyphen_Then_Colon_Box_Shadow(item: any) {
     let value3type = match.groups["value3type"] ?? "";
     let value4type = match.groups["value4type"] ?? "";
     result = GenerateMimicClass(
-      "SingleHyphenThenColon",
+      "SingleHyphenThenColonBoxShadow",
       style,
       value1,
       value2,
@@ -189,7 +189,7 @@ export function Single_Hyphen_Then_Colon_Box_Shadow(item: any) {
       value3type,
       value4type,
       media,
-      hover,
+      pseudo,
       color
     );
   }
@@ -258,41 +258,59 @@ export function Single_Colon_Padding_Shorthand_2_Values_Snappable(item: any) {
 //   return ProcessMediaQueries(media_single_hyphen_then_colon_matches, false);
 // }
 
-export function Single_Hypen_Then_Colon_Media_Hover(item: any) {
-  let media_single_hyphen_then_colon_pseudo_class_matches = item.matchAll(
-    media_single_hyphen_then_colon_pseudo_class
-  );
+// export function Single_Hypen_Then_Colon_Media_Hover(item: any) {
+//   let media_single_hyphen_then_colon_pseudo_class_matches = item.matchAll(
+//     media_single_hyphen_then_colon_pseudo_class
+//   );
 
-  return ProcessMediaQueriesWithHover(
-    media_single_hyphen_then_colon_pseudo_class_matches,
-    false
-  );
-}
+//   return ProcessMediaQueriesWithHover(
+//     media_single_hyphen_then_colon_pseudo_class_matches,
+//     false
+//   );
+// }
 
-export function Single_Hypen_Then_Colon_Hover(item: any) {
-  let single_hyphen_then_colon_pseudo_class_matches = item.matchAll(
-    single_hyphen_then_colon_pseudo_class
-  );
+// export function Single_Hypen_Then_Colon_Hover(item: any) {
+//   let single_hyphen_then_colon_pseudo_class_matches = item.matchAll(
+//     single_hyphen_then_colon_pseudo_class
+//   );
 
-  for (const match of single_hyphen_then_colon_pseudo_class_matches) {
-    //console.log("single_hyphen_then_colon_hover " + match);
+//   let result;
 
-    let style = match.groups["style"];
-    let value = match.groups["value"];
-    let pseudo_class = match.groups["pseudo_class"];
+//   for (const match of single_hyphen_then_colon_pseudo_class_matches) {
+//     //console.log("single_hyphen_then_colon_hover " + match);
 
-    //console.log(`${style} ${value}`);
-    let snappedvalue = PerformSnap(style, value);
+//     let style = match.groups["style"];
+//     let value1 = match.groups["value1"] ?? "";
+//     let value2 = match.groups["value2"] ?? "";
+//     let value3 = match.groups["value3"] ?? "";
+//     let value4 = match.groups["value4"] ?? "";
+//     let color = match.groups["color"] ?? "";
+//     let pseudo = match.groups["pseudo"] ?? "";
+//     let media = match.groups["media"] ?? "";
 
-    return (
-      `.${style}\\:${Escape(value)}\\:${pseudo_class}:${pseudo_class} {\r\n\t` +
-      style +
-      ": " +
-      `${snappedvalue}` +
-      `;\r\n}\r\n`
-    );
-  }
-}
+//     let value1type = match.groups["value1type"] ?? "";
+//     let value2type = match.groups["value2type"] ?? "";
+//     let value3type = match.groups["value3type"] ?? "";
+//     let value4type = match.groups["value4type"] ?? "";
+
+//     result = GenerateMimicClass(
+//       "SingleHyphenThenColon",
+//       style,
+//       value1,
+//       value2,
+//       value3,
+//       value4,
+//       value1type,
+//       value2type,
+//       value3type,
+//       value4type,
+//       media,
+//       pseudo,
+//       color
+//     );
+//   }
+//   return result;
+// }
 
 export function Single_Hypen_Then_Colon(item: any) {
   let result;
@@ -310,7 +328,7 @@ export function Single_Hypen_Then_Colon(item: any) {
     let value3 = match.groups["value3"] ?? "";
     let value4 = match.groups["value4"] ?? "";
     let color = match.groups["color"] ?? "";
-    let hover = match.groups["hover"] ?? "";
+    let pseudo = match.groups["pseudo"] ?? "";
     let media = match.groups["media"] ?? "";
 
     let value1type = match.groups["value1type"] ?? "";
@@ -330,7 +348,7 @@ export function Single_Hypen_Then_Colon(item: any) {
       value3type,
       value4type,
       media,
-      hover,
+      pseudo,
       color
     );
   }
@@ -377,23 +395,37 @@ export function Double_hyphen_then_colon(item: any) {
   let result: string = "";
 
   for (const match of double_hyphen_then_colon_matches) {
-    //console.log("double_hyphen_no_colon " + match);
-
     let style = match.groups["style"];
-    let value = match.groups["value"];
+    let value1 = match.groups["value1"] ?? "";
+    let value2 = match.groups["value2"] ?? "";
+    let value3 = match.groups["value3"] ?? "";
+    let value4 = match.groups["value4"] ?? "";
+    let color = match.groups["color"] ?? "";
+    let pseudo = match.groups["pseudo"] ?? "";
+    let media = match.groups["media"] ?? "";
 
-    //console.log(`${style} {value}`);
+    let value1type = match.groups["value1type"] ?? "";
+    let value2type = match.groups["value2type"] ?? "";
+    let value3type = match.groups["value3type"] ?? "";
+    let value4type = match.groups["value4type"] ?? "";
 
-    let snappedvalue = PerformSnap(style, value);
-
-    result =
-      `.${style}\\:${Escape(value)} {\r\n\t` +
-      style +
-      ": " +
-      `${snappedvalue}` +
-      `;\r\n}\r\n`;
+    result = GenerateMimicClass(
+      "DoubleHyphenThenColon",
+      style,
+      value1,
+      value2,
+      value3,
+      value4,
+      value1type,
+      value2type,
+      value3type,
+      value4type,
+      media,
+      pseudo,
+      color
+    );
+    return result;
   }
-  return result;
 }
 
 export function Double_Hyphen_No_Colon(item: any) {
@@ -406,7 +438,7 @@ export function Double_Hyphen_No_Colon(item: any) {
     let value3 = match.groups["value3"] ?? "";
     let value4 = match.groups["value4"] ?? "";
     let color = match.groups["color"] ?? "";
-    let hover = match.groups["hover"] ?? "";
+    let pseudo = match.groups["pseudo"] ?? "";
     let media = match.groups["media"] ?? "";
 
     let value1type = match.groups["value1type"] ?? "";
@@ -415,7 +447,7 @@ export function Double_Hyphen_No_Colon(item: any) {
     let value4type = match.groups["value4type"] ?? "";
 
     result = GenerateMimicClass(
-      "SingleHyphenThenColon",
+      "DoubleHyphenThenColon",
       style,
       value1,
       value2,
@@ -426,7 +458,7 @@ export function Double_Hyphen_No_Colon(item: any) {
       value3type,
       value4type,
       media,
-      hover,
+      pseudo,
       color
     );
     return result;

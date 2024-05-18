@@ -9,13 +9,13 @@ import {
   Single_Colon_Padding_Shorthand_2_Values_Snappable,
   Single_Hyphen_Then_Colon_Box_Shadow,
   Single_Hypen_Then_Colon,
-  Single_Hypen_Then_Colon_Hover,
+  // Single_Hypen_Then_Colon_Hover,
   // Sindle_Hypen_Then_Colon_Media,
-  Single_Hypen_Then_Colon_Media_Hover,
+  // Single_Hypen_Then_Colon_Media_Hover,
   Single_Hypen_Then_Colon_Then_Another_Hyphen,
   Double_Hyphen_No_Colon,
   Double_hyphen_then_colon,
-  Double_Hyphen_No_Colon_Media,
+  // Double_Hyphen_No_Colon_Media,
 } from "../src/RegExPerform";
 
 import fs from "fs";
@@ -61,14 +61,14 @@ export function DoWork(filename: string, ExistingCSS: string): string {
       result = Single_Hypen_Then_Colon(item);
       if (result != "" && result != undefined) mostSpecificMatch = result;
 
-      result = Single_Hypen_Then_Colon_Hover(item);
-      if (result != "" && result != undefined) mostSpecificMatch = result;
+      // result = Single_Hypen_Then_Colon_Hover(item);
+      // if (result != "" && result != undefined) mostSpecificMatch = result;
 
       result = Single_Hypen_Then_Colon_Then_Another_Hyphen(item);
       if (result != "" && result != undefined) mostSpecificMatch = result;
 
-      result = Double_Hyphen_No_Colon(item);
-      if (result != "" && result != undefined) mostSpecificMatch = result;
+      // result = Double_Hyphen_No_Colon(item);
+      // if (result != "" && result != undefined) mostSpecificMatch = result;
 
       result = Double_hyphen_then_colon(item);
       if (result != "" && result != undefined) mostSpecificMatch = result;
@@ -77,15 +77,6 @@ export function DoWork(filename: string, ExistingCSS: string): string {
       if (result != "" && result != undefined) mostSpecificMatch = result;
 
       NonMediaCSS += DeDuplication(ExistingCSS, mostSpecificMatch);
-
-      // result = Sindle_Hypen_Then_Colon_Media(item);
-      // MediaCSS += DeDuplication(ExistingCSS, result);
-
-      result = Single_Hypen_Then_Colon_Media_Hover(item);
-      MediaCSS += DeDuplication(ExistingCSS, result);
-
-      result = Double_Hyphen_No_Colon_Media(item);
-      MediaCSS += DeDuplication(ExistingCSS, result);
     });
   }
   return NonMediaCSS + MediaCSS;

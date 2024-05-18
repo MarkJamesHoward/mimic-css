@@ -12,6 +12,12 @@ import {
 } from "../src/mediaBreakpoints";
 
 describe("Box Shadow", () => {
+  test("Box Shadow Focus", () => {
+    expect(DoWork("./tests/box-shadow/box-shadow-focus.html", "")).toContain(
+      `.box-shadow\\:10px10px\\:focus:focus {\r\n\tbox-shadow: 10px 10px;\r\n}`
+    );
+  });
+
   test("Box Shadow", () => {
     expect(DoWork("./tests/box-shadow/box-shadow.html", "")).toContain(
       `.box-shadow\\:10px10px {\r\n\tbox-shadow: 10px 10px;\r\n}`
