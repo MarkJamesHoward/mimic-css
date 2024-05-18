@@ -1,14 +1,9 @@
 import {
   double_hyphen_no_colon,
   double_hyphen_then_colon,
-  double_hyphen_no_colon_media,
   single_hyphen_then_colon,
-  // single_hyphen_then_colon_pseudo_class,
-  // media_single_hyphen_then_colon,
-  // media_single_hyphen_then_colon_pseudo_class,
+  single_hyphen_then_colon_snappable,
   single_colon,
-  // single_colon_media,
-  single_colon_pseudo_class,
   single_colon_padding_shorthand,
   single_colon_padding_shorthand_snappable,
   single_colon_padding_shorthand_2_values,
@@ -19,42 +14,79 @@ import {
 import { GenerateMimicClass } from "./GenerateMimicCss";
 import { Escape } from "./EscapingClassNames";
 import { PerformSnap } from "./performSnap";
-import {
-  ProcessMediaQueries,
-  ProcessMediaQueriesWithHover,
-  MapMediaQuery,
-} from "./processMediaQueries";
 
 let debug = true;
 
-export function Single_Colon_Pseudo_Class(item: any) {
-  let output = "";
-  let single_colon_pseudo_class_matches = item.matchAll(
-    single_colon_pseudo_class
-  );
+export function GenericRegex(item: any, regex: RegExp, source: string) {
+  let single_colon_matches = item.matchAll(regex);
+  let result;
 
-  // Check matches with HOVER
-  for (const match of single_colon_pseudo_class_matches) {
+  for (const match of single_colon_matches) {
     let style = match.groups["style"];
-    let value = match.groups["value"];
-    let pseudo_class = match.groups["pseudo_class"];
+    let value1 = match.groups["value1"];
+    let value2 = match.groups["value2"];
+    let value3 = match.groups["value3"];
+    let value4 = match.groups["value4"];
+    let media = match.groups["media"];
+    let pseudo = match.groups["pseudo"];
+    let value1type = match.groups["value1type"];
+    let value2type = match.groups["value2type"];
+    let value3type = match.groups["value3type"];
+    let value4type = match.groups["value4type"];
 
-    // console.log(style);
-    // console.log(value);
-    // console.log(pseudo_class);
-
-    let snappedvalue = PerformSnap(style, value);
-
-    output +=
-      `
-      ${debug ? "/* Single_Colon_Pseudo_Class */" : ""}
-      .${style}\\:${Escape(value)}\\:${pseudo_class}:${pseudo_class} {\r\n\t` +
-      style +
-      ": " +
-      `${snappedvalue}` +
-      `;\r\n}\r\n`;
+    result = GenerateMimicClass(
+      source,
+      style,
+      value1,
+      value2,
+      value3,
+      value4,
+      value1type,
+      value2type,
+      value3type,
+      value4type,
+      media,
+      pseudo,
+      ""
+    );
   }
-  return output;
+  return result;
+}
+
+export function Single_Hyphen_Then_Colon_Snapable(item: any) {
+  let single_colon_matches = item.matchAll(single_hyphen_then_colon_snappable);
+  let result;
+
+  for (const match of single_colon_matches) {
+    let style = match.groups["style"];
+    let value1 = match.groups["value1"];
+    let value2 = match.groups["value2"];
+    let value3 = match.groups["value3"];
+    let value4 = match.groups["value4"];
+    let media = match.groups["media"];
+    let pseudo = match.groups["pseudo"];
+    let value1type = match.groups["value1type"];
+    let value2type = match.groups["value2type"];
+    let value3type = match.groups["value3type"];
+    let value4type = match.groups["value4type"];
+
+    result = GenerateMimicClass(
+      "Single_Colon",
+      style,
+      value1,
+      value2,
+      value3,
+      value4,
+      value1type,
+      value2type,
+      value3type,
+      value4type,
+      media,
+      pseudo,
+      ""
+    );
+  }
+  return result;
 }
 
 export function Single_Colon(item: any) {
@@ -226,91 +258,41 @@ export function Single_Colon_Padding_Shorthand_2_Values_Snappable(item: any) {
   let result = "";
 
   for (const match of single_colon_padding_shorthand_2_values_snappable_matches) {
-    let style = match.groups["style"];
-    let snap1 = match.groups["snap1"];
-    let snap2 = match.groups["snap2"];
-    let snap1value = PerformSnap(style, snap1);
-    let snap2value = PerformSnap(style, snap2);
+    //console.log("single_hyphen_then_colon " + match);
 
-    result =
-      `${
-        debug ? "/* Single_Colon_Padding_Shorthand_2_Values_Snappable */" : ""
-      }\r\n` +
-      `.${style}\\:${snap1}${snap2} {\r\n\t` +
-      style +
-      ": " +
-      `${snap1value} ${snap2value};\r\n}\r\n`;
+    let style = match.groups["style"];
+    let value1 = match.groups["value1"] ?? "";
+    let value2 = match.groups["value2"] ?? "";
+    let value3 = match.groups["value3"] ?? "";
+    let value4 = match.groups["value4"] ?? "";
+    let color = match.groups["color"] ?? "";
+    let pseudo = match.groups["pseudo"] ?? "";
+    let media = match.groups["media"] ?? "";
+
+    let value1type = match.groups["value1type"] ?? "";
+    let value2type = match.groups["value2type"] ?? "";
+    let value3type = match.groups["value3type"] ?? "";
+    let value4type = match.groups["value4type"] ?? "";
+
+    result = GenerateMimicClass(
+      "Single_Colon_Padding_Shorthand_2_Values_Snappable",
+      style,
+      value1,
+      value2,
+      value3,
+      value4,
+      value1type,
+      value2type,
+      value3type,
+      value4type,
+      media,
+      pseudo,
+      color
+    );
   }
+
   return result;
 }
-
-// export function Single_Colon_Media(item: any) {
-//   let single_colon_media_results = item.matchAll(single_colon_media);
-
-//   return ProcessMediaQueries(single_colon_media_results, false);
-// }
-
-// export function Sindle_Hypen_Then_Colon_Media(item: any) {
-//   let media_single_hyphen_then_colon_matches = item.matchAll(
-//     media_single_hyphen_then_colon
-//   );
-
-//   return ProcessMediaQueries(media_single_hyphen_then_colon_matches, false);
-// }
-
-// export function Single_Hypen_Then_Colon_Media_Hover(item: any) {
-//   let media_single_hyphen_then_colon_pseudo_class_matches = item.matchAll(
-//     media_single_hyphen_then_colon_pseudo_class
-//   );
-
-//   return ProcessMediaQueriesWithHover(
-//     media_single_hyphen_then_colon_pseudo_class_matches,
-//     false
-//   );
-// }
-
-// export function Single_Hypen_Then_Colon_Hover(item: any) {
-//   let single_hyphen_then_colon_pseudo_class_matches = item.matchAll(
-//     single_hyphen_then_colon_pseudo_class
-//   );
-
-//   let result;
-
-//   for (const match of single_hyphen_then_colon_pseudo_class_matches) {
-//     //console.log("single_hyphen_then_colon_hover " + match);
-
-//     let style = match.groups["style"];
-//     let value1 = match.groups["value1"] ?? "";
-//     let value2 = match.groups["value2"] ?? "";
-//     let value3 = match.groups["value3"] ?? "";
-//     let value4 = match.groups["value4"] ?? "";
-//     let color = match.groups["color"] ?? "";
-//     let pseudo = match.groups["pseudo"] ?? "";
-//     let media = match.groups["media"] ?? "";
-
-//     let value1type = match.groups["value1type"] ?? "";
-//     let value2type = match.groups["value2type"] ?? "";
-//     let value3type = match.groups["value3type"] ?? "";
-//     let value4type = match.groups["value4type"] ?? "";
-
-//     result = GenerateMimicClass(
-//       "SingleHyphenThenColon",
-//       style,
-//       value1,
-//       value2,
-//       value3,
-//       value4,
-//       value1type,
-//       value2type,
-//       value3type,
-//       value4type,
-//       media,
-//       pseudo,
-//       color
-//     );
-//   }
-//   return result;
-// }
 
 export function Single_Hypen_Then_Colon(item: any) {
   let result;
@@ -380,14 +362,6 @@ export function Single_Hypen_Then_Colon_Then_Another_Hyphen(item: any) {
   }
 }
 
-export function Double_Hyphen_No_Colon_Media(item: any) {
-  let double_hyphen_no_colon_media_matches = item.matchAll(
-    double_hyphen_no_colon_media
-  );
-
-  return ProcessMediaQueries(double_hyphen_no_colon_media_matches, true);
-}
-
 export function Double_hyphen_then_colon(item: any) {
   let double_hyphen_then_colon_matches = item.matchAll(
     double_hyphen_then_colon
@@ -447,7 +421,7 @@ export function Double_Hyphen_No_Colon(item: any) {
     let value4type = match.groups["value4type"] ?? "";
 
     result = GenerateMimicClass(
-      "DoubleHyphenThenColon",
+      "DoubleHyphenNoColon",
       style,
       value1,
       value2,

@@ -117,7 +117,35 @@ describe("flex direction", () => {
 });
 
 /////////////////////////////
-describe("Padding Snap", () => {
+describe("Padding", () => {
+  test("Padding 10px", () => {
+    expect(DoWork("./tests/padding/padding_10px.html", "")).toContain(
+      `.padding\\:10px {\r\n\tpadding: 10px;\r\n}`
+    );
+  });
+
+  test("Padding 10px10px", () => {
+    expect(DoWork("./tests/padding/padding_10px10px.html", "")).toContain(
+      `.padding\\:10px10px {\r\n\tpadding: 10px 10px;\r\n}`
+    );
+  });
+
+  test("Padding 10px10px10px10px", () => {
+    expect(
+      DoWork("./tests/padding/padding_10px10px10px10px.html", "")
+    ).toContain(
+      `.padding\\:10px10px10px10px {\r\n\tpadding: 10px 10px 10px 10px;\r\n}`
+    );
+  });
+
+  test("Padding 10px10px10px10px hover", () => {
+    expect(
+      DoWork("./tests/padding/padding_10px10px10px10px_hover.html", "")
+    ).toContain(
+      `.padding\\:10px10px10px10px\\:hover:hover {\r\n\tpadding: 10px 10px 10px 10px;\r\n}`
+    );
+  });
+
   test("Padding Snapping XS", () => {
     expect(DoWork("./tests/padding/padding_xs.html", "")).toContain(
       `.padding\\:xs {\r\n\tpadding: ${PaddingSizes.xs};\r\n}`
@@ -239,6 +267,38 @@ describe("Border", () => {
   test("Border Width Focus", () => {
     expect(DoWork("./tests/border-width/border_focus.html", "")).toContain(
       `.border-width\\:lg\\:focus:focus {\r\n\tborder-width: ${BorderSizes.lg};\r\n}`
+    );
+  });
+
+  test("Border Width 10px", () => {
+    expect(DoWork("./tests/border-width/border_10px.html", "")).toContain(
+      `.border-width\\:10px {\r\n\tborder-width: 10px;\r\n}`
+    );
+  });
+
+  test("Border Width 10px 10px", () => {
+    expect(DoWork("./tests/border-width/border_10px10px.html", "")).toContain(
+      `.border-width\\:10px10px {\r\n\tborder-width: 10px 10px;\r\n}`
+    );
+  });
+
+  test("Border Width 10px 10px 10px 10px", () => {
+    expect(
+      DoWork("./tests/border-width/border_10px10px10px10px.html", "")
+    ).toContain(
+      `.border-width\\:10px10px10px10px {\r\n\tborder-width: 10px 10px 10px 10px;\r\n}`
+    );
+  });
+
+  test("Border Width lg xl", () => {
+    expect(DoWork("./tests/border-width/border_lgxl.html", "")).toContain(
+      `.border-width\\:lgxl {\r\n\tborder-width: ${BorderSizes.lg} ${BorderSizes.xl};\r\n}`
+    );
+  });
+
+  test("Border Width lg xl xs xs", () => {
+    expect(DoWork("./tests/border-width/border_lgxlxsxs.html", "")).toContain(
+      `.border-width\\:lgxlxsxs {\r\n\tborder-width: ${BorderSizes.lg} ${BorderSizes.xl} ${BorderSizes.xs} ${BorderSizes.xs};\r\n}`
     );
   });
 });
