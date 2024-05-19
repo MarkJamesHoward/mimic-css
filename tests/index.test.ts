@@ -61,6 +61,26 @@ describe("Text Decoration", () => {
   });
 });
 
+describe("Border Style", () => {
+  test("Border Style", () => {
+    expect(DoWork("./tests/border-style/border_style.html", "")).toContain(
+      `.border-style\\:solid {\r\n\tborder-style: solid;\r\n}`
+    );
+  });
+
+  test("Border Style - Large", () => {
+    expect(DoWork("./tests/border-style/border_style.html", "")).toContain(
+      `@media (min-width: ${MediaBreakPointsValue.large}px) {\r\n.${MediaBreakPointsText.large}\\?border-style\\:solid {\r\n\tborder-style: solid;\r\n\t}\r\n}`
+    );
+  });
+
+  test("Border Style - Small", () => {
+    expect(DoWork("./tests/border-style/border_style.html", "")).toContain(
+      `@media (min-width: ${MediaBreakPointsValue.small}px) {\r\n.${MediaBreakPointsText.small}\\?border-style\\:solid {\r\n\tborder-style: solid;\r\n\t}\r\n}`
+    );
+  });
+});
+
 describe("Border Radius", () => {
   test("Border Radius Snapping - XS", () => {
     expect(DoWork("./tests/border-radius/border_radius_xs.html", "")).toContain(
@@ -208,6 +228,30 @@ describe("Background Color", () => {
     ).toContain(`.background-color\\:red {\r\n\tbackground-color: red;\r\n}`);
   });
 
+  test("BackGround Color # code", () => {
+    expect(
+      DoWork("./tests/background-color/background_color.html", "")
+    ).toContain(
+      `.background-color\\:\\#124356 {\r\n\tbackground-color: #124356;\r\n}`
+    );
+  });
+
+  test("BackGround Color # code Hover", () => {
+    expect(
+      DoWork("./tests/background-color/background_color.html", "")
+    ).toContain(
+      `.background-color\\:\\#124356\\:hover:hover {\r\n\tbackground-color: #124356;\r\n}`
+    );
+  });
+
+  test("BackGround Color # code Focus", () => {
+    expect(
+      DoWork("./tests/background-color/background_color.html", "")
+    ).toContain(
+      `.background-color\\:\\#124356\\:focus:focus {\r\n\tbackground-color: #124356;\r\n}`
+    );
+  });
+
   test("BackGround Color Media Small", () => {
     expect(
       DoWork("./tests/background-color/background_color.html", "")
@@ -287,6 +331,14 @@ describe("Border", () => {
       DoWork("./tests/border-width/border_10px10px10px10px.html", "")
     ).toContain(
       `.border-width\\:10px10px10px10px {\r\n\tborder-width: 10px 10px 10px 10px;\r\n}`
+    );
+  });
+
+  test("Border Width 10px 10px 10px 10px Hover", () => {
+    expect(
+      DoWork("./tests/border-width/border_10px10px10px10px_hover.html", "")
+    ).toContain(
+      `.border-width\\:10px10px10px10px\\:hover:hover {\r\n\tborder-width: 10px 10px 10px 10px;\r\n}`
     );
   });
 

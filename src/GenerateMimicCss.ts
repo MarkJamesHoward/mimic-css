@@ -48,7 +48,7 @@ export function GenerateMimicClass(
     snappedvalue4 == "" || snappedvalue4 == undefined
       ? ""
       : " " + snappedvalue4;
-  color = color == "" ? "" : " " + Escape(color);
+  color = color == "" || color == undefined ? "" : " " + Escape(color);
   let mediaString = `@media (min-width: ${width}px) {\r\n.${media?.replace(
     "?",
     "\\?"
