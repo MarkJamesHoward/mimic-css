@@ -18,6 +18,22 @@ Which will result in the below class being generated for you and ensuring that t
 }
 ```
 
+## Design System
+
+In order to provide consistency across a website we provide a set of standard values taht can be used rather than specific pixel values. There are 5 values that are used across the board **xs, sm, md, lg, and xl**
+
+```html
+<div class="padding-top:md">Some Text</div>
+```
+
+**becomes**
+
+```css
+.padding-top\:md {
+  padding-top: 8px;
+}
+```
+
 You can also apply pseudo class like **hover** and **focus** inline with the class attribute
 
 ```html
@@ -162,6 +178,22 @@ The 5 options we have for specifying media breakpoints are below:
 <li>large</li>
 <li>extralarge</li>
 </ul>
+
+## Configuration
+
+By default mimic-css will search .html files for classes to process
+
+In order to serch additional files we can create a file named 'mimic.config.mjs'
+
+So to also search javascript and react files we would create the below:
+
+```js
+let config;
+
+export default config = {
+  extensions: [".html", ".js"],
+};
+```
 
 ## Lit Integration
 
