@@ -70,7 +70,7 @@ async function Start() {
   try {
     fileExtensions = await LoadConfig();
     if (fileExtensions == null) {
-      fileExtensions = { extensions: [".html"] };
+      fileExtensions = { extensions: [".html", ".js", ".astro", ".ts"] };
     } else {
       console.log("Configuration file found - mimic.config");
     }
