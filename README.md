@@ -1,6 +1,7 @@
 # mimic-css
 
-**mimic-css** is a design system that allows you use standard CSS styles within the class attribute ALONG with Media Queries and Modifiers.
+**mimic-css** is a design system that allows you use standard CSS styles within the class attribute ALONG with Media Queries and Modifiers. From this you gain the benefits of using a design system but without the downside of losing your CSS knowledge
+at the same time
 
 So you are enabled to write standard CSS such as `display:flex` and apply a media query inline within the class e.g.
 
@@ -20,7 +21,7 @@ Which will result in the below class being generated for you and ensuring that t
 
 ## Design System
 
-In order to provide consistency across a website we provide a set of standard values taht can be used rather than specific pixel values. There are 5 values that are used across the board **xs, sm, md, lg, and xl**
+In order to provide consistency across a website we provide a set of standard values that can be used rather than specific pixel values. There are 5 values that are used across the board **xs, sm, md, lg, and xl**
 
 ```html
 <div class="padding-top:md">Some Text</div>
@@ -33,6 +34,58 @@ In order to provide consistency across a website we provide a set of standard va
   padding-top: 8px;
 }
 ```
+
+These specifiers will map to different **Pixel Values** depending upon the usage.
+
+So for **Fonts** you'll have the below mapping:
+
+<ul>
+<li>xs:     8px</li>
+<li>sm:     12px</li>
+<li>md:     16px</li>
+<li>lg:     24px</li>
+<li>xl:     48px</li>
+<li>2xl:    92px</li>
+</ul>
+
+Whereas for **Padding** the mappings will be different:
+
+<ul>
+<li>xs:     2px</li>
+<li>sm:     4px</li>
+<li>md:     8px</li>
+<li>lg:     20px</li>
+<li>xl:     50px</li>
+<li>2xl:    200px</li>
+</ul>
+
+### An example for Padding
+
+```html
+<div class="padding-top:md">Some Text</div>
+```
+
+**becomes**
+
+```css
+.padding-top\:md {
+  padding-top: 8px;
+}
+```
+
+### And then for Font Size you will see
+
+```html
+<div class="font-size:md">Some Text</div>
+```
+
+```css
+.font-size\:md {
+  font-size: 16px;
+}
+```
+
+## Pseudo Classes
 
 You can also apply pseudo class like **hover** and **focus** inline with the class attribute
 
@@ -86,70 +139,6 @@ Other options:
 - o: { type: "string", default: "./mimic.css", alias: "output" },
 - e: { type: "string", default: "", alias: "exclude" },
 - l: { type: "boolean", default: false, alias: "lit" },
-
-## Magic Numbers
-
-In order to reduce the amount of time spent looking up magic names in mimic-css there
-is **one** set of values used across the board:
-
-<ul>
-<li>xs</li>
-<li>sm</li>
-<li>md</li>
-<li>lg</li>
-<li>xl</li>
-<li>2xl</li>
-</ul>
-
-These specifiers will map to different **Pixel Values** depending upon the usage.
-
-So for **Fonts** you'll have the below mapping:
-
-<ul>
-<li>xs:     8px</li>
-<li>sm:     12px</li>
-<li>md:     16px</li>
-<li>lg:     24px</li>
-<li>xl:     48px</li>
-<li>2xl:    92px</li>
-</ul>
-
-Whereas for **Padding** the mappings will be different:
-
-<ul>
-<li>xs:     2px</li>
-<li>sm:     4px</li>
-<li>md:     8px</li>
-<li>lg:     20px</li>
-<li>xl:     50px</li>
-<li>2xl:    200px</li>
-</ul>
-
-### An example for Padding
-
-```html
-<div class="padding-top:md">Some Text</div>
-```
-
-**becomes**
-
-```css
-.padding-top\:md {
-  padding-top: 8px;
-}
-```
-
-### And then for Font Size you will see
-
-```html
-<div class="font-size:md">Some Text</div>
-```
-
-```css
-.font-size\:md {
-  font-size: 16px;
-}
-```
 
 Normal CSS will remain unchanged (bar a space inserted)
 

@@ -16,6 +16,15 @@ export const BorderRadius = {
   xl2: "50px",
 };
 
+export const FontWeights = {
+  xs: "200",
+  sm: "300",
+  md: "400",
+  lg: "600",
+  xl: "800",
+  xl2: "900",
+};
+
 export const FontSizes = {
   xs: "8px",
   sm: "12px",

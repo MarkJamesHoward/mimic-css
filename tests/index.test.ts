@@ -5,6 +5,7 @@ import {
   PaddingSizes,
   GapSizes,
   BorderRadius,
+  FontWeights,
 } from "../src/Sizes";
 import {
   MediaBreakPointsValue,
@@ -41,6 +42,20 @@ describe("Box Shadow", () => {
   test("Box Shadow Media Large", () => {
     expect(DoWork("./tests/box-shadow/box-shadow-media.html", "")).toContain(
       `@media (min-width: ${MediaBreakPointsValue.large}px) {\r\n.${MediaBreakPointsText.large}\\?box-shadow\\:10px10px {\r\n\tbox-shadow: 10px 10px;\r\n\t}\r\n}`
+    );
+  });
+});
+
+describe("Font Weight", () => {
+  test("Font Weight - no snapping", () => {
+    expect(DoWork("./tests/font-weight/font_weight.html", "")).toContain(
+      `.font-weight\\:800 {\r\n\tfont-weight: 800;\r\n}`
+    );
+  });
+
+  test("Font Weight - no snapping", () => {
+    expect(DoWork("./tests/font-weight/font_weight.html", "")).toContain(
+      `.font-weight\\:md {\r\n\tfont-weight: ${FontWeights.md};\r\n}`
     );
   });
 });

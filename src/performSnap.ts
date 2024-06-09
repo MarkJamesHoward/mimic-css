@@ -8,6 +8,7 @@ import {
   GenericSizes,
   BorderRadius,
   GapSizes,
+  FontWeights,
 } from "./Sizes";
 
 export function PerformSnap4(
@@ -267,6 +268,39 @@ export function PerformSnap(type: string, value: string) {
           break;
       }
       break;
+
+    case "font-weight":
+      switch (value) {
+        case Sizes.xs:
+          result = FontWeights.xs;
+          break;
+
+        case Sizes.sm:
+          result = FontWeights.sm;
+          break;
+
+        case Sizes.md:
+          result = FontWeights.md;
+          break;
+
+        case Sizes.lg:
+          result = FontWeights.lg;
+          break;
+
+        case Sizes.xl:
+          result = FontWeights.xl;
+          break;
+
+        case Sizes.xl2:
+          result = FontWeights.xl2;
+          break;
+
+        default:
+          result = value;
+          break;
+      }
+      break;
+
     case "border-radius":
       switch (value) {
         case Sizes.xs:
