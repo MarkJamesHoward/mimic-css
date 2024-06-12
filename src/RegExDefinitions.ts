@@ -4,7 +4,7 @@ export const double_hyphen_then_colon =
   /^(?<media>extrasmall\?|small\?|medium\?|large\?|extralarge\?)?(?<style>[A-Za-z]+-[A-Za-z]+-[A-Za-z]+):(?<value1>[A-Za-z0-9\%\.#]+)$/gi;
 
 export const double_hyphen_no_colon =
-  /^(?<media>extrasmall\?|small\?|medium\?|large\?|extralarge\?)?(?<style>[A-Za-z0-9]+-[A-Za-z0-9]+)-(?<value>[A-Za-z0-9]+)$/gi;
+  /^(?<media>extrasmall\?|small\?|medium\?|large\?|extralarge\?)?(?<style>[A-Za-z0-9]+-[A-Za-z0-9]+)-(?<value1>[A-Za-z0-9]+)$/gi;
 // //////////////
 
 //border-width:5
@@ -24,7 +24,7 @@ export const single_hyphen_hash_value =
 
 //justify-content: space-between
 export const single_hyphen_then_colon_then_another_hyphen =
-  /^(?<style>[A-Za-z]+-[A-Za-z]+):(?<value>[A-Za-z]+-[A-Za-z]+)$/gi;
+  /^(?<style>[A-Za-z]+-[A-Za-z]+):(?<value1>[A-Za-z]+-[A-Za-z]+)$/gi;
 
 // display:flex
 // display:flex:hover

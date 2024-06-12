@@ -46,6 +46,16 @@ describe("Box Shadow", () => {
   });
 });
 
+describe("Justify Content", () => {
+  test("Justify Content - no snapping", () => {
+    expect(
+      DoWork("./tests/justify-content/justify_content.html", "")
+    ).toContain(
+      `.justify-content\\:space-between {\r\n\tjustify-content: space-between;\r\n}`
+    );
+  });
+});
+
 describe("Font Weight", () => {
   test("Font Weight - no snapping", () => {
     expect(DoWork("./tests/font-weight/font_weight.html", "")).toContain(
