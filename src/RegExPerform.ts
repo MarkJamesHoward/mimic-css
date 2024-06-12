@@ -12,13 +12,15 @@ export function GenericRegexNonMedia(item: any, regex: RegExp, source: string) {
     let value2 = match.groups["value2"];
     let value3 = match.groups["value3"];
     let value4 = match.groups["value4"];
-    let media = ""; // = match.groups["media"];
+    let media = match.groups["media"];
     let color = match.groups["color"];
     let pseudo = match.groups["pseudo"];
     let value1type = match.groups["value1type"];
     let value2type = match.groups["value2type"];
     let value3type = match.groups["value3type"];
     let value4type = match.groups["value4type"];
+
+    if (media != undefined) return "";
 
     result = GenerateMimicClass(
       source,
@@ -56,6 +58,8 @@ export function GenericRegexMedia(item: any, regex: RegExp, source: string) {
     let value2type = match.groups["value2type"];
     let value3type = match.groups["value3type"];
     let value4type = match.groups["value4type"];
+
+    if (media == undefined || media == "") return "";
 
     result = GenerateMimicClass(
       source,

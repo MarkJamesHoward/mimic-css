@@ -7,3 +7,13 @@ export function DeDuplication(CurrentCSS: string, NewCSS: string) {
   }
   return result;
 }
+
+export function CSSAlreadyExists(CurrentCSS: string, NewCSS: string) {
+  let result = "";
+  if (NewCSS != undefined) {
+    if (CurrentCSS?.includes(NewCSS)) {
+      return true;
+    }
+  }
+  return false;
+}

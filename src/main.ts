@@ -1,4 +1,4 @@
-import { DeDuplication } from "../src/DeDuplication";
+import { CSSAlreadyExists, DeDuplication } from "../src/DeDuplication";
 import { GenericRegexNonMedia, GenericRegexMedia } from "../src/RegExPerform";
 
 import {
@@ -18,6 +18,7 @@ import fs from "fs";
 export function DoWork(filename: string, ExistingCSS: string): string {
   let NonMediaCSS = "";
   let MediaCSS = "";
+  let ThisFilesCSS = "";
 
   const data = fs.readFileSync(filename, "utf8");
 
@@ -94,7 +95,14 @@ export function DoWork(filename: string, ExistingCSS: string): string {
       );
       if (result != "" && result != undefined) mostSpecificMatch = result;
       // Deduplicate
-      NonMediaCSS += DeDuplication(ExistingCSS, mostSpecificMatch);
+      if (
+        mostSpecificMatch != undefined &&
+        mostSpecificMatch != "" &&
+        !CSSAlreadyExists(ThisFilesCSS, mostSpecificMatch)
+      ) {
+        ThisFilesCSS += mostSpecificMatch;
+        NonMediaCSS += DeDuplication(ExistingCSS, mostSpecificMatch);
+      }
     });
   }
 
@@ -169,9 +177,15 @@ export function DoWork(filename: string, ExistingCSS: string): string {
         single_hyphen_hash_value,
         "SingleHyphenHashValueMedia"
       );
-      if (result != "" && result != undefined) mostSpecificMatch = result;
       // Deduplicate
-      MediaCSS += DeDuplication(ExistingCSS, mostSpecificMatch);
+      if (
+        mostSpecificMatch != undefined &&
+        mostSpecificMatch != "" &&
+        !CSSAlreadyExists(ThisFilesCSS, mostSpecificMatch)
+      ) {
+        ThisFilesCSS += mostSpecificMatch;
+        MediaCSS += DeDuplication(ExistingCSS, mostSpecificMatch);
+      }
     });
   }
 
