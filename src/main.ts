@@ -1,5 +1,5 @@
 import { DeDuplication } from "../src/DeDuplication";
-import { GenericRegex } from "../src/RegExPerform";
+import { GenericRegexNonMedia, GenericRegexMedia } from "../src/RegExPerform";
 
 import {
   double_hyphen_then_colon,
@@ -24,6 +24,7 @@ export function DoWork(filename: string, ExistingCSS: string): string {
   let classComplete = /class=\"(?<classComplete>.+)\"/gi;
   let classCompleteMatch = data.matchAll(classComplete);
 
+  // Find Non Media Queries
   for (const classIndividual of classCompleteMatch) {
     let classIndividualString = ` ${classIndividual.groups?.["classComplete"]} `;
     let splitIndividualClassItems = classIndividualString.split(" ");
@@ -34,43 +35,59 @@ export function DoWork(filename: string, ExistingCSS: string): string {
 
       let result;
 
-      result = GenericRegex(item, single_hyphen_then_colon, "SingleHypen");
+      result = GenericRegexNonMedia(
+        item,
+        single_hyphen_then_colon,
+        "SingleHypen"
+      );
       if (result != "" && result != undefined) mostSpecificMatch = result;
 
-      result = GenericRegex(
+      result = GenericRegexNonMedia(
         item,
         single_hyphen_then_colon_then_another_hyphen,
         "SingleHypenThenAnotherHyphen"
       );
       if (result != "" && result != undefined) mostSpecificMatch = result;
 
-      result = GenericRegex(item, double_hyphen_then_colon, "DoubleHyphen");
+      result = GenericRegexNonMedia(
+        item,
+        double_hyphen_then_colon,
+        "DoubleHyphen"
+      );
       if (result != "" && result != undefined) mostSpecificMatch = result;
 
-      result = GenericRegex(
+      result = GenericRegexNonMedia(
         item,
         single_hyphen_then_colon_box_shadow,
         "SingleHyphenBoxShadow"
       );
       if (result != "" && result != undefined) mostSpecificMatch = result;
 
-      result = GenericRegex(
+      result = GenericRegexNonMedia(
         item,
         single_hyphen_then_colon_snappable,
         "SingleHyphenSnapable"
       );
       if (result != "" && result != undefined) mostSpecificMatch = result;
 
-      result = GenericRegex(item, no_hyphen, "NoHypen");
+      result = GenericRegexNonMedia(item, no_hyphen, "NoHypen");
       if (result != "" && result != undefined) mostSpecificMatch = result;
 
-      result = GenericRegex(item, no_hyphen_snappable, "NoHyphenSnapable");
+      result = GenericRegexNonMedia(
+        item,
+        no_hyphen_snappable,
+        "NoHyphenSnapable"
+      );
       if (result != "" && result != undefined) mostSpecificMatch = result;
 
-      result = GenericRegex(item, no_hyphen_pixel_values, "NoHyphenPixeValues");
+      result = GenericRegexNonMedia(
+        item,
+        no_hyphen_pixel_values,
+        "NoHyphenPixeValues"
+      );
       if (result != "" && result != undefined) mostSpecificMatch = result;
 
-      result = GenericRegex(
+      result = GenericRegexNonMedia(
         item,
         single_hyphen_hash_value,
         "SingleHyphenHashValue"
@@ -80,5 +97,83 @@ export function DoWork(filename: string, ExistingCSS: string): string {
       NonMediaCSS += DeDuplication(ExistingCSS, mostSpecificMatch);
     });
   }
-  return NonMediaCSS + MediaCSS;
+
+  classComplete = /class=\"(?<classComplete>.+)\"/gi;
+  classCompleteMatch = data.matchAll(classComplete);
+
+  // Now look for Media queries
+  for (const classIndividual of classCompleteMatch) {
+    let classIndividualString = ` ${classIndividual.groups?.["classComplete"]} `;
+    let splitIndividualClassItems = classIndividualString.split(" ");
+
+    splitIndividualClassItems.forEach((item) => {
+      // display:flex
+      let mostSpecificMatch = "";
+
+      let result;
+
+      result = GenericRegexMedia(
+        item,
+        single_hyphen_then_colon,
+        "SingleHypenMedia"
+      );
+      if (result != "" && result != undefined) mostSpecificMatch = result;
+
+      result = GenericRegexMedia(
+        item,
+        single_hyphen_then_colon_then_another_hyphen,
+        "SingleHypenThenAnotherHyphenMedia"
+      );
+      if (result != "" && result != undefined) mostSpecificMatch = result;
+
+      result = GenericRegexMedia(
+        item,
+        double_hyphen_then_colon,
+        "DoubleHyphenMedia"
+      );
+      if (result != "" && result != undefined) mostSpecificMatch = result;
+
+      result = GenericRegexMedia(
+        item,
+        single_hyphen_then_colon_box_shadow,
+        "SingleHyphenBoxShadowMedia"
+      );
+      if (result != "" && result != undefined) mostSpecificMatch = result;
+
+      result = GenericRegexMedia(
+        item,
+        single_hyphen_then_colon_snappable,
+        "SingleHyphenSnapableMedia"
+      );
+      if (result != "" && result != undefined) mostSpecificMatch = result;
+
+      result = GenericRegexMedia(item, no_hyphen, "NoHypenMedia");
+      if (result != "" && result != undefined) mostSpecificMatch = result;
+
+      result = GenericRegexMedia(
+        item,
+        no_hyphen_snappable,
+        "NoHyphenSnapableMedia"
+      );
+      if (result != "" && result != undefined) mostSpecificMatch = result;
+
+      result = GenericRegexMedia(
+        item,
+        no_hyphen_pixel_values,
+        "NoHyphenPixeValues"
+      );
+      if (result != "" && result != undefined) mostSpecificMatch = result;
+
+      result = GenericRegexMedia(
+        item,
+        single_hyphen_hash_value,
+        "SingleHyphenHashValueMedia"
+      );
+      if (result != "" && result != undefined) mostSpecificMatch = result;
+      // Deduplicate
+      MediaCSS += DeDuplication(ExistingCSS, mostSpecificMatch);
+    });
+  }
+
+  return `${NonMediaCSS} ${MediaCSS}`;
 }

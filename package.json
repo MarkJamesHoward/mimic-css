@@ -1,6 +1,6 @@
 {
   "name": "mimic-css",
-  "version": "0.0.93-alpha",
+  "version": "0.0.94-alpha",
   "description": "",
   "main": "./dist/bin/index.js",
   "bin": {
