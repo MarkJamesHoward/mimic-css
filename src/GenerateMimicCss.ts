@@ -57,8 +57,8 @@ export function GenerateMimicClass(
   return (
     `${
       debug
-        ? `/* ${source} ` +
-          `Media=${media ? media?.replace("?", "") : "none"}` +
+        ? `/* ${source}` +
+          //`Media=${media ? media?.replace("?", "") : "none"}` +
           "*/"
         : ""
     }\r\n` +
@@ -70,9 +70,8 @@ export function GenerateMimicClass(
     } {\r\n\t` +
     style +
     ": " +
-    `${snappedvalue1}${value1type}${snappedvalue2}${value2type}${snappedvalue3}${value3type}${snappedvalue4}${value4type}${color};\r\n${
-      media ? "\t" : ""
-    }}\r\n` +
+    `${snappedvalue1}${value1type}${snappedvalue2}${value2type}${snappedvalue3}${value3type}${snappedvalue4}${value4type}${color};\r\n` +
+    `${media ? "\t" : ""}}\r\n` +
     `${media ? "}\r\n\r\n" : ""}`
   );
 }

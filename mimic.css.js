@@ -1,37 +1,31 @@
 import { css } from "lit";
 export const TWStyles = css`
-/* NoHypen Media=none*/
-.display\\:flex {
-	display: flex;
-}
-/* SingleHypen Media=none*/
-.flex-direction\\:row {
-	flex-direction: row;
-}
- /* NoHypenMedia Media=large*/
-@media (min-width: 1280px) {
-.large\\?display\\:flex {
-	display: flex;
-	}
+/* SingleHyphenSnapable */
+.font-size\\:xs {
+	font-size: 8px;
 }
 
-  /* SingleHypenMedia Media=medium*/
-@media (min-width: 1024px) {
-.medium\\?flex-direction\\:row {
-	flex-direction: row;
-	}
+/* SingleHyphenSnapable */
+.border-radius\\:xl {
+	border-radius: 30px;
 }
 
-     /* SingleHyphenSnapable Media=none*/
-.font-size\\:lg {
-	font-size: 24px;
-}
-   /* SingleHyphenSnapableMedia Media=large*/
+ /* SingleHyphenSnapableMedia */
 @media (min-width: 1280px) {
 .large\\?font-size\\:xs {
 	font-size: 8px;
 	}
 }
 
-        `
+/* NoHypen */
+.display\\:flex {
+	display: flex;
+}
+
+/* SingleHyphenSnapable */
+.font-size\\:lg {
+	font-size: 24px;
+}
+
+  `
     

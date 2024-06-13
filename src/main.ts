@@ -98,10 +98,11 @@ export function DoWork(filename: string, ExistingCSS: string): string {
       if (
         mostSpecificMatch != undefined &&
         mostSpecificMatch != "" &&
-        !CSSAlreadyExists(ThisFilesCSS, mostSpecificMatch)
+        !CSSAlreadyExists(ThisFilesCSS, mostSpecificMatch?.trim())
       ) {
-        ThisFilesCSS += mostSpecificMatch;
-        NonMediaCSS += DeDuplication(ExistingCSS, mostSpecificMatch);
+        ThisFilesCSS += mostSpecificMatch.trim();
+        NonMediaCSS +=
+          DeDuplication(ExistingCSS, mostSpecificMatch.trim()) + "\r\n\r\n";
       }
     });
   }
@@ -181,10 +182,11 @@ export function DoWork(filename: string, ExistingCSS: string): string {
       if (
         mostSpecificMatch != undefined &&
         mostSpecificMatch != "" &&
-        !CSSAlreadyExists(ThisFilesCSS, mostSpecificMatch)
+        !CSSAlreadyExists(ThisFilesCSS, mostSpecificMatch?.trim())
       ) {
-        ThisFilesCSS += mostSpecificMatch;
-        MediaCSS += DeDuplication(ExistingCSS, mostSpecificMatch);
+        ThisFilesCSS += mostSpecificMatch.trim();
+        MediaCSS +=
+          DeDuplication(ExistingCSS, mostSpecificMatch.trim()) + "\r\n\r\n";
       }
     });
   }
