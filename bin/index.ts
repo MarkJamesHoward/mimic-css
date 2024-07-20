@@ -5,7 +5,8 @@ import fs from "fs";
 import { DoWork } from "../src/main";
 import { ExcludeFolders } from "../src/FolderExclusions";
 import { LoadConfig } from "../src/configurationLoader";
-import { FileExtensions } from "../interfaces/IFileExtensions";
+import { IMimicConfig } from "../interfaces/IFileExtensions";
+import { MediaBreakPointsValue } from "../src/mediaBreakpoints";
 
 const argv = yargs(process.argv.slice(2))
   .options({
@@ -23,7 +24,7 @@ let OutputFilename = argv.o;
 let ExcludeFiles = argv.e;
 let EmitLitFile = argv.l;
 let debug = argv.d;
-let fileExtensions: FileExtensions;
+export let mimicConfig: IMimicConfig;
 
 function searchFile(dir: string, extension: string) {
   let exit = false;
@@ -63,24 +64,23 @@ function searchFile(dir: string, extension: string) {
 }
 
 async function Start() {
-  //Default Configuration
-  fileExtensions = { extensions: [".html"] };
-
   //Load Configuration
   try {
-    fileExtensions = await LoadConfig();
-    if (fileExtensions == null) {
-      fileExtensions = { extensions: [".html", ".js", ".astro", ".ts"] };
-    } else {
-      console.log("Configuration file found - mimic.config");
+    mimicConfig = await LoadConfig();
+
+    if (
+      mimicConfig.mediaBreakPointsValueOverride.extrasmall !=
+      MediaBreakPointsValue.small
+    ) {
+      console.log("Using override for media breakpoints");
     }
   } catch (e) {
-    fileExtensions = { extensions: [".html"] };
+    console.log("Info: Configuration file not found");
   }
 
-  console.dir(fileExtensions);
+  console.dir(mimicConfig);
 
-  fileExtensions?.extensions.forEach((extension: string) => {
+  mimicConfig?.extensions.forEach((extension: string) => {
     searchFile(InputFolder, extension);
   });
 
@@ -90,7 +90,7 @@ async function Start() {
     { recursive: true },
     async (eventType: any, fileName: any) => {
       let validFile = false;
-      fileExtensions?.extensions.forEach((extension: string) => {
+      mimicConfig?.extensions.forEach((extension: string) => {
         if (fileName?.includes(extension)) {
           validFile = true;
         }

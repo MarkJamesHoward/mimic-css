@@ -3,6 +3,7 @@ import {
   MediaBreakPointsText,
   MediaBreakPointsValue,
 } from "./mediaBreakpoints";
+import { mimicConfig } from "../bin/index";
 import { Escape } from "./EscapingClassNames";
 
 export function MapMediaQuery(media: string) {
@@ -10,19 +11,29 @@ export function MapMediaQuery(media: string) {
 
   switch (media) {
     case MediaBreakPointsText.extrasmall:
-      width = MediaBreakPointsValue.extrasmall;
+      width =
+        mimicConfig?.mediaBreakPointsValueOverride?.extrasmall ??
+        MediaBreakPointsValue.extrasmall;
       break;
     case MediaBreakPointsText.small:
-      width = MediaBreakPointsValue.small;
+      width =
+        mimicConfig?.mediaBreakPointsValueOverride?.small ??
+        MediaBreakPointsValue.small;
       break;
     case MediaBreakPointsText.medium:
-      width = MediaBreakPointsValue.medium;
+      width =
+        mimicConfig?.mediaBreakPointsValueOverride?.medium ??
+        MediaBreakPointsValue.medium;
       break;
     case MediaBreakPointsText.large:
-      width = MediaBreakPointsValue.large;
+      width =
+        mimicConfig?.mediaBreakPointsValueOverride?.large ??
+        MediaBreakPointsValue.large;
       break;
     case MediaBreakPointsText.extralarge:
-      width = MediaBreakPointsValue.extralarge;
+      width =
+        mimicConfig?.mediaBreakPointsValueOverride?.extralarge ??
+        MediaBreakPointsValue.extralarge;
       break;
     default:
       width = "unknown";
