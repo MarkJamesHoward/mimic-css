@@ -46,6 +46,14 @@ describe("Box Shadow", () => {
   });
 });
 
+// describe("Flex Basis", () => {
+//   test("Flex Basis", () => {
+//     expect(DoWork("./tests/flex-basis/flex-basis.html", "")).toContain(
+//       `.flex-basis\\:30% {\r\n\tflex-basis: 30%;\r\n}`
+//     );
+//   });
+// });
+
 describe("Justify Content", () => {
   test("Justify Content - no snapping", () => {
     expect(
