@@ -7,6 +7,7 @@ import {
   single_hyphen_then_colon_snappable,
   single_hyphen_then_colon_then_another_hyphen,
   single_hyphen_then_colon_box_shadow,
+  single_hyphen_percentage_value,
   no_hyphen_pixel_values,
   no_hyphen_snappable,
   no_hyphen,
@@ -94,6 +95,15 @@ export function DoWork(filename: string, ExistingCSS: string): string {
         "SingleHyphenHashValue"
       );
       if (result != "" && result != undefined) mostSpecificMatch = result;
+
+      result = GenericRegexNonMedia(
+        item,
+        single_hyphen_percentage_value,
+        "singleHyphenPercentageValue"
+      );
+      if (result != "" && result != undefined) mostSpecificMatch = result;
+
+      
       // Deduplicate
       if (
         mostSpecificMatch != undefined &&

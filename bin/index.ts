@@ -4,7 +4,7 @@ import path from "path";
 import fs from "fs";
 import { DoWork } from "../src/main";
 import { ExcludeFolders } from "../src/FolderExclusions";
-import { LoadConfig } from "../src/configurationLoader";
+import { LoadConfig, mimicConfig } from "../src/configurationLoader";
 import { IMimicConfig } from "../interfaces/IFileExtensions";
 import { MediaBreakPointsValue } from "../src/mediaBreakpoints";
 
@@ -24,7 +24,7 @@ let OutputFilename = argv.o;
 let ExcludeFiles = argv.e;
 let EmitLitFile = argv.l;
 let debug = argv.d;
-export let mimicConfig: IMimicConfig;
+
 
 function searchFile(dir: string, extension: string) {
   let exit = false;
@@ -66,7 +66,7 @@ function searchFile(dir: string, extension: string) {
 async function Start() {
   //Load Configuration
   try {
-    mimicConfig = await LoadConfig();
+    await LoadConfig();
 
     if (
       mimicConfig.mediaBreakPointsValueOverride.extrasmall !=

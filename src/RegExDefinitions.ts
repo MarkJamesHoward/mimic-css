@@ -22,6 +22,9 @@ export const single_hyphen_then_colon =
 export const single_hyphen_hash_value =
   /^(?<media>extrasmall\?|small\?|medium\?|large\?|extralarge\?)?(?<style>[A-Za-z]+-[A-Za-z]+):(?<value1>#[A-Za-z0-9]+)(?<pseudo>:hover|:focus)?$/gi;
 
+export const single_hyphen_percentage_value =
+  /^(?<media>extrasmall\?|small\?|medium\?|large\?|extralarge\?)?(?<style>[A-Za-z]+-[A-Za-z]+):(?<value1>[A-Za-z0-9]+\%)(?<pseudo>:hover|:focus)?$/gi;
+
 //justify-content: space-between
 export const single_hyphen_then_colon_then_another_hyphen =
   /^(?<style>[A-Za-z]+-[A-Za-z]+):(?<value1>[A-Za-z]+-[A-Za-z]+)$/gi;
