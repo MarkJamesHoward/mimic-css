@@ -52,6 +52,16 @@ export const PaddingSizes = {
   xl2: "200px",
 };
 
+
+export const LineHeight = {
+  xs: "2px",
+  sm: "4px",
+  md: "8px",
+  lg: "20px",
+  xl: "40px",
+  xl2: "60px",
+};
+
 export const GapSizes = {
   xs: "1px",
   sm: "2px",

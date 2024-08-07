@@ -9,6 +9,7 @@ import {
   BorderRadius,
   GapSizes,
   FontWeights,
+  LineHeight,
 } from "./Sizes";
 
 export function PerformSnap4(
@@ -170,6 +171,37 @@ export function PerformSnap(type: string, value: string) {
           break;
       }
       break;
+      case "line-height":
+        switch (value) {
+          case Sizes.xs:
+            result = LineHeight.xs;
+            break;
+  
+          case Sizes.sm:
+            result = LineHeight.sm;
+            break;
+  
+          case Sizes.md:
+            result = LineHeight.md;
+            break;
+  
+          case Sizes.lg:
+            result = LineHeight.lg;
+            break;
+  
+          case Sizes.xl:
+            result = LineHeight.xl;
+            break;
+  
+          case Sizes.xl2:
+            result = LineHeight.xl2;
+            break;
+  
+          default:
+            result = value;
+            break;
+        }
+        break;
     case "border-width":
       switch (value) {
         case Sizes.xs:

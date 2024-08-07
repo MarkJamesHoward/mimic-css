@@ -6,6 +6,7 @@ import {
   GapSizes,
   BorderRadius,
   FontWeights,
+  LineHeight,
 } from "../src/Sizes";
 import {
   MediaBreakPointsValue,
@@ -58,6 +59,13 @@ describe("Line Height", () => {
       `.line-height\\:2.2 {\r\n\tline-height: 2.2;\r\n}`
     );
   });
+
+  test("Line Height xl", () => {
+    expect(DoWork("./tests/line-height/line-height.html", "")).toContain(
+      `.line-height\\:xl {\r\n\tline-height: ${LineHeight.xl};\r\n}`
+    );
+  });
+
 });
 
 
