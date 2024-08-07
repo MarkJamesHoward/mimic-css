@@ -40,21 +40,21 @@ export function DoWork(filename: string, ExistingCSS: string): string {
       result = GenericRegexNonMedia(
         item,
         single_hyphen_then_colon,
-        "SingleHypen"
+        "SingleHypenThenColon"
       );
       if (result != "" && result != undefined) mostSpecificMatch = result;
 
       result = GenericRegexNonMedia(
         item,
         single_hyphen_then_colon_then_another_hyphen,
-        "SingleHypenThenAnotherHyphen"
+        "SingleHypenThenColonThenAnotherHyphen"
       );
       if (result != "" && result != undefined) mostSpecificMatch = result;
 
       result = GenericRegexNonMedia(
         item,
         double_hyphen_then_colon,
-        "DoubleHyphen"
+        "DoubleHyphenTheColon"
       );
       if (result != "" && result != undefined) mostSpecificMatch = result;
 
@@ -96,12 +96,12 @@ export function DoWork(filename: string, ExistingCSS: string): string {
       );
       if (result != "" && result != undefined) mostSpecificMatch = result;
 
-      result = GenericRegexNonMedia(
-        item,
-        single_hyphen_percentage_value,
-        "singleHyphenPercentageValue"
-      );
-      if (result != "" && result != undefined) mostSpecificMatch = result;
+      // result = GenericRegexNonMedia(
+      //   item,
+      //   single_hyphen_percentage_value,
+      //   "singleHyphenPercentageValue"
+      // );
+      // if (result != "" && result != undefined) mostSpecificMatch = result;
 
       
       // Deduplicate

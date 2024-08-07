@@ -46,12 +46,34 @@ describe("Box Shadow", () => {
   });
 });
 
+describe("Line Height", () => {
+  test("Line Height 1.0", () => {
+    expect(DoWork("./tests/line-height/line-height.html", "")).toContain(
+      `.line-height\\:1 {\r\n\tline-height: 1;\r\n}`
+    );
+  });
+
+  test("Line Height 2.2", () => {
+    expect(DoWork("./tests/line-height/line-height.html", "")).toContain(
+      `.line-height\\:2.2 {\r\n\tline-height: 2.2;\r\n}`
+    );
+  });
+});
+
+
 describe("Flex Basis", () => {
   test("Flex Basis", () => {
     expect(DoWork("./tests/flex-basis/flex-basis.html", "")).toContain(
       `.flex-basis\\:30\\% {\r\n\tflex-basis: 30%;\r\n}`
     );
   });
+
+  test("Flex Basis - Large", () => {
+    expect(DoWork("./tests/flex-basis/flex-basis-media-large.html", "")).toContain(
+      `@media (min-width: ${MediaBreakPointsValue.large}px) {\r\n.${MediaBreakPointsText.large}\\?flex-basis\\:30\\% {\r\n\tflex-basis: 30%;\r\n\t}\r\n}`
+    );
+  });
+
 });
 
 describe("Justify Content", () => {

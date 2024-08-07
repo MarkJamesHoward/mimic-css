@@ -65,7 +65,7 @@ export function GenerateMimicClass(
     `${media ? mediaString : ""}` +
     `${media ? "" : "."}${style}\\:${Escape(
       value1
-    )}${value1type}${value2?.trim()}${value2type}${value3?.trim()}${value3type}${value4?.trim()}${value4type}${color?.trim()}${
+    )}${Escape(value1type)}${value2?.trim()}${value2type}${value3?.trim()}${value3type}${value4?.trim()}${value4type}${color?.trim()}${
       pseudo ? `\\${pseudo}${pseudo}` : ""
     } {\r\n\t` +
     style +
