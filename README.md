@@ -15,7 +15,7 @@ Write standard CSS (**No spaces though!**) such as `display:flex` and apply a me
 <div class="large?display:flex">Some Text</div>
 ```
 
-Which will result in the below class being generated for you and ensuring that the flex container is only applied when the screen size is greater than 1280px wide
+Generates the below class ensuring that the flex container is only applied when the screen size is greater than 1280px wide
 
 ```css
 @media (min-width: 1280px) {
