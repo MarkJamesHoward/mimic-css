@@ -177,12 +177,15 @@ Other options:
 
 The options we have for specifying media breakpoints are below:
 
-**xs - extra small**
-**sm - small**
-**md - medium**
-**lg - large**
-**xl - extra large**
-**2xl - extra extra large**
+| Description | Tag |
+| -------- | ------- |
+| xs | extra small |
+| sm | small |
+| md | medium |
+| lg | large |
+| xl | extra large |
+| 2xl  | extra extra large |
+
 
 ## Configuration
 
