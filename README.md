@@ -10,7 +10,7 @@ Advantages:
 
 Write standard CSS (**No spaces though!**) such as `display:flex` and apply a media query inline within the class 
 
-### Example
+#### Example
 ```html
 <div class="large?display:flex">Some Text</div>
 ```
