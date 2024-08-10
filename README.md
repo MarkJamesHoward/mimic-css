@@ -184,17 +184,17 @@ The 5 options we have for specifying media breakpoints are below:
 
 ## Configuration
 
-By default mimic-css will search .html files for classes to process
+By default mimic-css will search ".html", ".js", ".astro", ".ts"  files for classes to process
 
 In order to serch additional files we can create a file named 'mimic.config.mjs'
-
-So to also search javascript and react files we would create the below:
+Within this file we can specify the extensions to search. 
+So to also search jsx and react files in addition to the defaults we would create the below:
 
 ```js
 let config;
 
 export default config = {
-  extensions: [".html", ".js"],
+  extensions: [".html", ".js", ".astro", ".ts", ".jsx"],
 };
 ```
 
