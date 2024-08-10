@@ -2,19 +2,18 @@
 
 A design system that allows the use of standard CSS styles within the class attribute ALONG with Media Queries and Modifiers. 
 
-### Example
-```html
-<div class="large?display:flex">Some Text</div>
-```
 
 Advantages:
 
 1) No need to learn **MAGIC** utility names for existing CSS Styles
 2) Grow your CSS knowledge while reaping the rewards of using a Design System at the same time
 
-Write standard CSS (**No spaces though!**) such as `display:flex` and apply a media query inline within the class e.g.
+Write standard CSS (**No spaces though!**) such as `display:flex` and apply a media query inline within the class 
 
-
+### Example
+```html
+<div class="large?display:flex">Some Text</div>
+```
 
 Which will result in the below class being generated for you and ensuring that the flex container is only applied when the screen size is greater than 1280px wide
 
