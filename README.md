@@ -23,7 +23,14 @@ Which will result in the below class being generated for you and ensuring that t
 
 To ensure consistency there is a set of standard Tags that can be used in place of specific pixel values. These Tags are used across the board keeping the learning curve simple
 
-**xs, sm, md, lg, xl and 2xl**
+| Description | Tag |
+| -------- | ------- |
+| **xs** | extra small |
+| **sm** | small |
+| **md** | medium |
+| **lg** | large |
+| ***xl*** | extra large |
+| ****2xl****  | extra extra large |
 
 ```html
 <div class="padding-top:md">Some Text</div>
