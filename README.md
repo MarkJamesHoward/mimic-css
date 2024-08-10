@@ -1,4 +1,4 @@
-# mimic-css
+# MIMIC CSS
 
 A design system that allows the use of standard CSS styles within the class attribute ALONG with Media Queries and Modifiers. 
 
