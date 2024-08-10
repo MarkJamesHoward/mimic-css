@@ -149,10 +149,13 @@ npx mimic-css -o ./styles/customname.css
 
 Other options:
 
-- i: { type: "string", default: "./", alias: "input" },
-- o: { type: "string", default: "./mimic.css", alias: "output" },
-- e: { type: "string", default: "", alias: "exclude" },
-- l: { type: "boolean", default: false, alias: "lit" },
+| option    | Default | Alias |
+| -------- | ------- | ------- |
+| -i | ./ | input   |
+| -o | ./mimic.css | output   |
+| -e | <N/A> | exclude   |
+| -l | <N/A> | lit   |
+
 
 Normal CSS will remain unchanged (bar a space inserted)
 
