@@ -39,14 +39,15 @@ These specifiers will map to different **Pixel Values** depending upon the usage
 
 So for **Fonts** you'll have the below mapping:
 
-<ul>
-<li>xs:     8px</li>
-<li>sm:     12px</li>
-<li>md:     16px</li>
-<li>lg:     24px</li>
-<li>xl:     48px</li>
-<li>2xl:    92px</li>
-</ul>
+| Tag    | Value |
+| -------- | ------- |
+| xs  | 8px    |
+| sm | 12px    |
+| md    | 16px    |
+| lg    | 24px    |
+| xl    | 48px   |
+| 2xl    | 92px   |
+
 
 Whereas for **Padding** the mappings will be different:
 
