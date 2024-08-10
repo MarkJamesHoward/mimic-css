@@ -177,12 +177,12 @@ Other options:
 
 The options we have for specifying media breakpoints are below:
 
-<font size= "5">  xs - extra small   </font>
-<font size= "5">  sm - small </font>
-<font size= "7">  md - medium </font>
-<font size= "2">  lg - large </font>
-<font size= "3">  xl - extra large </font>
-<font size= "1">  2xl - extra extra large </font>
+**xs - extra small**
+**sm - small**
+**md - medium**
+**lg - large**
+**xl - extra large**
+**2xl - extra extra large**
 
 ## Configuration
 
