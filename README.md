@@ -1,7 +1,11 @@
 # mimic-css
 
-**mimic-css** is a design system that allows the use of standard CSS styles within the class attribute ALONG with Media Queries and Modifiers. From this you gain the benefits of using a design system but without the downside of losing your CSS knowledge
-at the same time
+**mimic-css** is a design system that allows the use of standard CSS styles within the class attribute ALONG with Media Queries and Modifiers. 
+
+Advantages:
+
+1) No need to learn **MAGIC** utility names for existing CSS Styles
+2) Grow your CSS knowledge while reaping the rewards of using a Design System at the same time
 
 So you are enabled to write standard CSS (**No spaces though!**) such as `display:flex` and apply a media query inline within the class e.g.
 
