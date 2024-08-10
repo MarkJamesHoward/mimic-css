@@ -21,7 +21,9 @@ Which will result in the below class being generated for you and ensuring that t
 
 ## Design System
 
-In order to provide consistency across a website we provide a set of standard values that can be used rather than specific pixel values. There are 5 values that are used across the board **xs, sm, md, lg, and xl**
+To ensure consistency there is a set of standard Tags that can be used in place of specific pixel values. These Tags are used across the board keeping the learning curve simple
+
+**xs, sm, md, lg, xl and 2xl**
 
 ```html
 <div class="padding-top:md">Some Text</div>
@@ -61,8 +63,7 @@ Whereas for **Padding** the mappings will be different:
 | xl    | 50px   |
 | 2xl    | 200px   |
 
-
-For Line height we use Percentages to ensure they are usable
+And for **Line height** they map to percentages
 
 | Tag    | Value |
 | -------- | ------- |
