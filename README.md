@@ -50,14 +50,16 @@ So for **Fonts** you'll have the below mapping:
 
 Whereas for **Padding** the mappings will be different:
 
-<ul>
-<li>xs:     2px</li>
-<li>sm:     4px</li>
-<li>md:     8px</li>
-<li>lg:     20px</li>
-<li>xl:     50px</li>
-<li>2xl:    200px</li>
-</ul>
+
+| Tag    | Value |
+| -------- | ------- |
+| xs  | 2px    |
+| sm | 4px    |
+| md    | 8px    |
+| lg    | 20px    |
+| xl    | 50px   |
+| 2xl    | 200px   |
+
 
 For Line height we use Percentages to ensure they are usable
 
