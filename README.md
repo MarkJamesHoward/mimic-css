@@ -172,7 +172,7 @@ You can also override where to output the generated CSS file using the -o flag
 npx mimic-css -o ./styles/customname.css
 ```
 
-### options
+### Options
 
 | option    | Default | Alias |
 | -------- | ------- | ------- |
