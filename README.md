@@ -172,7 +172,7 @@ You can also override where to output the generated CSS file using the -o flag
 npx mimic-css -o ./styles/customname.css
 ```
 
-Other options:
+### options:
 
 | option    | Default | Alias |
 | -------- | ------- | ------- |
@@ -180,20 +180,6 @@ Other options:
 | -o | ./mimic.css | output   |
 | -e | <N/A> | exclude   |
 | -l | <N/A> | lit   |
-
-
-## Media Breakpoints
-
-The options we have for specifying media breakpoints are below:
-
-| Description | Tag |
-| -------- | ------- |
-| xs | extra small |
-| sm | small |
-| md | medium |
-| lg | large |
-| xl | extra large |
-| 2xl  | extra extra large |
 
 
 ## Configuration
