@@ -192,9 +192,9 @@ npx mimic-css -o ./styles/customname.css
 
 By default mimic-css will search ".html", ".js", ".astro", ".ts"  files for classes to process
 
-In order to serch additional files we can create a file named **'mimic.config.mjs'** and specify the extensions to search. 
+In order to search additional files we can create a file named **'mimic.config.mjs'** and specify the extensions to search. 
 
-So to also search jsx and react files in addition to the defaults we would create the below:
+So to also search jsx files in addition to the defaults we would create the below:
 
 ```js
 let config;
