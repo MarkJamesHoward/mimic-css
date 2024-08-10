@@ -3,7 +3,7 @@
 **mimic-css** is a design system that allows the use of standard CSS styles within the class attribute ALONG with Media Queries and Modifiers. From this you gain the benefits of using a design system but without the downside of losing your CSS knowledge
 at the same time
 
-So you are enabled to write standard CSS such as `display:flex` and apply a media query inline within the class e.g.
+So you are enabled to write standard CSS (**No spaces though!**) such as `display:flex` and apply a media query inline within the class e.g.
 
 ```html
 <div class="large?display:flex">Some Text</div>
@@ -37,7 +37,7 @@ To ensure consistency there is a set of standard Tags that can be used in place 
 }
 ```
 
-These specifiers will map to different **Pixel Values** depending upon the usage.
+These Tags will map to different **Pixel Values** depending upon the usage.
 
 So for **Fonts** we have the below mapping:
 
@@ -102,6 +102,22 @@ And then for **Line height** they map to percentages
 }
 ```
 
+### Normal CSS will remain unchanged (bar a space inserted)
+
+**So the below:**
+
+```html
+<div class="display:flex">Some Text</div>
+```
+
+**Becomes:**
+
+```css
+.display\:flex {
+  display: flex;
+}
+```
+
 ## Pseudo Classes
 
 You can also apply pseudo class like **hover** and **focus** inline with the class attribute
@@ -156,22 +172,6 @@ Other options:
 | -e | <N/A> | exclude   |
 | -l | <N/A> | lit   |
 
-
-Normal CSS will remain unchanged (bar a space inserted)
-
-**So the below:**
-
-```html
-<div class="display:flex">Some Text</div>
-```
-
-**Becomes:**
-
-```css
-.display\:flex {
-  display: flex;
-}
-```
 
 ## Media Breakpoints
 
