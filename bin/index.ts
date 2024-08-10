@@ -68,19 +68,19 @@ async function Start() {
   try {
     await LoadConfig();
 
-    if (
-      mimicConfig.mediaBreakPointsValueOverride.extrasmall !=
-      MediaBreakPointsValue.small
-    ) {
-      console.log("Using override for media breakpoints");
-    }
+    // if (
+    //   mimicConfig.mediaBreakPointsValueOverride?.extrasmall !=
+    //   MediaBreakPointsValue.small
+    // ) {
+    //   console.log("Using override for media breakpoints");
+    // }
   } catch (e) {
-    console.log("Info: Configuration file not found");
+    console.info("Configuration file not found");
   }
 
   console.dir(mimicConfig);
 
-  mimicConfig?.extensions.forEach((extension: string) => {
+  mimicConfig?.extensions?.forEach((extension: string) => {
     searchFile(InputFolder, extension);
   });
 
@@ -90,7 +90,7 @@ async function Start() {
     { recursive: true },
     async (eventType: any, fileName: any) => {
       let validFile = false;
-      mimicConfig?.extensions.forEach((extension: string) => {
+      mimicConfig?.extensions?.forEach((extension: string) => {
         if (fileName?.includes(extension)) {
           validFile = true;
         }
