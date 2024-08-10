@@ -59,6 +59,19 @@ Whereas for **Padding** the mappings will be different:
 <li>2xl:    200px</li>
 </ul>
 
+For Line height we use Percentages to ensure they are usable
+
+| Tag    | Value |
+| -------- | ------- |
+| xs  | 100%    |
+| sm | 120%     |
+| md    | 140%    |
+| lg    | 160%    |
+| xl    | 200%    |
+| 2xl    | 240%    |
+
+
+
 ### An example for Padding
 
 ```html
