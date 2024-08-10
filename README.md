@@ -21,16 +21,18 @@ Which will result in the below class being generated for you and ensuring that t
 
 ## Design System
 
-To ensure consistency there is a set of standard Tags that can be used in place of specific pixel values. These Tags are used across the board keeping the learning curve simple
+To ensure consistency there is a set of standard Tags that can be used in place of specific pixel values.
 
-| Description | Tag |
+These Tags are used across the board keeping the learning curve simple
+
+| Tag | Description |
 | -------- | ------- |
 | **xs** | extra small |
 | **sm** | small |
 | **md** | medium |
 | **lg** | large |
-| ***xl*** | extra large |
-| ****2xl****  | extra extra large |
+| **xl** | extra large |
+| **2xl**  | extra extra large |
 
 ```html
 <div class="padding-top:md">Some Text</div>
