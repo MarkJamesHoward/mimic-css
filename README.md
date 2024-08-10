@@ -118,9 +118,6 @@ Which will create a class for you like this
 }
 ```
 
-From this you gain the benefits of using a design system but without the downside of losing your CSS knowledge
-at the same time
-
 ## Install:
 
 `npm install --save-dev mimic-css`
