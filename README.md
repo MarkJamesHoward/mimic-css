@@ -172,14 +172,15 @@ Normal CSS will remain unchanged (bar a space inserted)
 
 ## Media Breakpoints
 
-The 5 options we have for specifying media breakpoints are below:
+The options we have for specifying media breakpoints are below:
 
 <ul>
-<li>extrasmall</li>
-<li>small</li>
-<li>medium</li>
-<li>large</li>
-<li>extralarge</li>
+<li>xs - extra small  </li>
+<li>sm - small</li>
+<li>md - medium</li>
+<li>lg - large</li>
+<li>xl - extra large</li>
+<li>2xl - extra extra large</li>
 </ul>
 
 ## Configuration
