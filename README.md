@@ -39,7 +39,7 @@ To ensure consistency there is a set of standard Tags that can be used in place 
 
 These specifiers will map to different **Pixel Values** depending upon the usage.
 
-So for **Fonts** you'll have the below mapping:
+So for **Fonts** we have the below mapping:
 
 | Tag    | Value |
 | -------- | ------- |
@@ -63,7 +63,7 @@ Whereas for **Padding** the mappings will be different:
 | xl    | 50px   |
 | 2xl    | 200px   |
 
-And for **Line height** they map to percentages
+And then for **Line height** they map to percentages
 
 | Tag    | Value |
 | -------- | ------- |
