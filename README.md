@@ -186,8 +186,8 @@ The 5 options we have for specifying media breakpoints are below:
 
 By default mimic-css will search ".html", ".js", ".astro", ".ts"  files for classes to process
 
-In order to serch additional files we can create a file named 'mimic.config.mjs'
-Within this file we can specify the extensions to search. 
+In order to serch additional files we can create a file named **'mimic.config.mjs'** and specify the extensions to search. 
+
 So to also search jsx and react files in addition to the defaults we would create the below:
 
 ```js
