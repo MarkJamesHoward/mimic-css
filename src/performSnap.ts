@@ -12,6 +12,9 @@ import {
   LineHeight,
 } from "./Sizes";
 
+import { mimicConfig } from "./configurationLoader";
+
+
 export function PerformSnap4(
   type: string,
   value1: string,
@@ -174,27 +177,27 @@ export function PerformSnap(type: string, value: string) {
       case "line-height":
         switch (value) {
           case Sizes.xs:
-            result = LineHeight.xs;
+            result = mimicConfig?.lineHeightSnapping?.xs ?? LineHeight.xs;
             break;
   
           case Sizes.sm:
-            result = LineHeight.sm;
+            result =  mimicConfig?.lineHeightSnapping?.sm ?? LineHeight.sm;
             break;
   
           case Sizes.md:
-            result = LineHeight.md;
+            result =  mimicConfig?.lineHeightSnapping?.md ?? LineHeight.md;
             break;
   
           case Sizes.lg:
-            result = LineHeight.lg;
+            result =  mimicConfig?.lineHeightSnapping?.lg ?? LineHeight.lg;
             break;
   
           case Sizes.xl:
-            result = LineHeight.xl;
+            result =  mimicConfig?.lineHeightSnapping?.xl ?? LineHeight.xl;
             break;
   
           case Sizes.xl2:
-            result = LineHeight.xl2;
+            result =  mimicConfig?.lineHeightSnapping?.xl2 ?? LineHeight.xl2;
             break;
   
           default:

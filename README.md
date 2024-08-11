@@ -204,6 +204,28 @@ export default config = {
 };
 ```
 
+## Overriding Snapping
+
+Specify custom snapping within the mimic.config.js file 
+
+#### Example below for customising the line height snapping
+
+```js
+let config;
+
+export default config = {
+  extensions: [".html"],
+  lineHeightSnapping: {
+    xs: "60%",
+    sm: "120%",
+    md: "140%",
+    lg: "160%",
+    xl: "200%",
+    xl2: "240%",
+  }
+};
+```
+
 ## Lit Integration
 
 To include CSS in LitElements a good approach to take is Constructable Style Sheets. These require the CSS to be in a JS string and mimic-css provide this output in the file **mimic.css.js** for us when using the -l flag.

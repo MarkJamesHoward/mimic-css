@@ -7,4 +7,12 @@ export interface IMimicConfig {
     large: string;
     extralarge: string;
   };
+  lineHeightSnapping?: {
+    xs: string;
+    sm: string;
+    md: string;
+    lg: string;
+    xl: string;
+    xl2: string;
+  }
 }
