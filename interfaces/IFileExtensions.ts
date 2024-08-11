@@ -16,5 +16,48 @@ export interface IMimicConfig {
     lg: string;
     xl: string;
     xl2: string;
+  },
+  BorderWidthSnapping?: {
+    xs: string;
+    sm: string;
+    md: string;
+    lg: string;
+    xl: string;
+    xl2: string;
+  },
+  GapSnapping?: {
+    xs: string;
+    sm: string;
+    md: string;
+    lg: string;
+    xl: string;
+    xl2: string;
+  },
+  PaddingSnapping?: {
+    xs: string;
+    sm: string;
+    md: string;
+    lg: string;
+    xl: string;
+    xl2: string;
+  },
+  BoxShadowSnapping?: {
+    xs: string;
+    sm: string;
+    md: string;
+    lg: string;
+    xl: string;
+    xl2: string;
+  },
+  MarginSnapping?: {
+    xs: string;
+    sm: string;
+    md: string;
+    lg: string;
+    xl: string;
+    xl2: string;
   }
+
+
+  
 }
