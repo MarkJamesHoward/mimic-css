@@ -2,6 +2,8 @@ let config;
 
 export default config = {
   extensions: [".html"],
+  excludeFolders: ["tests", "node_modules"],
+  excludeFiles: ["toplevelpage1.html"],
   // mediaBreakPointsValueOverride: {
   //   extrasmall: "1000",
   //   small: "1010",

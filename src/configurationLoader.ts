@@ -22,7 +22,15 @@ export async function LoadConfig() {
     }
 
     if (mimicConfig.excludeFolders == null) {
-      mimicConfig.excludeFolders = ["node_modules"];
+      mimicConfig.excludeFolders = ["node_modules", "dist"];
+    }
+
+    if (mimicConfig.excludeFiles == null) {
+      mimicConfig.excludeFiles = ["mimic.css"];
+    }
+
+    if (mimicConfig.extensions == null) {
+      mimicConfig.extensions = [".html", ".js", ".astro", ".ts"];
     }
 
   } catch (error) {

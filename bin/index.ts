@@ -3,10 +3,7 @@ import yargs from "yargs";
 import path from "path";
 import fs from "fs";
 import { DoWork } from "../src/main";
-import { ExcludeFolders } from "../src/FolderExclusions";
 import { LoadConfig, mimicConfig } from "../src/configurationLoader";
-import { IMimicConfig } from "../interfaces/IFileExtensions";
-import { MediaBreakPointsValue } from "../src/mediaBreakpoints";
 
 const argv = yargs(process.argv.slice(2))
   .options({
@@ -19,18 +16,22 @@ const argv = yargs(process.argv.slice(2))
   .parseSync();
 
 let ExistingCSS = "";
-let InputFolder = argv.i;
+let InputFolder = argv.i ?? "./";
 let OutputFilename = argv.o;
-let ExcludeFiles = argv.e;
+let ExcludeFilesFromArgs = argv.e;
 let EmitLitFile = argv.l;
 let debug = argv.d;
+
+if (InputFolder == "") {
+  InputFolder = "./";
+  }
 
 
 function searchFile(dir: string, extension: string) {
   let exit = false;
 
   // Check if this is a folder we don't want to look in (e.g. node_modules)
-  ExcludeFolders.forEach((element) => {
+  mimicConfig?.excludeFolders?.forEach((element) => {
     if (dir.includes(element)) exit = true;
   });
 
@@ -51,6 +52,19 @@ function searchFile(dir: string, extension: string) {
     if (fileStat.isDirectory()) {
       searchFile(filePath, extension);
     } else if (file.endsWith(extension)) {
+
+
+      let exitDueToFileExclusionRequested = false;
+
+      mimicConfig?.excludeFiles?.forEach(excludeMePlease => 
+        {
+          if (filePath?.includes(excludeMePlease)){
+            exitDueToFileExclusionRequested = true;
+          }
+        }
+      )
+
+      if (!exitDueToFileExclusionRequested) {
       // if the file is a match, print it
       console.log("Performing first run check on file " + filePath);
       let result = DoWork(filePath, ExistingCSS);
@@ -60,6 +74,10 @@ function searchFile(dir: string, extension: string) {
         WriteLitFile(OutputFilename, ExistingCSS);
       }
     }
+    else {
+      console.log(`Excluding file ${filePath}`)
+    }
+    }
   }
 }
 
@@ -67,13 +85,6 @@ async function Start() {
   //Load Configuration
   try {
     await LoadConfig();
-
-    // if (
-    //   mimicConfig.mediaBreakPointsValueOverride?.extrasmall !=
-    //   MediaBreakPointsValue.small
-    // ) {
-    //   console.log("Using override for media breakpoints");
-    // }
   } catch (e) {
     console.info("Configuration file not found");
   }
@@ -98,7 +109,27 @@ async function Start() {
 
       if (validFile) {
         // Check for excluded filenames
-        if (ExcludeFiles == "" || !fileName?.includes(ExcludeFiles)) {
+        let exitDueToFileExclusionRequested = false;
+        let exitDueToFolderExclusionRequested = false;
+
+        mimicConfig?.excludeFiles?.forEach(excludeMePlease => 
+        {
+          if (fileName?.includes(excludeMePlease)){
+            exitDueToFileExclusionRequested = true;
+          }
+        }
+      )
+      // Check for exclued Folders
+      mimicConfig?.excludeFolders?.forEach(excludeMePlease => 
+        {
+          if (InputFolder?.includes(excludeMePlease)){
+            exitDueToFolderExclusionRequested = true;
+          }
+        }
+      )
+
+        if (!exitDueToFileExclusionRequested && !exitDueToFolderExclusionRequested) {
+        if (ExcludeFilesFromArgs == "" || !fileName?.includes(ExcludeFilesFromArgs)) {
           console.log("change detected.. performing update: " + fileName);
           let filenamePlusPath = path.join(InputFolder, fileName);
 
@@ -111,11 +142,15 @@ async function Start() {
             WriteLitFile(OutputFilename, ExistingCSS);
           }
         } else {
-          console.log(`filename excluded ${fileName}`);
+          console.log(`file excluded ${path.join(InputFolder, fileName)}`);
         }
+      }
+      else {
+        console.log(`file excluded ${path.join(InputFolder, fileName)}`);
+      }
       } else {
         if (debug) {
-          console.log(`filename not in list to examine ${fileName}`);
+          console.log(`filename not in list to examine ${path.join(InputFolder, fileName)}`);
         }
       }
     }
