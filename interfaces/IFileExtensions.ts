@@ -1,5 +1,6 @@
 export interface IMimicConfig {
   extensions?: Array<string>;
+  excludeFolders?: Array<string>;
   mediaBreakPointsValueOverride?: {
     extrasmall: string;
     small: string;

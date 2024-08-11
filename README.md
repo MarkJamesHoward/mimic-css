@@ -178,7 +178,7 @@ You can also override where to output the generated CSS file using the -o flag
 npx mimic-css -o ./styles/customname.css
 ```
 
-### Options
+## Command Line Arguments
 
 | option    | Default | Alias |
 | -------- | ------- | ------- |
@@ -188,11 +188,13 @@ npx mimic-css -o ./styles/customname.css
 | -l | <N/A> | lit   |
 
 
-## Configuration
+## Configuration [**'mimic.config.mjs'**]
+
+Customisation can be applied within a file named **'mimic.config.mjs'** 
+
+### Overriding Files to Search
 
 By default mimic-css will search ".html", ".js", ".astro", ".ts"  files for classes to process
-
-In order to search additional files we can create a file named **'mimic.config.mjs'** and specify the extensions to search. 
 
 So to also search jsx files in addition to the defaults we would create the below:
 
@@ -204,11 +206,7 @@ export default config = {
 };
 ```
 
-## Overriding Snapping
-
-Specify custom snapping within the mimic.config.js file 
-
-#### Example below for customising the line height snapping
+### Overriding Snapping
 
 ```js
 let config;
@@ -225,6 +223,24 @@ export default config = {
   }
 };
 ```
+
+### Overriding Media Breakpoints
+
+```js
+let config;
+
+export default config = {
+   mediaBreakPointsValueOverride: {
+     extrasmall: "1000",
+     small: "1010",
+     medium: "1020",
+     large: "1030",
+     extralarge: "1040",
+   }
+};
+```
+
+## Specify folders to exclude
 
 ## Lit Integration
 

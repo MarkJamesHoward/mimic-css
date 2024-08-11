@@ -5,7 +5,8 @@ let mimicConfigDEFAULT: IMimicConfig;
 export let mimicConfig: IMimicConfig;
 
 mimicConfigDEFAULT = {
-  extensions: [".html", ".js", ".astro", ".ts"]
+  extensions: [".html", ".js", ".astro", ".ts"],
+  excludeFolders: ["node_modules"]
 };
 
 export async function LoadConfig() {
@@ -19,6 +20,11 @@ export async function LoadConfig() {
     if (mimicConfig == null) {
       mimicConfig = mimicConfigDEFAULT;
     }
+
+    if (mimicConfig.excludeFolders == null) {
+      mimicConfig.excludeFolders = ["node_modules"];
+    }
+
   } catch (error) {
     if (error instanceof ConfigLoaderError) {
       // If the error is a ConfigLoaderError it has a human readable error message
