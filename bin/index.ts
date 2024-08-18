@@ -69,6 +69,7 @@ function searchFile(dir: string, extension: string) {
       console.log("Performing first run check on file " + filePath);
       let result = DoWork(filePath, ExistingCSS);
       ExistingCSS += result;
+
       fs.writeFileSync(OutputFilename, ExistingCSS);
       if (EmitLitFile) {
         WriteLitFile(OutputFilename, ExistingCSS);

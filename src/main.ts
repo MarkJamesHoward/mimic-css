@@ -112,7 +112,7 @@ export function DoWork(filename: string, ExistingCSS: string): string {
       ) {
         ThisFilesCSS += mostSpecificMatch.trim();
         NonMediaCSS +=
-          DeDuplication(ExistingCSS, mostSpecificMatch.trim()) + "\r\n\r\n";
+          DeDuplication(ExistingCSS, mostSpecificMatch.trim());
       }
     });
   }
@@ -196,10 +196,10 @@ export function DoWork(filename: string, ExistingCSS: string): string {
       ) {
         ThisFilesCSS += mostSpecificMatch.trim();
         MediaCSS +=
-          DeDuplication(ExistingCSS, mostSpecificMatch.trim()) + "\r\n\r\n";
+          DeDuplication(ExistingCSS, mostSpecificMatch.trim());
       }
     });
   }
 
-  return `${NonMediaCSS} ${MediaCSS}`;
+  return `${NonMediaCSS} ${MediaCSS}`.trim();
 }

@@ -2,7 +2,7 @@ import { PerformSnap } from "./performSnap";
 import { MapMediaQuery } from "./processMediaQueries";
 import { Escape } from "./EscapingClassNames";
 
-let debug = true;
+let debug = false;
 
 export function GenerateMimicClass(
   source: string,
@@ -59,9 +59,9 @@ export function GenerateMimicClass(
       debug
         ? `/* ${source}` +
           //`Media=${media ? media?.replace("?", "") : "none"}` +
-          "*/"
-        : ""
-    }\r\n` +
+          "*/\r\n\r\n"
+        : `\r\n\r\n/*MIMIC-CSS*/\r\n`
+    }` +
     `${media ? mediaString : ""}` +
     `${media ? "" : "."}${style}\\:${Escape(
       value1

@@ -38,7 +38,10 @@ export function GenericRegexNonMedia(item: any, regex: RegExp, source: string) {
       color
     );
   }
-  return result;
+  if (result != undefined) {
+    return result 
+  }
+  else return undefined
 }
 
 export function GenericRegexMedia(item: any, regex: RegExp, source: string) {
@@ -77,5 +80,8 @@ export function GenericRegexMedia(item: any, regex: RegExp, source: string) {
       color
     );
   }
-  return result;
+  if (result != undefined) {
+    return result
+  }
+  else return undefined
 }
