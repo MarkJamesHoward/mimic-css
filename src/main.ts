@@ -1,5 +1,5 @@
 import { CSSAlreadyExists, DeDuplication } from "../src/DeDuplication";
-import { GenericRegexNonMedia, GenericRegexMedia } from "../src/RegExPerform";
+import { GenericRegexNonMedia, GenericRegexMedia, GenericRegexNonMediaCustomClass } from "../src/RegExPerform";
 
 import {
   double_hyphen_then_colon,
@@ -12,6 +12,7 @@ import {
   no_hyphen_snappable,
   no_hyphen,
   single_hyphen_hash_value,
+  no_hyphen_custom_class
 } from "./RegExDefinitions";
 
 import fs from "fs";
@@ -19,6 +20,7 @@ import fs from "fs";
 export function DoWork(filename: string, ExistingCSS: string): string {
   let NonMediaCSS = "";
   let MediaCSS = "";
+  let CustomClass = "";
   let ThisFilesCSS = "";
 
   const data = fs.readFileSync(filename, "utf8");
@@ -129,8 +131,8 @@ export function DoWork(filename: string, ExistingCSS: string): string {
       // display:flex
       let mostSpecificMatch = "";
 
-      let result;
-
+      let result;  
+    
       result = GenericRegexMedia(
         item,
         single_hyphen_then_colon,
@@ -201,5 +203,58 @@ export function DoWork(filename: string, ExistingCSS: string): string {
     });
   }
 
-  return `${NonMediaCSS} ${MediaCSS}`.trim();
+  classComplete = /class=\"(?<classComplete>.+)\"/gi;
+  classCompleteMatch = data.matchAll(classComplete);
+
+  // Check for Custom Class creation - NonMedia
+  for (const classIndividual of classCompleteMatch) {
+    let classIndividualString = ` ${classIndividual.groups?.["classComplete"]} `;
+    let splitIndividualClassItems = classIndividualString.split(" ");
+
+    let className: string = "";
+    let classMembers: string = "";
+
+    splitIndividualClassItems.forEach((item) => {
+      let classMember: string;
+      let classMemberName: string = "";
+
+      // display:flex^MYBUTTON
+      // background:red^MYBUTTON
+      let r = GenericRegexNonMediaCustomClass(
+        item,
+        no_hyphen_custom_class,
+        "no_hyphen_custom_class"
+      );
+      classMember = r.classMember;
+      classMemberName = r.className.replace('^','');
+
+      if (classMember != "") {
+        classMembers += classMember;
+      }
+
+      if (classMemberName != "") {
+        className = classMemberName;
+      }
+    });
+
+    if (className != "") {
+      CustomClass = `.${className} { ${classMembers} }`
+    }
+  }
+
+  // Deduplicate Custom Classes
+  if (
+    CustomClass != undefined &&
+    CustomClass != "" &&
+    !CSSAlreadyExists(ThisFilesCSS, CustomClass?.trim())
+  ) {
+    ThisFilesCSS += CustomClass.trim();
+    CustomClass +=
+      DeDuplication(ExistingCSS, CustomClass.trim());
+  }
+  else {
+    CustomClass = ''
+  }
+
+  return `${NonMediaCSS} ${MediaCSS} ${CustomClass}`.trim();
 }

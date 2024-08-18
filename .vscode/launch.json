@@ -12,7 +12,7 @@
       "skipFiles": ["<node_internals>/**"],
       "program": "${workspaceFolder}\\bin\\index.ts",
       "outFiles": ["${workspaceFolder}/**/*.js"],
-      "args": ["-i", ""]
+      "args": ["-i", "sample"]
     }
   ]
 }
