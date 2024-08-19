@@ -229,7 +229,7 @@ export function DoWork(filename: string, ExistingCSS: string): string {
       classMemberName = r.className.replace('^','');
 
       if (classMember != "") {
-        classMembers += classMember;
+        classMembers += `\r\n\t${classMember}`;
       }
 
       if (classMemberName != "") {
@@ -238,23 +238,21 @@ export function DoWork(filename: string, ExistingCSS: string): string {
     });
 
     if (className != "") {
-      CustomClass = `.${className} { ${classMembers} }`
+
+    let TempCustomClass = `.${className} {${classMembers}\r\n}`
+      // Deduplicate Custom Classes
+  if (
+    !CSSAlreadyExists(ExistingCSS, TempCustomClass?.trim())
+  ) {
+    ThisFilesCSS += TempCustomClass.trim();
+    CustomClass += `\r\n${TempCustomClass}\r\n`
+  }
+  
+
     }
   }
 
-  // Deduplicate Custom Classes
-  if (
-    CustomClass != undefined &&
-    CustomClass != "" &&
-    !CSSAlreadyExists(ThisFilesCSS, CustomClass?.trim())
-  ) {
-    ThisFilesCSS += CustomClass.trim();
-    CustomClass +=
-      DeDuplication(ExistingCSS, CustomClass.trim());
-  }
-  else {
-    CustomClass = ''
-  }
+  
 
   return `${NonMediaCSS} ${MediaCSS} ${CustomClass}`.trim();
 }

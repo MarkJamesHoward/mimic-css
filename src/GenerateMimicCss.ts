@@ -124,7 +124,7 @@ export function GenerateMimicClass_CustomClass(
   
 
   return (
-    `${style}: ${snappedvalue1}${value1type}${snappedvalue2}${value2type}${snappedvalue3}${value3type}${snappedvalue4}${value4type}${color};\r\n` 
+    `${style}: ${snappedvalue1}${value1type}${snappedvalue2}${value2type}${snappedvalue3}${value3type}${snappedvalue4}${value4type}${color};` 
   );
 }
 

@@ -38,10 +38,7 @@ export function GenericRegexNonMedia(item: any, regex: RegExp, source: string) {
       color
     );
   }
-  if (result != undefined) {
     return result 
-  }
-  else return undefined
 }
 
 export function GenericRegexNonMediaCustomClass(item: any, regex: RegExp, source: string): { classMember: string, className: string } {
