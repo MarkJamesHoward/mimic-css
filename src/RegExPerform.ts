@@ -42,6 +42,10 @@ export function GenericRegexNonMedia(item: any, regex: RegExp, source: string) {
 }
 
 export function GenericRegexNonMediaCustomClass(item: any, regex: RegExp, source: string): { classMember: string, className: string } {
+  
+  if (item == '')
+    return { classMember:'', className:''}
+
   let single_colon_matches = item.matchAll(regex);
   let classMember: string = '';
   let className: string = '';

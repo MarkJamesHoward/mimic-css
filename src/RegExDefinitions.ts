@@ -57,5 +57,8 @@ export const no_hyphen_pixel_values =
 
 
   // Create Custom Class say for buttons that can be reused
+  export const single_hyphen_then_colon_snappable_custom_class =
+  /^(?<media>extrasmall\?|small\?|medium\?|large\?|extralarge\?)?(?<style>[A-Za-z]+-[A-Za-z]+):(?<value1>xs|sm|md|lg|xl|2xl)(?<value2>xs|sm|md|lg|xl|2xl)?(?<value3>xs|sm|md|lg|xl|2xl)?(?<value4>xs|sm|md|lg|xl|2xl)?(?<pseudo>:hover|:focus)?(?<customclass>\^[A-Za-z0-9]+)?$/gi;
+
   export const no_hyphen_custom_class =
   /^(?<media>extrasmall\?|small\?|medium\?|large\?|extralarge\?)?(?<style>[A-Za-z]+):(?<value1>[0-9A-Za-z]+)(?<value1type>px|ch|rem)?(?<value2>[0-9A-Za-z]+)?(?<value2type>px|ch|rem)?(?<value3>[0-9A-Za-z]+)?(?<value3type>px|ch|rem)?(?<value4>[0-9A-Za-z]+)?(?<value4type>px|ch|rem)?(?<pseudo>:hover|:focus)?(?<customclass>\^[A-Za-z0-9]+)?$/gi;

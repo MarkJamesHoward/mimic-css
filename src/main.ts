@@ -12,7 +12,8 @@ import {
   no_hyphen_snappable,
   no_hyphen,
   single_hyphen_hash_value,
-  no_hyphen_custom_class
+  no_hyphen_custom_class,
+  single_hyphen_then_colon_snappable_custom_class
 } from "./RegExDefinitions";
 
 import fs from "fs";
@@ -235,6 +236,26 @@ export function DoWork(filename: string, ExistingCSS: string): string {
       if (classMemberName != "") {
         className = classMemberName;
       }
+
+      r = GenericRegexNonMediaCustomClass(
+        item,
+        single_hyphen_then_colon_snappable_custom_class,
+        "single_hyphen_then_colon_snappable_custom_class"
+      );
+
+      classMember = r.classMember;
+      classMemberName = r.className.replace('^','');
+
+      if (classMember != "") {
+        classMembers += `\r\n\t${classMember}`;
+      }
+
+      if (classMemberName != "") {
+        className = classMemberName;
+      }
+
+
+
     });
 
     if (className != "") {
