@@ -19,8 +19,10 @@ export function GenericRegexNonMedia(item: any, regex: RegExp, source: string) {
     let value2type = match.groups["value2type"];
     let value3type = match.groups["value3type"];
     let value4type = match.groups["value4type"];
+    let className = match.groups["customclass"];
 
-    if (media != undefined) return "";
+
+    if (media != undefined || className != undefined) return "";
 
     result = GenerateMimicClass(
       source,

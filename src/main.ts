@@ -1,5 +1,10 @@
+import { ICustomClassBuilder } from "../interfaces/ICustomClassBuilder";
 import { CSSAlreadyExists, DeDuplication } from "../src/DeDuplication";
-import { GenericRegexNonMedia, GenericRegexMedia, GenericRegexNonMediaCustomClass } from "../src/RegExPerform";
+import {
+  GenericRegexNonMedia,
+  GenericRegexMedia,
+  GenericRegexNonMediaCustomClass,
+} from "../src/RegExPerform";
 
 import {
   double_hyphen_then_colon,
@@ -12,8 +17,6 @@ import {
   no_hyphen_snappable,
   no_hyphen,
   single_hyphen_hash_value,
-  no_hyphen_custom_class,
-  single_hyphen_then_colon_snappable_custom_class
 } from "./RegExDefinitions";
 
 import fs from "fs";
@@ -106,7 +109,6 @@ export function DoWork(filename: string, ExistingCSS: string): string {
       // );
       // if (result != "" && result != undefined) mostSpecificMatch = result;
 
-      
       // Deduplicate
       if (
         mostSpecificMatch != undefined &&
@@ -114,8 +116,7 @@ export function DoWork(filename: string, ExistingCSS: string): string {
         !CSSAlreadyExists(ThisFilesCSS, mostSpecificMatch?.trim())
       ) {
         ThisFilesCSS += mostSpecificMatch.trim();
-        NonMediaCSS +=
-          DeDuplication(ExistingCSS, mostSpecificMatch.trim());
+        NonMediaCSS += DeDuplication(ExistingCSS, mostSpecificMatch.trim());
       }
     });
   }
@@ -132,8 +133,8 @@ export function DoWork(filename: string, ExistingCSS: string): string {
       // display:flex
       let mostSpecificMatch = "";
 
-      let result;  
-    
+      let result;
+
       result = GenericRegexMedia(
         item,
         single_hyphen_then_colon,
@@ -198,8 +199,7 @@ export function DoWork(filename: string, ExistingCSS: string): string {
         !CSSAlreadyExists(ThisFilesCSS, mostSpecificMatch?.trim())
       ) {
         ThisFilesCSS += mostSpecificMatch.trim();
-        MediaCSS +=
-          DeDuplication(ExistingCSS, mostSpecificMatch.trim());
+        MediaCSS += DeDuplication(ExistingCSS, mostSpecificMatch.trim());
       }
     });
   }
@@ -212,68 +212,174 @@ export function DoWork(filename: string, ExistingCSS: string): string {
     let classIndividualString = ` ${classIndividual.groups?.["classComplete"]} `;
     let splitIndividualClassItems = classIndividualString.split(" ");
 
-    let className: string = "";
-    let classMembers: string = "";
+    let constructedClassName: string = "";
+    let constructedClassMemberList: string = "";
 
     splitIndividualClassItems.forEach((item) => {
-      let classMember: string;
-      let classMemberName: string = "";
+      if (item == "") return;
 
+      constructedClassName = "";
       // display:flex^MYBUTTON
       // background:red^MYBUTTON
       let r = GenericRegexNonMediaCustomClass(
         item,
-        no_hyphen_custom_class,
+        no_hyphen,
         "no_hyphen_custom_class"
       );
-      classMember = r.classMember;
-      classMemberName = r.className.replace('^','');
 
-      if (classMember != "") {
-        classMembers += `\r\n\t${classMember}`;
-      }
-
-      if (classMemberName != "") {
-        className = classMemberName;
-      }
+      ({ constructedClassMemberList, constructedClassName } =
+        UpdateClassMembersOfCustomClass(
+          r.className,
+          r.classMember,
+          constructedClassMemberList
+        ));
+      if (constructedClassName != "") return;
 
       r = GenericRegexNonMediaCustomClass(
         item,
-        single_hyphen_then_colon_snappable_custom_class,
+        single_hyphen_then_colon_snappable,
         "single_hyphen_then_colon_snappable_custom_class"
       );
 
-      classMember = r.classMember;
-      classMemberName = r.className.replace('^','');
+      ({ constructedClassMemberList, constructedClassName } =
+        UpdateClassMembersOfCustomClass(
+          r.className,
+          r.classMember,
+          constructedClassMemberList
+        ));
+      if (constructedClassName != "") return;
 
-      if (classMember != "") {
-        classMembers += `\r\n\t${classMember}`;
-      }
+      r = GenericRegexNonMediaCustomClass(
+        item,
+        single_hyphen_then_colon,
+        "SingleHypenThenColon_CustomClass"
+      );
 
-      if (classMemberName != "") {
-        className = classMemberName;
-      }
+      ({ constructedClassMemberList, constructedClassName } =
+        UpdateClassMembersOfCustomClass(
+          r.className,
+          r.classMember,
+          constructedClassMemberList
+        ));
+      if (constructedClassName != "") return;
 
+      r = GenericRegexNonMediaCustomClass(
+        item,
+        single_hyphen_then_colon_then_another_hyphen,
+        "SingleHypenThenColonThenAnotherHyphen_CustomClass"
+      );
 
+      ({ constructedClassMemberList, constructedClassName } =
+        UpdateClassMembersOfCustomClass(
+          r.className,
+          r.classMember,
+          constructedClassMemberList
+        ));
+      if (constructedClassName != "") return;
 
+      r = GenericRegexNonMediaCustomClass(
+        item,
+        double_hyphen_then_colon,
+        "DoubleHyphenTheColon_CustomClass"
+      );
+
+      ({ constructedClassMemberList, constructedClassName } =
+        UpdateClassMembersOfCustomClass(
+          r.className,
+          r.classMember,
+          constructedClassMemberList
+        ));
+      if (constructedClassName != "") return;
+
+      r = GenericRegexNonMediaCustomClass(
+        item,
+        single_hyphen_then_colon_box_shadow,
+        "SingleHyphenBoxShadow_CUstomClass"
+      );
+
+      ({ constructedClassMemberList, constructedClassName } =
+        UpdateClassMembersOfCustomClass(
+          r.className,
+          r.classMember,
+          constructedClassMemberList
+        ));
+      if (constructedClassName != "") return;
+
+      r = GenericRegexNonMediaCustomClass(
+        item,
+        no_hyphen_snappable,
+        "NoHyphenSnapable_CustomClass"
+      );
+
+      ({ constructedClassMemberList, constructedClassName } =
+        UpdateClassMembersOfCustomClass(
+          r.className,
+          r.classMember,
+          constructedClassMemberList
+        ));
+      if (constructedClassName != "") return;
+
+      r = GenericRegexNonMediaCustomClass(
+        item,
+        no_hyphen_pixel_values,
+        "NoHyphenPixeValues_CustomClass"
+      );
+
+      ({ constructedClassMemberList, constructedClassName } =
+        UpdateClassMembersOfCustomClass(
+          r.className,
+          r.classMember,
+          constructedClassMemberList
+        ));
+      if (constructedClassName != "") return;
+
+      r = GenericRegexNonMediaCustomClass(
+        item,
+        single_hyphen_hash_value,
+        "SingleHyphenHashValue_CustomClass"
+      );
+
+      ({ constructedClassMemberList, constructedClassName } =
+        UpdateClassMembersOfCustomClass(
+          r.className,
+          r.classMember,
+          constructedClassMemberList
+        ));
     });
 
-    if (className != "") {
-
-    let TempCustomClass = `.${className} {${classMembers}\r\n}`
+    if (constructedClassName != "") {
+      let TempCustomClass = `.${constructedClassName} {${constructedClassMemberList}\r\n}`;
       // Deduplicate Custom Classes
-  if (
-    !CSSAlreadyExists(ExistingCSS, TempCustomClass?.trim())
-  ) {
-    ThisFilesCSS += TempCustomClass.trim();
-    CustomClass += `\r\n${TempCustomClass}\r\n`
-  }
-  
-
+      if (!CSSAlreadyExists(ExistingCSS, TempCustomClass?.trim())) {
+        ThisFilesCSS += TempCustomClass.trim();
+        CustomClass += `\r\n${TempCustomClass}\r\n`;
+      }
     }
   }
 
-  
-
   return `${NonMediaCSS} ${MediaCSS} ${CustomClass}`.trim();
+}
+
+function UpdateClassMembersOfCustomClass(
+  classNameOnThisItem: string,
+  classMemberInThisItem: string,
+  InProgressClassMembersFoundSoFar: string
+): ICustomClassBuilder {
+  let constructedClass: ICustomClassBuilder = {
+    constructedClassMemberList: "",
+    constructedClassName: "",
+  };
+
+  if (classMemberInThisItem != "") {
+    constructedClass.constructedClassMemberList = `${InProgressClassMembersFoundSoFar}\r\n\t${classMemberInThisItem}`;
+    constructedClass.constructedClassName = classNameOnThisItem.replace(
+      "^",
+      ""
+    );
+    return constructedClass;
+  } else
+    return {
+      constructedClassMemberList: InProgressClassMembersFoundSoFar,
+      constructedClassName: "",
+    };
 }

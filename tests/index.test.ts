@@ -69,6 +69,29 @@ describe("Line Height", () => {
 });
 
 
+describe("Custom Classes", () => {
+  test("Mybutton - One", () => {
+    expect(DoWork("./tests/custom-classes/my-button-one.html", "")).toContain(
+      `.mybtn {\r\n\tfont-size: ${FontSizes.xl};\r\n}`
+    );
+  });
+
+  test("Mybutton - Two", () => {
+    expect(DoWork("./tests/custom-classes/my-button-two.html", "")).toContain(
+      `.mybtn {\r\n\tfont-size: ${FontSizes.xl};\r\n\tdisplay: flex;\r\n}`
+    );
+  });
+
+  test("Mybutton - Three", () => {
+    expect(DoWork("./tests/custom-classes/my-button-three.html", "")).toContain(
+      `.mybtn {\r\n\tfont-size: ${FontSizes.xl};\r\n\tdisplay: flex;\r\n\tborder-width: ${BorderSizes.md};\r\n}`
+    );
+  });
+
+});
+
+
+
 describe("Flex Basis", () => {
   test("Flex Basis", () => {
     expect(DoWork("./tests/flex-basis/flex-basis.html", "")).toContain(
