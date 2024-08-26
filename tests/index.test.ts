@@ -7,6 +7,7 @@ import {
   BorderRadius,
   FontWeights,
   LineHeight,
+  color_palette_1,
 } from "../src/Sizes";
 import {
   MediaBreakPointsValue,
@@ -65,9 +66,7 @@ describe("Line Height", () => {
       `.line-height\\:xl {\r\n\tline-height: ${LineHeight.xl};\r\n}`
     );
   });
-
 });
-
 
 describe("Custom Classes", () => {
   test("Mybutton - One", () => {
@@ -87,10 +86,7 @@ describe("Custom Classes", () => {
       `.mybtn {\r\n\tfont-size: ${FontSizes.xl};\r\n\tdisplay: flex;\r\n\tborder-width: ${BorderSizes.md};\r\n}`
     );
   });
-
 });
-
-
 
 describe("Flex Basis", () => {
   test("Flex Basis", () => {
@@ -100,11 +96,12 @@ describe("Flex Basis", () => {
   });
 
   test("Flex Basis - Large", () => {
-    expect(DoWork("./tests/flex-basis/flex-basis-media-large.html", "")).toContain(
+    expect(
+      DoWork("./tests/flex-basis/flex-basis-media-large.html", "")
+    ).toContain(
       `@media (min-width: ${MediaBreakPointsValue.large}px) {\r\n.${MediaBreakPointsText.large}\\?flex-basis\\:30\\% {\r\n\tflex-basis: 30%;\r\n\t}\r\n}`
     );
   });
-
 });
 
 describe("Justify Content", () => {
@@ -307,7 +304,60 @@ describe("Padding", () => {
 });
 
 /////////////////////////////////
+describe("Color", () => {
+  test("Color Snap C1", () => {
+    expect(DoWork("./tests/color/color.html", "")).toContain(
+      `.color\\:c1 {\r\n\tcolor: ${color_palette_1.c1};\r\n}`
+    );
+  });
+
+  test("Color", () => {
+    expect(DoWork("./tests/color/color.html", "")).toContain(
+      `.color\\:red {\r\n\tcolor: red;\r\n}`
+    );
+  });
+
+  test("Color # code", () => {
+    expect(DoWork("./tests/color/color.html", "")).toContain(
+      `.color\\:\\#124356 {\r\n\tcolor: #124356;\r\n}`
+    );
+  });
+
+  test("Color # code Hover", () => {
+    expect(DoWork("./tests/color/color.html", "")).toContain(
+      `.color\\:\\#124356\\:hover:hover {\r\n\tcolor: #124356;\r\n}`
+    );
+  });
+
+  test("Color # code Focus", () => {
+    expect(DoWork("./tests/color/color.html", "")).toContain(
+      `.color\\:\\#124356\\:focus:focus {\r\n\tcolor: #124356;\r\n}`
+    );
+  });
+
+  test("Color Media Small", () => {
+    expect(DoWork("./tests/color/color.html", "")).toContain(
+      `@media (min-width: ${MediaBreakPointsValue.small}px) {\r\n.${MediaBreakPointsText.small}\\?color\\:red {\r\n\tcolor: red;\r\n\t}\r\n}`
+    );
+  });
+
+  test("Color Hover", () => {
+    expect(DoWork("./tests/color/color.html", "")).toContain(
+      `.color\\:red\\:hover:hover {\r\n\tcolor: red;\r\n}`
+    );
+  });
+});
+
+/////////////////////////////////
 describe("Background Color", () => {
+  test("BackGround Color Snap C1", () => {
+    expect(
+      DoWork("./tests/background-color/background_color.html", "")
+    ).toContain(
+      `.background-color\\:c1 {\r\n\tbackground-color: ${color_palette_1.c1};\r\n}`
+    );
+  });
+
   test("BackGround Color", () => {
     expect(
       DoWork("./tests/background-color/background_color.html", "")

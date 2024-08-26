@@ -21,7 +21,7 @@ export const single_hyphen_hash_value =
   /^(?<media>extrasmall\?|small\?|medium\?|large\?|extralarge\?)?(?<style>[A-Za-z]+-[A-Za-z]+):(?<value1>#[A-Za-z0-9]+)(?<pseudo>:hover|:focus)?(?<customclass>\@[A-Za-z0-9]+(?<customclass_subgroup_pseudo>:hover|:focus)?)?$/gi;
 
 export const single_hyphen_percentage_value =
-  /^(?<media>extrasmall\?|small\?|medium\?|large\?|extralarge\?)?(?<style>[A-Za-z]+-[A-Za-z]+):(?<value1>[A-Za-z0-9]+\%)(?<pseudo>:hover|:focus)?(?<customclass>\@[A-Za-z0-9]+(?<customclass_subgroup_pseudo>:hover|:focus)?)?$/gi;
+  /^(?<media>extrasmall\?|small\?|medium\?|large\?|extralarge\?)?(?<style>[A-Za-z]+-[A-Za-z]+):(?<value1>[A-Za-z0-9\%]+)(?<pseudo>:hover|:focus)?(?<customclass>\@[A-Za-z0-9]+(?<customclass_subgroup_pseudo>:hover|:focus)?)?$/gi;
 
 //justify-content: space-between
 export const single_hyphen_then_colon_then_another_hyphen =
@@ -45,7 +45,7 @@ export const no_hyphen_snappable =
   /^(?<media>extrasmall\?|small\?|medium\?|large\?|extralarge\?)?(?<style>[A-Za-z]+):(?<value1>xs|sm|md|lg|xl|2xl|c1|c2|c3|c4)(?<value2>xs|sm|md|lg|xl|2xl|c1|c2|c3|c4)?(?<value3>xs|sm|md|lg|xl|2xl|c1|c2|c3|c4)?(?<value4>xs|sm|md|lg|xl|2xl|c1|c2|c3|c4)?(?<pseudo>:hover|:focus)?(?<customclass>\@[A-Za-z0-9]+(?<customclass_subgroup_pseudo>:hover|:focus)?)?$/gi;
 
 export const no_hyphen =
-  /^(?<media>extrasmall\?|small\?|medium\?|large\?|extralarge\?)?(?<style>[A-Za-z]+):(?<value1>[0-9A-Za-z]+)(?<value1type>px|ch|rem)?(?<value2>[0-9A-Za-z]+)?(?<value2type>px|ch|rem)?(?<value3>[0-9A-Za-z]+)?(?<value3type>px|ch|rem)?(?<value4>[0-9A-Za-z]+)?(?<value4type>px|ch|rem)?(?<pseudo>:hover|:focus)?(?<customclass>\@[A-Za-z0-9]+(?<customclass_subgroup_pseudo>:hover|:focus)?)?$/gi;
+  /^(?<media>extrasmall\?|small\?|medium\?|large\?|extralarge\?)?(?<style>[A-Za-z]+):(?<value1>[0-9A-Za-z\%#]+)(?<value1type>px|ch|rem)?(?<value2>[0-9A-Za-z]+)?(?<value2type>px|ch|rem)?(?<value3>[0-9A-Za-z]+)?(?<value3type>px|ch|rem)?(?<value4>[0-9A-Za-z]+)?(?<value4type>px|ch|rem)?(?<pseudo>:hover|:focus)?(?<customclass>\@[A-Za-z0-9]+(?<customclass_subgroup_pseudo>:hover|:focus)?)?$/gi;
 
 export const no_hyphen_pixel_values =
   /^(?<media>extrasmall\?|small\?|medium\?|large\?|extralarge\?)?(?<style>[A-Za-z]+):(?<value1>[0-9]+)(?<value1type>px|ch|rem)?(?<value2>[0-9]+)?(?<value2type>px|ch|rem)?(?<value3>[0-9]+)?(?<value3type>px|ch|rem)?(?<value4>[0-9]+)?(?<value4type>px|ch|rem)?(?<pseudo>:hover|:focus)?(?<customclass>\@[A-Za-z0-9]+(?<customclass_subgroup_pseudo>:hover|:focus)?)?$/gi;
