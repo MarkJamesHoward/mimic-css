@@ -79,6 +79,7 @@ export function PerformSnap(type: string, value: string) {
 
   switch (type) {
     case "background-color":
+    case "color":
       switch (value) {
         case ColorSizes.c1:
           result = mimicConfig?.ColorPalette1Snapping?.c1 ?? color_palette_1.c1;
