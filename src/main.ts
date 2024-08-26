@@ -212,6 +212,7 @@ export function DoWork(filename: string, ExistingCSS: string): string {
     let classIndividualString = ` ${classIndividual.groups?.["classComplete"]} `;
     let splitIndividualClassItems = classIndividualString.split(" ");
 
+    let combinedClassMembersForCustomClass: Record<string, string> = {};
     let constructedClassName: string = "";
     let constructedClassMemberList: string = "";
 
@@ -233,7 +234,18 @@ export function DoWork(filename: string, ExistingCSS: string): string {
           r.classMember,
           constructedClassMemberList
         ));
-      if (constructedClassName != "") return;
+      if (constructedClassName != "") {
+        if (
+          combinedClassMembersForCustomClass[constructedClassName] === undefined
+        ) {
+          combinedClassMembersForCustomClass[constructedClassName] =
+            constructedClassMemberList ?? "";
+        } else {
+          combinedClassMembersForCustomClass[constructedClassName] +=
+            constructedClassMemberList ?? "";
+        }
+        return;
+      }
 
       r = GenericRegexNonMediaCustomClass(
         item,
@@ -247,7 +259,19 @@ export function DoWork(filename: string, ExistingCSS: string): string {
           r.classMember,
           constructedClassMemberList
         ));
-      if (constructedClassName != "") return;
+      if (constructedClassName != "") {
+        if (
+          combinedClassMembersForCustomClass[constructedClassName] === undefined
+        ) {
+          combinedClassMembersForCustomClass[constructedClassName] =
+            constructedClassMemberList ?? "";
+        } else {
+          combinedClassMembersForCustomClass[constructedClassName] +=
+            constructedClassMemberList ?? "";
+        }
+
+        return;
+      }
 
       r = GenericRegexNonMediaCustomClass(
         item,
@@ -261,7 +285,18 @@ export function DoWork(filename: string, ExistingCSS: string): string {
           r.classMember,
           constructedClassMemberList
         ));
-      if (constructedClassName != "") return;
+      if (constructedClassName != "") {
+        if (
+          combinedClassMembersForCustomClass[constructedClassName] === undefined
+        ) {
+          combinedClassMembersForCustomClass[constructedClassName] =
+            constructedClassMemberList ?? "";
+        } else {
+          combinedClassMembersForCustomClass[constructedClassName] +=
+            constructedClassMemberList ?? "";
+        }
+        return;
+      }
 
       r = GenericRegexNonMediaCustomClass(
         item,
@@ -275,7 +310,18 @@ export function DoWork(filename: string, ExistingCSS: string): string {
           r.classMember,
           constructedClassMemberList
         ));
-      if (constructedClassName != "") return;
+      if (constructedClassName != "") {
+        if (
+          combinedClassMembersForCustomClass[constructedClassName] === undefined
+        ) {
+          combinedClassMembersForCustomClass[constructedClassName] =
+            constructedClassMemberList ?? "";
+        } else {
+          combinedClassMembersForCustomClass[constructedClassName] +=
+            constructedClassMemberList ?? "";
+        }
+        return;
+      }
 
       r = GenericRegexNonMediaCustomClass(
         item,
@@ -289,7 +335,18 @@ export function DoWork(filename: string, ExistingCSS: string): string {
           r.classMember,
           constructedClassMemberList
         ));
-      if (constructedClassName != "") return;
+      if (constructedClassName != "") {
+        if (
+          combinedClassMembersForCustomClass[constructedClassName] === undefined
+        ) {
+          combinedClassMembersForCustomClass[constructedClassName] =
+            constructedClassMemberList ?? "";
+        } else {
+          combinedClassMembersForCustomClass[constructedClassName] +=
+            constructedClassMemberList ?? "";
+        }
+        return;
+      }
 
       r = GenericRegexNonMediaCustomClass(
         item,
@@ -303,7 +360,18 @@ export function DoWork(filename: string, ExistingCSS: string): string {
           r.classMember,
           constructedClassMemberList
         ));
-      if (constructedClassName != "") return;
+      if (constructedClassName != "") {
+        if (
+          combinedClassMembersForCustomClass[constructedClassName] === undefined
+        ) {
+          combinedClassMembersForCustomClass[constructedClassName] =
+            constructedClassMemberList ?? "";
+        } else {
+          combinedClassMembersForCustomClass[constructedClassName] +=
+            constructedClassMemberList ?? "";
+        }
+        return;
+      }
 
       r = GenericRegexNonMediaCustomClass(
         item,
@@ -317,7 +385,18 @@ export function DoWork(filename: string, ExistingCSS: string): string {
           r.classMember,
           constructedClassMemberList
         ));
-      if (constructedClassName != "") return;
+      if (constructedClassName != "") {
+        if (
+          combinedClassMembersForCustomClass[constructedClassName] === undefined
+        ) {
+          combinedClassMembersForCustomClass[constructedClassName] =
+            constructedClassMemberList ?? "";
+        } else {
+          combinedClassMembersForCustomClass[constructedClassName] +=
+            constructedClassMemberList ?? "";
+        }
+        return;
+      }
 
       r = GenericRegexNonMediaCustomClass(
         item,
@@ -331,7 +410,18 @@ export function DoWork(filename: string, ExistingCSS: string): string {
           r.classMember,
           constructedClassMemberList
         ));
-      if (constructedClassName != "") return;
+      if (constructedClassName != "") {
+        if (
+          combinedClassMembersForCustomClass[constructedClassName] === undefined
+        ) {
+          combinedClassMembersForCustomClass[constructedClassName] =
+            constructedClassMemberList ?? "";
+        } else {
+          combinedClassMembersForCustomClass[constructedClassName] +=
+            constructedClassMemberList ?? "";
+        }
+        return;
+      }
 
       r = GenericRegexNonMediaCustomClass(
         item,
@@ -347,12 +437,14 @@ export function DoWork(filename: string, ExistingCSS: string): string {
         ));
     });
 
-    if (constructedClassName != "") {
-      let TempCustomClass = `.${constructedClassName} {${constructedClassMemberList}\r\n}`;
-      // Deduplicate Custom Classes
-      if (!CSSAlreadyExists(ExistingCSS, TempCustomClass?.trim())) {
-        ThisFilesCSS += TempCustomClass.trim();
-        CustomClass += `\r\n${TempCustomClass}\r\n`;
+    for (const key in combinedClassMembersForCustomClass) {
+      if (constructedClassName != "") {
+        let TempCustomClass = `.${key} {${combinedClassMembersForCustomClass[key]}\r\n}`;
+        // Deduplicate Custom Classes
+        if (!CSSAlreadyExists(ExistingCSS, TempCustomClass?.trim())) {
+          ThisFilesCSS += TempCustomClass.trim();
+          CustomClass += `\r\n${TempCustomClass}\r\n`;
+        }
       }
     }
   }
@@ -371,7 +463,8 @@ function UpdateClassMembersOfCustomClass(
   };
 
   if (classMemberInThisItem != "") {
-    constructedClass.constructedClassMemberList = `${InProgressClassMembersFoundSoFar}\r\n\t${classMemberInThisItem}`;
+    constructedClass.constructedClassMemberList = `\r\n\t${classMemberInThisItem}`;
+    //constructedClass.constructedClassMemberList = `${InProgressClassMembersFoundSoFar}\r\n\t${classMemberInThisItem}`;
     constructedClass.constructedClassName = classNameOnThisItem.replace(
       "^",
       ""
@@ -379,7 +472,7 @@ function UpdateClassMembersOfCustomClass(
     return constructedClass;
   } else
     return {
-      constructedClassMemberList: InProgressClassMembersFoundSoFar,
+      constructedClassMemberList: "",
       constructedClassName: "",
     };
 }
