@@ -220,8 +220,8 @@ export function DoWork(filename: string, ExistingCSS: string): string {
       if (item == "") return;
 
       constructedClassName = "";
-      // display:flex^MYBUTTON
-      // background:red^MYBUTTON
+      // display:flex@MYBUTTON
+      // background:red@MYBUTTON
       let r = GenericRegexNonMediaCustomClass(
         item,
         no_hyphen,
@@ -466,7 +466,7 @@ function UpdateClassMembersOfCustomClass(
     constructedClass.constructedClassMemberList = `\r\n\t${classMemberInThisItem}`;
     //constructedClass.constructedClassMemberList = `${InProgressClassMembersFoundSoFar}\r\n\t${classMemberInThisItem}`;
     constructedClass.constructedClassName = classNameOnThisItem.replace(
-      "^",
+      "@",
       ""
     );
     return constructedClass;

@@ -16,7 +16,7 @@ export interface IMimicConfig {
     lg: string;
     xl: string;
     xl2: string;
-  },
+  };
   BorderWidthSnapping?: {
     xs: string;
     sm: string;
@@ -24,7 +24,7 @@ export interface IMimicConfig {
     lg: string;
     xl: string;
     xl2: string;
-  },
+  };
   GapSnapping?: {
     xs: string;
     sm: string;
@@ -32,7 +32,7 @@ export interface IMimicConfig {
     lg: string;
     xl: string;
     xl2: string;
-  },
+  };
   PaddingSnapping?: {
     xs: string;
     sm: string;
@@ -40,7 +40,7 @@ export interface IMimicConfig {
     lg: string;
     xl: string;
     xl2: string;
-  },
+  };
   BoxShadowSnapping?: {
     xs: string;
     sm: string;
@@ -48,7 +48,7 @@ export interface IMimicConfig {
     lg: string;
     xl: string;
     xl2: string;
-  },
+  };
   MarginSnapping?: {
     xs: string;
     sm: string;
@@ -56,8 +56,12 @@ export interface IMimicConfig {
     lg: string;
     xl: string;
     xl2: string;
-  }
-
-
-  
+  };
+  ColorPalette1Snapping?: {
+    c1: string;
+    c2: string;
+    c3: string;
+    c4: string;
+    c5: string;
+  };
 }

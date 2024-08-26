@@ -9,10 +9,12 @@ import {
   GapSizes,
   FontWeights,
   LineHeight,
+  ColorSizes,
 } from "./Sizes";
 
-import { mimicConfig } from "./configurationLoader";
+import { color_palette_1 } from "./ColorPalette";
 
+import { mimicConfig } from "./configurationLoader";
 
 // export function PerformSnap4(
 //   type: string,
@@ -76,30 +78,52 @@ export function PerformSnap(type: string, value: string) {
   }
 
   switch (type) {
+    case "background-color":
+      switch (value) {
+        case ColorSizes.c1:
+          result = mimicConfig?.ColorPalette1Snapping?.c1 ?? color_palette_1.c1;
+          break;
+
+        case ColorSizes.c2:
+          result = mimicConfig?.ColorPalette1Snapping?.c2 ?? color_palette_1.c2;
+          break;
+
+        case ColorSizes.c3:
+          result = mimicConfig?.ColorPalette1Snapping?.c3 ?? color_palette_1.c3;
+          break;
+
+        case ColorSizes.c4:
+          result = mimicConfig?.ColorPalette1Snapping?.c4 ?? color_palette_1.c4;
+          break;
+        default:
+          result = value;
+          break;
+      }
+      break;
     case "box-shadow":
       switch (value) {
         case Sizes.xs:
-          result =  mimicConfig?.BoxShadowSnapping?.xs ??    BoxShadowSizes.xs;
+          result = mimicConfig?.BoxShadowSnapping?.xs ?? BoxShadowSizes.xs;
           break;
 
         case Sizes.sm:
-          result =   mimicConfig?.BoxShadowSnapping?.xs ??   BoxShadowSizes.sm;
+          result = mimicConfig?.BoxShadowSnapping?.xs ?? BoxShadowSizes.sm;
           break;
 
         case Sizes.md:
-          result =  mimicConfig?.BoxShadowSnapping?.xs ??    BoxShadowSizes.md;
+          result = mimicConfig?.BoxShadowSnapping?.xs ?? BoxShadowSizes.md;
           break;
 
         case Sizes.lg:
-          result =  mimicConfig?.BoxShadowSnapping?.xs ??    BoxShadowSizes.lg;
+          result = mimicConfig?.BoxShadowSnapping?.xs ?? BoxShadowSizes.lg;
           break;
 
         case Sizes.xl:
-          result =  mimicConfig?.BoxShadowSnapping?.xs ??    BoxShadowSizes.xl;
+          result = mimicConfig?.BoxShadowSnapping?.xs ?? BoxShadowSizes.xl;
           break;
 
         case Sizes.xl2:
-          result =   mimicConfig?.BoxShadowSnapping?.xs ??   BoxShadowSizes.xl2;
+          result = mimicConfig?.BoxShadowSnapping?.xs ?? BoxShadowSizes.xl2;
           break;
 
         default:
@@ -114,27 +138,27 @@ export function PerformSnap(type: string, value: string) {
     case "padding":
       switch (value) {
         case Sizes.xs:
-          result =  mimicConfig?.PaddingSnapping?.xs ??   PaddingSizes.xs;
+          result = mimicConfig?.PaddingSnapping?.xs ?? PaddingSizes.xs;
           break;
 
         case Sizes.sm:
-          result =  mimicConfig?.PaddingSnapping?.sm ??   PaddingSizes.sm;
+          result = mimicConfig?.PaddingSnapping?.sm ?? PaddingSizes.sm;
           break;
 
         case Sizes.md:
-          result =  mimicConfig?.PaddingSnapping?.md ??   PaddingSizes.md;
+          result = mimicConfig?.PaddingSnapping?.md ?? PaddingSizes.md;
           break;
 
         case Sizes.lg:
-          result =  mimicConfig?.PaddingSnapping?.lg ??   PaddingSizes.lg;
+          result = mimicConfig?.PaddingSnapping?.lg ?? PaddingSizes.lg;
           break;
 
         case Sizes.xl:
-          result =  mimicConfig?.PaddingSnapping?.xl ??   PaddingSizes.xl;
+          result = mimicConfig?.PaddingSnapping?.xl ?? PaddingSizes.xl;
           break;
 
         case Sizes.xl2:
-          result =  mimicConfig?.PaddingSnapping?.xl2 ??  PaddingSizes.xl2;
+          result = mimicConfig?.PaddingSnapping?.xl2 ?? PaddingSizes.xl2;
           break;
 
         default:
@@ -145,27 +169,27 @@ export function PerformSnap(type: string, value: string) {
     case "gap":
       switch (value) {
         case Sizes.xs:
-          result = mimicConfig?.GapSnapping?.xs ??  GapSizes.xs;
+          result = mimicConfig?.GapSnapping?.xs ?? GapSizes.xs;
           break;
 
         case Sizes.sm:
-          result = mimicConfig?.GapSnapping?.sm ??  GapSizes.sm;
+          result = mimicConfig?.GapSnapping?.sm ?? GapSizes.sm;
           break;
 
         case Sizes.md:
-          result = mimicConfig?.GapSnapping?.md ??  GapSizes.md;
+          result = mimicConfig?.GapSnapping?.md ?? GapSizes.md;
           break;
 
         case Sizes.lg:
-          result = mimicConfig?.GapSnapping?.lg ??  GapSizes.lg;
+          result = mimicConfig?.GapSnapping?.lg ?? GapSizes.lg;
           break;
 
         case Sizes.xl:
-          result = mimicConfig?.GapSnapping?.xl ??  GapSizes.xl;
+          result = mimicConfig?.GapSnapping?.xl ?? GapSizes.xl;
           break;
 
         case Sizes.xl2:
-          result = mimicConfig?.GapSnapping?.xl2 ??  GapSizes.xl2;
+          result = mimicConfig?.GapSnapping?.xl2 ?? GapSizes.xl2;
           break;
 
         default:
@@ -173,37 +197,37 @@ export function PerformSnap(type: string, value: string) {
           break;
       }
       break;
-      case "line-height":
-        switch (value) {
-          case Sizes.xs:
-            result = mimicConfig?.lineHeightSnapping?.xs ?? LineHeight.xs;
-            break;
-  
-          case Sizes.sm:
-            result =  mimicConfig?.lineHeightSnapping?.sm ?? LineHeight.sm;
-            break;
-  
-          case Sizes.md:
-            result =  mimicConfig?.lineHeightSnapping?.md ?? LineHeight.md;
-            break;
-  
-          case Sizes.lg:
-            result =  mimicConfig?.lineHeightSnapping?.lg ?? LineHeight.lg;
-            break;
-  
-          case Sizes.xl:
-            result =  mimicConfig?.lineHeightSnapping?.xl ?? LineHeight.xl;
-            break;
-  
-          case Sizes.xl2:
-            result =  mimicConfig?.lineHeightSnapping?.xl2 ?? LineHeight.xl2;
-            break;
-  
-          default:
-            result = value;
-            break;
-        }
-        break;
+    case "line-height":
+      switch (value) {
+        case Sizes.xs:
+          result = mimicConfig?.lineHeightSnapping?.xs ?? LineHeight.xs;
+          break;
+
+        case Sizes.sm:
+          result = mimicConfig?.lineHeightSnapping?.sm ?? LineHeight.sm;
+          break;
+
+        case Sizes.md:
+          result = mimicConfig?.lineHeightSnapping?.md ?? LineHeight.md;
+          break;
+
+        case Sizes.lg:
+          result = mimicConfig?.lineHeightSnapping?.lg ?? LineHeight.lg;
+          break;
+
+        case Sizes.xl:
+          result = mimicConfig?.lineHeightSnapping?.xl ?? LineHeight.xl;
+          break;
+
+        case Sizes.xl2:
+          result = mimicConfig?.lineHeightSnapping?.xl2 ?? LineHeight.xl2;
+          break;
+
+        default:
+          result = value;
+          break;
+      }
+      break;
     case "border-width":
       switch (value) {
         case Sizes.xs:
@@ -211,23 +235,23 @@ export function PerformSnap(type: string, value: string) {
           break;
 
         case Sizes.sm:
-          result = mimicConfig?.BorderWidthSnapping?.sm ??  BorderSizes.sm;
+          result = mimicConfig?.BorderWidthSnapping?.sm ?? BorderSizes.sm;
           break;
 
         case Sizes.md:
-          result =  mimicConfig?.BorderWidthSnapping?.md ??  BorderSizes.md;
+          result = mimicConfig?.BorderWidthSnapping?.md ?? BorderSizes.md;
           break;
 
         case Sizes.lg:
-          result =  mimicConfig?.BorderWidthSnapping?.lg ??  BorderSizes.lg;
+          result = mimicConfig?.BorderWidthSnapping?.lg ?? BorderSizes.lg;
           break;
 
         case Sizes.xl:
-          result =  mimicConfig?.BorderWidthSnapping?.xl ??  BorderSizes.xl;
+          result = mimicConfig?.BorderWidthSnapping?.xl ?? BorderSizes.xl;
           break;
 
         case Sizes.xl2:
-          result =  mimicConfig?.BorderWidthSnapping?.xl2 ??  BorderSizes.xl2;
+          result = mimicConfig?.BorderWidthSnapping?.xl2 ?? BorderSizes.xl2;
           break;
 
         default:
@@ -242,27 +266,27 @@ export function PerformSnap(type: string, value: string) {
     case "margin":
       switch (value) {
         case Sizes.xs:
-          result =  mimicConfig?.MarginSnapping?.xl2 ??   MarginSizes.xs;
+          result = mimicConfig?.MarginSnapping?.xl2 ?? MarginSizes.xs;
           break;
 
         case Sizes.sm:
-          result = mimicConfig?.MarginSnapping?.xl2 ??    MarginSizes.sm;
+          result = mimicConfig?.MarginSnapping?.xl2 ?? MarginSizes.sm;
           break;
 
         case Sizes.md:
-          result = mimicConfig?.MarginSnapping?.xl2 ??    MarginSizes.md;
+          result = mimicConfig?.MarginSnapping?.xl2 ?? MarginSizes.md;
           break;
 
         case Sizes.lg:
-          result = mimicConfig?.MarginSnapping?.xl2 ??    MarginSizes.lg;
+          result = mimicConfig?.MarginSnapping?.xl2 ?? MarginSizes.lg;
           break;
 
         case Sizes.xl:
-          result = mimicConfig?.MarginSnapping?.xl2 ??    MarginSizes.xl;
+          result = mimicConfig?.MarginSnapping?.xl2 ?? MarginSizes.xl;
           break;
 
         case Sizes.xl2:
-          result = mimicConfig?.MarginSnapping?.xl2 ??    MarginSizes.xl2;
+          result = mimicConfig?.MarginSnapping?.xl2 ?? MarginSizes.xl2;
           break;
 
         default:

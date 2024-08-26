@@ -1,3 +1,5 @@
+///////////////////////////////////////
+
 export const Sizes = {
   xs: "xs",
   sm: "sm",
@@ -5,6 +7,24 @@ export const Sizes = {
   lg: "lg",
   xl: "xl",
   xl2: "2xl",
+};
+
+export const ColorSizes = {
+  c1: "c1",
+  c2: "c2",
+  c3: "c3",
+  c4: "c4",
+  c5: "c5",
+};
+
+////////////////////////////////////////
+
+export const color_palette_1 = {
+  c1: "#3d5a80",
+  c2: "#98c1d9",
+  c3: "#e0fbfc",
+  c4: "#ee6c4d",
+  c5: "#293241",
 };
 
 export const BorderRadius = {
@@ -51,7 +71,6 @@ export const PaddingSizes = {
   xl: "50px",
   xl2: "200px",
 };
-
 
 export const LineHeight = {
   xs: "100%",
