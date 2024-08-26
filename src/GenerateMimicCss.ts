@@ -63,9 +63,9 @@ export function GenerateMimicClass(
         : `\r\n\r\n/*MIMIC-CSS*/\r\n`
     }` +
     `${media ? mediaString : ""}` +
-    `${media ? "" : "."}${style}\\:${Escape(
-      value1
-    )}${Escape(value1type)}${value2?.trim()}${value2type}${value3?.trim()}${value3type}${value4?.trim()}${value4type}${color?.trim()}${
+    `${media ? "" : "."}${style}\\:${Escape(value1)}${Escape(
+      value1type
+    )}${value2?.trim()}${value2type}${value3?.trim()}${value3type}${value4?.trim()}${value4type}${color?.trim()}${
       pseudo ? `\\${pseudo}${pseudo}` : ""
     } {\r\n\t` +
     style +
@@ -90,6 +90,7 @@ export function GenerateMimicClass_CustomClass(
   media: string,
   pseudo: string,
   color: string,
+  classNamePseudo: string
 ): string {
   let width = MapMediaQuery(media?.replace("?", ""));
 
@@ -121,10 +122,6 @@ export function GenerateMimicClass_CustomClass(
       ? ""
       : " " + snappedvalue4;
   color = color == "" || color == undefined ? "" : " " + Escape(color);
-  
 
-  return (
-    `${style}: ${snappedvalue1}${value1type}${snappedvalue2}${value2type}${snappedvalue3}${value3type}${snappedvalue4}${value4type}${color};` 
-  );
+  return `${style}: ${snappedvalue1}${value1type}${snappedvalue2}${value2type}${snappedvalue3}${value3type}${snappedvalue4}${value4type}${color};`;
 }
-

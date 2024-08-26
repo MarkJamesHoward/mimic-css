@@ -1,4 +1,7 @@
-import { GenerateMimicClass, GenerateMimicClass_CustomClass } from "./GenerateMimicCss";
+import {
+  GenerateMimicClass,
+  GenerateMimicClass_CustomClass,
+} from "./GenerateMimicCss";
 
 let debug = true;
 
@@ -21,7 +24,6 @@ export function GenericRegexNonMedia(item: any, regex: RegExp, source: string) {
     let value4type = match.groups["value4type"];
     let className = match.groups["customclass"];
 
-
     if (media != undefined || className != undefined) return "";
 
     result = GenerateMimicClass(
@@ -40,17 +42,20 @@ export function GenericRegexNonMedia(item: any, regex: RegExp, source: string) {
       color
     );
   }
-    return result 
+  return result;
 }
 
-export function GenericRegexNonMediaCustomClass(item: any, regex: RegExp, source: string): { classMember: string, className: string } {
-  
-  if (item == '')
-    return { classMember:'', className:''}
+export function GenericRegexNonMediaCustomClass(
+  item: any,
+  regex: RegExp,
+  source: string
+): { classMember: string; className: string } {
+  if (item == "") return { classMember: "", className: "" };
 
   let single_colon_matches = item.matchAll(regex);
-  let classMember: string = '';
-  let className: string = '';
+  let classMember: string = "";
+  let className: string = "";
+  let classNamePseudo: string = "";
 
   for (const match of single_colon_matches) {
     let style = match.groups["style"];
@@ -66,8 +71,9 @@ export function GenericRegexNonMediaCustomClass(item: any, regex: RegExp, source
     let value3type = match.groups["value3type"];
     let value4type = match.groups["value4type"];
     className = match.groups["customclass"];
+    classNamePseudo = match.groups["customclass_subgroup_pseudo"];
 
-    if (className == undefined) return { classMember: '', className: ''};
+    if (className == undefined) return { classMember: "", className: "" };
 
     classMember = GenerateMimicClass_CustomClass(
       source,
@@ -82,12 +88,16 @@ export function GenericRegexNonMediaCustomClass(item: any, regex: RegExp, source
       value4type,
       media,
       pseudo,
-      color
+      color,
+      classNamePseudo
     );
   }
-    return { classMember, className } 
+  // const classNameWithMaybePseudoAppended =
+  //   classNamePseudo != "" && classNamePseudo != undefined
+  //     ? className + classNamePseudo
+  //     : className;
+  return { classMember, className: className };
 }
-
 
 export function GenericRegexMedia(item: any, regex: RegExp, source: string) {
   let single_colon_matches = item.matchAll(regex);
@@ -126,7 +136,6 @@ export function GenericRegexMedia(item: any, regex: RegExp, source: string) {
     );
   }
   if (result != undefined) {
-    return result
-  }
-  else return undefined
+    return result;
+  } else return undefined;
 }
