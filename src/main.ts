@@ -313,45 +313,48 @@ export function DoWork(
             classGenerationInProgress.push(constructedClassName);
           }
         }
+        return;
       }
 
-      // r = GenericRegexNonMediaCustomClass(
-      //   item,
-      //   single_hyphen_then_colon_snappable,
-      //   "single_hyphen_then_colon_snappable_custom_class"
-      // );
+      r = GenericRegexNonMediaCustomClass(
+        item,
+        single_hyphen_then_colon_snappable,
+        "single_hyphen_then_colon_snappable_custom_class"
+      );
 
-      // ({ constructedClassMemberList, constructedClassName } =
-      //   UpdateClassMembersOfCustomClass(
-      //     r.className,
-      //     r.classMember,
-      //     constructedClassMemberList
-      //   ));
-      // if (constructedClassName != "") {
-      //   if (
-      //     DictionaryOfFoundCSSFromAllFile[constructedClassName] === undefined
-      //   ) {
-      //     DictionaryOfFoundCSSFromAllFile[
-      //       constructedClassName
-      //     ] = `{\r\n\t${constructedClassMemberList}\r\n}`;
-      //   } else {
-      //     if (classGenerationInProgress.includes(constructedClassName)) {
-      //       // In progress so lets
-      //       DictionaryOfFoundCSSFromAllFile[
-      //         constructedClassName
-      //       ] = `${DictionaryOfFoundCSSFromAllFile[
-      //         constructedClassName
-      //       ].replace("}", "")}\t${constructedClassMemberList}\r\n}`;
-      //     } else {
-      //       // Just starting to regen so lets clear first
-      //       DictionaryOfFoundCSSFromAllFile[
-      //         constructedClassName
-      //       ] = `{\r\n\t${constructedClassMemberList}\r\n}`;
+      ({ constructedClassMemberList, constructedClassName } =
+        UpdateClassMembersOfCustomClass(
+          r.className,
+          r.classMember,
+          constructedClassMemberList
+        ));
+      if (constructedClassName != "") {
+        if (
+          DictionaryOfFoundCSSFromAllFile[constructedClassName] === undefined
+        ) {
+          DictionaryOfFoundCSSFromAllFile[
+            constructedClassName
+          ] = `{\r\n\t${constructedClassMemberList}\r\n}`;
+          classGenerationInProgress.push(constructedClassName);
+        } else {
+          if (classGenerationInProgress.includes(constructedClassName)) {
+            // In progress so lets
+            DictionaryOfFoundCSSFromAllFile[
+              constructedClassName
+            ] = `${DictionaryOfFoundCSSFromAllFile[
+              constructedClassName
+            ].replace("}", "")}\t${constructedClassMemberList}\r\n}`;
+          } else {
+            // Just starting to regen so lets clear first
+            DictionaryOfFoundCSSFromAllFile[
+              constructedClassName
+            ] = `{\r\n\t${constructedClassMemberList}\r\n}`;
 
-      //       classGenerationInProgress.push(constructedClassName);
-      //     }
-      //   }
-      // }
+            classGenerationInProgress.push(constructedClassName);
+          }
+        }
+        return;
+      }
 
       r = GenericRegexNonMediaCustomClass(
         item,
@@ -390,6 +393,7 @@ export function DoWork(
             classGenerationInProgress.push(constructedClassName);
           }
         }
+        return;
       }
 
       r = GenericRegexNonMediaCustomClass(
@@ -429,6 +433,7 @@ export function DoWork(
             classGenerationInProgress.push(constructedClassName);
           }
         }
+        return;
       }
 
       r = GenericRegexNonMediaCustomClass(

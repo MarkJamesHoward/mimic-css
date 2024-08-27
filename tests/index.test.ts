@@ -8,6 +8,8 @@ import {
   FontWeights,
   LineHeight,
   color_palette_1,
+  BoxShadowSizes,
+  Sizes,
 } from "../src/Sizes";
 import {
   MediaBreakPointsValue,
@@ -27,6 +29,30 @@ describe("Box Shadow", () => {
       )
     ).toContain(
       `.box-shadow\\:10px10px\\:focus:focus {\r\n\tbox-shadow: 10px 10px;\r\n}`
+    );
+  });
+
+  test("Box Shadow Snapping", () => {
+    expect(
+      DoWork(
+        "./tests/box-shadow/box-shadow-snapping.html",
+        { className: "", css: "" },
+        { mediaClass: { className: "", css: "" } }
+      )
+    ).toContain(
+      `.box-shadow\\:smsm {\r\n\tbox-shadow: ${BoxShadowSizes.sm} ${BoxShadowSizes.sm};\r\n}`
+    );
+  });
+
+  test("Box Shadow Custom Button", () => {
+    expect(
+      DoWork(
+        "./tests/box-shadow/box-shadow-custombutton.html",
+        { className: "", css: "" },
+        { mediaClass: { className: "", css: "" } }
+      )
+    ).toContain(
+      `.btn\\: {\r\n\tbox-shadow: ${BoxShadowSizes.sm} ${BoxShadowSizes.sm};\r\n}`
     );
   });
 
