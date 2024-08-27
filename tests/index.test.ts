@@ -52,7 +52,7 @@ describe("Box Shadow", () => {
         { mediaClass: { className: "", css: "" } }
       )
     ).toContain(
-      `.btn\\: {\r\n\tbox-shadow: ${BoxShadowSizes.sm} ${BoxShadowSizes.sm};\r\n}`
+      `.btn {\r\n\tbox-shadow: ${BoxShadowSizes.sm} ${BoxShadowSizes.sm};\r\n}`
     );
   });
 
