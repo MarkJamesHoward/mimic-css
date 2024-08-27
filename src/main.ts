@@ -1,10 +1,12 @@
-import { ICustomClassBuilder } from "../interfaces/ICustomClassBuilder";
+import { IClass, ICustomClassBuilder } from "../interfaces/ICustomClassBuilder";
 import { CSSAlreadyExists, DeDuplication } from "../src/DeDuplication";
 import {
   GenericRegexNonMedia,
   GenericRegexMedia,
   GenericRegexNonMediaCustomClass,
+  GenericRegexNonMedia_ReturnDistinctClassAndCSS,
 } from "../src/RegExPerform";
+import { GenerateMimicClass_NONMEDIA_Return_ClassName_Separate } from "./GenerateMimicCss";
 
 import {
   double_hyphen_then_colon,
@@ -12,7 +14,6 @@ import {
   single_hyphen_then_colon_snappable,
   single_hyphen_then_colon_then_another_hyphen,
   single_hyphen_then_colon_box_shadow,
-  single_hyphen_percentage_value,
   no_hyphen_pixel_values,
   no_hyphen_snappable,
   no_hyphen,
@@ -21,11 +22,16 @@ import {
 
 import fs from "fs";
 
-export function DoWork(filename: string, ExistingCSS: string): string {
+export function DoWork(
+  filename: string,
+  DictionaryOfFoundCSSFromAllFile: Record<string, string>,
+  DictionaryOfFoundMediaCSSFromAllFile: Record<string, IClass>
+): string {
   let NonMediaCSS = "";
   let MediaCSS = "";
   let CustomClass = "";
   let ThisFilesCSS = "";
+  let ExistingCSS = "";
 
   const data = fs.readFileSync(filename, "utf8");
 
@@ -38,86 +44,94 @@ export function DoWork(filename: string, ExistingCSS: string): string {
     let splitIndividualClassItems = classIndividualString.split(" ");
 
     splitIndividualClassItems.forEach((item) => {
+      if (item === "") return;
+
       // display:flex
       let mostSpecificMatch = "";
 
       let result;
+      let distinctClassAndCss;
 
-      result = GenericRegexNonMedia(
+      distinctClassAndCss = GenericRegexNonMedia_ReturnDistinctClassAndCSS(
         item,
         single_hyphen_then_colon,
         "SingleHypenThenColon"
       );
-      if (result != "" && result != undefined) mostSpecificMatch = result;
 
-      result = GenericRegexNonMedia(
+      DictionaryOfFoundCSSFromAllFile[distinctClassAndCss.className] =
+        distinctClassAndCss.css;
+
+      distinctClassAndCss = GenericRegexNonMedia_ReturnDistinctClassAndCSS(
+        item,
+        single_hyphen_then_colon,
+        "SingleHypenThenColon"
+      );
+      DictionaryOfFoundCSSFromAllFile[distinctClassAndCss.className] =
+        distinctClassAndCss.css;
+
+      distinctClassAndCss = GenericRegexNonMedia_ReturnDistinctClassAndCSS(
         item,
         single_hyphen_then_colon_then_another_hyphen,
         "SingleHypenThenColonThenAnotherHyphen"
       );
-      if (result != "" && result != undefined) mostSpecificMatch = result;
+      DictionaryOfFoundCSSFromAllFile[distinctClassAndCss.className] =
+        distinctClassAndCss.css;
 
-      result = GenericRegexNonMedia(
+      distinctClassAndCss = GenericRegexNonMedia_ReturnDistinctClassAndCSS(
         item,
         double_hyphen_then_colon,
         "DoubleHyphenTheColon"
       );
-      if (result != "" && result != undefined) mostSpecificMatch = result;
+      DictionaryOfFoundCSSFromAllFile[distinctClassAndCss.className] =
+        distinctClassAndCss.css;
 
-      result = GenericRegexNonMedia(
+      distinctClassAndCss = GenericRegexNonMedia_ReturnDistinctClassAndCSS(
         item,
         single_hyphen_then_colon_box_shadow,
         "SingleHyphenBoxShadow"
       );
-      if (result != "" && result != undefined) mostSpecificMatch = result;
+      DictionaryOfFoundCSSFromAllFile[distinctClassAndCss.className] =
+        distinctClassAndCss.css;
 
-      result = GenericRegexNonMedia(
+      distinctClassAndCss = GenericRegexNonMedia_ReturnDistinctClassAndCSS(
         item,
         single_hyphen_then_colon_snappable,
         "SingleHyphenSnapable"
       );
-      if (result != "" && result != undefined) mostSpecificMatch = result;
+      DictionaryOfFoundCSSFromAllFile[distinctClassAndCss.className] =
+        distinctClassAndCss.css;
 
-      result = GenericRegexNonMedia(item, no_hyphen, "NoHypen");
-      if (result != "" && result != undefined) mostSpecificMatch = result;
+      distinctClassAndCss = GenericRegexNonMedia_ReturnDistinctClassAndCSS(
+        item,
+        no_hyphen,
+        "NoHypen"
+      );
+      DictionaryOfFoundCSSFromAllFile[distinctClassAndCss.className] =
+        distinctClassAndCss.css;
 
-      result = GenericRegexNonMedia(
+      distinctClassAndCss = GenericRegexNonMedia_ReturnDistinctClassAndCSS(
         item,
         no_hyphen_snappable,
         "NoHyphenSnapable"
       );
-      if (result != "" && result != undefined) mostSpecificMatch = result;
+      DictionaryOfFoundCSSFromAllFile[distinctClassAndCss.className] =
+        distinctClassAndCss.css;
 
-      result = GenericRegexNonMedia(
+      distinctClassAndCss = GenericRegexNonMedia_ReturnDistinctClassAndCSS(
         item,
         no_hyphen_pixel_values,
         "NoHyphenPixeValues"
       );
-      if (result != "" && result != undefined) mostSpecificMatch = result;
+      DictionaryOfFoundCSSFromAllFile[distinctClassAndCss.className] =
+        distinctClassAndCss.css;
 
-      result = GenericRegexNonMedia(
+      distinctClassAndCss = GenericRegexNonMedia_ReturnDistinctClassAndCSS(
         item,
         single_hyphen_hash_value,
         "SingleHyphenHashValue"
       );
-      if (result != "" && result != undefined) mostSpecificMatch = result;
-
-      // result = GenericRegexNonMedia(
-      //   item,
-      //   single_hyphen_percentage_value,
-      //   "singleHyphenPercentageValue"
-      // );
-      // if (result != "" && result != undefined) mostSpecificMatch = result;
-
-      // Deduplicate
-      if (
-        mostSpecificMatch != undefined &&
-        mostSpecificMatch != "" &&
-        !CSSAlreadyExists(ThisFilesCSS, mostSpecificMatch?.trim())
-      ) {
-        ThisFilesCSS += mostSpecificMatch.trim();
-        NonMediaCSS += DeDuplication(ExistingCSS, mostSpecificMatch.trim());
-      }
+      DictionaryOfFoundCSSFromAllFile[distinctClassAndCss.className] =
+        distinctClassAndCss.css;
     });
   }
 
@@ -130,6 +144,8 @@ export function DoWork(filename: string, ExistingCSS: string): string {
     let splitIndividualClassItems = classIndividualString.split(" ");
 
     splitIndividualClassItems.forEach((item) => {
+      if (item === "") return;
+
       // display:flex
       let mostSpecificMatch = "";
 
@@ -140,79 +156,117 @@ export function DoWork(filename: string, ExistingCSS: string): string {
         single_hyphen_then_colon,
         "SingleHypenMedia"
       );
-      if (result != "" && result != undefined) mostSpecificMatch = result;
+      DictionaryOfFoundMediaCSSFromAllFile[result.mediaDescription] = {
+        className: result.mediaClass.className,
+        css: result.mediaClass.css,
+      };
 
       result = GenericRegexMedia(
         item,
         single_hyphen_then_colon_then_another_hyphen,
         "SingleHypenThenAnotherHyphenMedia"
       );
-      if (result != "" && result != undefined) mostSpecificMatch = result;
+
+      DictionaryOfFoundMediaCSSFromAllFile[result.mediaDescription] = {
+        className: result.mediaClass.className,
+        css: result.mediaClass.css,
+      };
 
       result = GenericRegexMedia(
         item,
         double_hyphen_then_colon,
         "DoubleHyphenMedia"
       );
-      if (result != "" && result != undefined) mostSpecificMatch = result;
+
+      DictionaryOfFoundMediaCSSFromAllFile[result.mediaDescription] = {
+        className: result.mediaClass.className,
+        css: result.mediaClass.css,
+      };
 
       result = GenericRegexMedia(
         item,
         single_hyphen_then_colon_box_shadow,
         "SingleHyphenBoxShadowMedia"
       );
-      if (result != "" && result != undefined) mostSpecificMatch = result;
+
+      DictionaryOfFoundMediaCSSFromAllFile[result.mediaDescription] = {
+        className: result.mediaClass.className,
+        css: result.mediaClass.css,
+      };
 
       result = GenericRegexMedia(
         item,
         single_hyphen_then_colon_snappable,
         "SingleHyphenSnapableMedia"
       );
-      if (result != "" && result != undefined) mostSpecificMatch = result;
+
+      DictionaryOfFoundMediaCSSFromAllFile[result.mediaDescription] = {
+        className: result.mediaClass.className,
+        css: result.mediaClass.css,
+      };
 
       result = GenericRegexMedia(item, no_hyphen, "NoHypenMedia");
-      if (result != "" && result != undefined) mostSpecificMatch = result;
+
+      DictionaryOfFoundMediaCSSFromAllFile[result.mediaDescription] = {
+        className: result.mediaClass.className,
+        css: result.mediaClass.css,
+      };
 
       result = GenericRegexMedia(
         item,
         no_hyphen_snappable,
         "NoHyphenSnapableMedia"
       );
-      if (result != "" && result != undefined) mostSpecificMatch = result;
+
+      DictionaryOfFoundMediaCSSFromAllFile[result.mediaDescription] = {
+        className: result.mediaClass.className,
+        css: result.mediaClass.css,
+      };
 
       result = GenericRegexMedia(
         item,
         no_hyphen_pixel_values,
         "NoHyphenPixeValues"
       );
-      if (result != "" && result != undefined) mostSpecificMatch = result;
+
+      DictionaryOfFoundMediaCSSFromAllFile[result.mediaDescription] = {
+        className: result.mediaClass.className,
+        css: result.mediaClass.css,
+      };
 
       result = GenericRegexMedia(
         item,
         single_hyphen_hash_value,
         "SingleHyphenHashValueMedia"
       );
-      // Deduplicate
-      if (
-        mostSpecificMatch != undefined &&
-        mostSpecificMatch != "" &&
-        !CSSAlreadyExists(ThisFilesCSS, mostSpecificMatch?.trim())
-      ) {
-        ThisFilesCSS += mostSpecificMatch.trim();
-        MediaCSS += DeDuplication(ExistingCSS, mostSpecificMatch.trim());
-      }
+
+      DictionaryOfFoundMediaCSSFromAllFile[result.mediaDescription] = {
+        className: result.mediaClass.className,
+        css: result.mediaClass.css,
+      };
+
+      // // Deduplicate
+      // if (
+      //   mostSpecificMatch != undefined &&
+      //   mostSpecificMatch != "" &&
+      //   !CSSAlreadyExists(ThisFilesCSS, mostSpecificMatch?.trim())
+      // ) {
+      //   ThisFilesCSS += mostSpecificMatch.trim();
+      //   MediaCSS += DeDuplication(ExistingCSS, mostSpecificMatch.trim());
+      // }
     });
   }
 
   classComplete = /class=\"(?<classComplete>.+)\"/gi;
   classCompleteMatch = data.matchAll(classComplete);
 
-  // Check for Custom Class creation - NonMedia
+  let classGenerationInProgress: Array<string> = [];
+
+  ////////////// Check for Custom Class creation - NonMedia ////////////////////////
   for (const classIndividual of classCompleteMatch) {
     let classIndividualString = ` ${classIndividual.groups?.["classComplete"]} `;
     let splitIndividualClassItems = classIndividualString.split(" ");
 
-    let combinedClassMembersForCustomClass: Record<string, string> = {};
     let constructedClassName: string = "";
     let constructedClassMemberList: string = "";
 
@@ -236,42 +290,68 @@ export function DoWork(filename: string, ExistingCSS: string): string {
         ));
       if (constructedClassName != "") {
         if (
-          combinedClassMembersForCustomClass[constructedClassName] === undefined
+          DictionaryOfFoundCSSFromAllFile[constructedClassName] === undefined
         ) {
-          combinedClassMembersForCustomClass[constructedClassName] =
-            constructedClassMemberList ?? "";
+          DictionaryOfFoundCSSFromAllFile[
+            constructedClassName
+          ] = `{\r\n\t${constructedClassMemberList}\r\n}`;
+          classGenerationInProgress.push(constructedClassName);
         } else {
-          combinedClassMembersForCustomClass[constructedClassName] +=
-            constructedClassMemberList ?? "";
+          if (classGenerationInProgress.includes(constructedClassName)) {
+            // In progress so lets
+            DictionaryOfFoundCSSFromAllFile[
+              constructedClassName
+            ] = `${DictionaryOfFoundCSSFromAllFile[
+              constructedClassName
+            ].replace("}", "")}\t${constructedClassMemberList}\r\n}`;
+          } else {
+            // Just starting to regen so lets clear first
+            DictionaryOfFoundCSSFromAllFile[
+              constructedClassName
+            ] = `{\r\n\t${constructedClassMemberList}\r\n}`;
+
+            classGenerationInProgress.push(constructedClassName);
+          }
         }
-        return;
       }
 
-      r = GenericRegexNonMediaCustomClass(
-        item,
-        single_hyphen_then_colon_snappable,
-        "single_hyphen_then_colon_snappable_custom_class"
-      );
+      // r = GenericRegexNonMediaCustomClass(
+      //   item,
+      //   single_hyphen_then_colon_snappable,
+      //   "single_hyphen_then_colon_snappable_custom_class"
+      // );
 
-      ({ constructedClassMemberList, constructedClassName } =
-        UpdateClassMembersOfCustomClass(
-          r.className,
-          r.classMember,
-          constructedClassMemberList
-        ));
-      if (constructedClassName != "") {
-        if (
-          combinedClassMembersForCustomClass[constructedClassName] === undefined
-        ) {
-          combinedClassMembersForCustomClass[constructedClassName] =
-            constructedClassMemberList ?? "";
-        } else {
-          combinedClassMembersForCustomClass[constructedClassName] +=
-            constructedClassMemberList ?? "";
-        }
+      // ({ constructedClassMemberList, constructedClassName } =
+      //   UpdateClassMembersOfCustomClass(
+      //     r.className,
+      //     r.classMember,
+      //     constructedClassMemberList
+      //   ));
+      // if (constructedClassName != "") {
+      //   if (
+      //     DictionaryOfFoundCSSFromAllFile[constructedClassName] === undefined
+      //   ) {
+      //     DictionaryOfFoundCSSFromAllFile[
+      //       constructedClassName
+      //     ] = `{\r\n\t${constructedClassMemberList}\r\n}`;
+      //   } else {
+      //     if (classGenerationInProgress.includes(constructedClassName)) {
+      //       // In progress so lets
+      //       DictionaryOfFoundCSSFromAllFile[
+      //         constructedClassName
+      //       ] = `${DictionaryOfFoundCSSFromAllFile[
+      //         constructedClassName
+      //       ].replace("}", "")}\t${constructedClassMemberList}\r\n}`;
+      //     } else {
+      //       // Just starting to regen so lets clear first
+      //       DictionaryOfFoundCSSFromAllFile[
+      //         constructedClassName
+      //       ] = `{\r\n\t${constructedClassMemberList}\r\n}`;
 
-        return;
-      }
+      //       classGenerationInProgress.push(constructedClassName);
+      //     }
+      //   }
+      // }
 
       r = GenericRegexNonMediaCustomClass(
         item,
@@ -287,15 +367,29 @@ export function DoWork(filename: string, ExistingCSS: string): string {
         ));
       if (constructedClassName != "") {
         if (
-          combinedClassMembersForCustomClass[constructedClassName] === undefined
+          DictionaryOfFoundCSSFromAllFile[constructedClassName] === undefined
         ) {
-          combinedClassMembersForCustomClass[constructedClassName] =
-            constructedClassMemberList ?? "";
+          DictionaryOfFoundCSSFromAllFile[
+            constructedClassName
+          ] = `{\r\n\t${constructedClassMemberList}\r\n}`;
+          classGenerationInProgress.push(constructedClassName);
         } else {
-          combinedClassMembersForCustomClass[constructedClassName] +=
-            constructedClassMemberList ?? "";
+          if (classGenerationInProgress.includes(constructedClassName)) {
+            // In progress so lets
+            DictionaryOfFoundCSSFromAllFile[
+              constructedClassName
+            ] = `${DictionaryOfFoundCSSFromAllFile[
+              constructedClassName
+            ].replace("}", "")}\t${constructedClassMemberList}\r\n}`;
+          } else {
+            // Just starting to regen so lets clear first
+            DictionaryOfFoundCSSFromAllFile[
+              constructedClassName
+            ] = `{\r\n\t${constructedClassMemberList}\r\n}`;
+
+            classGenerationInProgress.push(constructedClassName);
+          }
         }
-        return;
       }
 
       r = GenericRegexNonMediaCustomClass(
@@ -312,15 +406,29 @@ export function DoWork(filename: string, ExistingCSS: string): string {
         ));
       if (constructedClassName != "") {
         if (
-          combinedClassMembersForCustomClass[constructedClassName] === undefined
+          DictionaryOfFoundCSSFromAllFile[constructedClassName] === undefined
         ) {
-          combinedClassMembersForCustomClass[constructedClassName] =
-            constructedClassMemberList ?? "";
+          DictionaryOfFoundCSSFromAllFile[
+            constructedClassName
+          ] = `{\r\n\t${constructedClassMemberList}\r\n}`;
+          classGenerationInProgress.push(constructedClassName);
         } else {
-          combinedClassMembersForCustomClass[constructedClassName] +=
-            constructedClassMemberList ?? "";
+          if (classGenerationInProgress.includes(constructedClassName)) {
+            // In progress so lets
+            DictionaryOfFoundCSSFromAllFile[
+              constructedClassName
+            ] = `${DictionaryOfFoundCSSFromAllFile[
+              constructedClassName
+            ].replace("}", "")}\t${constructedClassMemberList}\r\n}`;
+          } else {
+            // Just starting to regen so lets clear first
+            DictionaryOfFoundCSSFromAllFile[
+              constructedClassName
+            ] = `{\r\n\t${constructedClassMemberList}\r\n}`;
+
+            classGenerationInProgress.push(constructedClassName);
+          }
         }
-        return;
       }
 
       r = GenericRegexNonMediaCustomClass(
@@ -337,15 +445,29 @@ export function DoWork(filename: string, ExistingCSS: string): string {
         ));
       if (constructedClassName != "") {
         if (
-          combinedClassMembersForCustomClass[constructedClassName] === undefined
+          DictionaryOfFoundCSSFromAllFile[constructedClassName] === undefined
         ) {
-          combinedClassMembersForCustomClass[constructedClassName] =
-            constructedClassMemberList ?? "";
+          DictionaryOfFoundCSSFromAllFile[
+            constructedClassName
+          ] = `{\r\n\t${constructedClassMemberList}\r\n}`;
+          classGenerationInProgress.push(constructedClassName);
         } else {
-          combinedClassMembersForCustomClass[constructedClassName] +=
-            constructedClassMemberList ?? "";
+          if (classGenerationInProgress.includes(constructedClassName)) {
+            // In progress so lets
+            DictionaryOfFoundCSSFromAllFile[
+              constructedClassName
+            ] = `${DictionaryOfFoundCSSFromAllFile[
+              constructedClassName
+            ].replace("}", "")}\t${constructedClassMemberList}\r\n}`;
+          } else {
+            // Just starting to regen so lets clear first
+            DictionaryOfFoundCSSFromAllFile[
+              constructedClassName
+            ] = `{\r\n\t${constructedClassMemberList}\r\n}`;
+
+            classGenerationInProgress.push(constructedClassName);
+          }
         }
-        return;
       }
 
       r = GenericRegexNonMediaCustomClass(
@@ -360,17 +482,32 @@ export function DoWork(filename: string, ExistingCSS: string): string {
           r.classMember,
           constructedClassMemberList
         ));
+
       if (constructedClassName != "") {
         if (
-          combinedClassMembersForCustomClass[constructedClassName] === undefined
+          DictionaryOfFoundCSSFromAllFile[constructedClassName] === undefined
         ) {
-          combinedClassMembersForCustomClass[constructedClassName] =
-            constructedClassMemberList ?? "";
+          DictionaryOfFoundCSSFromAllFile[
+            constructedClassName
+          ] = `{\r\n\t${constructedClassMemberList}\r\n}`;
+          classGenerationInProgress.push(constructedClassName);
         } else {
-          combinedClassMembersForCustomClass[constructedClassName] +=
-            constructedClassMemberList ?? "";
+          if (classGenerationInProgress.includes(constructedClassName)) {
+            // In progress so lets
+            DictionaryOfFoundCSSFromAllFile[
+              constructedClassName
+            ] = `${DictionaryOfFoundCSSFromAllFile[
+              constructedClassName
+            ].replace("}", "")}\t${constructedClassMemberList}\r\n}`;
+          } else {
+            // Just starting to regen so lets clear first
+            DictionaryOfFoundCSSFromAllFile[
+              constructedClassName
+            ] = `{\r\n\t${constructedClassMemberList}\r\n}`;
+
+            classGenerationInProgress.push(constructedClassName);
+          }
         }
-        return;
       }
 
       r = GenericRegexNonMediaCustomClass(
@@ -385,17 +522,32 @@ export function DoWork(filename: string, ExistingCSS: string): string {
           r.classMember,
           constructedClassMemberList
         ));
+
       if (constructedClassName != "") {
         if (
-          combinedClassMembersForCustomClass[constructedClassName] === undefined
+          DictionaryOfFoundCSSFromAllFile[constructedClassName] === undefined
         ) {
-          combinedClassMembersForCustomClass[constructedClassName] =
-            constructedClassMemberList ?? "";
+          DictionaryOfFoundCSSFromAllFile[
+            constructedClassName
+          ] = `{\r\n\t${constructedClassMemberList}\r\n}`;
+          classGenerationInProgress.push(constructedClassName);
         } else {
-          combinedClassMembersForCustomClass[constructedClassName] +=
-            constructedClassMemberList ?? "";
+          if (classGenerationInProgress.includes(constructedClassName)) {
+            // In progress so lets
+            DictionaryOfFoundCSSFromAllFile[
+              constructedClassName
+            ] = `${DictionaryOfFoundCSSFromAllFile[
+              constructedClassName
+            ].replace("}", "")}\t${constructedClassMemberList}\r\n}`;
+          } else {
+            // Just starting to regen so lets clear first
+            DictionaryOfFoundCSSFromAllFile[
+              constructedClassName
+            ] = `{\r\n\t${constructedClassMemberList}\r\n}`;
+
+            classGenerationInProgress.push(constructedClassName);
+          }
         }
-        return;
       }
 
       r = GenericRegexNonMediaCustomClass(
@@ -410,17 +562,32 @@ export function DoWork(filename: string, ExistingCSS: string): string {
           r.classMember,
           constructedClassMemberList
         ));
+
       if (constructedClassName != "") {
         if (
-          combinedClassMembersForCustomClass[constructedClassName] === undefined
+          DictionaryOfFoundCSSFromAllFile[constructedClassName] === undefined
         ) {
-          combinedClassMembersForCustomClass[constructedClassName] =
-            constructedClassMemberList ?? "";
+          DictionaryOfFoundCSSFromAllFile[
+            constructedClassName
+          ] = `{\r\n\t${constructedClassMemberList}\r\n}`;
+          classGenerationInProgress.push(constructedClassName);
         } else {
-          combinedClassMembersForCustomClass[constructedClassName] +=
-            constructedClassMemberList ?? "";
+          if (classGenerationInProgress.includes(constructedClassName)) {
+            // In progress so lets
+            DictionaryOfFoundCSSFromAllFile[
+              constructedClassName
+            ] = `${DictionaryOfFoundCSSFromAllFile[
+              constructedClassName
+            ].replace("}", "")}\t${constructedClassMemberList}\r\n}`;
+          } else {
+            // Just starting to regen so lets clear first
+            DictionaryOfFoundCSSFromAllFile[
+              constructedClassName
+            ] = `{\r\n\t${constructedClassMemberList}\r\n}`;
+
+            classGenerationInProgress.push(constructedClassName);
+          }
         }
-        return;
       }
 
       r = GenericRegexNonMediaCustomClass(
@@ -435,21 +602,60 @@ export function DoWork(filename: string, ExistingCSS: string): string {
           r.classMember,
           constructedClassMemberList
         ));
+
+      if (constructedClassName != "") {
+        if (
+          DictionaryOfFoundCSSFromAllFile[constructedClassName] === undefined
+        ) {
+          DictionaryOfFoundCSSFromAllFile[
+            constructedClassName
+          ] = `{\r\n\t${constructedClassMemberList}\r\n}`;
+          classGenerationInProgress.push(constructedClassName);
+        } else {
+          if (classGenerationInProgress.includes(constructedClassName)) {
+            // In progress so lets
+            DictionaryOfFoundCSSFromAllFile[
+              constructedClassName
+            ] = `${DictionaryOfFoundCSSFromAllFile[
+              constructedClassName
+            ].replace("}", "")}\t${constructedClassMemberList}\r\n}`;
+          } else {
+            // Just starting to regen so lets clear first
+            DictionaryOfFoundCSSFromAllFile[
+              constructedClassName
+            ] = `{\r\n\t${constructedClassMemberList}\r\n}`;
+
+            classGenerationInProgress.push(constructedClassName);
+          }
+        }
+      }
     });
 
-    for (const key in combinedClassMembersForCustomClass) {
-      if (constructedClassName != "") {
-        let TempCustomClass = `.${key} {${combinedClassMembersForCustomClass[key]}\r\n}`;
-        // Deduplicate Custom Classes
-        if (!CSSAlreadyExists(ExistingCSS, TempCustomClass?.trim())) {
-          ThisFilesCSS += TempCustomClass.trim();
-          CustomClass += `\r\n${TempCustomClass}\r\n`;
-        }
+    for (const key in DictionaryOfFoundCSSFromAllFile) {
+      if (key !== "" && key != undefined) {
+        DictionaryOfFoundCSSFromAllFile[
+          key
+        ] = `${DictionaryOfFoundCSSFromAllFile[key]}\r\n`;
       }
     }
   }
 
-  return `${NonMediaCSS} ${MediaCSS} ${CustomClass}`.trim();
+  // Return as string for unit tests
+  for (const key in DictionaryOfFoundCSSFromAllFile) {
+    if (key !== undefined && key !== "") {
+      let TempCustomClass = `.${key} ${DictionaryOfFoundCSSFromAllFile[key]}`;
+      ExistingCSS += TempCustomClass.trim() + "\r\n";
+    }
+  }
+
+  for (const key in DictionaryOfFoundMediaCSSFromAllFile) {
+    if (key !== undefined && key !== "") {
+      let TempCustomClass = `${key}${DictionaryOfFoundMediaCSSFromAllFile[key].className}${DictionaryOfFoundMediaCSSFromAllFile[key].css}`;
+      ExistingCSS += TempCustomClass.trim() + "\r\n";
+    }
+  }
+
+  return `${ExistingCSS}`.trim();
 }
 
 function UpdateClassMembersOfCustomClass(
@@ -463,7 +669,7 @@ function UpdateClassMembersOfCustomClass(
   };
 
   if (classMemberInThisItem != "") {
-    constructedClass.constructedClassMemberList = `\r\n\t${classMemberInThisItem}`;
+    constructedClass.constructedClassMemberList = `${classMemberInThisItem}`;
     //constructedClass.constructedClassMemberList = `${InProgressClassMembersFoundSoFar}\r\n\t${classMemberInThisItem}`;
     constructedClass.constructedClassName = classNameOnThisItem.replace(
       "@",

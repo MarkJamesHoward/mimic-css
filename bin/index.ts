@@ -4,6 +4,7 @@ import path from "path";
 import fs from "fs";
 import { DoWork } from "../src/main";
 import { LoadConfig, mimicConfig } from "../src/configurationLoader";
+import { IClass } from "../interfaces/ICustomClassBuilder";
 
 const argv = yargs(process.argv.slice(2))
   .options({
@@ -16,6 +17,9 @@ const argv = yargs(process.argv.slice(2))
   .parseSync();
 
 let ExistingCSS = "";
+let DictionaryOfFoundCSSFromAllFile: Record<string, string> = {};
+let DictionaryOfFoundMediaCSSFromAllFile: Record<string, IClass> = {};
+
 let InputFolder = argv.i ?? "./";
 let OutputFilename = argv.o;
 let ExcludeFilesFromArgs = argv.e;
@@ -24,8 +28,7 @@ let debug = argv.d;
 
 if (InputFolder == "") {
   InputFolder = "./";
-  }
-
+}
 
 function searchFile(dir: string, extension: string) {
   let exit = false;
@@ -52,32 +55,48 @@ function searchFile(dir: string, extension: string) {
     if (fileStat.isDirectory()) {
       searchFile(filePath, extension);
     } else if (file.endsWith(extension)) {
-
-
       let exitDueToFileExclusionRequested = false;
 
-      mimicConfig?.excludeFiles?.forEach(excludeMePlease => 
-        {
-          if (filePath?.includes(excludeMePlease)){
-            exitDueToFileExclusionRequested = true;
-          }
+      mimicConfig?.excludeFiles?.forEach((excludeMePlease) => {
+        if (filePath?.includes(excludeMePlease)) {
+          exitDueToFileExclusionRequested = true;
         }
-      )
+      });
 
       if (!exitDueToFileExclusionRequested) {
-      // if the file is a match, print it
-      console.log("Performing first run check on file " + filePath);
-      let result = DoWork(filePath, ExistingCSS);
-      ExistingCSS += result;
+        // if the file is a match, print it
+        console.log("Performing first run check on file " + filePath);
+        let result = DoWork(
+          filePath,
+          DictionaryOfFoundCSSFromAllFile,
+          DictionaryOfFoundMediaCSSFromAllFile
+        );
 
-      fs.writeFileSync(OutputFilename, ExistingCSS);
-      if (EmitLitFile) {
-        WriteLitFile(OutputFilename, ExistingCSS);
+        ExistingCSS = "";
+
+        for (const key in DictionaryOfFoundCSSFromAllFile) {
+          if (key !== undefined && key !== "") {
+            let TempCustomClass = `.${key} ${DictionaryOfFoundCSSFromAllFile[key]}`;
+            ExistingCSS += TempCustomClass.trim() + "\r\n";
+          }
+        }
+
+        for (const key in DictionaryOfFoundMediaCSSFromAllFile) {
+          if (key !== undefined && key !== "") {
+            let TempCustomClass = `${key}${DictionaryOfFoundMediaCSSFromAllFile[key].className}${DictionaryOfFoundMediaCSSFromAllFile[key].css}`;
+            ExistingCSS += TempCustomClass.trim() + "\r\n";
+          }
+        }
+
+        // ExistingCSS += result;
+
+        fs.writeFileSync(OutputFilename, ExistingCSS);
+        if (EmitLitFile) {
+          WriteLitFile(OutputFilename, ExistingCSS);
+        }
+      } else {
+        console.log(`Excluding file ${filePath}`);
       }
-    }
-    else {
-      console.log(`Excluding file ${filePath}`)
-    }
     }
   }
 }
@@ -113,45 +132,69 @@ async function Start() {
         let exitDueToFileExclusionRequested = false;
         let exitDueToFolderExclusionRequested = false;
 
-        mimicConfig?.excludeFiles?.forEach(excludeMePlease => 
-        {
-          if (fileName?.includes(excludeMePlease)){
+        mimicConfig?.excludeFiles?.forEach((excludeMePlease) => {
+          if (fileName?.includes(excludeMePlease)) {
             exitDueToFileExclusionRequested = true;
           }
-        }
-      )
-      // Check for exclued Folders
-      mimicConfig?.excludeFolders?.forEach(excludeMePlease => 
-        {
-          if (InputFolder?.includes(excludeMePlease)){
+        });
+        // Check for exclued Folders
+        mimicConfig?.excludeFolders?.forEach((excludeMePlease) => {
+          if (InputFolder?.includes(excludeMePlease)) {
             exitDueToFolderExclusionRequested = true;
           }
-        }
-      )
+        });
 
-        if (!exitDueToFileExclusionRequested && !exitDueToFolderExclusionRequested) {
-        if (ExcludeFilesFromArgs == "" || !fileName?.includes(ExcludeFilesFromArgs)) {
-          console.log("change detected.. performing update: " + fileName);
-          let filenamePlusPath = path.join(InputFolder, fileName);
+        if (
+          !exitDueToFileExclusionRequested &&
+          !exitDueToFolderExclusionRequested
+        ) {
+          if (
+            ExcludeFilesFromArgs == "" ||
+            !fileName?.includes(ExcludeFilesFromArgs)
+          ) {
+            console.log("change detected.. performing update: " + fileName);
+            let filenamePlusPath = path.join(InputFolder, fileName);
 
-          let result = DoWork(filenamePlusPath, ExistingCSS);
-          ExistingCSS += result;
+            let result = DoWork(
+              filenamePlusPath,
+              DictionaryOfFoundCSSFromAllFile,
+              DictionaryOfFoundMediaCSSFromAllFile
+            );
+            ExistingCSS = "";
 
-          WriteFile(OutputFilename, ExistingCSS);
+            for (const key in DictionaryOfFoundCSSFromAllFile) {
+              if (key !== undefined && key !== "") {
+                let TempCustomClass = `.${key} ${DictionaryOfFoundCSSFromAllFile[key]}`;
+                ExistingCSS += TempCustomClass.trim() + "\r\n";
+              }
+            }
 
-          if (EmitLitFile) {
-            WriteLitFile(OutputFilename, ExistingCSS);
+            for (const key in DictionaryOfFoundMediaCSSFromAllFile) {
+              if (key !== undefined && key !== "") {
+                let TempCustomClass = `${key}${DictionaryOfFoundMediaCSSFromAllFile[key].className}${DictionaryOfFoundMediaCSSFromAllFile[key].css}`;
+                ExistingCSS += TempCustomClass.trim() + "\r\n";
+              }
+            }
+
+            WriteFile(OutputFilename, ExistingCSS);
+
+            if (EmitLitFile) {
+              WriteLitFile(OutputFilename, ExistingCSS);
+            }
+          } else {
+            console.log(`file excluded ${path.join(InputFolder, fileName)}`);
           }
         } else {
           console.log(`file excluded ${path.join(InputFolder, fileName)}`);
         }
-      }
-      else {
-        console.log(`file excluded ${path.join(InputFolder, fileName)}`);
-      }
       } else {
         if (debug) {
-          console.log(`filename not in list to examine ${path.join(InputFolder, fileName)}`);
+          console.log(
+            `filename not in list to examine ${path.join(
+              InputFolder,
+              fileName
+            )}`
+          );
         }
       }
     }

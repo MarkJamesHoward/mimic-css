@@ -10,9 +10,8 @@ import {
   FontWeights,
   LineHeight,
   ColorSizes,
+  color_palette_1,
 } from "./Sizes";
-
-import { color_palette_1 } from "./ColorPalette";
 
 import { mimicConfig } from "./configurationLoader";
 
@@ -96,6 +95,11 @@ export function PerformSnap(type: string, value: string) {
         case ColorSizes.c4:
           result = mimicConfig?.ColorPalette1Snapping?.c4 ?? color_palette_1.c4;
           break;
+
+        case ColorSizes.c5:
+          result = mimicConfig?.ColorPalette1Snapping?.c5 ?? color_palette_1.c5;
+          break;
+
         default:
           result = value;
           break;
