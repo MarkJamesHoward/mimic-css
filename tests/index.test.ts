@@ -402,6 +402,18 @@ describe("display flex", () => {
     );
   });
 
+  test("display flex with Media Medium", () => {
+    expect(
+      DoWork(
+        "./tests/flex/display_flex.html",
+        { className: "", css: "" },
+        { mediaClass: { className: "", css: "" } }
+      )
+    ).toContain(
+      `@media (min-width: ${MediaBreakPointsValue.medium}px) {\r\n.${MediaBreakPointsText.medium}\\?display\\:flex {\r\n\tdisplay: flex;\r\n\t}\r\n}`
+    );
+  });
+
   test("flex gap", () => {
     expect(
       DoWork(

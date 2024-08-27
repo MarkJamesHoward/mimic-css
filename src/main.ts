@@ -156,8 +156,10 @@ export function DoWork(
         single_hyphen_then_colon,
         "SingleHypenMedia"
       );
-      DictionaryOfFoundMediaCSSFromAllFile[result.mediaDescription] = {
-        className: result.mediaClass.className,
+      DictionaryOfFoundMediaCSSFromAllFile[
+        result.mediaDescription + result.mediaClass.className
+      ] = {
+        className: "",
         css: result.mediaClass.css,
       };
 
@@ -167,8 +169,10 @@ export function DoWork(
         "SingleHypenThenAnotherHyphenMedia"
       );
 
-      DictionaryOfFoundMediaCSSFromAllFile[result.mediaDescription] = {
-        className: result.mediaClass.className,
+      DictionaryOfFoundMediaCSSFromAllFile[
+        result.mediaDescription + result.mediaClass.className
+      ] = {
+        className: "",
         css: result.mediaClass.css,
       };
 
@@ -178,8 +182,10 @@ export function DoWork(
         "DoubleHyphenMedia"
       );
 
-      DictionaryOfFoundMediaCSSFromAllFile[result.mediaDescription] = {
-        className: result.mediaClass.className,
+      DictionaryOfFoundMediaCSSFromAllFile[
+        result.mediaDescription + result.mediaClass.className
+      ] = {
+        className: "",
         css: result.mediaClass.css,
       };
 
@@ -189,8 +195,10 @@ export function DoWork(
         "SingleHyphenBoxShadowMedia"
       );
 
-      DictionaryOfFoundMediaCSSFromAllFile[result.mediaDescription] = {
-        className: result.mediaClass.className,
+      DictionaryOfFoundMediaCSSFromAllFile[
+        result.mediaDescription + result.mediaClass.className
+      ] = {
+        className: "",
         css: result.mediaClass.css,
       };
 
@@ -200,15 +208,19 @@ export function DoWork(
         "SingleHyphenSnapableMedia"
       );
 
-      DictionaryOfFoundMediaCSSFromAllFile[result.mediaDescription] = {
-        className: result.mediaClass.className,
+      DictionaryOfFoundMediaCSSFromAllFile[
+        result.mediaDescription + result.mediaClass.className
+      ] = {
+        className: "",
         css: result.mediaClass.css,
       };
 
       result = GenericRegexMedia(item, no_hyphen, "NoHypenMedia");
 
-      DictionaryOfFoundMediaCSSFromAllFile[result.mediaDescription] = {
-        className: result.mediaClass.className,
+      DictionaryOfFoundMediaCSSFromAllFile[
+        result.mediaDescription + result.mediaClass.className
+      ] = {
+        className: "",
         css: result.mediaClass.css,
       };
 
@@ -218,8 +230,10 @@ export function DoWork(
         "NoHyphenSnapableMedia"
       );
 
-      DictionaryOfFoundMediaCSSFromAllFile[result.mediaDescription] = {
-        className: result.mediaClass.className,
+      DictionaryOfFoundMediaCSSFromAllFile[
+        result.mediaDescription + result.mediaClass.className
+      ] = {
+        className: "",
         css: result.mediaClass.css,
       };
 
@@ -229,8 +243,10 @@ export function DoWork(
         "NoHyphenPixeValues"
       );
 
-      DictionaryOfFoundMediaCSSFromAllFile[result.mediaDescription] = {
-        className: result.mediaClass.className,
+      DictionaryOfFoundMediaCSSFromAllFile[
+        result.mediaDescription + result.mediaClass.className
+      ] = {
+        className: "",
         css: result.mediaClass.css,
       };
 
@@ -240,20 +256,12 @@ export function DoWork(
         "SingleHyphenHashValueMedia"
       );
 
-      DictionaryOfFoundMediaCSSFromAllFile[result.mediaDescription] = {
-        className: result.mediaClass.className,
+      DictionaryOfFoundMediaCSSFromAllFile[
+        result.mediaDescription + result.mediaClass.className
+      ] = {
+        className: "",
         css: result.mediaClass.css,
       };
-
-      // // Deduplicate
-      // if (
-      //   mostSpecificMatch != undefined &&
-      //   mostSpecificMatch != "" &&
-      //   !CSSAlreadyExists(ThisFilesCSS, mostSpecificMatch?.trim())
-      // ) {
-      //   ThisFilesCSS += mostSpecificMatch.trim();
-      //   MediaCSS += DeDuplication(ExistingCSS, mostSpecificMatch.trim());
-      // }
     });
   }
 
