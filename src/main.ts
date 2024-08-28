@@ -1,4 +1,8 @@
-import { IClass, ICustomClassBuilder } from "../interfaces/ICustomClassBuilder";
+import {
+  IClass,
+  ICustomClassBuilder,
+  IMediaClass,
+} from "../interfaces/ICustomClassBuilder";
 import { CSSAlreadyExists, DeDuplication } from "../src/DeDuplication";
 import {
   GenericRegexNonMedia,
@@ -22,16 +26,32 @@ import {
 
 import fs from "fs";
 
+export function FindCurrentMaxMediaOrder(
+  DictionaryOfFoundMediaCSSFromAllFile: Record<string, IMediaClass>
+): number {
+  let max = 0;
+
+  for (const key in DictionaryOfFoundMediaCSSFromAllFile) {
+    if (key !== undefined && key !== "") {
+      if (DictionaryOfFoundMediaCSSFromAllFile[key].order > max) {
+        max = DictionaryOfFoundMediaCSSFromAllFile[key].order;
+      }
+    }
+  }
+  return max;
+}
+
 export function DoWork(
   filename: string,
   DictionaryOfFoundCSSFromAllFile: Record<string, string>,
-  DictionaryOfFoundMediaCSSFromAllFile: Record<string, IClass>
+  DictionaryOfFoundMediaCSSFromAllFile: Record<string, IMediaClass>
 ): string {
-  let NonMediaCSS = "";
-  let MediaCSS = "";
-  let CustomClass = "";
-  let ThisFilesCSS = "";
   let ExistingCSS = "";
+  let next_media_order_position = 0;
+
+  next_media_order_position = FindCurrentMaxMediaOrder(
+    DictionaryOfFoundMediaCSSFromAllFile
+  );
 
   const data = fs.readFileSync(filename, "utf8");
 
@@ -145,6 +165,7 @@ export function DoWork(
 
     splitIndividualClassItems.forEach((item) => {
       if (item === "") return;
+      next_media_order_position += 1;
 
       // display:flex
       let mostSpecificMatch = "";
@@ -161,6 +182,7 @@ export function DoWork(
       ] = {
         className: "",
         css: result.mediaClass.css,
+        order: next_media_order_position,
       };
 
       result = GenericRegexMedia(
@@ -174,6 +196,7 @@ export function DoWork(
       ] = {
         className: "",
         css: result.mediaClass.css,
+        order: next_media_order_position,
       };
 
       result = GenericRegexMedia(
@@ -187,6 +210,7 @@ export function DoWork(
       ] = {
         className: "",
         css: result.mediaClass.css,
+        order: next_media_order_position,
       };
 
       result = GenericRegexMedia(
@@ -200,6 +224,7 @@ export function DoWork(
       ] = {
         className: "",
         css: result.mediaClass.css,
+        order: next_media_order_position,
       };
 
       result = GenericRegexMedia(
@@ -213,6 +238,7 @@ export function DoWork(
       ] = {
         className: "",
         css: result.mediaClass.css,
+        order: next_media_order_position,
       };
 
       result = GenericRegexMedia(item, no_hyphen, "NoHypenMedia");
@@ -222,6 +248,7 @@ export function DoWork(
       ] = {
         className: "",
         css: result.mediaClass.css,
+        order: next_media_order_position,
       };
 
       result = GenericRegexMedia(
@@ -235,6 +262,7 @@ export function DoWork(
       ] = {
         className: "",
         css: result.mediaClass.css,
+        order: next_media_order_position,
       };
 
       result = GenericRegexMedia(
@@ -248,6 +276,7 @@ export function DoWork(
       ] = {
         className: "",
         css: result.mediaClass.css,
+        order: next_media_order_position,
       };
 
       result = GenericRegexMedia(
@@ -261,6 +290,7 @@ export function DoWork(
       ] = {
         className: "",
         css: result.mediaClass.css,
+        order: next_media_order_position,
       };
     });
   }

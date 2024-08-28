@@ -7,3 +7,9 @@ export interface IClass {
   className: string;
   css: string;
 }
+
+export interface IMediaClass {
+  className: string;
+  css: string;
+  order: number;
+}

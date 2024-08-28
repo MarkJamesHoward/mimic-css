@@ -25,7 +25,7 @@ describe("Box Shadow", () => {
           className: "",
           css: "",
         },
-        { mediaClass: { className: "", css: "" } }
+        { mediaClass: { className: "", css: "", order: 0 } }
       )
     ).toContain(
       `.box-shadow\\:10px10px\\:focus:focus {\r\n\tbox-shadow: 10px 10px;\r\n}`
@@ -37,7 +37,7 @@ describe("Box Shadow", () => {
       DoWork(
         "./tests/box-shadow/box-shadow-snapping.html",
         { className: "", css: "" },
-        { mediaClass: { className: "", css: "" } }
+        { mediaClass: { className: "", css: "", order: 0 } }
       )
     ).toContain(
       `.box-shadow\\:smsm {\r\n\tbox-shadow: ${BoxShadowSizes.sm} ${BoxShadowSizes.sm};\r\n}`
@@ -49,7 +49,7 @@ describe("Box Shadow", () => {
       DoWork(
         "./tests/box-shadow/box-shadow-custombutton.html",
         { className: "", css: "" },
-        { mediaClass: { className: "", css: "" } }
+        { mediaClass: { className: "", css: "", order: 0 } }
       )
     ).toContain(
       `.btn {\r\n\tbox-shadow: ${BoxShadowSizes.sm} ${BoxShadowSizes.sm};\r\n}`
@@ -61,7 +61,7 @@ describe("Box Shadow", () => {
       DoWork(
         "./tests/box-shadow/box-shadow.html",
         { className: "", css: "" },
-        { mediaClass: { className: "", css: "" } }
+        { mediaClass: { className: "", css: "", order: 0 } }
       )
     ).toContain(`.box-shadow\\:10px10px {\r\n\tbox-shadow: 10px 10px;\r\n}`);
   });
@@ -74,7 +74,7 @@ describe("Box Shadow", () => {
           className: "",
           css: "",
         },
-        { mediaClass: { className: "", css: "" } }
+        { mediaClass: { className: "", css: "", order: 0 } }
       )
     ).toContain(
       `.box-shadow\\:10px10px20px30pxred {\r\n\tbox-shadow: 10px 10px 20px 30px red;\r\n}`
@@ -89,7 +89,7 @@ describe("Box Shadow", () => {
           className: "",
           css: "",
         },
-        { mediaClass: { className: "", css: "" } }
+        { mediaClass: { className: "", css: "", order: 0 } }
       )
     ).toContain(
       `.box-shadow\\:10px10px\\:hover:hover {\r\n\tbox-shadow: 10px 10px;\r\n}`
@@ -104,7 +104,7 @@ describe("Box Shadow", () => {
           className: "",
           css: "",
         },
-        { mediaClass: { className: "", css: "" } }
+        { mediaClass: { className: "", css: "", order: 0 } }
       )
     ).toContain(
       `@media (min-width: ${MediaBreakPointsValue.large}px) {\r\n.${MediaBreakPointsText.large}\\?box-shadow\\:10px10px {\r\n\tbox-shadow: 10px 10px;\r\n\t}\r\n}`
@@ -118,7 +118,7 @@ describe("Line Height", () => {
       DoWork(
         "./tests/line-height/line-height.html",
         { className: "", css: "" },
-        { mediaClass: { className: "", css: "" } }
+        { mediaClass: { className: "", css: "", order: 0 } }
       )
     ).toContain(`.line-height\\:1 {\r\n\tline-height: 1;\r\n}`);
   });
@@ -128,7 +128,7 @@ describe("Line Height", () => {
       DoWork(
         "./tests/line-height/line-height.html",
         { className: "", css: "" },
-        { mediaClass: { className: "", css: "" } }
+        { mediaClass: { className: "", css: "", order: 0 } }
       )
     ).toContain(`.line-height\\:2.2 {\r\n\tline-height: 2.2;\r\n}`);
   });
@@ -138,7 +138,7 @@ describe("Line Height", () => {
       DoWork(
         "./tests/line-height/line-height.html",
         { className: "", css: "" },
-        { mediaClass: { className: "", css: "" } }
+        { mediaClass: { className: "", css: "", order: 0 } }
       )
     ).toContain(`.line-height\\:xl {\r\n\tline-height: ${LineHeight.xl};\r\n}`);
   });
@@ -153,7 +153,7 @@ describe("Custom Classes", () => {
           className: "",
           css: "",
         },
-        { mediaClass: { className: "", css: "" } }
+        { mediaClass: { className: "", css: "", order: 0 } }
       )
     ).toContain(`.mybtn {\r\n\tfont-size: ${FontSizes.xl};\r\n}`);
   });
@@ -166,7 +166,7 @@ describe("Custom Classes", () => {
           className: "",
           css: "",
         },
-        { mediaClass: { className: "", css: "" } }
+        { mediaClass: { className: "", css: "", order: 0 } }
       )
     ).toContain(
       `.mybtn {\r\n\tfont-size: ${FontSizes.xl};\r\n\tdisplay: flex;\r\n}`
@@ -181,7 +181,7 @@ describe("Custom Classes", () => {
           className: "",
           css: "",
         },
-        { mediaClass: { className: "", css: "" } }
+        { mediaClass: { className: "", css: "", order: 0 } }
       )
     ).toContain(
       `.mybtn {\r\n\tfont-size: ${FontSizes.xl};\r\n\tdisplay: flex;\r\n\tborder-width: ${BorderSizes.md};\r\n}`
@@ -195,7 +195,7 @@ describe("Flex Basis", () => {
       DoWork(
         "./tests/flex-basis/flex-basis.html",
         { className: "", css: "" },
-        { mediaClass: { className: "", css: "" } }
+        { mediaClass: { className: "", css: "", order: 0 } }
       )
     ).toContain(`.flex-basis\\:30\\% {\r\n\tflex-basis: 30%;\r\n}`);
   });
@@ -208,7 +208,7 @@ describe("Flex Basis", () => {
           className: "",
           css: "",
         },
-        { mediaClass: { className: "", css: "" } }
+        { mediaClass: { className: "", css: "", order: 0 } }
       )
     ).toContain(
       `@media (min-width: ${MediaBreakPointsValue.large}px) {\r\n.${MediaBreakPointsText.large}\\?flex-basis\\:30\\% {\r\n\tflex-basis: 30%;\r\n\t}\r\n}`
@@ -225,7 +225,7 @@ describe("Justify Content", () => {
           className: "",
           css: "",
         },
-        { mediaClass: { className: "", css: "" } }
+        { mediaClass: { className: "", css: "", order: 0 } }
       )
     ).toContain(
       `.justify-content\\:space-between {\r\n\tjustify-content: space-between;\r\n}`
@@ -239,7 +239,7 @@ describe("Font Weight", () => {
       DoWork(
         "./tests/font-weight/font_weight.html",
         { className: "", css: "" },
-        { mediaClass: { className: "", css: "" } }
+        { mediaClass: { className: "", css: "", order: 0 } }
       )
     ).toContain(`.font-weight\\:800 {\r\n\tfont-weight: 800;\r\n}`);
   });
@@ -249,7 +249,7 @@ describe("Font Weight", () => {
       DoWork(
         "./tests/font-weight/font_weight.html",
         { className: "", css: "" },
-        { mediaClass: { className: "", css: "" } }
+        { mediaClass: { className: "", css: "", order: 0 } }
       )
     ).toContain(
       `.font-weight\\:md {\r\n\tfont-weight: ${FontWeights.md};\r\n}`
@@ -266,7 +266,7 @@ describe("Text Decoration", () => {
           className: "",
           css: "",
         },
-        { mediaClass: { className: "", css: "" } }
+        { mediaClass: { className: "", css: "", order: 0 } }
       )
     ).toContain(`.text-decoration\\:none {\r\n\ttext-decoration: none;\r\n}`);
   });
@@ -279,7 +279,7 @@ describe("Text Decoration", () => {
           className: "",
           css: "",
         },
-        { mediaClass: { className: "", css: "" } }
+        { mediaClass: { className: "", css: "", order: 0 } }
       )
     ).toContain(
       `.text-decoration-color\\:\\#444444 {\r\n\ttext-decoration-color: #444444;\r\n}`
@@ -296,7 +296,7 @@ describe("Border Style", () => {
           className: "",
           css: "",
         },
-        { mediaClass: { className: "", css: "" } }
+        { mediaClass: { className: "", css: "", order: 0 } }
       )
     ).toContain(`.border-style\\:solid {\r\n\tborder-style: solid;\r\n}`);
   });
@@ -309,7 +309,7 @@ describe("Border Style", () => {
           className: "",
           css: "",
         },
-        { mediaClass: { className: "", css: "" } }
+        { mediaClass: { className: "", css: "", order: 0 } }
       )
     ).toContain(
       `@media (min-width: ${MediaBreakPointsValue.large}px) {\r\n.${MediaBreakPointsText.large}\\?border-style\\:solid {\r\n\tborder-style: solid;\r\n\t}\r\n}`
@@ -324,7 +324,7 @@ describe("Border Style", () => {
           className: "",
           css: "",
         },
-        { mediaClass: { className: "", css: "" } }
+        { mediaClass: { className: "", css: "", order: 0 } }
       )
     ).toContain(
       `@media (min-width: ${MediaBreakPointsValue.small}px) {\r\n.${MediaBreakPointsText.small}\\?border-style\\:solid {\r\n\tborder-style: solid;\r\n\t}\r\n}`
@@ -341,7 +341,7 @@ describe("Border Radius", () => {
           className: "",
           css: "",
         },
-        { mediaClass: { className: "", css: "" } }
+        { mediaClass: { className: "", css: "", order: 0 } }
       )
     ).toContain(
       `.border-radius\\:xs {\r\n\tborder-radius: ${BorderRadius.xs};\r\n}`
@@ -356,7 +356,7 @@ describe("Border Radius", () => {
           className: "",
           css: "",
         },
-        { mediaClass: { className: "", css: "" } }
+        { mediaClass: { className: "", css: "", order: 0 } }
       )
     ).toContain(
       `.border-radius\\:sm {\r\n\tborder-radius: ${BorderRadius.sm};\r\n}`
@@ -371,7 +371,7 @@ describe("Border Radius", () => {
           className: "",
           css: "",
         },
-        { mediaClass: { className: "", css: "" } }
+        { mediaClass: { className: "", css: "", order: 0 } }
       )
     ).toContain(
       `.border-radius\\:xl {\r\n\tborder-radius: ${BorderRadius.xl};\r\n}`
@@ -385,7 +385,7 @@ describe("display flex", () => {
       DoWork(
         "./tests/flex/display_flex.html",
         { className: "", css: "" },
-        { mediaClass: { className: "", css: "" } }
+        { mediaClass: { className: "", css: "", order: 0 } }
       )
     ).toContain(`.display\\:flex {\r\n\tdisplay: flex;\r\n}`);
   });
@@ -395,7 +395,7 @@ describe("display flex", () => {
       DoWork(
         "./tests/flex/display_flex.html",
         { className: "", css: "" },
-        { mediaClass: { className: "", css: "" } }
+        { mediaClass: { className: "", css: "", order: 0 } }
       )
     ).toContain(
       `@media (min-width: ${MediaBreakPointsValue.large}px) {\r\n.${MediaBreakPointsText.large}\\?display\\:flex {\r\n\tdisplay: flex;\r\n\t}\r\n}`
@@ -407,7 +407,7 @@ describe("display flex", () => {
       DoWork(
         "./tests/flex/display_flex.html",
         { className: "", css: "" },
-        { mediaClass: { className: "", css: "" } }
+        { mediaClass: { className: "", css: "", order: 0 } }
       )
     ).toContain(
       `@media (min-width: ${MediaBreakPointsValue.medium}px) {\r\n.${MediaBreakPointsText.medium}\\?display\\:flex {\r\n\tdisplay: flex;\r\n\t}\r\n}`
@@ -419,7 +419,7 @@ describe("display flex", () => {
       DoWork(
         "./tests/flex/flex_gap.html",
         { className: "", css: "" },
-        { mediaClass: { className: "", css: "" } }
+        { mediaClass: { className: "", css: "", order: 0 } }
       )
     ).toContain(`.gap\\:md {\r\n\tgap: ${GapSizes.md};\r\n}`);
   });
@@ -432,7 +432,7 @@ describe("flex direction", () => {
       DoWork(
         "./tests/flex/flex_direction.html",
         { className: "", css: "" },
-        { mediaClass: { className: "", css: "" } }
+        { mediaClass: { className: "", css: "", order: 0 } }
       )
     ).toContain(`.flex-direction\\:row {\r\n\tflex-direction: row;\r\n}`);
   });
@@ -442,7 +442,7 @@ describe("flex direction", () => {
       DoWork(
         "./tests/flex/flex_direction.html",
         { className: "", css: "" },
-        { mediaClass: { className: "", css: "" } }
+        { mediaClass: { className: "", css: "", order: 0 } }
       )
     ).toContain(
       `@media (min-width: ${MediaBreakPointsValue.small}px) {\r\n.${MediaBreakPointsText.small}\\?flex-direction\\:row {\r\n\tflex-direction: row;\r\n\t}\r\n}`
@@ -457,7 +457,7 @@ describe("Padding", () => {
       DoWork(
         "./tests/padding/padding_10px.html",
         { className: "", css: "" },
-        { mediaClass: { className: "", css: "" } }
+        { mediaClass: { className: "", css: "", order: 0 } }
       )
     ).toContain(`.padding\\:10px {\r\n\tpadding: 10px;\r\n}`);
   });
@@ -470,7 +470,7 @@ describe("Padding", () => {
           className: "",
           css: "",
         },
-        { mediaClass: { className: "", css: "" } }
+        { mediaClass: { className: "", css: "", order: 0 } }
       )
     ).toContain(`.padding\\:10px10px {\r\n\tpadding: 10px 10px;\r\n}`);
   });
@@ -483,7 +483,7 @@ describe("Padding", () => {
           className: "",
           css: "",
         },
-        { mediaClass: { className: "", css: "" } }
+        { mediaClass: { className: "", css: "", order: 0 } }
       )
     ).toContain(
       `.padding\\:10px10px10px10px {\r\n\tpadding: 10px 10px 10px 10px;\r\n}`
@@ -498,7 +498,7 @@ describe("Padding", () => {
           className: "",
           css: "",
         },
-        { mediaClass: { className: "", css: "" } }
+        { mediaClass: { className: "", css: "", order: 0 } }
       )
     ).toContain(
       `.padding\\:10px10px10px10px\\:hover:hover {\r\n\tpadding: 10px 10px 10px 10px;\r\n}`
@@ -510,7 +510,7 @@ describe("Padding", () => {
       DoWork(
         "./tests/padding/padding_xs.html",
         { className: "", css: "" },
-        { mediaClass: { className: "", css: "" } }
+        { mediaClass: { className: "", css: "", order: 0 } }
       )
     ).toContain(`.padding\\:xs {\r\n\tpadding: ${PaddingSizes.xs};\r\n}`);
   });
@@ -519,7 +519,7 @@ describe("Padding", () => {
       DoWork(
         "./tests/padding/padding_sm.html",
         { className: "", css: "" },
-        { mediaClass: { className: "", css: "" } }
+        { mediaClass: { className: "", css: "", order: 0 } }
       )
     ).toContain(`.padding\\:sm {\r\n\tpadding: ${PaddingSizes.sm};\r\n}`);
   });
@@ -528,7 +528,7 @@ describe("Padding", () => {
       DoWork(
         "./tests/padding/padding_md.html",
         { className: "", css: "" },
-        { mediaClass: { className: "", css: "" } }
+        { mediaClass: { className: "", css: "", order: 0 } }
       )
     ).toContain(`.padding\\:md {\r\n\tpadding: ${PaddingSizes.md};\r\n}`);
   });
@@ -537,7 +537,7 @@ describe("Padding", () => {
       DoWork(
         "./tests/padding/padding_lg.html",
         { className: "", css: "" },
-        { mediaClass: { className: "", css: "" } }
+        { mediaClass: { className: "", css: "", order: 0 } }
       )
     ).toContain(`.padding\\:lg {\r\n\tpadding: ${PaddingSizes.lg};\r\n}`);
   });
@@ -546,7 +546,7 @@ describe("Padding", () => {
       DoWork(
         "./tests/padding/padding_xl.html",
         { className: "", css: "" },
-        { mediaClass: { className: "", css: "" } }
+        { mediaClass: { className: "", css: "", order: 0 } }
       )
     ).toContain(`.padding\\:xl {\r\n\tpadding: ${PaddingSizes.xl};\r\n}`);
   });
@@ -555,7 +555,7 @@ describe("Padding", () => {
       DoWork(
         "./tests/padding/padding_2xl.html",
         { className: "", css: "" },
-        { mediaClass: { className: "", css: "" } }
+        { mediaClass: { className: "", css: "", order: 0 } }
       )
     ).toContain(`.padding\\:2xl {\r\n\tpadding: ${PaddingSizes.xl2};\r\n}`);
   });
@@ -568,7 +568,7 @@ describe("Padding", () => {
           className: "",
           css: "",
         },
-        { mediaClass: { className: "", css: "" } }
+        { mediaClass: { className: "", css: "", order: 0 } }
       )
     ).toContain(
       `.padding\\:xsxl {\r\n\tpadding: ${PaddingSizes.xs} ${PaddingSizes.xl};\r\n}`
@@ -583,7 +583,7 @@ describe("Padding", () => {
           className: "",
           css: "",
         },
-        { mediaClass: { className: "", css: "" } }
+        { mediaClass: { className: "", css: "", order: 0 } }
       )
     ).toContain(`.padding\\:2xl {\r\n\tpadding: ${PaddingSizes.xl2};\r\n}`);
   });
@@ -596,7 +596,7 @@ describe("Padding", () => {
           className: "",
           css: "",
         },
-        { mediaClass: { className: "", css: "" } }
+        { mediaClass: { className: "", css: "", order: 0 } }
       )
     ).toContain(
       `.padding\\:xssmmdlg {\r\n\tpadding: ${PaddingSizes.xs} ${PaddingSizes.sm} ${PaddingSizes.md} ${PaddingSizes.lg};\r\n}`
@@ -611,7 +611,7 @@ describe("Color", () => {
       DoWork(
         "./tests/color/color.html",
         { className: "", css: "" },
-        { mediaClass: { className: "", css: "" } }
+        { mediaClass: { className: "", css: "", order: 0 } }
       )
     ).toContain(`.color\\:c1 {\r\n\tcolor: ${color_palette_1.c1};\r\n}`);
   });
@@ -621,7 +621,7 @@ describe("Color", () => {
       DoWork(
         "./tests/color/color.html",
         { className: "", css: "" },
-        { mediaClass: { className: "", css: "" } }
+        { mediaClass: { className: "", css: "", order: 0 } }
       )
     ).toContain(`.color\\:red {\r\n\tcolor: red;\r\n}`);
   });
@@ -631,7 +631,7 @@ describe("Color", () => {
       DoWork(
         "./tests/color/color.html",
         { className: "", css: "" },
-        { mediaClass: { className: "", css: "" } }
+        { mediaClass: { className: "", css: "", order: 0 } }
       )
     ).toContain(`.color\\:\\#124356 {\r\n\tcolor: #124356;\r\n}`);
   });
@@ -641,7 +641,7 @@ describe("Color", () => {
       DoWork(
         "./tests/color/color.html",
         { className: "", css: "" },
-        { mediaClass: { className: "", css: "" } }
+        { mediaClass: { className: "", css: "", order: 0 } }
       )
     ).toContain(`.color\\:\\#124356\\:hover:hover {\r\n\tcolor: #124356;\r\n}`);
   });
@@ -651,7 +651,7 @@ describe("Color", () => {
       DoWork(
         "./tests/color/color.html",
         { className: "", css: "" },
-        { mediaClass: { className: "", css: "" } }
+        { mediaClass: { className: "", css: "", order: 0 } }
       )
     ).toContain(`.color\\:\\#124356\\:focus:focus {\r\n\tcolor: #124356;\r\n}`);
   });
@@ -661,7 +661,7 @@ describe("Color", () => {
       DoWork(
         "./tests/color/color.html",
         { className: "", css: "" },
-        { mediaClass: { className: "", css: "" } }
+        { mediaClass: { className: "", css: "", order: 0 } }
       )
     ).toContain(
       `@media (min-width: ${MediaBreakPointsValue.small}px) {\r\n.${MediaBreakPointsText.small}\\?color\\:red {\r\n\tcolor: red;\r\n\t}\r\n}`
@@ -673,7 +673,7 @@ describe("Color", () => {
       DoWork(
         "./tests/color/color.html",
         { className: "", css: "" },
-        { mediaClass: { className: "", css: "" } }
+        { mediaClass: { className: "", css: "", order: 0 } }
       )
     ).toContain(`.color\\:red\\:hover:hover {\r\n\tcolor: red;\r\n}`);
   });
@@ -689,7 +689,7 @@ describe("Background Color", () => {
           className: "",
           css: "",
         },
-        { mediaClass: { className: "", css: "" } }
+        { mediaClass: { className: "", css: "", order: 0 } }
       )
     ).toContain(
       `.background-color\\:c1 {\r\n\tbackground-color: ${color_palette_1.c1};\r\n}`
@@ -704,7 +704,7 @@ describe("Background Color", () => {
           className: "",
           css: "",
         },
-        { mediaClass: { className: "", css: "" } }
+        { mediaClass: { className: "", css: "", order: 0 } }
       )
     ).toContain(`.background-color\\:red {\r\n\tbackground-color: red;\r\n}`);
   });
@@ -717,7 +717,7 @@ describe("Background Color", () => {
           className: "",
           css: "",
         },
-        { mediaClass: { className: "", css: "" } }
+        { mediaClass: { className: "", css: "", order: 0 } }
       )
     ).toContain(
       `.background-color\\:\\#124356 {\r\n\tbackground-color: #124356;\r\n}`
@@ -732,7 +732,7 @@ describe("Background Color", () => {
           className: "",
           css: "",
         },
-        { mediaClass: { className: "", css: "" } }
+        { mediaClass: { className: "", css: "", order: 0 } }
       )
     ).toContain(
       `.background-color\\:\\#124356\\:hover:hover {\r\n\tbackground-color: #124356;\r\n}`
@@ -747,7 +747,7 @@ describe("Background Color", () => {
           className: "",
           css: "",
         },
-        { mediaClass: { className: "", css: "" } }
+        { mediaClass: { className: "", css: "", order: 0 } }
       )
     ).toContain(
       `.background-color\\:\\#124356\\:focus:focus {\r\n\tbackground-color: #124356;\r\n}`
@@ -762,7 +762,7 @@ describe("Background Color", () => {
           className: "",
           css: "",
         },
-        { mediaClass: { className: "", css: "" } }
+        { mediaClass: { className: "", css: "", order: 0 } }
       )
     ).toContain(
       `@media (min-width: ${MediaBreakPointsValue.small}px) {\r\n.${MediaBreakPointsText.small}\\?background-color\\:red {\r\n\tbackground-color: red;\r\n\t}\r\n}`
@@ -777,7 +777,7 @@ describe("Background Color", () => {
           className: "",
           css: "",
         },
-        { mediaClass: { className: "", css: "" } }
+        { mediaClass: { className: "", css: "", order: 0 } }
       )
     ).toContain(
       `.background-color\\:red\\:hover:hover {\r\n\tbackground-color: red;\r\n}`
@@ -789,7 +789,7 @@ describe("Background Color", () => {
       DoWork(
         "./tests/focus/focus.html",
         { className: "", css: "" },
-        { mediaClass: { className: "", css: "" } }
+        { mediaClass: { className: "", css: "", order: 0 } }
       )
     ).toContain(
       `.background-color\\:red\\:focus:focus {\r\n\tbackground-color: red;\r\n}`
@@ -804,7 +804,7 @@ describe("Border", () => {
       DoWork(
         "./tests/border-width/border_xs.html",
         { className: "", css: "" },
-        { mediaClass: { className: "", css: "" } }
+        { mediaClass: { className: "", css: "", order: 0 } }
       )
     ).toContain(
       `.border-width\\:xs {\r\n\tborder-width: ${BorderSizes.xs};\r\n}`
@@ -815,7 +815,7 @@ describe("Border", () => {
       DoWork(
         "./tests/border-width/border_sm.html",
         { className: "", css: "" },
-        { mediaClass: { className: "", css: "" } }
+        { mediaClass: { className: "", css: "", order: 0 } }
       )
     ).toContain(
       `.border-width\\:sm {\r\n\tborder-width: ${BorderSizes.sm};\r\n}`
@@ -826,7 +826,7 @@ describe("Border", () => {
       DoWork(
         "./tests/border-width/border_md.html",
         { className: "", css: "" },
-        { mediaClass: { className: "", css: "" } }
+        { mediaClass: { className: "", css: "", order: 0 } }
       )
     ).toContain(
       `.border-width\\:md {\r\n\tborder-width: ${BorderSizes.md};\r\n}`
@@ -837,7 +837,7 @@ describe("Border", () => {
       DoWork(
         "./tests/border-width/border_lg.html",
         { className: "", css: "" },
-        { mediaClass: { className: "", css: "" } }
+        { mediaClass: { className: "", css: "", order: 0 } }
       )
     ).toContain(
       `.border-width\\:lg {\r\n\tborder-width: ${BorderSizes.lg};\r\n}`
@@ -848,7 +848,7 @@ describe("Border", () => {
       DoWork(
         "./tests/border-width/border_xl.html",
         { className: "", css: "" },
-        { mediaClass: { className: "", css: "" } }
+        { mediaClass: { className: "", css: "", order: 0 } }
       )
     ).toContain(
       `.border-width\\:xl {\r\n\tborder-width: ${BorderSizes.xl};\r\n}`
@@ -859,7 +859,7 @@ describe("Border", () => {
       DoWork(
         "./tests/border-width/border_2xl.html",
         { className: "", css: "" },
-        { mediaClass: { className: "", css: "" } }
+        { mediaClass: { className: "", css: "", order: 0 } }
       )
     ).toContain(
       `.border-width\\:2xl {\r\n\tborder-width: ${BorderSizes.xl2};\r\n}`
@@ -874,7 +874,7 @@ describe("Border", () => {
           className: "",
           css: "",
         },
-        { mediaClass: { className: "", css: "" } }
+        { mediaClass: { className: "", css: "", order: 0 } }
       )
     ).toContain(
       `.border-width\\:lg\\:focus:focus {\r\n\tborder-width: ${BorderSizes.lg};\r\n}`
@@ -889,7 +889,7 @@ describe("Border", () => {
           className: "",
           css: "",
         },
-        { mediaClass: { className: "", css: "" } }
+        { mediaClass: { className: "", css: "", order: 0 } }
       )
     ).toContain(`.border-width\\:10px {\r\n\tborder-width: 10px;\r\n}`);
   });
@@ -902,7 +902,7 @@ describe("Border", () => {
           className: "",
           css: "",
         },
-        { mediaClass: { className: "", css: "" } }
+        { mediaClass: { className: "", css: "", order: 0 } }
       )
     ).toContain(
       `.border-width\\:10px10px {\r\n\tborder-width: 10px 10px;\r\n}`
@@ -917,7 +917,7 @@ describe("Border", () => {
           className: "",
           css: "",
         },
-        { mediaClass: { className: "", css: "" } }
+        { mediaClass: { className: "", css: "", order: 0 } }
       )
     ).toContain(
       `.border-width\\:10px10px10px10px {\r\n\tborder-width: 10px 10px 10px 10px;\r\n}`
@@ -932,7 +932,7 @@ describe("Border", () => {
           className: "",
           css: "",
         },
-        { mediaClass: { className: "", css: "" } }
+        { mediaClass: { className: "", css: "", order: 0 } }
       )
     ).toContain(
       `.border-width\\:10px10px10px10px\\:hover:hover {\r\n\tborder-width: 10px 10px 10px 10px;\r\n}`
@@ -947,7 +947,7 @@ describe("Border", () => {
           className: "",
           css: "",
         },
-        { mediaClass: { className: "", css: "" } }
+        { mediaClass: { className: "", css: "", order: 0 } }
       )
     ).toContain(
       `.border-width\\:lgxl {\r\n\tborder-width: ${BorderSizes.lg} ${BorderSizes.xl};\r\n}`
@@ -962,7 +962,7 @@ describe("Border", () => {
           className: "",
           css: "",
         },
-        { mediaClass: { className: "", css: "" } }
+        { mediaClass: { className: "", css: "", order: 0 } }
       )
     ).toContain(
       `.border-width\\:lgxlxsxs {\r\n\tborder-width: ${BorderSizes.lg} ${BorderSizes.xl} ${BorderSizes.xs} ${BorderSizes.xs};\r\n}`
@@ -977,7 +977,7 @@ describe("FontSize", () => {
       DoWork(
         "./tests/fontsize/fontsize_xs.html",
         { className: "", css: "" },
-        { mediaClass: { className: "", css: "" } }
+        { mediaClass: { className: "", css: "", order: 0 } }
       )
     ).toContain(`.font-size\\:xs {\r\n\tfont-size: ${FontSizes.xs};\r\n}`);
   });
@@ -986,7 +986,7 @@ describe("FontSize", () => {
       DoWork(
         "./tests/fontsize/fontsize_sm.html",
         { className: "", css: "" },
-        { mediaClass: { className: "", css: "" } }
+        { mediaClass: { className: "", css: "", order: 0 } }
       )
     ).toContain(`.font-size\\:sm {\r\n\tfont-size: ${FontSizes.sm};\r\n}`);
   });
@@ -995,7 +995,7 @@ describe("FontSize", () => {
       DoWork(
         "./tests/fontsize/fontsize_md.html",
         { className: "", css: "" },
-        { mediaClass: { className: "", css: "" } }
+        { mediaClass: { className: "", css: "", order: 0 } }
       )
     ).toContain(`.font-size\\:md {\r\n\tfont-size: ${FontSizes.md};\r\n}`);
   });
@@ -1004,7 +1004,7 @@ describe("FontSize", () => {
       DoWork(
         "./tests/fontsize/fontsize_lg.html",
         { className: "", css: "" },
-        { mediaClass: { className: "", css: "" } }
+        { mediaClass: { className: "", css: "", order: 0 } }
       )
     ).toContain(`.font-size\\:lg {\r\n\tfont-size: ${FontSizes.lg};\r\n}`);
   });
@@ -1013,7 +1013,7 @@ describe("FontSize", () => {
       DoWork(
         "./tests/fontsize/fontsize_xl.html",
         { className: "", css: "" },
-        { mediaClass: { className: "", css: "" } }
+        { mediaClass: { className: "", css: "", order: 0 } }
       )
     ).toContain(`.font-size\\:xl {\r\n\tfont-size: ${FontSizes.xl};\r\n}`);
   });
@@ -1022,7 +1022,7 @@ describe("FontSize", () => {
       DoWork(
         "./tests/fontsize/fontsize_2xl.html",
         { className: "", css: "" },
-        { mediaClass: { className: "", css: "" } }
+        { mediaClass: { className: "", css: "", order: 0 } }
       )
     ).toContain(`.font-size\\:2xl {\r\n\tfont-size: ${FontSizes.xl2};\r\n}`);
   });
@@ -1031,7 +1031,7 @@ describe("FontSize", () => {
       DoWork(
         "./tests/fontsize/fontsize_media.html",
         { className: "", css: "" },
-        { mediaClass: { className: "", css: "" } }
+        { mediaClass: { className: "", css: "", order: 0 } }
       )
     ).toContain(
       `@media (min-width: ${MediaBreakPointsValue.medium}px) {\r\n.${MediaBreakPointsText.medium}\\?font-size\\:xl {\r\n\tfont-size: ${FontSizes.xl};\r\n\t}\r\n}`

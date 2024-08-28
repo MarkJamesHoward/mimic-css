@@ -4,7 +4,7 @@ import path from "path";
 import fs from "fs";
 import { DoWork } from "../src/main";
 import { LoadConfig, mimicConfig } from "../src/configurationLoader";
-import { IClass } from "../interfaces/ICustomClassBuilder";
+import { IClass, IMediaClass } from "../interfaces/ICustomClassBuilder";
 
 const argv = yargs(process.argv.slice(2))
   .options({
@@ -18,7 +18,7 @@ const argv = yargs(process.argv.slice(2))
 
 let ExistingCSS = "";
 let DictionaryOfFoundCSSFromAllFile: Record<string, string> = {};
-let DictionaryOfFoundMediaCSSFromAllFile: Record<string, IClass> = {};
+let DictionaryOfFoundMediaCSSFromAllFile: Record<string, IMediaClass> = {};
 
 let InputFolder = argv.i ?? "./";
 let OutputFilename = argv.o;
@@ -81,14 +81,10 @@ function searchFile(dir: string, extension: string) {
           }
         }
 
-        for (const key in DictionaryOfFoundMediaCSSFromAllFile) {
-          if (key !== undefined && key !== "") {
-            let TempCustomClass = `${key}${DictionaryOfFoundMediaCSSFromAllFile[key].className}${DictionaryOfFoundMediaCSSFromAllFile[key].css}`;
-            ExistingCSS += TempCustomClass.trim() + "\r\n";
-          }
-        }
-
-        // ExistingCSS += result;
+        ExistingCSS +=
+          ConstructOrderedMediaClasses_EnsuringMostRecentAreAtTheBottom(
+            DictionaryOfFoundMediaCSSFromAllFile
+          );
 
         fs.writeFileSync(OutputFilename, ExistingCSS);
         if (EmitLitFile) {
@@ -169,12 +165,10 @@ async function Start() {
               }
             }
 
-            for (const key in DictionaryOfFoundMediaCSSFromAllFile) {
-              if (key !== undefined && key !== "") {
-                let TempCustomClass = `${key}${DictionaryOfFoundMediaCSSFromAllFile[key].className}${DictionaryOfFoundMediaCSSFromAllFile[key].css}`;
-                ExistingCSS += TempCustomClass.trim() + "\r\n";
-              }
-            }
+            ExistingCSS +=
+              ConstructOrderedMediaClasses_EnsuringMostRecentAreAtTheBottom(
+                DictionaryOfFoundMediaCSSFromAllFile
+              );
 
             WriteFile(OutputFilename, ExistingCSS);
 
@@ -199,6 +193,34 @@ async function Start() {
       }
     }
   );
+}
+
+function ConstructOrderedMediaClasses_EnsuringMostRecentAreAtTheBottom(
+  dict: Record<string, IMediaClass>
+): string {
+  let css = "";
+
+  let sortedMediaItems = [];
+
+  sortedMediaItems = Object.keys(dict).map((key: string) => {
+    return [key, dict[key].order];
+  });
+
+  // Sort the array based on the second element
+  // @ts-ignore
+  sortedMediaItems.sort(function (first: Array<number>, second: Array<number>) {
+    return first[1] - second[1];
+  });
+
+  sortedMediaItems.forEach((item) => {
+    if (item[0] !== undefined && item[0] !== "") {
+      let TempCustomClass = `/*${dict[item[0]].order}*/${item[0]}${
+        dict[item[0]].className
+      }${dict[item[0]].css}`;
+      css += TempCustomClass.trim() + "\r\n";
+    }
+  });
+  return css;
 }
 
 function WriteFile(filename: string, data: string) {
