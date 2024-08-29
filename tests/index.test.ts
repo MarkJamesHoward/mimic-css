@@ -15,17 +15,17 @@ import {
   MediaBreakPointsValue,
   MediaBreakPointsText,
 } from "../src/mediaBreakpoints";
+import { INonMediaClass } from "../interfaces/ICustomClassBuilder";
+
+let DictionaryOfFoundCSSFromAllFile: Record<string, INonMediaClass> = {};
 
 describe("Box Shadow", () => {
   test("Box Shadow Focus", () => {
     expect(
       DoWork(
         "./tests/box-shadow/box-shadow-focus.html",
-        {
-          className: "",
-          css: "",
-        },
-        { mediaClass: { className: "", css: "", order: 0 } }
+        DictionaryOfFoundCSSFromAllFile,
+        { mediaClass: { className: "", css: "", order: 0, filename: "" } }
       )
     ).toContain(
       `.box-shadow\\:10px10px\\:focus:focus {\r\n\tbox-shadow: 10px 10px;\r\n}`
@@ -36,8 +36,8 @@ describe("Box Shadow", () => {
     expect(
       DoWork(
         "./tests/box-shadow/box-shadow-snapping.html",
-        { className: "", css: "" },
-        { mediaClass: { className: "", css: "", order: 0 } }
+        DictionaryOfFoundCSSFromAllFile,
+        { mediaClass: { className: "", css: "", order: 0, filename: "" } }
       )
     ).toContain(
       `.box-shadow\\:smsm {\r\n\tbox-shadow: ${BoxShadowSizes.sm} ${BoxShadowSizes.sm};\r\n}`
@@ -48,8 +48,8 @@ describe("Box Shadow", () => {
     expect(
       DoWork(
         "./tests/box-shadow/box-shadow-custombutton.html",
-        { className: "", css: "" },
-        { mediaClass: { className: "", css: "", order: 0 } }
+        DictionaryOfFoundCSSFromAllFile,
+        { mediaClass: { className: "", css: "", order: 0, filename: "" } }
       )
     ).toContain(
       `.btn {\r\n\tbox-shadow: ${BoxShadowSizes.sm} ${BoxShadowSizes.sm};\r\n}`
@@ -60,8 +60,8 @@ describe("Box Shadow", () => {
     expect(
       DoWork(
         "./tests/box-shadow/box-shadow.html",
-        { className: "", css: "" },
-        { mediaClass: { className: "", css: "", order: 0 } }
+        DictionaryOfFoundCSSFromAllFile,
+        { mediaClass: { className: "", css: "", order: 0, filename: "" } }
       )
     ).toContain(`.box-shadow\\:10px10px {\r\n\tbox-shadow: 10px 10px;\r\n}`);
   });
@@ -70,11 +70,8 @@ describe("Box Shadow", () => {
     expect(
       DoWork(
         "./tests/box-shadow/box-shadow-with-color.html",
-        {
-          className: "",
-          css: "",
-        },
-        { mediaClass: { className: "", css: "", order: 0 } }
+        DictionaryOfFoundCSSFromAllFile,
+        { mediaClass: { className: "", css: "", order: 0, filename: "" } }
       )
     ).toContain(
       `.box-shadow\\:10px10px20px30pxred {\r\n\tbox-shadow: 10px 10px 20px 30px red;\r\n}`
@@ -85,11 +82,8 @@ describe("Box Shadow", () => {
     expect(
       DoWork(
         "./tests/box-shadow/box-shadow-hover.html",
-        {
-          className: "",
-          css: "",
-        },
-        { mediaClass: { className: "", css: "", order: 0 } }
+        DictionaryOfFoundCSSFromAllFile,
+        { mediaClass: { className: "", css: "", order: 0, filename: "" } }
       )
     ).toContain(
       `.box-shadow\\:10px10px\\:hover:hover {\r\n\tbox-shadow: 10px 10px;\r\n}`
@@ -100,11 +94,8 @@ describe("Box Shadow", () => {
     expect(
       DoWork(
         "./tests/box-shadow/box-shadow-media.html",
-        {
-          className: "",
-          css: "",
-        },
-        { mediaClass: { className: "", css: "", order: 0 } }
+        DictionaryOfFoundCSSFromAllFile,
+        { mediaClass: { className: "", css: "", order: 0, filename: "" } }
       )
     ).toContain(
       `@media (min-width: ${MediaBreakPointsValue.large}px) {\r\n.${MediaBreakPointsText.large}\\?box-shadow\\:10px10px {\r\n\tbox-shadow: 10px 10px;\r\n\t}\r\n}`
@@ -117,8 +108,8 @@ describe("Line Height", () => {
     expect(
       DoWork(
         "./tests/line-height/line-height.html",
-        { className: "", css: "" },
-        { mediaClass: { className: "", css: "", order: 0 } }
+        DictionaryOfFoundCSSFromAllFile,
+        { mediaClass: { className: "", css: "", order: 0, filename: "" } }
       )
     ).toContain(`.line-height\\:1 {\r\n\tline-height: 1;\r\n}`);
   });
@@ -127,8 +118,8 @@ describe("Line Height", () => {
     expect(
       DoWork(
         "./tests/line-height/line-height.html",
-        { className: "", css: "" },
-        { mediaClass: { className: "", css: "", order: 0 } }
+        DictionaryOfFoundCSSFromAllFile,
+        { mediaClass: { className: "", css: "", order: 0, filename: "" } }
       )
     ).toContain(`.line-height\\:2.2 {\r\n\tline-height: 2.2;\r\n}`);
   });
@@ -137,8 +128,8 @@ describe("Line Height", () => {
     expect(
       DoWork(
         "./tests/line-height/line-height.html",
-        { className: "", css: "" },
-        { mediaClass: { className: "", css: "", order: 0 } }
+        DictionaryOfFoundCSSFromAllFile,
+        { mediaClass: { className: "", css: "", order: 0, filename: "" } }
       )
     ).toContain(`.line-height\\:xl {\r\n\tline-height: ${LineHeight.xl};\r\n}`);
   });
@@ -149,11 +140,8 @@ describe("Custom Classes", () => {
     expect(
       DoWork(
         "./tests/custom-classes/my-button-one.html",
-        {
-          className: "",
-          css: "",
-        },
-        { mediaClass: { className: "", css: "", order: 0 } }
+        DictionaryOfFoundCSSFromAllFile,
+        { mediaClass: { className: "", css: "", order: 0, filename: "" } }
       )
     ).toContain(`.mybtn {\r\n\tfont-size: ${FontSizes.xl};\r\n}`);
   });
@@ -162,11 +150,8 @@ describe("Custom Classes", () => {
     expect(
       DoWork(
         "./tests/custom-classes/my-button-two.html",
-        {
-          className: "",
-          css: "",
-        },
-        { mediaClass: { className: "", css: "", order: 0 } }
+        DictionaryOfFoundCSSFromAllFile,
+        { mediaClass: { className: "", css: "", order: 0, filename: "" } }
       )
     ).toContain(
       `.mybtn {\r\n\tfont-size: ${FontSizes.xl};\r\n\tdisplay: flex;\r\n}`
@@ -177,11 +162,8 @@ describe("Custom Classes", () => {
     expect(
       DoWork(
         "./tests/custom-classes/my-button-three.html",
-        {
-          className: "",
-          css: "",
-        },
-        { mediaClass: { className: "", css: "", order: 0 } }
+        DictionaryOfFoundCSSFromAllFile,
+        { mediaClass: { className: "", css: "", order: 0, filename: "" } }
       )
     ).toContain(
       `.mybtn {\r\n\tfont-size: ${FontSizes.xl};\r\n\tdisplay: flex;\r\n\tborder-width: ${BorderSizes.md};\r\n}`
@@ -194,8 +176,8 @@ describe("Flex Basis", () => {
     expect(
       DoWork(
         "./tests/flex-basis/flex-basis.html",
-        { className: "", css: "" },
-        { mediaClass: { className: "", css: "", order: 0 } }
+        DictionaryOfFoundCSSFromAllFile,
+        { mediaClass: { className: "", css: "", order: 0, filename: "" } }
       )
     ).toContain(`.flex-basis\\:30\\% {\r\n\tflex-basis: 30%;\r\n}`);
   });
@@ -204,11 +186,8 @@ describe("Flex Basis", () => {
     expect(
       DoWork(
         "./tests/flex-basis/flex-basis-media-large.html",
-        {
-          className: "",
-          css: "",
-        },
-        { mediaClass: { className: "", css: "", order: 0 } }
+        DictionaryOfFoundCSSFromAllFile,
+        { mediaClass: { className: "", css: "", order: 0, filename: "" } }
       )
     ).toContain(
       `@media (min-width: ${MediaBreakPointsValue.large}px) {\r\n.${MediaBreakPointsText.large}\\?flex-basis\\:30\\% {\r\n\tflex-basis: 30%;\r\n\t}\r\n}`
@@ -221,11 +200,8 @@ describe("Justify Content", () => {
     expect(
       DoWork(
         "./tests/justify-content/justify_content.html",
-        {
-          className: "",
-          css: "",
-        },
-        { mediaClass: { className: "", css: "", order: 0 } }
+        DictionaryOfFoundCSSFromAllFile,
+        { mediaClass: { className: "", css: "", order: 0, filename: "" } }
       )
     ).toContain(
       `.justify-content\\:space-between {\r\n\tjustify-content: space-between;\r\n}`
@@ -238,8 +214,8 @@ describe("Font Weight", () => {
     expect(
       DoWork(
         "./tests/font-weight/font_weight.html",
-        { className: "", css: "" },
-        { mediaClass: { className: "", css: "", order: 0 } }
+        DictionaryOfFoundCSSFromAllFile,
+        { mediaClass: { className: "", css: "", order: 0, filename: "" } }
       )
     ).toContain(`.font-weight\\:800 {\r\n\tfont-weight: 800;\r\n}`);
   });
@@ -248,8 +224,8 @@ describe("Font Weight", () => {
     expect(
       DoWork(
         "./tests/font-weight/font_weight.html",
-        { className: "", css: "" },
-        { mediaClass: { className: "", css: "", order: 0 } }
+        DictionaryOfFoundCSSFromAllFile,
+        { mediaClass: { className: "", css: "", order: 0, filename: "" } }
       )
     ).toContain(
       `.font-weight\\:md {\r\n\tfont-weight: ${FontWeights.md};\r\n}`
@@ -262,11 +238,8 @@ describe("Text Decoration", () => {
     expect(
       DoWork(
         "./tests/text-decoration/text-decoration.html",
-        {
-          className: "",
-          css: "",
-        },
-        { mediaClass: { className: "", css: "", order: 0 } }
+        DictionaryOfFoundCSSFromAllFile,
+        { mediaClass: { className: "", css: "", order: 0, filename: "" } }
       )
     ).toContain(`.text-decoration\\:none {\r\n\ttext-decoration: none;\r\n}`);
   });
@@ -275,11 +248,8 @@ describe("Text Decoration", () => {
     expect(
       DoWork(
         "./tests/text-decoration/text-decoration-color.html",
-        {
-          className: "",
-          css: "",
-        },
-        { mediaClass: { className: "", css: "", order: 0 } }
+        DictionaryOfFoundCSSFromAllFile,
+        { mediaClass: { className: "", css: "", order: 0, filename: "" } }
       )
     ).toContain(
       `.text-decoration-color\\:\\#444444 {\r\n\ttext-decoration-color: #444444;\r\n}`
@@ -292,11 +262,8 @@ describe("Border Style", () => {
     expect(
       DoWork(
         "./tests/border-style/border_style.html",
-        {
-          className: "",
-          css: "",
-        },
-        { mediaClass: { className: "", css: "", order: 0 } }
+        DictionaryOfFoundCSSFromAllFile,
+        { mediaClass: { className: "", css: "", order: 0, filename: "" } }
       )
     ).toContain(`.border-style\\:solid {\r\n\tborder-style: solid;\r\n}`);
   });
@@ -305,11 +272,8 @@ describe("Border Style", () => {
     expect(
       DoWork(
         "./tests/border-style/border_style.html",
-        {
-          className: "",
-          css: "",
-        },
-        { mediaClass: { className: "", css: "", order: 0 } }
+        DictionaryOfFoundCSSFromAllFile,
+        { mediaClass: { className: "", css: "", order: 0, filename: "" } }
       )
     ).toContain(
       `@media (min-width: ${MediaBreakPointsValue.large}px) {\r\n.${MediaBreakPointsText.large}\\?border-style\\:solid {\r\n\tborder-style: solid;\r\n\t}\r\n}`
@@ -320,11 +284,8 @@ describe("Border Style", () => {
     expect(
       DoWork(
         "./tests/border-style/border_style.html",
-        {
-          className: "",
-          css: "",
-        },
-        { mediaClass: { className: "", css: "", order: 0 } }
+        DictionaryOfFoundCSSFromAllFile,
+        { mediaClass: { className: "", css: "", order: 0, filename: "" } }
       )
     ).toContain(
       `@media (min-width: ${MediaBreakPointsValue.small}px) {\r\n.${MediaBreakPointsText.small}\\?border-style\\:solid {\r\n\tborder-style: solid;\r\n\t}\r\n}`
@@ -337,11 +298,8 @@ describe("Border Radius", () => {
     expect(
       DoWork(
         "./tests/border-radius/border_radius_xs.html",
-        {
-          className: "",
-          css: "",
-        },
-        { mediaClass: { className: "", css: "", order: 0 } }
+        DictionaryOfFoundCSSFromAllFile,
+        { mediaClass: { className: "", css: "", order: 0, filename: "" } }
       )
     ).toContain(
       `.border-radius\\:xs {\r\n\tborder-radius: ${BorderRadius.xs};\r\n}`
@@ -352,11 +310,8 @@ describe("Border Radius", () => {
     expect(
       DoWork(
         "./tests/border-radius/border_radius_sm.html",
-        {
-          className: "",
-          css: "",
-        },
-        { mediaClass: { className: "", css: "", order: 0 } }
+        DictionaryOfFoundCSSFromAllFile,
+        { mediaClass: { className: "", css: "", order: 0, filename: "" } }
       )
     ).toContain(
       `.border-radius\\:sm {\r\n\tborder-radius: ${BorderRadius.sm};\r\n}`
@@ -367,11 +322,8 @@ describe("Border Radius", () => {
     expect(
       DoWork(
         "./tests/border-radius/border_radius_xl.html",
-        {
-          className: "",
-          css: "",
-        },
-        { mediaClass: { className: "", css: "", order: 0 } }
+        DictionaryOfFoundCSSFromAllFile,
+        { mediaClass: { className: "", css: "", order: 0, filename: "" } }
       )
     ).toContain(
       `.border-radius\\:xl {\r\n\tborder-radius: ${BorderRadius.xl};\r\n}`
@@ -384,8 +336,8 @@ describe("display flex", () => {
     expect(
       DoWork(
         "./tests/flex/display_flex.html",
-        { className: "", css: "" },
-        { mediaClass: { className: "", css: "", order: 0 } }
+        DictionaryOfFoundCSSFromAllFile,
+        { mediaClass: { className: "", css: "", order: 0, filename: "" } }
       )
     ).toContain(`.display\\:flex {\r\n\tdisplay: flex;\r\n}`);
   });
@@ -394,8 +346,8 @@ describe("display flex", () => {
     expect(
       DoWork(
         "./tests/flex/display_flex.html",
-        { className: "", css: "" },
-        { mediaClass: { className: "", css: "", order: 0 } }
+        DictionaryOfFoundCSSFromAllFile,
+        { mediaClass: { className: "", css: "", order: 0, filename: "" } }
       )
     ).toContain(
       `@media (min-width: ${MediaBreakPointsValue.large}px) {\r\n.${MediaBreakPointsText.large}\\?display\\:flex {\r\n\tdisplay: flex;\r\n\t}\r\n}`
@@ -406,8 +358,8 @@ describe("display flex", () => {
     expect(
       DoWork(
         "./tests/flex/display_flex.html",
-        { className: "", css: "" },
-        { mediaClass: { className: "", css: "", order: 0 } }
+        DictionaryOfFoundCSSFromAllFile,
+        { mediaClass: { className: "", css: "", order: 0, filename: "" } }
       )
     ).toContain(
       `@media (min-width: ${MediaBreakPointsValue.medium}px) {\r\n.${MediaBreakPointsText.medium}\\?display\\:flex {\r\n\tdisplay: flex;\r\n\t}\r\n}`
@@ -416,11 +368,9 @@ describe("display flex", () => {
 
   test("flex gap", () => {
     expect(
-      DoWork(
-        "./tests/flex/flex_gap.html",
-        { className: "", css: "" },
-        { mediaClass: { className: "", css: "", order: 0 } }
-      )
+      DoWork("./tests/flex/flex_gap.html", DictionaryOfFoundCSSFromAllFile, {
+        mediaClass: { className: "", css: "", order: 0, filename: "" },
+      })
     ).toContain(`.gap\\:md {\r\n\tgap: ${GapSizes.md};\r\n}`);
   });
 });
@@ -431,8 +381,8 @@ describe("flex direction", () => {
     expect(
       DoWork(
         "./tests/flex/flex_direction.html",
-        { className: "", css: "" },
-        { mediaClass: { className: "", css: "", order: 0 } }
+        DictionaryOfFoundCSSFromAllFile,
+        { mediaClass: { className: "", css: "", order: 0, filename: "" } }
       )
     ).toContain(`.flex-direction\\:row {\r\n\tflex-direction: row;\r\n}`);
   });
@@ -441,8 +391,8 @@ describe("flex direction", () => {
     expect(
       DoWork(
         "./tests/flex/flex_direction.html",
-        { className: "", css: "" },
-        { mediaClass: { className: "", css: "", order: 0 } }
+        DictionaryOfFoundCSSFromAllFile,
+        { mediaClass: { className: "", css: "", order: 0, filename: "" } }
       )
     ).toContain(
       `@media (min-width: ${MediaBreakPointsValue.small}px) {\r\n.${MediaBreakPointsText.small}\\?flex-direction\\:row {\r\n\tflex-direction: row;\r\n\t}\r\n}`
@@ -456,8 +406,8 @@ describe("Padding", () => {
     expect(
       DoWork(
         "./tests/padding/padding_10px.html",
-        { className: "", css: "" },
-        { mediaClass: { className: "", css: "", order: 0 } }
+        DictionaryOfFoundCSSFromAllFile,
+        { mediaClass: { className: "", css: "", order: 0, filename: "" } }
       )
     ).toContain(`.padding\\:10px {\r\n\tpadding: 10px;\r\n}`);
   });
@@ -466,11 +416,8 @@ describe("Padding", () => {
     expect(
       DoWork(
         "./tests/padding/padding_10px10px.html",
-        {
-          className: "",
-          css: "",
-        },
-        { mediaClass: { className: "", css: "", order: 0 } }
+        DictionaryOfFoundCSSFromAllFile,
+        { mediaClass: { className: "", css: "", order: 0, filename: "" } }
       )
     ).toContain(`.padding\\:10px10px {\r\n\tpadding: 10px 10px;\r\n}`);
   });
@@ -479,11 +426,8 @@ describe("Padding", () => {
     expect(
       DoWork(
         "./tests/padding/padding_10px10px10px10px.html",
-        {
-          className: "",
-          css: "",
-        },
-        { mediaClass: { className: "", css: "", order: 0 } }
+        DictionaryOfFoundCSSFromAllFile,
+        { mediaClass: { className: "", css: "", order: 0, filename: "" } }
       )
     ).toContain(
       `.padding\\:10px10px10px10px {\r\n\tpadding: 10px 10px 10px 10px;\r\n}`
@@ -494,11 +438,8 @@ describe("Padding", () => {
     expect(
       DoWork(
         "./tests/padding/padding_10px10px10px10px_hover.html",
-        {
-          className: "",
-          css: "",
-        },
-        { mediaClass: { className: "", css: "", order: 0 } }
+        DictionaryOfFoundCSSFromAllFile,
+        { mediaClass: { className: "", css: "", order: 0, filename: "" } }
       )
     ).toContain(
       `.padding\\:10px10px10px10px\\:hover:hover {\r\n\tpadding: 10px 10px 10px 10px;\r\n}`
@@ -509,8 +450,8 @@ describe("Padding", () => {
     expect(
       DoWork(
         "./tests/padding/padding_xs.html",
-        { className: "", css: "" },
-        { mediaClass: { className: "", css: "", order: 0 } }
+        DictionaryOfFoundCSSFromAllFile,
+        { mediaClass: { className: "", css: "", order: 0, filename: "" } }
       )
     ).toContain(`.padding\\:xs {\r\n\tpadding: ${PaddingSizes.xs};\r\n}`);
   });
@@ -518,8 +459,8 @@ describe("Padding", () => {
     expect(
       DoWork(
         "./tests/padding/padding_sm.html",
-        { className: "", css: "" },
-        { mediaClass: { className: "", css: "", order: 0 } }
+        DictionaryOfFoundCSSFromAllFile,
+        { mediaClass: { className: "", css: "", order: 0, filename: "" } }
       )
     ).toContain(`.padding\\:sm {\r\n\tpadding: ${PaddingSizes.sm};\r\n}`);
   });
@@ -527,8 +468,8 @@ describe("Padding", () => {
     expect(
       DoWork(
         "./tests/padding/padding_md.html",
-        { className: "", css: "" },
-        { mediaClass: { className: "", css: "", order: 0 } }
+        DictionaryOfFoundCSSFromAllFile,
+        { mediaClass: { className: "", css: "", order: 0, filename: "" } }
       )
     ).toContain(`.padding\\:md {\r\n\tpadding: ${PaddingSizes.md};\r\n}`);
   });
@@ -536,8 +477,8 @@ describe("Padding", () => {
     expect(
       DoWork(
         "./tests/padding/padding_lg.html",
-        { className: "", css: "" },
-        { mediaClass: { className: "", css: "", order: 0 } }
+        DictionaryOfFoundCSSFromAllFile,
+        { mediaClass: { className: "", css: "", order: 0, filename: "" } }
       )
     ).toContain(`.padding\\:lg {\r\n\tpadding: ${PaddingSizes.lg};\r\n}`);
   });
@@ -545,8 +486,8 @@ describe("Padding", () => {
     expect(
       DoWork(
         "./tests/padding/padding_xl.html",
-        { className: "", css: "" },
-        { mediaClass: { className: "", css: "", order: 0 } }
+        DictionaryOfFoundCSSFromAllFile,
+        { mediaClass: { className: "", css: "", order: 0, filename: "" } }
       )
     ).toContain(`.padding\\:xl {\r\n\tpadding: ${PaddingSizes.xl};\r\n}`);
   });
@@ -554,8 +495,8 @@ describe("Padding", () => {
     expect(
       DoWork(
         "./tests/padding/padding_2xl.html",
-        { className: "", css: "" },
-        { mediaClass: { className: "", css: "", order: 0 } }
+        DictionaryOfFoundCSSFromAllFile,
+        { mediaClass: { className: "", css: "", order: 0, filename: "" } }
       )
     ).toContain(`.padding\\:2xl {\r\n\tpadding: ${PaddingSizes.xl2};\r\n}`);
   });
@@ -564,11 +505,8 @@ describe("Padding", () => {
     expect(
       DoWork(
         "./tests/padding/padding_2_value_shorthand.html",
-        {
-          className: "",
-          css: "",
-        },
-        { mediaClass: { className: "", css: "", order: 0 } }
+        DictionaryOfFoundCSSFromAllFile,
+        { mediaClass: { className: "", css: "", order: 0, filename: "" } }
       )
     ).toContain(
       `.padding\\:xsxl {\r\n\tpadding: ${PaddingSizes.xs} ${PaddingSizes.xl};\r\n}`
@@ -579,11 +517,8 @@ describe("Padding", () => {
     expect(
       DoWork(
         "./tests/padding/padding_1_value_shorthand.html",
-        {
-          className: "",
-          css: "",
-        },
-        { mediaClass: { className: "", css: "", order: 0 } }
+        DictionaryOfFoundCSSFromAllFile,
+        { mediaClass: { className: "", css: "", order: 0, filename: "" } }
       )
     ).toContain(`.padding\\:2xl {\r\n\tpadding: ${PaddingSizes.xl2};\r\n}`);
   });
@@ -592,11 +527,8 @@ describe("Padding", () => {
     expect(
       DoWork(
         "./tests/padding/padding_4_value_shorthand.html",
-        {
-          className: "",
-          css: "",
-        },
-        { mediaClass: { className: "", css: "", order: 0 } }
+        DictionaryOfFoundCSSFromAllFile,
+        { mediaClass: { className: "", css: "", order: 0, filename: "" } }
       )
     ).toContain(
       `.padding\\:xssmmdlg {\r\n\tpadding: ${PaddingSizes.xs} ${PaddingSizes.sm} ${PaddingSizes.md} ${PaddingSizes.lg};\r\n}`
@@ -608,61 +540,49 @@ describe("Padding", () => {
 describe("Color", () => {
   test("Color Snap C1", () => {
     expect(
-      DoWork(
-        "./tests/color/color.html",
-        { className: "", css: "" },
-        { mediaClass: { className: "", css: "", order: 0 } }
-      )
+      DoWork("./tests/color/color.html", DictionaryOfFoundCSSFromAllFile, {
+        mediaClass: { className: "", css: "", order: 0, filename: "" },
+      })
     ).toContain(`.color\\:c1 {\r\n\tcolor: ${color_palette_1.c1};\r\n}`);
   });
 
   test("Color", () => {
     expect(
-      DoWork(
-        "./tests/color/color.html",
-        { className: "", css: "" },
-        { mediaClass: { className: "", css: "", order: 0 } }
-      )
+      DoWork("./tests/color/color.html", DictionaryOfFoundCSSFromAllFile, {
+        mediaClass: { className: "", css: "", order: 0, filename: "" },
+      })
     ).toContain(`.color\\:red {\r\n\tcolor: red;\r\n}`);
   });
 
   test("Color # code", () => {
     expect(
-      DoWork(
-        "./tests/color/color.html",
-        { className: "", css: "" },
-        { mediaClass: { className: "", css: "", order: 0 } }
-      )
+      DoWork("./tests/color/color.html", DictionaryOfFoundCSSFromAllFile, {
+        mediaClass: { className: "", css: "", order: 0, filename: "" },
+      })
     ).toContain(`.color\\:\\#124356 {\r\n\tcolor: #124356;\r\n}`);
   });
 
   test("Color # code Hover", () => {
     expect(
-      DoWork(
-        "./tests/color/color.html",
-        { className: "", css: "" },
-        { mediaClass: { className: "", css: "", order: 0 } }
-      )
+      DoWork("./tests/color/color.html", DictionaryOfFoundCSSFromAllFile, {
+        mediaClass: { className: "", css: "", order: 0, filename: "" },
+      })
     ).toContain(`.color\\:\\#124356\\:hover:hover {\r\n\tcolor: #124356;\r\n}`);
   });
 
   test("Color # code Focus", () => {
     expect(
-      DoWork(
-        "./tests/color/color.html",
-        { className: "", css: "" },
-        { mediaClass: { className: "", css: "", order: 0 } }
-      )
+      DoWork("./tests/color/color.html", DictionaryOfFoundCSSFromAllFile, {
+        mediaClass: { className: "", css: "", order: 0, filename: "" },
+      })
     ).toContain(`.color\\:\\#124356\\:focus:focus {\r\n\tcolor: #124356;\r\n}`);
   });
 
   test("Color Media Small", () => {
     expect(
-      DoWork(
-        "./tests/color/color.html",
-        { className: "", css: "" },
-        { mediaClass: { className: "", css: "", order: 0 } }
-      )
+      DoWork("./tests/color/color.html", DictionaryOfFoundCSSFromAllFile, {
+        mediaClass: { className: "", css: "", order: 0, filename: "" },
+      })
     ).toContain(
       `@media (min-width: ${MediaBreakPointsValue.small}px) {\r\n.${MediaBreakPointsText.small}\\?color\\:red {\r\n\tcolor: red;\r\n\t}\r\n}`
     );
@@ -670,11 +590,9 @@ describe("Color", () => {
 
   test("Color Hover", () => {
     expect(
-      DoWork(
-        "./tests/color/color.html",
-        { className: "", css: "" },
-        { mediaClass: { className: "", css: "", order: 0 } }
-      )
+      DoWork("./tests/color/color.html", DictionaryOfFoundCSSFromAllFile, {
+        mediaClass: { className: "", css: "", order: 0, filename: "" },
+      })
     ).toContain(`.color\\:red\\:hover:hover {\r\n\tcolor: red;\r\n}`);
   });
 });
@@ -685,11 +603,8 @@ describe("Background Color", () => {
     expect(
       DoWork(
         "./tests/background-color/background_color.html",
-        {
-          className: "",
-          css: "",
-        },
-        { mediaClass: { className: "", css: "", order: 0 } }
+        DictionaryOfFoundCSSFromAllFile,
+        { mediaClass: { className: "", css: "", order: 0, filename: "" } }
       )
     ).toContain(
       `.background-color\\:c1 {\r\n\tbackground-color: ${color_palette_1.c1};\r\n}`
@@ -700,11 +615,8 @@ describe("Background Color", () => {
     expect(
       DoWork(
         "./tests/background-color/background_color.html",
-        {
-          className: "",
-          css: "",
-        },
-        { mediaClass: { className: "", css: "", order: 0 } }
+        DictionaryOfFoundCSSFromAllFile,
+        { mediaClass: { className: "", css: "", order: 0, filename: "" } }
       )
     ).toContain(`.background-color\\:red {\r\n\tbackground-color: red;\r\n}`);
   });
@@ -713,11 +625,8 @@ describe("Background Color", () => {
     expect(
       DoWork(
         "./tests/background-color/background_color.html",
-        {
-          className: "",
-          css: "",
-        },
-        { mediaClass: { className: "", css: "", order: 0 } }
+        DictionaryOfFoundCSSFromAllFile,
+        { mediaClass: { className: "", css: "", order: 0, filename: "" } }
       )
     ).toContain(
       `.background-color\\:\\#124356 {\r\n\tbackground-color: #124356;\r\n}`
@@ -728,11 +637,8 @@ describe("Background Color", () => {
     expect(
       DoWork(
         "./tests/background-color/background_color.html",
-        {
-          className: "",
-          css: "",
-        },
-        { mediaClass: { className: "", css: "", order: 0 } }
+        DictionaryOfFoundCSSFromAllFile,
+        { mediaClass: { className: "", css: "", order: 0, filename: "" } }
       )
     ).toContain(
       `.background-color\\:\\#124356\\:hover:hover {\r\n\tbackground-color: #124356;\r\n}`
@@ -743,11 +649,8 @@ describe("Background Color", () => {
     expect(
       DoWork(
         "./tests/background-color/background_color.html",
-        {
-          className: "",
-          css: "",
-        },
-        { mediaClass: { className: "", css: "", order: 0 } }
+        DictionaryOfFoundCSSFromAllFile,
+        { mediaClass: { className: "", css: "", order: 0, filename: "" } }
       )
     ).toContain(
       `.background-color\\:\\#124356\\:focus:focus {\r\n\tbackground-color: #124356;\r\n}`
@@ -758,11 +661,8 @@ describe("Background Color", () => {
     expect(
       DoWork(
         "./tests/background-color/background_color.html",
-        {
-          className: "",
-          css: "",
-        },
-        { mediaClass: { className: "", css: "", order: 0 } }
+        DictionaryOfFoundCSSFromAllFile,
+        { mediaClass: { className: "", css: "", order: 0, filename: "" } }
       )
     ).toContain(
       `@media (min-width: ${MediaBreakPointsValue.small}px) {\r\n.${MediaBreakPointsText.small}\\?background-color\\:red {\r\n\tbackground-color: red;\r\n\t}\r\n}`
@@ -773,11 +673,8 @@ describe("Background Color", () => {
     expect(
       DoWork(
         "./tests/background-color/background_color.html",
-        {
-          className: "",
-          css: "",
-        },
-        { mediaClass: { className: "", css: "", order: 0 } }
+        DictionaryOfFoundCSSFromAllFile,
+        { mediaClass: { className: "", css: "", order: 0, filename: "" } }
       )
     ).toContain(
       `.background-color\\:red\\:hover:hover {\r\n\tbackground-color: red;\r\n}`
@@ -786,11 +683,9 @@ describe("Background Color", () => {
 
   test("BackGround Color Focus", () => {
     expect(
-      DoWork(
-        "./tests/focus/focus.html",
-        { className: "", css: "" },
-        { mediaClass: { className: "", css: "", order: 0 } }
-      )
+      DoWork("./tests/focus/focus.html", DictionaryOfFoundCSSFromAllFile, {
+        mediaClass: { className: "", css: "", order: 0, filename: "" },
+      })
     ).toContain(
       `.background-color\\:red\\:focus:focus {\r\n\tbackground-color: red;\r\n}`
     );
@@ -803,8 +698,8 @@ describe("Border", () => {
     expect(
       DoWork(
         "./tests/border-width/border_xs.html",
-        { className: "", css: "" },
-        { mediaClass: { className: "", css: "", order: 0 } }
+        DictionaryOfFoundCSSFromAllFile,
+        { mediaClass: { className: "", css: "", order: 0, filename: "" } }
       )
     ).toContain(
       `.border-width\\:xs {\r\n\tborder-width: ${BorderSizes.xs};\r\n}`
@@ -814,8 +709,8 @@ describe("Border", () => {
     expect(
       DoWork(
         "./tests/border-width/border_sm.html",
-        { className: "", css: "" },
-        { mediaClass: { className: "", css: "", order: 0 } }
+        DictionaryOfFoundCSSFromAllFile,
+        { mediaClass: { className: "", css: "", order: 0, filename: "" } }
       )
     ).toContain(
       `.border-width\\:sm {\r\n\tborder-width: ${BorderSizes.sm};\r\n}`
@@ -825,8 +720,8 @@ describe("Border", () => {
     expect(
       DoWork(
         "./tests/border-width/border_md.html",
-        { className: "", css: "" },
-        { mediaClass: { className: "", css: "", order: 0 } }
+        DictionaryOfFoundCSSFromAllFile,
+        { mediaClass: { className: "", css: "", order: 0, filename: "" } }
       )
     ).toContain(
       `.border-width\\:md {\r\n\tborder-width: ${BorderSizes.md};\r\n}`
@@ -836,8 +731,8 @@ describe("Border", () => {
     expect(
       DoWork(
         "./tests/border-width/border_lg.html",
-        { className: "", css: "" },
-        { mediaClass: { className: "", css: "", order: 0 } }
+        DictionaryOfFoundCSSFromAllFile,
+        { mediaClass: { className: "", css: "", order: 0, filename: "" } }
       )
     ).toContain(
       `.border-width\\:lg {\r\n\tborder-width: ${BorderSizes.lg};\r\n}`
@@ -847,8 +742,8 @@ describe("Border", () => {
     expect(
       DoWork(
         "./tests/border-width/border_xl.html",
-        { className: "", css: "" },
-        { mediaClass: { className: "", css: "", order: 0 } }
+        DictionaryOfFoundCSSFromAllFile,
+        { mediaClass: { className: "", css: "", order: 0, filename: "" } }
       )
     ).toContain(
       `.border-width\\:xl {\r\n\tborder-width: ${BorderSizes.xl};\r\n}`
@@ -858,8 +753,8 @@ describe("Border", () => {
     expect(
       DoWork(
         "./tests/border-width/border_2xl.html",
-        { className: "", css: "" },
-        { mediaClass: { className: "", css: "", order: 0 } }
+        DictionaryOfFoundCSSFromAllFile,
+        { mediaClass: { className: "", css: "", order: 0, filename: "" } }
       )
     ).toContain(
       `.border-width\\:2xl {\r\n\tborder-width: ${BorderSizes.xl2};\r\n}`
@@ -870,11 +765,8 @@ describe("Border", () => {
     expect(
       DoWork(
         "./tests/border-width/border_focus.html",
-        {
-          className: "",
-          css: "",
-        },
-        { mediaClass: { className: "", css: "", order: 0 } }
+        DictionaryOfFoundCSSFromAllFile,
+        { mediaClass: { className: "", css: "", order: 0, filename: "" } }
       )
     ).toContain(
       `.border-width\\:lg\\:focus:focus {\r\n\tborder-width: ${BorderSizes.lg};\r\n}`
@@ -885,11 +777,8 @@ describe("Border", () => {
     expect(
       DoWork(
         "./tests/border-width/border_10px.html",
-        {
-          className: "",
-          css: "",
-        },
-        { mediaClass: { className: "", css: "", order: 0 } }
+        DictionaryOfFoundCSSFromAllFile,
+        { mediaClass: { className: "", css: "", order: 0, filename: "" } }
       )
     ).toContain(`.border-width\\:10px {\r\n\tborder-width: 10px;\r\n}`);
   });
@@ -898,11 +787,8 @@ describe("Border", () => {
     expect(
       DoWork(
         "./tests/border-width/border_10px10px.html",
-        {
-          className: "",
-          css: "",
-        },
-        { mediaClass: { className: "", css: "", order: 0 } }
+        DictionaryOfFoundCSSFromAllFile,
+        { mediaClass: { className: "", css: "", order: 0, filename: "" } }
       )
     ).toContain(
       `.border-width\\:10px10px {\r\n\tborder-width: 10px 10px;\r\n}`
@@ -913,11 +799,8 @@ describe("Border", () => {
     expect(
       DoWork(
         "./tests/border-width/border_10px10px10px10px.html",
-        {
-          className: "",
-          css: "",
-        },
-        { mediaClass: { className: "", css: "", order: 0 } }
+        DictionaryOfFoundCSSFromAllFile,
+        { mediaClass: { className: "", css: "", order: 0, filename: "" } }
       )
     ).toContain(
       `.border-width\\:10px10px10px10px {\r\n\tborder-width: 10px 10px 10px 10px;\r\n}`
@@ -928,11 +811,8 @@ describe("Border", () => {
     expect(
       DoWork(
         "./tests/border-width/border_10px10px10px10px_hover.html",
-        {
-          className: "",
-          css: "",
-        },
-        { mediaClass: { className: "", css: "", order: 0 } }
+        DictionaryOfFoundCSSFromAllFile,
+        { mediaClass: { className: "", css: "", order: 0, filename: "" } }
       )
     ).toContain(
       `.border-width\\:10px10px10px10px\\:hover:hover {\r\n\tborder-width: 10px 10px 10px 10px;\r\n}`
@@ -943,11 +823,8 @@ describe("Border", () => {
     expect(
       DoWork(
         "./tests/border-width/border_lgxl.html",
-        {
-          className: "",
-          css: "",
-        },
-        { mediaClass: { className: "", css: "", order: 0 } }
+        DictionaryOfFoundCSSFromAllFile,
+        { mediaClass: { className: "", css: "", order: 0, filename: "" } }
       )
     ).toContain(
       `.border-width\\:lgxl {\r\n\tborder-width: ${BorderSizes.lg} ${BorderSizes.xl};\r\n}`
@@ -958,11 +835,8 @@ describe("Border", () => {
     expect(
       DoWork(
         "./tests/border-width/border_lgxlxsxs.html",
-        {
-          className: "",
-          css: "",
-        },
-        { mediaClass: { className: "", css: "", order: 0 } }
+        DictionaryOfFoundCSSFromAllFile,
+        { mediaClass: { className: "", css: "", order: 0, filename: "" } }
       )
     ).toContain(
       `.border-width\\:lgxlxsxs {\r\n\tborder-width: ${BorderSizes.lg} ${BorderSizes.xl} ${BorderSizes.xs} ${BorderSizes.xs};\r\n}`
@@ -976,8 +850,8 @@ describe("FontSize", () => {
     expect(
       DoWork(
         "./tests/fontsize/fontsize_xs.html",
-        { className: "", css: "" },
-        { mediaClass: { className: "", css: "", order: 0 } }
+        DictionaryOfFoundCSSFromAllFile,
+        { mediaClass: { className: "", css: "", order: 0, filename: "" } }
       )
     ).toContain(`.font-size\\:xs {\r\n\tfont-size: ${FontSizes.xs};\r\n}`);
   });
@@ -985,8 +859,8 @@ describe("FontSize", () => {
     expect(
       DoWork(
         "./tests/fontsize/fontsize_sm.html",
-        { className: "", css: "" },
-        { mediaClass: { className: "", css: "", order: 0 } }
+        DictionaryOfFoundCSSFromAllFile,
+        { mediaClass: { className: "", css: "", order: 0, filename: "" } }
       )
     ).toContain(`.font-size\\:sm {\r\n\tfont-size: ${FontSizes.sm};\r\n}`);
   });
@@ -994,8 +868,8 @@ describe("FontSize", () => {
     expect(
       DoWork(
         "./tests/fontsize/fontsize_md.html",
-        { className: "", css: "" },
-        { mediaClass: { className: "", css: "", order: 0 } }
+        DictionaryOfFoundCSSFromAllFile,
+        { mediaClass: { className: "", css: "", order: 0, filename: "" } }
       )
     ).toContain(`.font-size\\:md {\r\n\tfont-size: ${FontSizes.md};\r\n}`);
   });
@@ -1003,8 +877,8 @@ describe("FontSize", () => {
     expect(
       DoWork(
         "./tests/fontsize/fontsize_lg.html",
-        { className: "", css: "" },
-        { mediaClass: { className: "", css: "", order: 0 } }
+        DictionaryOfFoundCSSFromAllFile,
+        { mediaClass: { className: "", css: "", order: 0, filename: "" } }
       )
     ).toContain(`.font-size\\:lg {\r\n\tfont-size: ${FontSizes.lg};\r\n}`);
   });
@@ -1012,8 +886,8 @@ describe("FontSize", () => {
     expect(
       DoWork(
         "./tests/fontsize/fontsize_xl.html",
-        { className: "", css: "" },
-        { mediaClass: { className: "", css: "", order: 0 } }
+        DictionaryOfFoundCSSFromAllFile,
+        { mediaClass: { className: "", css: "", order: 0, filename: "" } }
       )
     ).toContain(`.font-size\\:xl {\r\n\tfont-size: ${FontSizes.xl};\r\n}`);
   });
@@ -1021,17 +895,18 @@ describe("FontSize", () => {
     expect(
       DoWork(
         "./tests/fontsize/fontsize_2xl.html",
-        { className: "", css: "" },
-        { mediaClass: { className: "", css: "", order: 0 } }
+        DictionaryOfFoundCSSFromAllFile,
+        { mediaClass: { className: "", css: "", order: 0, filename: "" } }
       )
     ).toContain(`.font-size\\:2xl {\r\n\tfont-size: ${FontSizes.xl2};\r\n}`);
   });
+
   test("Font Size Media Medium", () => {
     expect(
       DoWork(
         "./tests/fontsize/fontsize_media.html",
-        { className: "", css: "" },
-        { mediaClass: { className: "", css: "", order: 0 } }
+        DictionaryOfFoundCSSFromAllFile,
+        { mediaClass: { className: "", css: "", order: 0, filename: "" } }
       )
     ).toContain(
       `@media (min-width: ${MediaBreakPointsValue.medium}px) {\r\n.${MediaBreakPointsText.medium}\\?font-size\\:xl {\r\n\tfont-size: ${FontSizes.xl};\r\n\t}\r\n}`

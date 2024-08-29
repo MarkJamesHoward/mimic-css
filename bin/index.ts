@@ -4,7 +4,11 @@ import path from "path";
 import fs from "fs";
 import { DoWork } from "../src/main";
 import { LoadConfig, mimicConfig } from "../src/configurationLoader";
-import { IClass, IMediaClass } from "../interfaces/ICustomClassBuilder";
+import {
+  IClass,
+  IMediaClass,
+  INonMediaClass,
+} from "../interfaces/ICustomClassBuilder";
 
 const argv = yargs(process.argv.slice(2))
   .options({
@@ -17,7 +21,7 @@ const argv = yargs(process.argv.slice(2))
   .parseSync();
 
 let ExistingCSS = "";
-let DictionaryOfFoundCSSFromAllFile: Record<string, string> = {};
+let DictionaryOfFoundCSSFromAllFile: Record<string, INonMediaClass> = {};
 let DictionaryOfFoundMediaCSSFromAllFile: Record<string, IMediaClass> = {};
 
 let InputFolder = argv.i ?? "./";
@@ -76,7 +80,7 @@ function searchFile(dir: string, extension: string) {
 
         for (const key in DictionaryOfFoundCSSFromAllFile) {
           if (key !== undefined && key !== "") {
-            let TempCustomClass = `.${key} ${DictionaryOfFoundCSSFromAllFile[key]}`;
+            let TempCustomClass = `.${key} ${DictionaryOfFoundCSSFromAllFile[key].css}`;
             ExistingCSS += TempCustomClass.trim() + "\r\n";
           }
         }
@@ -160,7 +164,7 @@ async function Start() {
 
             for (const key in DictionaryOfFoundCSSFromAllFile) {
               if (key !== undefined && key !== "") {
-                let TempCustomClass = `.${key} ${DictionaryOfFoundCSSFromAllFile[key]}`;
+                let TempCustomClass = `.${key} ${DictionaryOfFoundCSSFromAllFile[key].css}`;
                 ExistingCSS += TempCustomClass.trim() + "\r\n";
               }
             }
@@ -214,9 +218,9 @@ function ConstructOrderedMediaClasses_EnsuringMostRecentAreAtTheBottom(
 
   sortedMediaItems.forEach((item) => {
     if (item[0] !== undefined && item[0] !== "") {
-      let TempCustomClass = `/*${dict[item[0]].order}*/${item[0]}${
-        dict[item[0]].className
-      }${dict[item[0]].css}`;
+      let TempCustomClass = `${item[0]}${dict[item[0]].className}${
+        dict[item[0]].css
+      }`;
       css += TempCustomClass.trim() + "\r\n";
     }
   });
