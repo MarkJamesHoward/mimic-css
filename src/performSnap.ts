@@ -105,62 +105,62 @@ export function PerformSnap(type: string, value: string) {
 
         case ColorSizes.c2a:
           result =
-            mimicConfig?.ColorPalette1Snapping?.c2a ?? color_palette_2.c2a;
+            mimicConfig?.ColorPalette2Snapping?.c2a ?? color_palette_2.c2a;
           break;
 
         case ColorSizes.c2b:
           result =
-            mimicConfig?.ColorPalette1Snapping?.c2b ?? color_palette_2.c2b;
+            mimicConfig?.ColorPalette2Snapping?.c2b ?? color_palette_2.c2b;
           break;
 
         case ColorSizes.c2c:
           result =
-            mimicConfig?.ColorPalette1Snapping?.c2c ?? color_palette_2.c2c;
+            mimicConfig?.ColorPalette2Snapping?.c2c ?? color_palette_2.c2c;
           break;
 
         case ColorSizes.c2d:
           result =
-            mimicConfig?.ColorPalette1Snapping?.c2d ?? color_palette_2.c2d;
+            mimicConfig?.ColorPalette2Snapping?.c2d ?? color_palette_2.c2d;
           break;
 
         case ColorSizes.c3a:
           result =
-            mimicConfig?.ColorPalette1Snapping?.c3a ?? color_palette_3.c3a;
+            mimicConfig?.ColorPalette3Snapping?.c3a ?? color_palette_3.c3a;
           break;
 
         case ColorSizes.c3b:
           result =
-            mimicConfig?.ColorPalette1Snapping?.c3b ?? color_palette_3.c3b;
+            mimicConfig?.ColorPalette3Snapping?.c3b ?? color_palette_3.c3b;
           break;
 
         case ColorSizes.c3c:
           result =
-            mimicConfig?.ColorPalette1Snapping?.c3c ?? color_palette_3.c3c;
+            mimicConfig?.ColorPalette3Snapping?.c3c ?? color_palette_3.c3c;
           break;
 
         case ColorSizes.c3d:
           result =
-            mimicConfig?.ColorPalette1Snapping?.c3d ?? color_palette_3.c3d;
+            mimicConfig?.ColorPalette3Snapping?.c3d ?? color_palette_3.c3d;
           break;
 
         case ColorSizes.c4a:
           result =
-            mimicConfig?.ColorPalette1Snapping?.c4a ?? color_palette_4.c4a;
+            mimicConfig?.ColorPalette4Snapping?.c4a ?? color_palette_4.c4a;
           break;
 
         case ColorSizes.c4b:
           result =
-            mimicConfig?.ColorPalette1Snapping?.c4b ?? color_palette_4.c4b;
+            mimicConfig?.ColorPalette4Snapping?.c4b ?? color_palette_4.c4b;
           break;
 
         case ColorSizes.c4c:
           result =
-            mimicConfig?.ColorPalette1Snapping?.c4c ?? color_palette_4.c4c;
+            mimicConfig?.ColorPalette4Snapping?.c4c ?? color_palette_4.c4c;
           break;
 
         case ColorSizes.c4d:
           result =
-            mimicConfig?.ColorPalette1Snapping?.c4d ?? color_palette_4.c4d;
+            mimicConfig?.ColorPalette4Snapping?.c4d ?? color_palette_4.c4d;
           break;
 
         default:

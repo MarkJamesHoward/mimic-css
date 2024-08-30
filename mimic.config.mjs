@@ -11,6 +11,14 @@ export default config = {
   //   large: "1030",
   //   extralarge: "1040",
   // },
+
+  ColorPalette3Snapping: {
+    c3a: "#FF0000",
+    c3b: "#00FF00",
+    c3c: "#0000FF",
+    c3d: "#000000",
+  },
+
   lineHeightSnapping: {
     xs: "60%",
     sm: "120%",
@@ -18,5 +26,5 @@ export default config = {
     lg: "160%",
     xl: "200%",
     xl2: "240%",
-  }
+  },
 };
