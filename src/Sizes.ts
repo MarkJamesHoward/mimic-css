@@ -10,21 +10,53 @@ export const Sizes = {
 };
 
 export const ColorSizes = {
-  c1: "c1",
-  c2: "c2",
-  c3: "c3",
-  c4: "c4",
-  c5: "c5",
+  c1a: "c1a",
+  c1b: "c1b",
+  c1c: "c1c",
+  c1d: "c1d",
+  c2a: "c2a",
+  c2b: "c2b",
+  c2c: "c2c",
+  c2d: "c2d",
+  c3a: "c3a",
+  c3b: "c3b",
+  c3c: "c3c",
+  c3d: "c3d",
+  c4a: "c4a",
+  c4b: "c4b",
+  c4c: "c4c",
+  c4d: "c4d",
 };
 
 ////////////////////////////////////////
+// https://colorhunt.co/palettes/popular
 
 export const color_palette_1 = {
-  c1: "#3d5a80",
-  c2: "#98c1d9",
-  c3: "#e0fbfc",
-  c4: "#ee6c4d",
-  c5: "#293241",
+  c1a: "#222831",
+  c1b: "#393E46",
+  c1c: "#00ADB5",
+  c1d: "#EEEEEE",
+};
+
+export const color_palette_2 = {
+  c2a: "#FFC7C7",
+  c2b: "#FFE2E2",
+  c2c: "#F6F6F6",
+  c2d: "#8785A2",
+};
+
+export const color_palette_3 = {
+  c3a: "#B7C4CF",
+  c3b: "#EEE3CB",
+  c3c: "#D7C0AE",
+  c3d: "#967E76",
+};
+
+export const color_palette_4 = {
+  c4a: "#F9ED69",
+  c4b: "#F08A5D",
+  c4c: "#B83B5E",
+  c4d: "#6A2C70",
 };
 
 export const BorderRadius = {

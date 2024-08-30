@@ -11,6 +11,9 @@ import {
   LineHeight,
   ColorSizes,
   color_palette_1,
+  color_palette_2,
+  color_palette_3,
+  color_palette_4,
 } from "./Sizes";
 
 import { mimicConfig } from "./configurationLoader";
@@ -80,24 +83,84 @@ export function PerformSnap(type: string, value: string) {
     case "background-color":
     case "color":
       switch (value) {
-        case ColorSizes.c1:
-          result = mimicConfig?.ColorPalette1Snapping?.c1 ?? color_palette_1.c1;
+        case ColorSizes.c1a:
+          result =
+            mimicConfig?.ColorPalette1Snapping?.c1a ?? color_palette_1.c1a;
           break;
 
-        case ColorSizes.c2:
-          result = mimicConfig?.ColorPalette1Snapping?.c2 ?? color_palette_1.c2;
+        case ColorSizes.c1b:
+          result =
+            mimicConfig?.ColorPalette1Snapping?.c1b ?? color_palette_1.c1b;
           break;
 
-        case ColorSizes.c3:
-          result = mimicConfig?.ColorPalette1Snapping?.c3 ?? color_palette_1.c3;
+        case ColorSizes.c1c:
+          result =
+            mimicConfig?.ColorPalette1Snapping?.c1c ?? color_palette_1.c1c;
           break;
 
-        case ColorSizes.c4:
-          result = mimicConfig?.ColorPalette1Snapping?.c4 ?? color_palette_1.c4;
+        case ColorSizes.c1d:
+          result =
+            mimicConfig?.ColorPalette1Snapping?.c1d ?? color_palette_1.c1d;
           break;
 
-        case ColorSizes.c5:
-          result = mimicConfig?.ColorPalette1Snapping?.c5 ?? color_palette_1.c5;
+        case ColorSizes.c2a:
+          result =
+            mimicConfig?.ColorPalette1Snapping?.c2a ?? color_palette_2.c2a;
+          break;
+
+        case ColorSizes.c2b:
+          result =
+            mimicConfig?.ColorPalette1Snapping?.c2b ?? color_palette_2.c2b;
+          break;
+
+        case ColorSizes.c2c:
+          result =
+            mimicConfig?.ColorPalette1Snapping?.c2c ?? color_palette_2.c2c;
+          break;
+
+        case ColorSizes.c2d:
+          result =
+            mimicConfig?.ColorPalette1Snapping?.c2d ?? color_palette_2.c2d;
+          break;
+
+        case ColorSizes.c3a:
+          result =
+            mimicConfig?.ColorPalette1Snapping?.c3a ?? color_palette_3.c3a;
+          break;
+
+        case ColorSizes.c3b:
+          result =
+            mimicConfig?.ColorPalette1Snapping?.c3b ?? color_palette_3.c3b;
+          break;
+
+        case ColorSizes.c3c:
+          result =
+            mimicConfig?.ColorPalette1Snapping?.c3c ?? color_palette_3.c3c;
+          break;
+
+        case ColorSizes.c3d:
+          result =
+            mimicConfig?.ColorPalette1Snapping?.c3d ?? color_palette_3.c3d;
+          break;
+
+        case ColorSizes.c4a:
+          result =
+            mimicConfig?.ColorPalette1Snapping?.c4a ?? color_palette_4.c4a;
+          break;
+
+        case ColorSizes.c4b:
+          result =
+            mimicConfig?.ColorPalette1Snapping?.c4b ?? color_palette_4.c4b;
+          break;
+
+        case ColorSizes.c4c:
+          result =
+            mimicConfig?.ColorPalette1Snapping?.c4c ?? color_palette_4.c4c;
+          break;
+
+        case ColorSizes.c4d:
+          result =
+            mimicConfig?.ColorPalette1Snapping?.c4d ?? color_palette_4.c4d;
           break;
 
         default:

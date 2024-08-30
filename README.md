@@ -1,16 +1,16 @@
 # MIMIC CSS
 
-A design system that allows the use of standard CSS styles within the class attribute ALONG with Media Queries and Modifiers. 
-
+A design system that allows the use of standard CSS styles within the class attribute ALONG with Media Queries and Modifiers.
 
 Advantages:
 
-1) No need to learn **MAGIC** utility names for existing CSS Styles
-2) Grow your CSS knowledge while reaping the rewards of using a Design System at the same time
+1. No need to learn **MAGIC** utility names for existing CSS Styles
+2. Grow your CSS knowledge while reaping the rewards of using a Design System at the same time
 
-Write standard CSS (**No spaces though!**) such as `display:flex` and apply a media query inline within the class 
+Write standard CSS (**No spaces though!**) such as `display:flex` and apply a media query inline within the class
 
 #### Example
+
 ```html
 <div class="large?display:flex">Some Text</div>
 ```
@@ -31,14 +31,14 @@ To ensure consistency there is a set of standard Tags that can be used in place 
 
 These Tags are used across the board keeping the learning curve simple
 
-| Tag | Description |
-| -------- | ------- |
-| **xs** | extra small |
-| **sm** | small |
-| **md** | medium |
-| **lg** | large |
-| **xl** | extra large |
-| **2xl**  | extra extra large |
+| Tag     | Description       |
+| ------- | ----------------- |
+| **xs**  | extra small       |
+| **sm**  | small             |
+| **md**  | medium            |
+| **lg**  | large             |
+| **xl**  | extra large       |
+| **2xl** | extra extra large |
 
 ```html
 <div class="padding-top:md">Some Text</div>
@@ -56,40 +56,36 @@ These Tags will map to different **Pixel Values** depending upon the usage.
 
 So for **Fonts** we have the below mapping:
 
-| Tag    | Value |
-| -------- | ------- |
-| xs  | 8px    |
-| sm | 12px    |
-| md    | 16px    |
-| lg    | 24px    |
-| xl    | 48px   |
-| 2xl    | 92px   |
-
+| Tag | Value |
+| --- | ----- |
+| xs  | 8px   |
+| sm  | 12px  |
+| md  | 16px  |
+| lg  | 24px  |
+| xl  | 48px  |
+| 2xl | 92px  |
 
 Whereas for **Padding** the mappings will be different:
 
-
-| Tag    | Value |
-| -------- | ------- |
-| xs  | 2px    |
-| sm | 4px    |
-| md    | 8px    |
-| lg    | 20px    |
-| xl    | 50px   |
-| 2xl    | 200px   |
+| Tag | Value |
+| --- | ----- |
+| xs  | 2px   |
+| sm  | 4px   |
+| md  | 8px   |
+| lg  | 20px  |
+| xl  | 50px  |
+| 2xl | 200px |
 
 And then for **Line height** they map to percentages
 
-| Tag    | Value |
-| -------- | ------- |
-| xs  | 100%    |
-| sm | 120%     |
-| md    | 140%    |
-| lg    | 160%    |
-| xl    | 200%    |
-| 2xl    | 240%    |
-
-
+| Tag | Value |
+| --- | ----- |
+| xs  | 100%  |
+| sm  | 120%  |
+| md  | 140%  |
+| lg  | 160%  |
+| xl  | 200%  |
+| 2xl | 240%  |
 
 ### An example for Padding
 
@@ -180,21 +176,20 @@ npx mimic-css -o ./styles/customname.css
 
 ## Command Line Arguments
 
-| option    | Default | Alias |
-| -------- | ------- | ------- |
-| -i | ./ | input   |
-| -o | ./mimic.css | output   |
-| -e | <N/A> | exclude   |
-| -l | <N/A> | lit   |
-
+| option | Default     | Alias   |
+| ------ | ----------- | ------- |
+| -i     | ./          | input   |
+| -o     | ./mimic.css | output  |
+| -e     | <N/A>       | exclude |
+| -l     | <N/A>       | lit     |
 
 ## Configuration [**'mimic.config.mjs'**]
 
-Customisation can be applied within a file named **'mimic.config.mjs'** 
+Customisation can be applied within a file named **'mimic.config.mjs'**
 
 ### Overriding Files to Search
 
-By default mimic-css will search ".html", ".js", ".astro", ".ts"  files for classes to process
+By default mimic-css will search ".html", ".js", ".astro", ".ts" files for classes to process
 
 So to also search jsx files in addition to the defaults we would create the below:
 
@@ -220,7 +215,39 @@ export default config = {
     lg: "160%",
     xl: "200%",
     xl2: "240%",
-  }
+  },
+};
+```
+
+### Color Palettes
+
+```
+color_palette_1 = {
+c1a: "#222831",
+c1b: "#393E46",
+c1c: "#00ADB5",
+c1d: "#EEEEEE",
+};
+
+color_palette_2 = {
+c2a: "#FFC7C7",
+c2b: "#FFE2E2",
+c2c: "#F6F6F6",
+c2d: "#8785A2",
+};
+
+color_palette_3 = {
+c3a: "#B7C4CF",
+c3b: "#EEE3CB",
+c3c: "#D7C0AE",
+c3d: "#967E76",
+};
+
+color_palette_4 = {
+c4a: "#F9ED69",
+c4b: "#F08A5D",
+c4c: "#B83B5E",
+c4d: "#6A2C70",
 };
 ```
 
@@ -230,13 +257,13 @@ export default config = {
 let config;
 
 export default config = {
-   mediaBreakPointsValueOverride: {
-     extrasmall: "1000",
-     small: "1010",
-     medium: "1020",
-     large: "1030",
-     extralarge: "1040",
-   }
+  mediaBreakPointsValueOverride: {
+    extrasmall: "1000",
+    small: "1010",
+    medium: "1020",
+    large: "1030",
+    extralarge: "1040",
+  },
 };
 ```
 

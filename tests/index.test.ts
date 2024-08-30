@@ -10,6 +10,7 @@ import {
   color_palette_1,
   BoxShadowSizes,
   Sizes,
+  color_palette_2,
 } from "../src/Sizes";
 import {
   MediaBreakPointsValue,
@@ -543,7 +544,7 @@ describe("Color", () => {
       DoWork("./tests/color/color.html", DictionaryOfFoundCSSFromAllFile, {
         mediaClass: { className: "", css: "", order: 0, filename: "" },
       })
-    ).toContain(`.color\\:c1 {\r\n\tcolor: ${color_palette_1.c1};\r\n}`);
+    ).toContain(`.color\\:c1a {\r\n\tcolor: ${color_palette_1.c1a};\r\n}`);
   });
 
   test("Color", () => {
@@ -599,7 +600,7 @@ describe("Color", () => {
 
 /////////////////////////////////
 describe("Background Color", () => {
-  test("BackGround Color Snap C1", () => {
+  test("BackGround Color Snap C1a", () => {
     expect(
       DoWork(
         "./tests/background-color/background_color.html",
@@ -607,7 +608,19 @@ describe("Background Color", () => {
         { mediaClass: { className: "", css: "", order: 0, filename: "" } }
       )
     ).toContain(
-      `.background-color\\:c1 {\r\n\tbackground-color: ${color_palette_1.c1};\r\n}`
+      `.background-color\\:c1a {\r\n\tbackground-color: ${color_palette_1.c1a};\r\n}`
+    );
+  });
+
+  test("BackGround Color Snap C2a", () => {
+    expect(
+      DoWork(
+        "./tests/background-color/background_color_color_palette_c2a.html",
+        DictionaryOfFoundCSSFromAllFile,
+        { mediaClass: { className: "", css: "", order: 0, filename: "" } }
+      )
+    ).toContain(
+      `.background-color\\:c2a {\r\n\tbackground-color: ${color_palette_2.c2a};\r\n}`
     );
   });
 
