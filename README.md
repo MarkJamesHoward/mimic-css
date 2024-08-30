@@ -221,6 +221,8 @@ export default config = {
 
 ### Color Palettes
 
+#### There are 4 built in Color Palettes each of which can be customised
+
 ```js
 color_palette_1 = {
   c1a: "#222831",

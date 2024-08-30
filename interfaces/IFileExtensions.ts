@@ -63,14 +63,23 @@ export interface IMimicConfig {
     c1b: string;
     c1c: string;
     c1d: string;
+  };
+
+  ColorPalette2Snapping?: {
     c2a: string;
     c2b: string;
     c2c: string;
     c2d: string;
+  };
+
+  ColorPalette3Snapping?: {
     c3a: string;
     c3b: string;
     c3c: string;
     c3d: string;
+  };
+
+  ColorPalette4Snapping?: {
     c4a: string;
     c4b: string;
     c4c: string;
