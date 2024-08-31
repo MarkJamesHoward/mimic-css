@@ -12,10 +12,10 @@ export default config = {
   //   extralarge: "1040",
   // },
 
-  mediaBreakPointsTagsOverride: {
-    xs: "testxs",
-    sm: "sml",
-  },
+  // mediaBreakPointsTagsOverride: {
+  //   xs: "xs",
+  //   sm: "sm",
+  // },
 
   ColorPalette3Snapping: {
     c3a: "#FF0000",

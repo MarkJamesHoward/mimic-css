@@ -23,6 +23,7 @@ import {
   no_hyphen_snappable,
   no_hyphen,
   single_hyphen_hash_value,
+  RegenerateRegExExpressions,
 } from "./RegExDefinitions";
 
 import fs from "fs";
@@ -76,6 +77,8 @@ export function DoWork(
 
   let classComplete = /class=\"(?<classComplete>.+)\"/gi;
   let classCompleteMatch = data.matchAll(classComplete);
+
+  RegenerateRegExExpressions();
 
   // Find Non Media Queries
   for (const classIndividual of classCompleteMatch) {
@@ -278,7 +281,18 @@ export function DoWork(
         filename: filename,
       };
 
-      result = GenericRegexMedia(item, no_hyphen, "NoHypenMedia");
+      // result = GenericRegexMedia(item, single_colon, "single_colon");
+
+      // DictionaryOfFoundMediaCSSFromAllFile[
+      //   result.mediaDescription + result.mediaClass.className
+      // ] = {
+      //   className: "",
+      //   css: result.mediaClass.css,
+      //   order: next_media_order_position,
+      //   filename: filename,
+      // };
+
+      result = GenericRegexMedia(item, no_hyphen, "NoHypen");
 
       DictionaryOfFoundMediaCSSFromAllFile[
         result.mediaDescription + result.mediaClass.className
