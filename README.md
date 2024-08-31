@@ -201,24 +201,6 @@ export default config = {
 };
 ```
 
-### Overriding Snapping
-
-```js
-let config;
-
-export default config = {
-  extensions: [".html"],
-  lineHeightSnapping: {
-    xs: "60%",
-    sm: "120%",
-    md: "140%",
-    lg: "160%",
-    xl: "200%",
-    xl2: "240%",
-  },
-};
-```
-
 ### Color Palettes
 
 #### There are 4 built in Color Palettes each of which can be customised
@@ -253,7 +235,29 @@ color_palette_4 = {
 };
 ```
 
+### Overriding Line Height Snapping
+
+```js
+let config;
+
+export default config = {
+  extensions: [".html"],
+  lineHeightSnapping: {
+    xs: "60%",
+    sm: "120%",
+    md: "140%",
+    lg: "160%",
+    xl: "200%",
+    xl2: "240%",
+  },
+};
+```
+
 ### Overriding Media Breakpoints
+
+To change the pixel values for each of the media breakpoints specify the new values in the 'mediaBreakPointsValueOverride' object of the mimic.config.js file. No need to add the 'px' suffix here as this will automatically be added by mimic-css for us.
+
+Example:
 
 ```js
 let config;
@@ -271,15 +275,51 @@ export default config = {
 
 ### Overriding Media Tags
 
+To change the text that is used to specify a Media breakpoint use the 'MediaBreakPointsTextOverride' object in the mimic.config.js file
+
+Example:
+
 ```js
 let config;
 
 export default config = {
- mediaBreakPointsTagsOverride: {
-    xs: "x_sm",
-    sm: "smll",
+  MediaBreakPointsTextOverride: {
+    extrasmall: "xsmall",
+    small: "sm",
+    medium: "normal",
+    large: "big",
+    extralarge: "vbig",
   },
+};
+```
 
+### Overriding Snapping Tags
+
+To change the text that is used on the snapping tags use the 'SnappingOverride' object in the mimic.config.js file.
+
+```js
+  SnappingOverride: {
+    xs: "xsmall",
+    sm: "small",
+    md: "medium",
+    lg: "big",
+    xl: "verybig",
+    xl2: "crazybig",
+  },
+```
+
+#### Creating Classes
+
+To create a class in place we can use the @ symbol to combine css into a class
+
+```html
+<div class="padding:xl@btn border-radius:md@btn btn"></div>
+```
+
+Generated css for the above will be:
+
+```html
+.btn { padding: 50px; border-radius: 10px; }
 ```
 
 ## Specify folders to exclude
