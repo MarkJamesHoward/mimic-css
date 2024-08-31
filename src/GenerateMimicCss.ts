@@ -1,7 +1,10 @@
 import { PerformSnap } from "./performSnap";
 import { MapMediaQuery } from "./processMediaQueries";
 import { Escape } from "./EscapingClassNames";
-import { IClass } from "../interfaces/ICustomClassBuilder";
+import {
+  IClass,
+  IClassNameCssSourceAndFilename,
+} from "../interfaces/ICustomClassBuilder";
 
 let debug = false;
 
@@ -19,7 +22,7 @@ export function GenerateMimicClass_NONMEDIA_Return_ClassName_Separate(
   media: string,
   pseudo: string,
   color: string
-): IClass {
+): IClassNameCssSourceAndFilename {
   let width = MapMediaQuery(media?.replace("?", ""));
 
   let snappedvalue1 = PerformSnap(style, value1);
@@ -68,6 +71,8 @@ export function GenerateMimicClass_NONMEDIA_Return_ClassName_Separate(
       `${snappedvalue1}${value1type}${snappedvalue2}${value2type}${snappedvalue3}${value3type}${snappedvalue4}${value4type}${color};\r\n` +
       `${media ? "\t" : ""}}\r\n` +
       `${media ? "}\r\n\r\n" : ""}`,
+    source: source,
+    filename: "TODO",
   };
 }
 

@@ -59,6 +59,26 @@ describe("Box Shadow", () => {
     );
   });
 
+  test("Box Shadow 2 Values With Color", () => {
+    expect(
+      DoWork("./tests/box-shadow/box-shadow-2-values-with-color.html", {}, {})
+    ).toContain(
+      `.box-shadow\\:10px10pxred {\r\n\tbox-shadow: 10px 10px red;\r\n}`
+    );
+  });
+
+  // test("Box Shadow 2 Values With Color Snap to SM", () => {
+  //   expect(
+  //     DoWork(
+  //       "./tests/box-shadow/box-shadow-2-values-with-color-snap-sm.html",
+  //       {},
+  //       {}
+  //     )
+  //   ).toContain(
+  //     `.box-shadow\\:smsmred {\r\n\tbox-shadow: ${BoxShadowSizes.sm} ${BoxShadowSizes.sm} red;\r\n}`
+  //   );
+  // });
+
   test("Box Shadow Hover", () => {
     expect(
       DoWork("./tests/box-shadow/box-shadow-hover.html", {}, {})

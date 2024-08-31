@@ -1,4 +1,7 @@
-import { IClass } from "../interfaces/ICustomClassBuilder";
+import {
+  IClass,
+  IClassNameCssSourceAndFilename,
+} from "../interfaces/ICustomClassBuilder";
 import {
   GenerateMimicClass,
   GenerateMimicClass_CustomClass,
@@ -12,9 +15,9 @@ export function GenericRegexNonMedia_ReturnDistinctClassAndCSS(
   item: any,
   regex: RegExp,
   source: string
-): IClass {
+): IClassNameCssSourceAndFilename {
   let single_colon_matches = item.matchAll(regex);
-  let result = { className: "", css: "" };
+  let result = { className: "", css: "", source: "", filename: "" };
 
   for (const match of single_colon_matches) {
     let style = match.groups["style"];
@@ -34,46 +37,6 @@ export function GenericRegexNonMedia_ReturnDistinctClassAndCSS(
     if (media != undefined || className != undefined) return result;
 
     result = GenerateMimicClass_NONMEDIA_Return_ClassName_Separate(
-      source,
-      style,
-      value1,
-      value2,
-      value3,
-      value4,
-      value1type,
-      value2type,
-      value3type,
-      value4type,
-      media,
-      pseudo,
-      color
-    );
-  }
-  return result;
-}
-
-export function GenericRegexNonMedia(item: any, regex: RegExp, source: string) {
-  let single_colon_matches = item.matchAll(regex);
-  let result;
-
-  for (const match of single_colon_matches) {
-    let style = match.groups["style"];
-    let value1 = match.groups["value1"];
-    let value2 = match.groups["value2"];
-    let value3 = match.groups["value3"];
-    let value4 = match.groups["value4"];
-    let media = match.groups["media"];
-    let color = match.groups["color"];
-    let pseudo = match.groups["pseudo"];
-    let value1type = match.groups["value1type"];
-    let value2type = match.groups["value2type"];
-    let value3type = match.groups["value3type"];
-    let value4type = match.groups["value4type"];
-    let className = match.groups["customclass"];
-
-    if (media != undefined || className != undefined) return "";
-
-    result = GenerateMimicClass(
       source,
       style,
       value1,

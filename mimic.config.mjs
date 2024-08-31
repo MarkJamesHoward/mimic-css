@@ -20,14 +20,14 @@ export default config = {
     colord: "col4",
   },
 
-  SnappingOverride: {
-    xs: "xs",
-    sm: "sml",
-    md: "md",
-    lg: "lg",
-    xl: "xl",
-    xl2: "2xl",
-  },
+  // SnappingOverride: {
+  //   xs: "xs",
+  //   sm: "sm",
+  //   md: "md",
+  //   lg: "lg",
+  //   xl: "xl",
+  //   xl2: "2xl",
+  // },
 
   MediaBreakPointsTextOverride: {
     extrasmall: "xs",

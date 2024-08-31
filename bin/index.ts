@@ -6,6 +6,7 @@ import { DoWork } from "../src/main";
 import { LoadConfig, mimicConfig } from "../src/configurationLoader";
 import {
   IClass,
+  IClassNameCssSourceAndFilename,
   IMediaClass,
   INonMediaClass,
 } from "../interfaces/ICustomClassBuilder";
@@ -21,7 +22,10 @@ const argv = yargs(process.argv.slice(2))
   .parseSync();
 
 let ExistingCSS = "";
-let DictionaryOfFoundCSSFromAllFile: Record<string, INonMediaClass> = {};
+let DictionaryOfFoundCSSFromAllFile: Record<
+  string,
+  IClassNameCssSourceAndFilename
+> = {};
 let DictionaryOfFoundMediaCSSFromAllFile: Record<string, IMediaClass> = {};
 
 let InputFolder = argv.i ?? "./";
@@ -76,19 +80,7 @@ function searchFile(dir: string, extension: string) {
           DictionaryOfFoundMediaCSSFromAllFile
         );
 
-        ExistingCSS = "";
-
-        for (const key in DictionaryOfFoundCSSFromAllFile) {
-          if (key !== undefined && key !== "") {
-            let TempCustomClass = `.${key} ${DictionaryOfFoundCSSFromAllFile[key].css}`;
-            ExistingCSS += TempCustomClass.trim() + "\r\n";
-          }
-        }
-
-        ExistingCSS +=
-          ConstructOrderedMediaClasses_EnsuringMostRecentAreAtTheBottom(
-            DictionaryOfFoundMediaCSSFromAllFile
-          );
+        ConstructGeneratedCSS();
 
         fs.writeFileSync(OutputFilename, ExistingCSS);
         if (EmitLitFile) {
@@ -160,19 +152,8 @@ async function Start() {
               DictionaryOfFoundCSSFromAllFile,
               DictionaryOfFoundMediaCSSFromAllFile
             );
-            ExistingCSS = "";
 
-            for (const key in DictionaryOfFoundCSSFromAllFile) {
-              if (key !== undefined && key !== "") {
-                let TempCustomClass = `.${key} ${DictionaryOfFoundCSSFromAllFile[key].css}`;
-                ExistingCSS += TempCustomClass.trim() + "\r\n";
-              }
-            }
-
-            ExistingCSS +=
-              ConstructOrderedMediaClasses_EnsuringMostRecentAreAtTheBottom(
-                DictionaryOfFoundMediaCSSFromAllFile
-              );
+            ConstructGeneratedCSS();
 
             WriteFile(OutputFilename, ExistingCSS);
 
@@ -196,6 +177,21 @@ async function Start() {
         }
       }
     }
+  );
+}
+
+function ConstructGeneratedCSS() {
+  ExistingCSS = "";
+
+  for (const key in DictionaryOfFoundCSSFromAllFile) {
+    if (key !== undefined && key !== "") {
+      let TempCustomClass = `/*${DictionaryOfFoundCSSFromAllFile[key].filename}*/\r\n/*${DictionaryOfFoundCSSFromAllFile[key].source}*/\r\n.${key} ${DictionaryOfFoundCSSFromAllFile[key].css}`;
+      ExistingCSS += TempCustomClass.trim() + "\r\n";
+    }
+  }
+
+  ExistingCSS += ConstructOrderedMediaClasses_EnsuringMostRecentAreAtTheBottom(
+    DictionaryOfFoundMediaCSSFromAllFile
   );
 }
 

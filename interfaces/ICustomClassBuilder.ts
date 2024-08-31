@@ -3,6 +3,13 @@ export interface ICustomClassBuilder {
   constructedClassMemberList: string;
 }
 
+export type IClassNameCssSourceAndFilename = {
+  className: string;
+  css: string;
+  source: string;
+  filename: string;
+};
+
 export interface IClass {
   className: string;
   css: string;

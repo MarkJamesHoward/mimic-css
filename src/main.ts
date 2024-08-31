@@ -1,12 +1,12 @@
 import {
   IClass,
+  IClassNameCssSourceAndFilename,
   ICustomClassBuilder,
   IMediaClass,
   INonMediaClass,
 } from "../interfaces/ICustomClassBuilder";
 import { CSSAlreadyExists, DeDuplication } from "../src/DeDuplication";
 import {
-  GenericRegexNonMedia,
   GenericRegexMedia,
   GenericRegexNonMediaCustomClass,
   GenericRegexNonMedia_ReturnDistinctClassAndCSS,
@@ -43,9 +43,417 @@ export function FindCurrentMaxMediaOrder(
   return max;
 }
 
+function StoreNonMediaClassIn_DictionaryOfFoundCSSFromAllFile(
+  distinctClassAndCss: IClassNameCssSourceAndFilename,
+  DictionaryOfFoundCSSFromAllFile: Record<
+    string,
+    IClassNameCssSourceAndFilename
+  >
+) {
+  DictionaryOfFoundCSSFromAllFile[distinctClassAndCss.className] = {
+    className: distinctClassAndCss.className,
+    css: distinctClassAndCss.css,
+    filename: distinctClassAndCss.filename,
+    source: distinctClassAndCss.source,
+  };
+}
+
+function FindCustomClasses(
+  classGenerationInProgress: Array<string>,
+  classCompleteMatch: IterableIterator<RegExpExecArray>,
+  DictionaryOfFoundCSSFromAllFile: Record<
+    string,
+    IClassNameCssSourceAndFilename
+  >,
+  filename: string
+) {
+  ////////////// Check for Custom Class creation - NonMedia ////////////////////////
+  for (const classIndividual of classCompleteMatch) {
+    let classIndividualString = ` ${classIndividual.groups?.["classComplete"]} `;
+    let splitIndividualClassItems = classIndividualString.split(" ");
+
+    let constructedClassName: string = "";
+    let constructedClassMemberList: string = "";
+
+    splitIndividualClassItems.forEach((item) => {
+      if (item == "") return;
+
+      constructedClassName = "";
+      // display:flex@MYBUTTON
+      // background:red@MYBUTTON
+      let r = GenericRegexNonMediaCustomClass(
+        item,
+        no_hyphen,
+        "no_hyphen_custom_class"
+      );
+
+      ({ constructedClassMemberList, constructedClassName } =
+        UpdateClassMembersOfCustomClass(
+          r.className,
+          r.classMember,
+          constructedClassMemberList
+        ));
+      if (
+        AddCustomClassTo_DictionaryOfFoundCSSFromAllFile(
+          constructedClassName,
+          constructedClassMemberList,
+          classGenerationInProgress,
+          DictionaryOfFoundCSSFromAllFile,
+          filename,
+          "Test"
+        )
+      ) {
+        return;
+      }
+      r = GenericRegexNonMediaCustomClass(
+        item,
+        single_hyphen_then_colon_snappable,
+        "single_hyphen_then_colon_snappable_custom_class"
+      );
+
+      ({ constructedClassMemberList, constructedClassName } =
+        UpdateClassMembersOfCustomClass(
+          r.className,
+          r.classMember,
+          constructedClassMemberList
+        ));
+
+      if (
+        AddCustomClassTo_DictionaryOfFoundCSSFromAllFile(
+          constructedClassName,
+          constructedClassMemberList,
+          classGenerationInProgress,
+          DictionaryOfFoundCSSFromAllFile,
+          filename,
+          "Test"
+        )
+      ) {
+        return;
+      }
+
+      r = GenericRegexNonMediaCustomClass(
+        item,
+        single_hyphen_then_colon,
+        "SingleHypenThenColon_CustomClass"
+      );
+
+      ({ constructedClassMemberList, constructedClassName } =
+        UpdateClassMembersOfCustomClass(
+          r.className,
+          r.classMember,
+          constructedClassMemberList
+        ));
+      if (
+        AddCustomClassTo_DictionaryOfFoundCSSFromAllFile(
+          constructedClassName,
+          constructedClassMemberList,
+          classGenerationInProgress,
+          DictionaryOfFoundCSSFromAllFile,
+          filename,
+          "Test"
+        )
+      ) {
+        return;
+      }
+
+      r = GenericRegexNonMediaCustomClass(
+        item,
+        single_hyphen_then_colon_then_another_hyphen,
+        "SingleHypenThenColonThenAnotherHyphen_CustomClass"
+      );
+
+      ({ constructedClassMemberList, constructedClassName } =
+        UpdateClassMembersOfCustomClass(
+          r.className,
+          r.classMember,
+          constructedClassMemberList
+        ));
+      if (
+        AddCustomClassTo_DictionaryOfFoundCSSFromAllFile(
+          constructedClassName,
+          constructedClassMemberList,
+          classGenerationInProgress,
+          DictionaryOfFoundCSSFromAllFile,
+          filename,
+          "Test"
+        )
+      ) {
+        return;
+      }
+
+      r = GenericRegexNonMediaCustomClass(
+        item,
+        double_hyphen_then_colon,
+        "DoubleHyphenTheColon_CustomClass"
+      );
+
+      ({ constructedClassMemberList, constructedClassName } =
+        UpdateClassMembersOfCustomClass(
+          r.className,
+          r.classMember,
+          constructedClassMemberList
+        ));
+      if (
+        AddCustomClassTo_DictionaryOfFoundCSSFromAllFile(
+          constructedClassName,
+          constructedClassMemberList,
+          classGenerationInProgress,
+          DictionaryOfFoundCSSFromAllFile,
+          filename,
+          "Test"
+        )
+      ) {
+        return;
+      }
+
+      r = GenericRegexNonMediaCustomClass(
+        item,
+        single_hyphen_then_colon_box_shadow,
+        "SingleHyphenBoxShadow_CUstomClass"
+      );
+
+      ({ constructedClassMemberList, constructedClassName } =
+        UpdateClassMembersOfCustomClass(
+          r.className,
+          r.classMember,
+          constructedClassMemberList
+        ));
+
+      if (
+        AddCustomClassTo_DictionaryOfFoundCSSFromAllFile(
+          constructedClassName,
+          constructedClassMemberList,
+          classGenerationInProgress,
+          DictionaryOfFoundCSSFromAllFile,
+          filename,
+          "Test"
+        )
+      ) {
+        return;
+      }
+
+      r = GenericRegexNonMediaCustomClass(
+        item,
+        no_hyphen_snappable,
+        "NoHyphenSnapable_CustomClass"
+      );
+
+      ({ constructedClassMemberList, constructedClassName } =
+        UpdateClassMembersOfCustomClass(
+          r.className,
+          r.classMember,
+          constructedClassMemberList
+        ));
+
+      if (
+        AddCustomClassTo_DictionaryOfFoundCSSFromAllFile(
+          constructedClassName,
+          constructedClassMemberList,
+          classGenerationInProgress,
+          DictionaryOfFoundCSSFromAllFile,
+          filename,
+          "Test"
+        )
+      ) {
+        return;
+      }
+
+      r = GenericRegexNonMediaCustomClass(
+        item,
+        no_hyphen_pixel_values,
+        "NoHyphenPixeValues_CustomClass"
+      );
+
+      ({ constructedClassMemberList, constructedClassName } =
+        UpdateClassMembersOfCustomClass(
+          r.className,
+          r.classMember,
+          constructedClassMemberList
+        ));
+
+      if (
+        AddCustomClassTo_DictionaryOfFoundCSSFromAllFile(
+          constructedClassName,
+          constructedClassMemberList,
+          classGenerationInProgress,
+          DictionaryOfFoundCSSFromAllFile,
+          filename,
+          "Test"
+        )
+      ) {
+        return;
+      }
+
+      r = GenericRegexNonMediaCustomClass(
+        item,
+        single_hyphen_hash_value,
+        "SingleHyphenHashValue_CustomClass"
+      );
+
+      ({ constructedClassMemberList, constructedClassName } =
+        UpdateClassMembersOfCustomClass(
+          r.className,
+          r.classMember,
+          constructedClassMemberList
+        ));
+
+      if (
+        AddCustomClassTo_DictionaryOfFoundCSSFromAllFile(
+          constructedClassName,
+          constructedClassMemberList,
+          classGenerationInProgress,
+          DictionaryOfFoundCSSFromAllFile,
+          filename,
+          "Test"
+        )
+      ) {
+        return;
+      }
+    });
+
+    for (const key in DictionaryOfFoundCSSFromAllFile) {
+      if (key !== "" && key != undefined) {
+        DictionaryOfFoundCSSFromAllFile[
+          key
+        ].css = `${DictionaryOfFoundCSSFromAllFile[key].css}\r\n`;
+      }
+    }
+  }
+}
+
+function FindNonMedia(
+  classCompleteMatch: IterableIterator<RegExpExecArray>,
+  DictionaryOfFoundCSSFromAllFile: Record<
+    string,
+    IClassNameCssSourceAndFilename
+  >
+) {
+  for (const classIndividual of classCompleteMatch) {
+    let classIndividualString = ` ${classIndividual.groups?.["classComplete"]} `;
+    let splitIndividualClassItems = classIndividualString.split(" ");
+
+    splitIndividualClassItems.forEach((item) => {
+      if (item === "") return;
+
+      let distinctClassAndCss: IClassNameCssSourceAndFilename;
+
+      distinctClassAndCss = GenericRegexNonMedia_ReturnDistinctClassAndCSS(
+        item,
+        single_hyphen_then_colon,
+        "SingleHypenThenColon"
+      );
+
+      StoreNonMediaClassIn_DictionaryOfFoundCSSFromAllFile(
+        distinctClassAndCss,
+        DictionaryOfFoundCSSFromAllFile
+      );
+
+      DictionaryOfFoundCSSFromAllFile[distinctClassAndCss.className] = {
+        className: distinctClassAndCss.className,
+        css: distinctClassAndCss.css,
+        filename: distinctClassAndCss.filename,
+        source: distinctClassAndCss.source,
+      };
+
+      distinctClassAndCss = GenericRegexNonMedia_ReturnDistinctClassAndCSS(
+        item,
+        single_hyphen_then_colon,
+        "SingleHypenThenColon"
+      );
+      StoreNonMediaClassIn_DictionaryOfFoundCSSFromAllFile(
+        distinctClassAndCss,
+        DictionaryOfFoundCSSFromAllFile
+      );
+
+      distinctClassAndCss = GenericRegexNonMedia_ReturnDistinctClassAndCSS(
+        item,
+        single_hyphen_then_colon_then_another_hyphen,
+        "SingleHypenThenColonThenAnotherHyphen"
+      );
+      StoreNonMediaClassIn_DictionaryOfFoundCSSFromAllFile(
+        distinctClassAndCss,
+        DictionaryOfFoundCSSFromAllFile
+      );
+
+      distinctClassAndCss = GenericRegexNonMedia_ReturnDistinctClassAndCSS(
+        item,
+        double_hyphen_then_colon,
+        "DoubleHyphenTheColon"
+      );
+      StoreNonMediaClassIn_DictionaryOfFoundCSSFromAllFile(
+        distinctClassAndCss,
+        DictionaryOfFoundCSSFromAllFile
+      );
+
+      distinctClassAndCss = GenericRegexNonMedia_ReturnDistinctClassAndCSS(
+        item,
+        single_hyphen_then_colon_box_shadow,
+        "SingleHyphenBoxShadow"
+      );
+      StoreNonMediaClassIn_DictionaryOfFoundCSSFromAllFile(
+        distinctClassAndCss,
+        DictionaryOfFoundCSSFromAllFile
+      );
+
+      distinctClassAndCss = GenericRegexNonMedia_ReturnDistinctClassAndCSS(
+        item,
+        single_hyphen_then_colon_snappable,
+        "SingleHyphenSnapable"
+      );
+      StoreNonMediaClassIn_DictionaryOfFoundCSSFromAllFile(
+        distinctClassAndCss,
+        DictionaryOfFoundCSSFromAllFile
+      );
+
+      distinctClassAndCss = GenericRegexNonMedia_ReturnDistinctClassAndCSS(
+        item,
+        no_hyphen,
+        "NoHypen"
+      );
+      StoreNonMediaClassIn_DictionaryOfFoundCSSFromAllFile(
+        distinctClassAndCss,
+        DictionaryOfFoundCSSFromAllFile
+      );
+
+      distinctClassAndCss = GenericRegexNonMedia_ReturnDistinctClassAndCSS(
+        item,
+        no_hyphen_snappable,
+        "NoHyphenSnapable"
+      );
+      StoreNonMediaClassIn_DictionaryOfFoundCSSFromAllFile(
+        distinctClassAndCss,
+        DictionaryOfFoundCSSFromAllFile
+      );
+
+      distinctClassAndCss = GenericRegexNonMedia_ReturnDistinctClassAndCSS(
+        item,
+        no_hyphen_pixel_values,
+        "NoHyphenPixeValues"
+      );
+      StoreNonMediaClassIn_DictionaryOfFoundCSSFromAllFile(
+        distinctClassAndCss,
+        DictionaryOfFoundCSSFromAllFile
+      );
+
+      distinctClassAndCss = GenericRegexNonMedia_ReturnDistinctClassAndCSS(
+        item,
+        single_hyphen_hash_value,
+        "SingleHyphenHashValue"
+      );
+      StoreNonMediaClassIn_DictionaryOfFoundCSSFromAllFile(
+        distinctClassAndCss,
+        DictionaryOfFoundCSSFromAllFile
+      );
+    });
+  }
+}
+
 export function DoWork(
   filename: string,
-  DictionaryOfFoundCSSFromAllFile: Record<string, INonMediaClass>,
+  DictionaryOfFoundCSSFromAllFile: Record<
+    string,
+    IClassNameCssSourceAndFilename
+  >,
   DictionaryOfFoundMediaCSSFromAllFile: Record<string, IMediaClass>
 ): string {
   let ExistingCSS = "";
@@ -81,117 +489,7 @@ export function DoWork(
   RegenerateRegExExpressions();
 
   // Find Non Media Queries
-  for (const classIndividual of classCompleteMatch) {
-    let classIndividualString = ` ${classIndividual.groups?.["classComplete"]} `;
-    let splitIndividualClassItems = classIndividualString.split(" ");
-
-    splitIndividualClassItems.forEach((item) => {
-      if (item === "") return;
-
-      let distinctClassAndCss: IClass;
-
-      distinctClassAndCss = GenericRegexNonMedia_ReturnDistinctClassAndCSS(
-        item,
-        single_hyphen_then_colon,
-        "SingleHypenThenColon"
-      );
-
-      DictionaryOfFoundCSSFromAllFile[distinctClassAndCss.className] = {
-        css: distinctClassAndCss.css,
-        filename,
-      };
-
-      distinctClassAndCss = GenericRegexNonMedia_ReturnDistinctClassAndCSS(
-        item,
-        single_hyphen_then_colon,
-        "SingleHypenThenColon"
-      );
-      DictionaryOfFoundCSSFromAllFile[distinctClassAndCss.className] = {
-        css: distinctClassAndCss.css,
-        filename,
-      };
-
-      distinctClassAndCss = GenericRegexNonMedia_ReturnDistinctClassAndCSS(
-        item,
-        single_hyphen_then_colon_then_another_hyphen,
-        "SingleHypenThenColonThenAnotherHyphen"
-      );
-      DictionaryOfFoundCSSFromAllFile[distinctClassAndCss.className] = {
-        css: distinctClassAndCss.css,
-        filename,
-      };
-
-      distinctClassAndCss = GenericRegexNonMedia_ReturnDistinctClassAndCSS(
-        item,
-        double_hyphen_then_colon,
-        "DoubleHyphenTheColon"
-      );
-      DictionaryOfFoundCSSFromAllFile[distinctClassAndCss.className] = {
-        css: distinctClassAndCss.css,
-        filename,
-      };
-
-      distinctClassAndCss = GenericRegexNonMedia_ReturnDistinctClassAndCSS(
-        item,
-        single_hyphen_then_colon_box_shadow,
-        "SingleHyphenBoxShadow"
-      );
-      DictionaryOfFoundCSSFromAllFile[distinctClassAndCss.className] = {
-        css: distinctClassAndCss.css,
-        filename,
-      };
-
-      distinctClassAndCss = GenericRegexNonMedia_ReturnDistinctClassAndCSS(
-        item,
-        single_hyphen_then_colon_snappable,
-        "SingleHyphenSnapable"
-      );
-      DictionaryOfFoundCSSFromAllFile[distinctClassAndCss.className] = {
-        css: distinctClassAndCss.css,
-        filename,
-      };
-
-      distinctClassAndCss = GenericRegexNonMedia_ReturnDistinctClassAndCSS(
-        item,
-        no_hyphen,
-        "NoHypen"
-      );
-      DictionaryOfFoundCSSFromAllFile[distinctClassAndCss.className] = {
-        css: distinctClassAndCss.css,
-        filename,
-      };
-
-      distinctClassAndCss = GenericRegexNonMedia_ReturnDistinctClassAndCSS(
-        item,
-        no_hyphen_snappable,
-        "NoHyphenSnapable"
-      );
-      DictionaryOfFoundCSSFromAllFile[distinctClassAndCss.className] = {
-        css: distinctClassAndCss.css,
-        filename,
-      };
-
-      distinctClassAndCss = GenericRegexNonMedia_ReturnDistinctClassAndCSS(
-        item,
-        no_hyphen_pixel_values,
-        "NoHyphenPixeValues"
-      );
-      DictionaryOfFoundCSSFromAllFile[distinctClassAndCss.className] = {
-        css: distinctClassAndCss.css,
-        filename,
-      };
-
-      distinctClassAndCss = GenericRegexNonMedia_ReturnDistinctClassAndCSS(
-        item,
-        single_hyphen_hash_value,
-        "SingleHyphenHashValue"
-      );
-      DictionaryOfFoundCSSFromAllFile[distinctClassAndCss.className] = {
-        css: distinctClassAndCss.css,
-        filename,
-      };
-    });
-  }
+  FindNonMedia(classCompleteMatch, DictionaryOfFoundCSSFromAllFile);
 
   classComplete = /class=\"(?<classComplete>.+)\"/gi;
   classCompleteMatch = data.matchAll(classComplete);
@@ -355,420 +653,12 @@ export function DoWork(
 
   let classGenerationInProgress: Array<string> = [];
 
-  ////////////// Check for Custom Class creation - NonMedia ////////////////////////
-  for (const classIndividual of classCompleteMatch) {
-    let classIndividualString = ` ${classIndividual.groups?.["classComplete"]} `;
-    let splitIndividualClassItems = classIndividualString.split(" ");
-
-    let constructedClassName: string = "";
-    let constructedClassMemberList: string = "";
-
-    splitIndividualClassItems.forEach((item) => {
-      if (item == "") return;
-
-      constructedClassName = "";
-      // display:flex@MYBUTTON
-      // background:red@MYBUTTON
-      let r = GenericRegexNonMediaCustomClass(
-        item,
-        no_hyphen,
-        "no_hyphen_custom_class"
-      );
-
-      ({ constructedClassMemberList, constructedClassName } =
-        UpdateClassMembersOfCustomClass(
-          r.className,
-          r.classMember,
-          constructedClassMemberList
-        ));
-      if (constructedClassName != "") {
-        if (
-          DictionaryOfFoundCSSFromAllFile[constructedClassName] === undefined
-        ) {
-          DictionaryOfFoundCSSFromAllFile[constructedClassName] = {
-            css: `{\r\n\t${constructedClassMemberList}\r\n}`,
-            filename,
-          };
-          classGenerationInProgress.push(constructedClassName);
-        } else {
-          if (classGenerationInProgress.includes(constructedClassName)) {
-            // In progress so lets
-            DictionaryOfFoundCSSFromAllFile[constructedClassName] = {
-              css: `${DictionaryOfFoundCSSFromAllFile[
-                constructedClassName
-              ].css.replace("}", "")}\t${constructedClassMemberList}\r\n}`,
-              filename,
-            };
-          } else {
-            // Just starting to regen so lets clear first
-            DictionaryOfFoundCSSFromAllFile[constructedClassName] = {
-              css: `{\r\n\t${constructedClassMemberList}\r\n}`,
-              filename,
-            };
-
-            classGenerationInProgress.push(constructedClassName);
-          }
-        }
-        return;
-      }
-
-      r = GenericRegexNonMediaCustomClass(
-        item,
-        single_hyphen_then_colon_snappable,
-        "single_hyphen_then_colon_snappable_custom_class"
-      );
-
-      ({ constructedClassMemberList, constructedClassName } =
-        UpdateClassMembersOfCustomClass(
-          r.className,
-          r.classMember,
-          constructedClassMemberList
-        ));
-      if (constructedClassName != "") {
-        if (
-          DictionaryOfFoundCSSFromAllFile[constructedClassName] === undefined
-        ) {
-          DictionaryOfFoundCSSFromAllFile[constructedClassName] = {
-            css: `{\r\n\t${constructedClassMemberList}\r\n}`,
-            filename,
-          };
-          classGenerationInProgress.push(constructedClassName);
-        } else {
-          if (classGenerationInProgress.includes(constructedClassName)) {
-            // In progress so lets
-            DictionaryOfFoundCSSFromAllFile[constructedClassName] = {
-              css: `${DictionaryOfFoundCSSFromAllFile[
-                constructedClassName
-              ].css.replace("}", "")}\t${constructedClassMemberList}\r\n}`,
-              filename,
-            };
-          } else {
-            // Just starting to regen so lets clear first
-            DictionaryOfFoundCSSFromAllFile[constructedClassName] = {
-              css: `{\r\n\t${constructedClassMemberList}\r\n}`,
-              filename,
-            };
-
-            classGenerationInProgress.push(constructedClassName);
-          }
-        }
-        return;
-      }
-
-      r = GenericRegexNonMediaCustomClass(
-        item,
-        single_hyphen_then_colon,
-        "SingleHypenThenColon_CustomClass"
-      );
-
-      ({ constructedClassMemberList, constructedClassName } =
-        UpdateClassMembersOfCustomClass(
-          r.className,
-          r.classMember,
-          constructedClassMemberList
-        ));
-      if (constructedClassName != "") {
-        if (
-          DictionaryOfFoundCSSFromAllFile[constructedClassName] === undefined
-        ) {
-          DictionaryOfFoundCSSFromAllFile[constructedClassName] = {
-            css: `{\r\n\t${constructedClassMemberList}\r\n}`,
-            filename,
-          };
-          classGenerationInProgress.push(constructedClassName);
-        } else {
-          if (classGenerationInProgress.includes(constructedClassName)) {
-            // In progress so lets
-            DictionaryOfFoundCSSFromAllFile[constructedClassName] = {
-              css: `${DictionaryOfFoundCSSFromAllFile[
-                constructedClassName
-              ].css.replace("}", "")}\t${constructedClassMemberList}\r\n}`,
-              filename,
-            };
-          } else {
-            // Just starting to regen so lets clear first
-            DictionaryOfFoundCSSFromAllFile[constructedClassName] = {
-              css: `{\r\n\t${constructedClassMemberList}\r\n}`,
-              filename,
-            };
-
-            classGenerationInProgress.push(constructedClassName);
-          }
-        }
-        return;
-      }
-
-      r = GenericRegexNonMediaCustomClass(
-        item,
-        single_hyphen_then_colon_then_another_hyphen,
-        "SingleHypenThenColonThenAnotherHyphen_CustomClass"
-      );
-
-      ({ constructedClassMemberList, constructedClassName } =
-        UpdateClassMembersOfCustomClass(
-          r.className,
-          r.classMember,
-          constructedClassMemberList
-        ));
-      if (constructedClassName != "") {
-        if (
-          DictionaryOfFoundCSSFromAllFile[constructedClassName] === undefined
-        ) {
-          DictionaryOfFoundCSSFromAllFile[constructedClassName] = {
-            css: `{\r\n\t${constructedClassMemberList}\r\n}`,
-            filename,
-          };
-          classGenerationInProgress.push(constructedClassName);
-        } else {
-          if (classGenerationInProgress.includes(constructedClassName)) {
-            // In progress so lets
-            DictionaryOfFoundCSSFromAllFile[constructedClassName] = {
-              css: `${DictionaryOfFoundCSSFromAllFile[
-                constructedClassName
-              ].css.replace("}", "")}\t${constructedClassMemberList}\r\n}`,
-              filename,
-            };
-          } else {
-            // Just starting to regen so lets clear first
-            DictionaryOfFoundCSSFromAllFile[constructedClassName] = {
-              css: `{\r\n\t${constructedClassMemberList}\r\n}`,
-              filename,
-            };
-
-            classGenerationInProgress.push(constructedClassName);
-          }
-        }
-        return;
-      }
-
-      r = GenericRegexNonMediaCustomClass(
-        item,
-        double_hyphen_then_colon,
-        "DoubleHyphenTheColon_CustomClass"
-      );
-
-      ({ constructedClassMemberList, constructedClassName } =
-        UpdateClassMembersOfCustomClass(
-          r.className,
-          r.classMember,
-          constructedClassMemberList
-        ));
-      if (constructedClassName != "") {
-        if (
-          DictionaryOfFoundCSSFromAllFile[constructedClassName] === undefined
-        ) {
-          DictionaryOfFoundCSSFromAllFile[constructedClassName] = {
-            css: `{\r\n\t${constructedClassMemberList}\r\n}`,
-            filename,
-          };
-          classGenerationInProgress.push(constructedClassName);
-        } else {
-          if (classGenerationInProgress.includes(constructedClassName)) {
-            // In progress so lets
-            DictionaryOfFoundCSSFromAllFile[constructedClassName] = {
-              css: `${DictionaryOfFoundCSSFromAllFile[
-                constructedClassName
-              ].css.replace("}", "")}\t${constructedClassMemberList}\r\n}`,
-              filename,
-            };
-          } else {
-            // Just starting to regen so lets clear first
-            DictionaryOfFoundCSSFromAllFile[constructedClassName] = {
-              css: `{\r\n\t${constructedClassMemberList}\r\n}`,
-              filename,
-            };
-
-            classGenerationInProgress.push(constructedClassName);
-          }
-        }
-        return;
-      }
-
-      r = GenericRegexNonMediaCustomClass(
-        item,
-        single_hyphen_then_colon_box_shadow,
-        "SingleHyphenBoxShadow_CUstomClass"
-      );
-
-      ({ constructedClassMemberList, constructedClassName } =
-        UpdateClassMembersOfCustomClass(
-          r.className,
-          r.classMember,
-          constructedClassMemberList
-        ));
-
-      if (constructedClassName != "") {
-        if (
-          DictionaryOfFoundCSSFromAllFile[constructedClassName] === undefined
-        ) {
-          DictionaryOfFoundCSSFromAllFile[constructedClassName] = {
-            css: `{\r\n\t${constructedClassMemberList}\r\n}`,
-            filename,
-          };
-          classGenerationInProgress.push(constructedClassName);
-        } else {
-          if (classGenerationInProgress.includes(constructedClassName)) {
-            // In progress so lets
-            DictionaryOfFoundCSSFromAllFile[constructedClassName] = {
-              css: `${DictionaryOfFoundCSSFromAllFile[
-                constructedClassName
-              ].css.replace("}", "")}\t${constructedClassMemberList}\r\n}`,
-              filename,
-            };
-          } else {
-            // Just starting to regen so lets clear first
-            DictionaryOfFoundCSSFromAllFile[constructedClassName] = {
-              css: `{\r\n\t${constructedClassMemberList}\r\n}`,
-              filename,
-            };
-
-            classGenerationInProgress.push(constructedClassName);
-          }
-        }
-        return;
-      }
-
-      r = GenericRegexNonMediaCustomClass(
-        item,
-        no_hyphen_snappable,
-        "NoHyphenSnapable_CustomClass"
-      );
-
-      ({ constructedClassMemberList, constructedClassName } =
-        UpdateClassMembersOfCustomClass(
-          r.className,
-          r.classMember,
-          constructedClassMemberList
-        ));
-
-      if (constructedClassName != "") {
-        if (
-          DictionaryOfFoundCSSFromAllFile[constructedClassName] === undefined
-        ) {
-          DictionaryOfFoundCSSFromAllFile[constructedClassName] = {
-            css: `{\r\n\t${constructedClassMemberList}\r\n}`,
-            filename,
-          };
-          classGenerationInProgress.push(constructedClassName);
-        } else {
-          if (classGenerationInProgress.includes(constructedClassName)) {
-            // In progress so lets
-            DictionaryOfFoundCSSFromAllFile[constructedClassName] = {
-              css: `${DictionaryOfFoundCSSFromAllFile[
-                constructedClassName
-              ].css.replace("}", "")}\t${constructedClassMemberList}\r\n}`,
-              filename,
-            };
-          } else {
-            // Just starting to regen so lets clear first
-            DictionaryOfFoundCSSFromAllFile[constructedClassName] = {
-              css: `{\r\n\t${constructedClassMemberList}\r\n}`,
-              filename,
-            };
-
-            classGenerationInProgress.push(constructedClassName);
-          }
-        }
-        return;
-      }
-
-      r = GenericRegexNonMediaCustomClass(
-        item,
-        no_hyphen_pixel_values,
-        "NoHyphenPixeValues_CustomClass"
-      );
-
-      ({ constructedClassMemberList, constructedClassName } =
-        UpdateClassMembersOfCustomClass(
-          r.className,
-          r.classMember,
-          constructedClassMemberList
-        ));
-
-      if (constructedClassName != "") {
-        if (
-          DictionaryOfFoundCSSFromAllFile[constructedClassName] === undefined
-        ) {
-          DictionaryOfFoundCSSFromAllFile[constructedClassName] = {
-            css: `{\r\n\t${constructedClassMemberList}\r\n}`,
-            filename,
-          };
-          classGenerationInProgress.push(constructedClassName);
-        } else {
-          if (classGenerationInProgress.includes(constructedClassName)) {
-            // In progress so lets
-            DictionaryOfFoundCSSFromAllFile[constructedClassName] = {
-              css: `${DictionaryOfFoundCSSFromAllFile[
-                constructedClassName
-              ].css.replace("}", "")}\t${constructedClassMemberList}\r\n}`,
-              filename,
-            };
-          } else {
-            // Just starting to regen so lets clear first
-            DictionaryOfFoundCSSFromAllFile[constructedClassName] = {
-              css: `{\r\n\t${constructedClassMemberList}\r\n}`,
-              filename,
-            };
-
-            classGenerationInProgress.push(constructedClassName);
-          }
-        }
-        return;
-      }
-
-      r = GenericRegexNonMediaCustomClass(
-        item,
-        single_hyphen_hash_value,
-        "SingleHyphenHashValue_CustomClass"
-      );
-
-      ({ constructedClassMemberList, constructedClassName } =
-        UpdateClassMembersOfCustomClass(
-          r.className,
-          r.classMember,
-          constructedClassMemberList
-        ));
-
-      if (constructedClassName != "") {
-        if (
-          DictionaryOfFoundCSSFromAllFile[constructedClassName] === undefined
-        ) {
-          DictionaryOfFoundCSSFromAllFile[constructedClassName] = {
-            css: `{\r\n\t${constructedClassMemberList}\r\n}`,
-            filename,
-          };
-          classGenerationInProgress.push(constructedClassName);
-        } else {
-          if (classGenerationInProgress.includes(constructedClassName)) {
-            // In progress so lets
-            DictionaryOfFoundCSSFromAllFile[constructedClassName] = {
-              css: `${DictionaryOfFoundCSSFromAllFile[
-                constructedClassName
-              ].css.replace("}", "")}\t${constructedClassMemberList}\r\n}`,
-              filename,
-            };
-          } else {
-            // Just starting to regen so lets clear first
-            DictionaryOfFoundCSSFromAllFile[constructedClassName] = {
-              css: `{\r\n\t${constructedClassMemberList}\r\n}`,
-              filename,
-            };
-
-            classGenerationInProgress.push(constructedClassName);
-          }
-        }
-        return;
-      }
-    });
-
-    for (const key in DictionaryOfFoundCSSFromAllFile) {
-      if (key !== "" && key != undefined) {
-        DictionaryOfFoundCSSFromAllFile[
-          key
-        ].css = `${DictionaryOfFoundCSSFromAllFile[key].css}\r\n`;
-      }
-    }
-  }
+  FindCustomClasses(
+    classGenerationInProgress,
+    classCompleteMatch,
+    DictionaryOfFoundCSSFromAllFile,
+    filename
+  );
 
   // Return as string for unit tests
   for (const key in DictionaryOfFoundCSSFromAllFile) {
@@ -786,6 +676,55 @@ export function DoWork(
   }
 
   return `${ExistingCSS}`.trim();
+}
+
+function AddCustomClassTo_DictionaryOfFoundCSSFromAllFile(
+  constructedClassName: string,
+  constructedClassMemberList: string,
+  classGenerationInProgress: Array<string>,
+  DictionaryOfFoundCSSFromAllFile: Record<
+    string,
+    IClassNameCssSourceAndFilename
+  >,
+  filename: string,
+  source: string
+): boolean {
+  if (constructedClassName != "") {
+    if (DictionaryOfFoundCSSFromAllFile[constructedClassName] === undefined) {
+      DictionaryOfFoundCSSFromAllFile[constructedClassName] = {
+        css: `{\r\n\t${constructedClassMemberList}\r\n}`,
+        filename,
+        className: constructedClassName,
+        source: source,
+      };
+      classGenerationInProgress.push(constructedClassName);
+    } else {
+      if (classGenerationInProgress.includes(constructedClassName)) {
+        // In progress so lets
+        DictionaryOfFoundCSSFromAllFile[constructedClassName] = {
+          css: `${DictionaryOfFoundCSSFromAllFile[
+            constructedClassName
+          ].css.replace("}", "")}\t${constructedClassMemberList}\r\n}`,
+          filename,
+          className: constructedClassName,
+          source: source,
+        };
+      } else {
+        // Just starting to regen so lets clear first
+        DictionaryOfFoundCSSFromAllFile[constructedClassName] = {
+          css: `{\r\n\t${constructedClassMemberList}\r\n}`,
+          filename,
+          className: constructedClassName,
+          source: source,
+        };
+
+        classGenerationInProgress.push(constructedClassName);
+      }
+    }
+    return true;
+  } else {
+    return false;
+  }
 }
 
 function UpdateClassMembersOfCustomClass(
