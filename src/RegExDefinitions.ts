@@ -1,6 +1,6 @@
 import { mimicConfig } from "./configurationLoader";
 import { MediaBreakPointsText } from "./mediaBreakpoints";
-import { Sizes } from "./Sizes";
+import { ColorSizes, Sizes } from "./Sizes";
 
 export let double_hyphen_then_colon = new RegExp("");
 export let double_hyphen_no_colon = new RegExp("");
@@ -37,6 +37,10 @@ export function RegenerateRegExExpressions() {
     mimicConfig?.SnappingOverride?.lg ?? Sizes.lg
   }|${mimicConfig?.SnappingOverride?.xl ?? Sizes.xl}|${
     mimicConfig?.SnappingOverride?.xl2 ?? Sizes.xl2
+  }|${mimicConfig?.ColorPalette1TextOverride?.colora ?? ColorSizes.c1a}|${
+    mimicConfig?.ColorPalette1TextOverride?.colorb ?? ColorSizes.c1b
+  }|${mimicConfig?.ColorPalette1TextOverride?.colorc ?? ColorSizes.c1c}|${
+    mimicConfig?.ColorPalette1TextOverride?.colord ?? ColorSizes.c1d
   }`;
 
   double_hyphen_then_colon = new RegExp(

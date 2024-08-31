@@ -1,12 +1,12 @@
 import { readConfig, ConfigLoaderError } from "@web/config-loader";
-import { IMimicConfig } from "../interfaces/IFileExtensions";
+import { IMimicConfig } from "../interfaces/IMimicConfig";
 import { MediaBreakPointsValue } from "./mediaBreakpoints";
 let mimicConfigDEFAULT: IMimicConfig;
 export let mimicConfig: IMimicConfig;
 
 mimicConfigDEFAULT = {
   extensions: [".html", ".js", ".astro", ".ts"],
-  excludeFolders: ["node_modules"]
+  excludeFolders: ["node_modules"],
 };
 
 export async function LoadConfig() {
@@ -32,15 +32,14 @@ export async function LoadConfig() {
     if (mimicConfig.extensions == null) {
       mimicConfig.extensions = [".html", ".js", ".astro", ".ts"];
     }
-
   } catch (error) {
     if (error instanceof ConfigLoaderError) {
       // If the error is a ConfigLoaderError it has a human readable error message
       // there is no need to print the stack trace.
       console.error(error.message);
-      mimicConfig =  mimicConfigDEFAULT;
+      mimicConfig = mimicConfigDEFAULT;
     }
     console.error(error);
-    mimicConfig =  mimicConfigDEFAULT;
+    mimicConfig = mimicConfigDEFAULT;
   }
 }

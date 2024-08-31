@@ -13,6 +13,13 @@ export default config = {
   //   extralarge: "1040",
   // },
 
+  ColorPalette1TextOverride: {
+    colora: "col1",
+    colorb: "col2",
+    colorc: "col3",
+    colord: "col4",
+  },
+
   SnappingOverride: {
     xs: "xs",
     sm: "sml",
@@ -30,11 +37,11 @@ export default config = {
     extralarge: "xl",
   },
 
-  ColorPalette3Snapping: {
-    c3a: "#FF0000",
-    c3b: "#00FF00",
-    c3c: "#0000FF",
-    c3d: "#000000",
+  ColorPalette1Snapping: {
+    c1a: "#FF0000",
+    c1b: "#00FF00",
+    c1c: "#0000FF",
+    c1d: "#000000",
   },
 
   lineHeightSnapping: {

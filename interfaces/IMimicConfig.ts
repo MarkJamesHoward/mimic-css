@@ -20,6 +20,34 @@ export interface IMimicConfig {
     extralarge: "1040";
   };
 
+  ColorPalette1TextOverride?: {
+    colora: string;
+    colorb: string;
+    colorc: string;
+    colord: string;
+  };
+
+  ColorPalette2TextOverride?: {
+    colora: string;
+    colorb: string;
+    colorc: string;
+    colord: string;
+  };
+
+  ColorPalette3TextOverride?: {
+    colora: string;
+    colorb: string;
+    colorc: string;
+    colord: string;
+  };
+
+  ColorPalette4TextOverride?: {
+    colora: string;
+    colorb: string;
+    colorc: string;
+    colord: string;
+  };
+
   MediaBreakPointsTextOverride?: {
     extrasmall: string;
     small: string;
