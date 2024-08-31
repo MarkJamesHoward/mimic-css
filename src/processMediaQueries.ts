@@ -10,30 +10,36 @@ export function MapMediaQuery(media: string) {
   let width;
 
   switch (media) {
-    case MediaBreakPointsText.extrasmall:
+    case mimicConfig?.MediaBreakPointsTextOverride?.extrasmall ??
+      MediaBreakPointsText.extrasmall:
       width =
         mimicConfig?.mediaBreakPointsValueOverride?.extrasmall ??
         MediaBreakPointsValue.extrasmall;
       break;
-    case MediaBreakPointsText.small:
+    case mimicConfig?.MediaBreakPointsTextOverride?.small ??
+      MediaBreakPointsText.small:
       width =
         mimicConfig?.mediaBreakPointsValueOverride?.small ??
         MediaBreakPointsValue.small;
       break;
-    case MediaBreakPointsText.medium:
+    case mimicConfig?.MediaBreakPointsTextOverride?.medium ??
+      MediaBreakPointsText.medium:
       width =
         mimicConfig?.mediaBreakPointsValueOverride?.medium ??
         MediaBreakPointsValue.medium;
       break;
-    case MediaBreakPointsText.large:
+    case mimicConfig?.MediaBreakPointsTextOverride?.large ??
+      MediaBreakPointsText.large:
       width =
         mimicConfig?.mediaBreakPointsValueOverride?.large ??
         MediaBreakPointsValue.large;
       break;
-    case MediaBreakPointsText.extralarge:
+    case mimicConfig?.MediaBreakPointsTextOverride?.extralarge ??
+      MediaBreakPointsText.extralarge:
       width =
         mimicConfig?.mediaBreakPointsValueOverride?.extralarge ??
         MediaBreakPointsValue.extralarge;
+      break;
       break;
     default:
       width = "unknown";
@@ -55,24 +61,38 @@ export function ProcessMediaQueriesWithHover(matches: any, colon: boolean) {
     let width;
 
     switch (media) {
-      case MediaBreakPointsText.extrasmall:
-        width = MediaBreakPointsValue.extrasmall;
+      case mimicConfig?.MediaBreakPointsTextOverride?.extrasmall ??
+        MediaBreakPointsText.extrasmall:
+        width =
+          mimicConfig?.mediaBreakPointsValueOverride?.extrasmall ??
+          MediaBreakPointsValue.extrasmall;
         break;
-      case MediaBreakPointsText.small:
-        width = MediaBreakPointsValue.small;
+      case mimicConfig?.MediaBreakPointsTextOverride?.small ??
+        MediaBreakPointsText.small:
+        width =
+          mimicConfig?.mediaBreakPointsValueOverride?.small ??
+          MediaBreakPointsValue.small;
         break;
-      case MediaBreakPointsText.medium:
-        width = MediaBreakPointsValue.medium;
+      case mimicConfig?.MediaBreakPointsTextOverride?.medium ??
+        MediaBreakPointsText.medium:
+        width =
+          mimicConfig?.mediaBreakPointsValueOverride?.medium ??
+          MediaBreakPointsValue.medium;
         break;
-      case MediaBreakPointsText.large:
-        width = MediaBreakPointsValue.large;
+      case mimicConfig?.MediaBreakPointsTextOverride?.large ??
+        MediaBreakPointsText.large:
+        width =
+          mimicConfig?.mediaBreakPointsValueOverride?.large ??
+          MediaBreakPointsValue.large;
         break;
-      case MediaBreakPointsText.extralarge:
-        width = MediaBreakPointsValue.extralarge;
+      case mimicConfig?.MediaBreakPointsTextOverride?.extralarge ??
+        MediaBreakPointsText.extralarge:
+        width =
+          mimicConfig?.mediaBreakPointsValueOverride?.extralarge ??
+          MediaBreakPointsValue.extralarge;
         break;
       default:
-        width = MediaBreakPointsValue.large;
-        console.log("unknown media!!");
+        width = "unknown";
     }
     //console.log("Process Media with " + style + " " + value);
     let snappedvalue = PerformSnap(style, value);
@@ -104,24 +124,38 @@ export function ProcessMediaQueries(matches: any, colon: boolean) {
     let width;
 
     switch (media) {
-      case MediaBreakPointsText.extrasmall:
-        width = MediaBreakPointsValue.extrasmall;
+      case mimicConfig?.MediaBreakPointsTextOverride?.extrasmall ??
+        MediaBreakPointsText.extrasmall:
+        width =
+          mimicConfig?.mediaBreakPointsValueOverride?.extrasmall ??
+          MediaBreakPointsValue.extrasmall;
         break;
-      case MediaBreakPointsText.small:
-        width = MediaBreakPointsValue.small;
+      case mimicConfig?.MediaBreakPointsTextOverride?.small ??
+        MediaBreakPointsText.small:
+        width =
+          mimicConfig?.mediaBreakPointsValueOverride?.small ??
+          MediaBreakPointsValue.small;
         break;
-      case MediaBreakPointsText.medium:
-        width = MediaBreakPointsValue.medium;
+      case mimicConfig?.MediaBreakPointsTextOverride?.medium ??
+        MediaBreakPointsText.medium:
+        width =
+          mimicConfig?.mediaBreakPointsValueOverride?.medium ??
+          MediaBreakPointsValue.medium;
         break;
-      case MediaBreakPointsText.large:
-        width = MediaBreakPointsValue.large;
+      case mimicConfig?.MediaBreakPointsTextOverride?.large ??
+        MediaBreakPointsText.large:
+        width =
+          mimicConfig?.mediaBreakPointsValueOverride?.large ??
+          MediaBreakPointsValue.large;
         break;
-      case MediaBreakPointsText.extralarge:
-        width = MediaBreakPointsValue.extralarge;
+      case mimicConfig?.MediaBreakPointsTextOverride?.extralarge ??
+        MediaBreakPointsText.extralarge:
+        width =
+          mimicConfig?.mediaBreakPointsValueOverride?.extralarge ??
+          MediaBreakPointsValue.extralarge;
         break;
       default:
-        width = MediaBreakPointsValue.large;
-        console.log("unknown media!!");
+        width = "unknown";
     }
     //console.log("Process Media with " + style + " " + value);
     let snappedvalue = PerformSnap(style, value);

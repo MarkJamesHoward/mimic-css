@@ -123,27 +123,27 @@ export function PerformSnap(type: string, value: string) {
       break;
     case "box-shadow":
       switch (value) {
-        case mimicConfig?.mediaBreakPointsTagsOverride?.xs ?? Sizes.xs:
+        case mimicConfig?.SnappingOverride?.xs ?? Sizes.xs:
           result = mimicConfig?.BoxShadowSnapping?.xs ?? BoxShadowSizes.xs;
           break;
 
-        case mimicConfig?.mediaBreakPointsTagsOverride?.sm ?? Sizes.sm:
+        case mimicConfig?.SnappingOverride?.sm ?? Sizes.sm:
           result = mimicConfig?.BoxShadowSnapping?.sm ?? BoxShadowSizes.sm;
           break;
 
-        case mimicConfig?.mediaBreakPointsTagsOverride?.md ?? Sizes.md:
+        case mimicConfig?.SnappingOverride?.md ?? Sizes.md:
           result = mimicConfig?.BoxShadowSnapping?.md ?? BoxShadowSizes.md;
           break;
 
-        case mimicConfig?.mediaBreakPointsTagsOverride?.lg ?? Sizes.lg:
+        case mimicConfig?.SnappingOverride?.lg ?? Sizes.lg:
           result = mimicConfig?.BoxShadowSnapping?.lg ?? BoxShadowSizes.lg;
           break;
 
-        case mimicConfig?.mediaBreakPointsTagsOverride?.xl ?? Sizes.xl:
+        case mimicConfig?.SnappingOverride?.xl ?? Sizes.xl:
           result = mimicConfig?.BoxShadowSnapping?.xl ?? BoxShadowSizes.xl;
           break;
 
-        case mimicConfig?.mediaBreakPointsTagsOverride?.xl2 ?? Sizes.xl2:
+        case mimicConfig?.SnappingOverride?.xl2 ?? Sizes.xl2:
           result = mimicConfig?.BoxShadowSnapping?.xl2 ?? BoxShadowSizes.xl2;
           break;
 
@@ -158,27 +158,27 @@ export function PerformSnap(type: string, value: string) {
     case "padding-right":
     case "padding":
       switch (value) {
-        case mimicConfig?.mediaBreakPointsTagsOverride?.xs ?? Sizes.xs:
+        case mimicConfig?.SnappingOverride?.xs ?? Sizes.xs:
           result = mimicConfig?.PaddingSnapping?.xs ?? PaddingSizes.xs;
           break;
 
-        case mimicConfig?.mediaBreakPointsTagsOverride?.sm ?? Sizes.sm:
+        case mimicConfig?.SnappingOverride?.sm ?? Sizes.sm:
           result = mimicConfig?.PaddingSnapping?.sm ?? PaddingSizes.sm;
           break;
 
-        case mimicConfig?.mediaBreakPointsTagsOverride?.md ?? Sizes.md:
+        case mimicConfig?.SnappingOverride?.md ?? Sizes.md:
           result = mimicConfig?.PaddingSnapping?.md ?? PaddingSizes.md;
           break;
 
-        case mimicConfig?.mediaBreakPointsTagsOverride?.lg ?? Sizes.lg:
+        case mimicConfig?.SnappingOverride?.lg ?? Sizes.lg:
           result = mimicConfig?.PaddingSnapping?.lg ?? PaddingSizes.lg;
           break;
 
-        case mimicConfig?.mediaBreakPointsTagsOverride?.xl ?? Sizes.xl:
+        case mimicConfig?.SnappingOverride?.xl ?? Sizes.xl:
           result = mimicConfig?.PaddingSnapping?.xl ?? PaddingSizes.xl;
           break;
 
-        case mimicConfig?.mediaBreakPointsTagsOverride?.xl2 ?? Sizes.xl2:
+        case mimicConfig?.SnappingOverride?.xl2 ?? Sizes.xl2:
           result = mimicConfig?.PaddingSnapping?.xl2 ?? PaddingSizes.xl2;
           break;
 
@@ -189,27 +189,27 @@ export function PerformSnap(type: string, value: string) {
       break;
     case "gap":
       switch (value) {
-        case mimicConfig?.mediaBreakPointsTagsOverride?.xs ?? Sizes.xs:
+        case mimicConfig?.SnappingOverride?.xs ?? Sizes.xs:
           result = mimicConfig?.GapSnapping?.xs ?? GapSizes.xs;
           break;
 
-        case mimicConfig?.mediaBreakPointsTagsOverride?.sm ?? Sizes.sm:
+        case mimicConfig?.SnappingOverride?.sm ?? Sizes.sm:
           result = mimicConfig?.GapSnapping?.sm ?? GapSizes.sm;
           break;
 
-        case mimicConfig?.mediaBreakPointsTagsOverride?.md ?? Sizes.md:
+        case mimicConfig?.SnappingOverride?.md ?? Sizes.md:
           result = mimicConfig?.GapSnapping?.md ?? GapSizes.md;
           break;
 
-        case mimicConfig?.mediaBreakPointsTagsOverride?.lg ?? Sizes.lg:
+        case mimicConfig?.SnappingOverride?.lg ?? Sizes.lg:
           result = mimicConfig?.GapSnapping?.lg ?? GapSizes.lg;
           break;
 
-        case mimicConfig?.mediaBreakPointsTagsOverride?.xl ?? Sizes.xl:
+        case mimicConfig?.SnappingOverride?.xl ?? Sizes.xl:
           result = mimicConfig?.GapSnapping?.xl ?? GapSizes.xl;
           break;
 
-        case mimicConfig?.mediaBreakPointsTagsOverride?.xl2 ?? Sizes.xl2:
+        case mimicConfig?.SnappingOverride?.xl2 ?? Sizes.xl2:
           result = mimicConfig?.GapSnapping?.xl2 ?? GapSizes.xl2;
           break;
 
@@ -220,27 +220,27 @@ export function PerformSnap(type: string, value: string) {
       break;
     case "line-height":
       switch (value) {
-        case mimicConfig?.mediaBreakPointsTagsOverride?.xs ?? Sizes.xs:
+        case mimicConfig?.SnappingOverride?.xs ?? Sizes.xs:
           result = mimicConfig?.lineHeightSnapping?.xs ?? LineHeight.xs;
           break;
 
-        case mimicConfig?.mediaBreakPointsTagsOverride?.sm ?? Sizes.sm:
+        case mimicConfig?.SnappingOverride?.sm ?? Sizes.sm:
           result = mimicConfig?.lineHeightSnapping?.sm ?? LineHeight.sm;
           break;
 
-        case mimicConfig?.mediaBreakPointsTagsOverride?.md ?? Sizes.md:
+        case mimicConfig?.SnappingOverride?.md ?? Sizes.md:
           result = mimicConfig?.lineHeightSnapping?.md ?? LineHeight.md;
           break;
 
-        case mimicConfig?.mediaBreakPointsTagsOverride?.lg ?? Sizes.lg:
+        case mimicConfig?.SnappingOverride?.lg ?? Sizes.lg:
           result = mimicConfig?.lineHeightSnapping?.lg ?? LineHeight.lg;
           break;
 
-        case mimicConfig?.mediaBreakPointsTagsOverride?.xl ?? Sizes.xl:
+        case mimicConfig?.SnappingOverride?.xl ?? Sizes.xl:
           result = mimicConfig?.lineHeightSnapping?.xl ?? LineHeight.xl;
           break;
 
-        case mimicConfig?.mediaBreakPointsTagsOverride?.xl2 ?? Sizes.xl2:
+        case mimicConfig?.SnappingOverride?.xl2 ?? Sizes.xl2:
           result = mimicConfig?.lineHeightSnapping?.xl2 ?? LineHeight.xl2;
           break;
 
@@ -251,27 +251,27 @@ export function PerformSnap(type: string, value: string) {
       break;
     case "border-width":
       switch (value) {
-        case mimicConfig?.mediaBreakPointsTagsOverride?.xs ?? Sizes.xs:
+        case mimicConfig?.SnappingOverride?.xs ?? Sizes.xs:
           result = mimicConfig?.BorderWidthSnapping?.xs ?? BorderSizes.xs;
           break;
 
-        case mimicConfig?.mediaBreakPointsTagsOverride?.sm ?? Sizes.sm:
+        case mimicConfig?.SnappingOverride?.sm ?? Sizes.sm:
           result = mimicConfig?.BorderWidthSnapping?.sm ?? BorderSizes.sm;
           break;
 
-        case mimicConfig?.mediaBreakPointsTagsOverride?.md ?? Sizes.md:
+        case mimicConfig?.SnappingOverride?.md ?? Sizes.md:
           result = mimicConfig?.BorderWidthSnapping?.md ?? BorderSizes.md;
           break;
 
-        case mimicConfig?.mediaBreakPointsTagsOverride?.lg ?? Sizes.lg:
+        case mimicConfig?.SnappingOverride?.lg ?? Sizes.lg:
           result = mimicConfig?.BorderWidthSnapping?.lg ?? BorderSizes.lg;
           break;
 
-        case mimicConfig?.mediaBreakPointsTagsOverride?.xl ?? Sizes.xl:
+        case mimicConfig?.SnappingOverride?.xl ?? Sizes.xl:
           result = mimicConfig?.BorderWidthSnapping?.xl ?? BorderSizes.xl;
           break;
 
-        case mimicConfig?.mediaBreakPointsTagsOverride?.xl2 ?? Sizes.xl2:
+        case mimicConfig?.SnappingOverride?.xl2 ?? Sizes.xl2:
           result = mimicConfig?.BorderWidthSnapping?.xl2 ?? BorderSizes.xl2;
           break;
 
@@ -286,27 +286,27 @@ export function PerformSnap(type: string, value: string) {
     case "margin-right":
     case "margin":
       switch (value) {
-        case mimicConfig?.mediaBreakPointsTagsOverride?.xs ?? Sizes.xs:
+        case mimicConfig?.SnappingOverride?.xs ?? Sizes.xs:
           result = mimicConfig?.MarginSnapping?.xl2 ?? MarginSizes.xs;
           break;
 
-        case mimicConfig?.mediaBreakPointsTagsOverride?.sm ?? Sizes.sm:
+        case mimicConfig?.SnappingOverride?.sm ?? Sizes.sm:
           result = mimicConfig?.MarginSnapping?.xl2 ?? MarginSizes.sm;
           break;
 
-        case mimicConfig?.mediaBreakPointsTagsOverride?.md ?? Sizes.md:
+        case mimicConfig?.SnappingOverride?.md ?? Sizes.md:
           result = mimicConfig?.MarginSnapping?.xl2 ?? MarginSizes.md;
           break;
 
-        case mimicConfig?.mediaBreakPointsTagsOverride?.lg ?? Sizes.lg:
+        case mimicConfig?.SnappingOverride?.lg ?? Sizes.lg:
           result = mimicConfig?.MarginSnapping?.xl2 ?? MarginSizes.lg;
           break;
 
-        case mimicConfig?.mediaBreakPointsTagsOverride?.xl ?? Sizes.xl:
+        case mimicConfig?.SnappingOverride?.xl ?? Sizes.xl:
           result = mimicConfig?.MarginSnapping?.xl2 ?? MarginSizes.xl;
           break;
 
-        case mimicConfig?.mediaBreakPointsTagsOverride?.xl2 ?? Sizes.xl2:
+        case mimicConfig?.SnappingOverride?.xl2 ?? Sizes.xl2:
           result = mimicConfig?.MarginSnapping?.xl2 ?? MarginSizes.xl2;
           break;
 
@@ -318,27 +318,27 @@ export function PerformSnap(type: string, value: string) {
 
     case "font-size":
       switch (value) {
-        case mimicConfig?.mediaBreakPointsTagsOverride?.xs ?? Sizes.xs:
+        case mimicConfig?.SnappingOverride?.xs ?? Sizes.xs:
           result = FontSizes.xs;
           break;
 
-        case mimicConfig?.mediaBreakPointsTagsOverride?.sm ?? Sizes.sm:
+        case mimicConfig?.SnappingOverride?.sm ?? Sizes.sm:
           result = FontSizes.sm;
           break;
 
-        case mimicConfig?.mediaBreakPointsTagsOverride?.md ?? Sizes.md:
+        case mimicConfig?.SnappingOverride?.md ?? Sizes.md:
           result = FontSizes.md;
           break;
 
-        case mimicConfig?.mediaBreakPointsTagsOverride?.lg ?? Sizes.lg:
+        case mimicConfig?.SnappingOverride?.lg ?? Sizes.lg:
           result = FontSizes.lg;
           break;
 
-        case mimicConfig?.mediaBreakPointsTagsOverride?.xl ?? Sizes.xl:
+        case mimicConfig?.SnappingOverride?.xl ?? Sizes.xl:
           result = FontSizes.xl;
           break;
 
-        case mimicConfig?.mediaBreakPointsTagsOverride?.xl2 ?? Sizes.xl2:
+        case mimicConfig?.SnappingOverride?.xl2 ?? Sizes.xl2:
           result = FontSizes.xl2;
           break;
 
@@ -350,27 +350,27 @@ export function PerformSnap(type: string, value: string) {
 
     case "font-weight":
       switch (value) {
-        case mimicConfig?.mediaBreakPointsTagsOverride?.xs ?? Sizes.xs:
+        case mimicConfig?.SnappingOverride?.xs ?? Sizes.xs:
           result = FontWeights.xs;
           break;
 
-        case mimicConfig?.mediaBreakPointsTagsOverride?.sm ?? Sizes.sm:
+        case mimicConfig?.SnappingOverride?.sm ?? Sizes.sm:
           result = FontWeights.sm;
           break;
 
-        case mimicConfig?.mediaBreakPointsTagsOverride?.md ?? Sizes.md:
+        case mimicConfig?.SnappingOverride?.md ?? Sizes.md:
           result = FontWeights.md;
           break;
 
-        case mimicConfig?.mediaBreakPointsTagsOverride?.lg ?? Sizes.lg:
+        case mimicConfig?.SnappingOverride?.lg ?? Sizes.lg:
           result = FontWeights.lg;
           break;
 
-        case mimicConfig?.mediaBreakPointsTagsOverride?.xl ?? Sizes.xl:
+        case mimicConfig?.SnappingOverride?.xl ?? Sizes.xl:
           result = FontWeights.xl;
           break;
 
-        case mimicConfig?.mediaBreakPointsTagsOverride?.xl2 ?? Sizes.xl2:
+        case mimicConfig?.SnappingOverride?.xl2 ?? Sizes.xl2:
           result = FontWeights.xl2;
           break;
 
@@ -382,27 +382,27 @@ export function PerformSnap(type: string, value: string) {
 
     case "border-radius":
       switch (value) {
-        case mimicConfig?.mediaBreakPointsTagsOverride?.xs ?? Sizes.xs:
+        case mimicConfig?.SnappingOverride?.xs ?? Sizes.xs:
           result = BorderRadius.xs;
           break;
 
-        case mimicConfig?.mediaBreakPointsTagsOverride?.sm ?? Sizes.sm:
+        case mimicConfig?.SnappingOverride?.sm ?? Sizes.sm:
           result = BorderRadius.sm;
           break;
 
-        case mimicConfig?.mediaBreakPointsTagsOverride?.md ?? Sizes.md:
+        case mimicConfig?.SnappingOverride?.md ?? Sizes.md:
           result = BorderRadius.md;
           break;
 
-        case mimicConfig?.mediaBreakPointsTagsOverride?.lg ?? Sizes.lg:
+        case mimicConfig?.SnappingOverride?.lg ?? Sizes.lg:
           result = BorderRadius.lg;
           break;
 
-        case mimicConfig?.mediaBreakPointsTagsOverride?.xl ?? Sizes.xl:
+        case mimicConfig?.SnappingOverride?.xl ?? Sizes.xl:
           result = BorderRadius.xl;
           break;
 
-        case mimicConfig?.mediaBreakPointsTagsOverride?.xl2 ?? Sizes.xl2:
+        case mimicConfig?.SnappingOverride?.xl2 ?? Sizes.xl2:
           result = BorderRadius.xl2;
           break;
 

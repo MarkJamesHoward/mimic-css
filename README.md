@@ -269,6 +269,19 @@ export default config = {
 };
 ```
 
+### Overriding Media Tags
+
+```js
+let config;
+
+export default config = {
+ mediaBreakPointsTagsOverride: {
+    xs: "x_sm",
+    sm: "smll",
+  },
+
+```
+
 ## Specify folders to exclude
 
 ## Lit Integration

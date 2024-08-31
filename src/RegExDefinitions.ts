@@ -15,29 +15,29 @@ export var no_hyphen_pixel_values = new RegExp("");
 
 export function RegenerateRegExExpressions() {
   const MediaTags = `${
-    mimicConfig?.mediaBreakPointsValueOverride?.extrasmall ??
+    mimicConfig?.MediaBreakPointsTextOverride?.extrasmall ??
     MediaBreakPointsText.extrasmall
   }\\?|${
-    mimicConfig?.mediaBreakPointsValueOverride?.small ??
+    mimicConfig?.MediaBreakPointsTextOverride?.small ??
     MediaBreakPointsText.small
   }\\?|${
-    mimicConfig?.mediaBreakPointsValueOverride?.medium ??
+    mimicConfig?.MediaBreakPointsTextOverride?.medium ??
     MediaBreakPointsText.medium
   }\\?|${
-    mimicConfig?.mediaBreakPointsValueOverride?.large ??
+    mimicConfig?.MediaBreakPointsTextOverride?.large ??
     MediaBreakPointsText.large
   }\\?|${
-    mimicConfig?.mediaBreakPointsValueOverride?.extralarge ??
+    mimicConfig?.MediaBreakPointsTextOverride?.extralarge ??
     MediaBreakPointsText.extralarge
   }\\?`;
 
-  const Snapping = `${
-    mimicConfig?.mediaBreakPointsTagsOverride?.xs ?? Sizes.xs
-  }|${mimicConfig?.mediaBreakPointsTagsOverride?.sm ?? Sizes.sm}|${
-    mimicConfig?.mediaBreakPointsTagsOverride?.md ?? Sizes.md
-  }|${mimicConfig?.mediaBreakPointsTagsOverride?.lg ?? Sizes.lg}|${
-    mimicConfig?.mediaBreakPointsTagsOverride?.xl ?? Sizes.xl
-  }|${mimicConfig?.mediaBreakPointsTagsOverride?.xl2 ?? Sizes.xl2}`;
+  const Snapping = `${mimicConfig?.SnappingOverride?.xs ?? Sizes.xs}|${
+    mimicConfig?.SnappingOverride?.sm ?? Sizes.sm
+  }|${mimicConfig?.SnappingOverride?.md ?? Sizes.md}|${
+    mimicConfig?.SnappingOverride?.lg ?? Sizes.lg
+  }|${mimicConfig?.SnappingOverride?.xl ?? Sizes.xl}|${
+    mimicConfig?.SnappingOverride?.xl2 ?? Sizes.xl2
+  }`;
 
   double_hyphen_then_colon = new RegExp(
     `^(?<media>${MediaTags})?(?<style>[A-Za-z]+-[A-Za-z]+-[A-Za-z]+):(?<value1>[A-Za-z0-9\%\.#]+)(?<customclass>\@[A-Za-z0-9]+(?<customclass_subgroup_pseudo>:hover|:focus)?)?$`,

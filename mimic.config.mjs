@@ -4,6 +4,7 @@ export default config = {
   extensions: [".html"],
   excludeFolders: ["tests", "node_modules"],
   excludeFiles: ["toplevelpage1.html"],
+
   // mediaBreakPointsValueOverride: {
   //   extrasmall: "1000",
   //   small: "1010",
@@ -12,10 +13,22 @@ export default config = {
   //   extralarge: "1040",
   // },
 
-  // mediaBreakPointsTagsOverride: {
-  //   xs: "xs",
-  //   sm: "sm",
-  // },
+  SnappingOverride: {
+    xs: "xs",
+    sm: "sml",
+    md: "md",
+    lg: "lg",
+    xl: "xl",
+    xl2: "2xl",
+  },
+
+  MediaBreakPointsTextOverride: {
+    extrasmall: "xs",
+    small: "sm",
+    medium: "md",
+    large: "lg",
+    extralarge: "xl",
+  },
 
   ColorPalette3Snapping: {
     c3a: "#FF0000",

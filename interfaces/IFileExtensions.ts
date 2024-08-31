@@ -3,7 +3,7 @@ export interface IMimicConfig {
   excludeFolders?: Array<string>;
   excludeFiles?: Array<string>;
 
-  mediaBreakPointsTagsOverride?: {
+  SnappingOverride?: {
     xs: string;
     sm: string;
     md: string;
@@ -13,6 +13,14 @@ export interface IMimicConfig {
   };
 
   mediaBreakPointsValueOverride?: {
+    extrasmall: "1000";
+    small: "1010";
+    medium: "1020";
+    large: "1030";
+    extralarge: "1040";
+  };
+
+  MediaBreakPointsTextOverride?: {
     extrasmall: string;
     small: string;
     medium: string;
