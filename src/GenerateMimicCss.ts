@@ -13,9 +13,13 @@ export function GenerateMimicCSSNonMedia(
   source: string,
   style: string,
   value1: string,
+  value1snap: string,
   value2: string,
+  value2snap: string,
   value3: string,
+  value3snap: string,
   value4: string,
+  value4snap: string,
   value1type: string,
   value2type: string,
   value3type: string,
@@ -26,10 +30,21 @@ export function GenerateMimicCSSNonMedia(
 ): IClassNameCssSourceAndFilename {
   let width = MapMediaQuery(media?.replace("?", ""));
 
-  let snappedvalue1 = PerformSnap(style, value1);
-  let snappedvalue2 = value2 == "" ? "" : PerformSnap(style, value2);
-  let snappedvalue3 = value3 == "" ? "" : PerformSnap(style, value3);
-  let snappedvalue4 = value4 == "" ? "" : PerformSnap(style, value4);
+  let chooseWhatToSnapForValue1 = value1 ?? PerformSnap(style, value1snap);
+  let snappedvalue1 = PerformSnap(style, chooseWhatToSnapForValue1);
+
+  let chooseWhatToSnapForValue2 = value2 ?? PerformSnap(style, value2snap);
+  let snappedvalue2 = PerformSnap(style, chooseWhatToSnapForValue2);
+
+  let chooseWhatToSnapForValue3 = value3 ?? PerformSnap(style, value3snap);
+  let snappedvalue3 = PerformSnap(style, chooseWhatToSnapForValue3);
+
+  let chooseWhatToSnapForValue4 = value4 ?? PerformSnap(style, value4snap);
+  let snappedvalue4 = PerformSnap(style, chooseWhatToSnapForValue4);
+
+  // // let snappedvalue2 = value2 == "" ? "" : PerformSnap(style, value2);
+  // let snappedvalue3 = value3 == "" ? "" : PerformSnap(style, value3);
+  // let snappedvalue4 = value4 == "" ? "" : PerformSnap(style, value4);
 
   let snappedcolor = PerformSnap("color", color);
 
@@ -65,11 +80,13 @@ export function GenerateMimicCSSNonMedia(
   )}`;
 
   return {
-    className: `${style}\\:${Escape(value1)}${Escape(
-      value1type
-    )}${value2?.trim()}${value2type}${value3?.trim()}${value3type}${value4?.trim()}${value4type}${color?.trim()}${
-      pseudo ? `\\${pseudo}${pseudo}` : ""
-    }`,
+    className: `${style}\\:${Escape(
+      value1 === "" ? value1snap ?? "" : value1
+    )}${Escape(value1type)}${
+      value2 === "" ? value2snap ?? "" : value2
+    }${value2type}${value3 === "" ? value3snap ?? "" : value3}${value3type}${
+      value4 === "" ? value4snap ?? "" : value4
+    }${value4type}${color?.trim()}${pseudo ? `\\${pseudo}${pseudo}` : ""}`,
     css:
       `{\r\n\t` +
       style +
