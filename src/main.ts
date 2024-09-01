@@ -110,7 +110,7 @@ function FindMediaQueryClasses(
       result = GenericRegexMedia(
         item,
         single_hyphen_then_colon,
-        "SingleHypenMedia"
+        "single_hyphen_then_colon"
       );
       AddIndividualMdiaClassToDictionaryOfFoundMediaCSSFromAllFile(
         result,
@@ -122,7 +122,7 @@ function FindMediaQueryClasses(
       result = GenericRegexMedia(
         item,
         single_hyphen_then_colon_then_another_hyphen,
-        "SingleHypenThenAnotherHyphenMedia"
+        "single_hyphen_then_colon_then_another_hyphen"
       );
 
       AddIndividualMdiaClassToDictionaryOfFoundMediaCSSFromAllFile(
@@ -135,7 +135,7 @@ function FindMediaQueryClasses(
       result = GenericRegexMedia(
         item,
         double_hyphen_then_colon,
-        "DoubleHyphenMedia"
+        "double_hyphen_then_colon"
       );
 
       AddIndividualMdiaClassToDictionaryOfFoundMediaCSSFromAllFile(
@@ -148,7 +148,7 @@ function FindMediaQueryClasses(
       result = GenericRegexMedia(
         item,
         single_hyphen_then_colon_box_shadow,
-        "SingleHyphenBoxShadowMedia"
+        "single_hyphen_then_colon_box_shadow"
       );
 
       AddIndividualMdiaClassToDictionaryOfFoundMediaCSSFromAllFile(
@@ -161,7 +161,7 @@ function FindMediaQueryClasses(
       result = GenericRegexMedia(
         item,
         single_hyphen_then_colon_box_shadow_snappable,
-        "SingleHyphenBoxShadowMediaSnappable"
+        "single_hyphen_then_colon_box_shadow_snappable"
       );
 
       AddIndividualMdiaClassToDictionaryOfFoundMediaCSSFromAllFile(
@@ -174,7 +174,7 @@ function FindMediaQueryClasses(
       result = GenericRegexMedia(
         item,
         single_hyphen_then_colon_snappable,
-        "SingleHyphenSnapableMedia"
+        "single_hyphen_then_colon_snappable"
       );
 
       AddIndividualMdiaClassToDictionaryOfFoundMediaCSSFromAllFile(
@@ -196,7 +196,7 @@ function FindMediaQueryClasses(
       result = GenericRegexMedia(
         item,
         no_hyphen_snappable,
-        "NoHyphenSnapableMedia"
+        "no_hyphen_snappable"
       );
 
       AddIndividualMdiaClassToDictionaryOfFoundMediaCSSFromAllFile(
@@ -209,7 +209,7 @@ function FindMediaQueryClasses(
       result = GenericRegexMedia(
         item,
         no_hyphen_pixel_values,
-        "NoHyphenPixeValues"
+        "no_hyphen_pixel_values"
       );
 
       AddIndividualMdiaClassToDictionaryOfFoundMediaCSSFromAllFile(
@@ -222,7 +222,7 @@ function FindMediaQueryClasses(
       result = GenericRegexMedia(
         item,
         single_hyphen_hash_value,
-        "SingleHyphenHashValueMedia"
+        "single_hyphen_hash_value"
       );
 
       AddIndividualMdiaClassToDictionaryOfFoundMediaCSSFromAllFile(
