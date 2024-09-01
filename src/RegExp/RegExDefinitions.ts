@@ -9,7 +9,6 @@ export let double_hyphen_then_colon_snappable = new RegExp("");
 
 export var single_hyphen_hash_value = new RegExp("");
 export var single_hyphen_then_colon = new RegExp("");
-export let single_hyphen_then_colon_snappable = new RegExp("");
 
 export var single_hyphen_then_colon_then_another_hyphen = new RegExp("");
 
@@ -18,7 +17,7 @@ export var single_hyphen_then_colon_box_shadow_snappable = new RegExp("");
 
 export var no_hyphen_pixel_values = new RegExp("");
 export var no_hyphen = new RegExp("");
-export var no_hyphen_snappable = new RegExp("");
+// export var no_hyphen_snappable = new RegExp("");
 
 const CustomClass: string = `(?<customclass>\@[A-Z0-9]+(?<customclass_subgroup_pseudo>:hover|:focus)?)?`;
 
@@ -80,24 +79,19 @@ export function RegenerateRegExExpressions() {
   );
 
   //border-width:5
+  //border-width:md
   //border-width:xl
   //border-width:5:hover
   //large?border-width:5
   //large?border-width:5:hover
   //background-color:red
-  single_hyphen_then_colon_snappable = new RegExp(
-    `^(?<media>${MediaTags})?(?<style>[A-Z]+-[A-Z]+):` +
-      `(?<value1>${Snapping})(?<value2>${Snapping})?(?<value3>${Snapping})?(?<value4>${Snapping})?` +
-      `(?<pseudo>:hover|:focus)?${CustomClass}$`,
-    `gi`
-  );
-
+  //background-color:c1a
   single_hyphen_then_colon = new RegExp(
     `^(?<media>${MediaTags})?(?<style>[A-Z]+-[A-Z]+):` +
-      `(?<value1>[0-9A-Z\.]+)(?<value1type>px|ch|rem|\%)?` +
-      `(?<value2>[0-9A-Z]+)?(?<value2type>px|ch|rem|\%)?` +
-      `(?<value3>[0-9A-Z]+)?(?<value3type>px|ch|rem|\%)?` +
-      `(?<value4>[0-9A-Z]+)?(?<value4type>px|ch|rem|\%)?` +
+      `((?<value1>(?!${Snapping})[0-9A-Z\.]+)(?<value1type>px|ch|rem|\%)?|(?<value1snap>${Snapping}))` +
+      `((?<value2>(?!${Snapping})[0-9A-Z]+)?(?<value2type>px|ch|rem|\%)?|(?<value2snap>${Snapping}))` +
+      `((?<value3>(?!${Snapping})[0-9A-Z]+)?(?<value3type>px|ch|rem|\%)?|(?<value3snap>${Snapping}))` +
+      `((?<value4>(?!${Snapping})[0-9A-Z]+)?(?<value4type>px|ch|rem|\%)?|(?<value4snap>${Snapping}))` +
       `(?<pseudo>:hover|:focus)?${CustomClass}$`,
     `gi`
   );
@@ -115,6 +109,7 @@ export function RegenerateRegExExpressions() {
 
   //////////////////////////////////
   // box-shadow: 10px 10px
+  // border-width: 10px 10px
   single_hyphen_then_colon_box_shadow = new RegExp(
     `^(?<media>${MediaTags})?(?<style>[A-Z]+-[A-Z]+):` +
       `(?<value1>[0-9]+)(?<value1type>px|ch|rem)` +
@@ -134,21 +129,15 @@ export function RegenerateRegExExpressions() {
     `gi`
   );
 
-  no_hyphen_snappable = new RegExp(
-    `^(?<media>${MediaTags})?(?<style>[A-Z]+):` +
-      `(?<value1>${Snapping})(?<value2>${Snapping})?(?<value3>${Snapping})?(?<value4>${Snapping})?` +
-      `(?<pseudo>:hover|:focus)?${CustomClass}$`,
-    `gi`
-  );
-
   //display: flex
   //color: red
+  //color: c1a
   no_hyphen = new RegExp(
     `^(?<media>${MediaTags})?(?<style>[A-Z]+):` +
-      `(?<value1>[0-9A-Z\%\#]+)(?<value1type>px|ch|rem)?` +
-      `(?<value2>[0-9A-Z]+)?(?<value2type>px|ch|rem)?` +
-      `(?<value3>[0-9A-Z]+)?(?<value3type>px|ch|rem)?` +
-      `(?<value4>[0-9A-Z]+)?(?<value4type>px|ch|rem)?` +
+      `((?<value1>(?!${Snapping})[0-9A-Z\%\#]+)(?<value1type>px|ch|rem)?|(?<value1snap>${Snapping}))` +
+      `((?<value2>(?!${Snapping})[0-9A-Z]+)?(?<value2type>px|ch|rem)?|(?<value2snap>${Snapping}))` +
+      `((?<value3>(?!${Snapping})[0-9A-Z]+)?(?<value3type>px|ch|rem)?|(?<value3snap>${Snapping}))` +
+      `((?<value4>(?!${Snapping})[0-9A-Z]+)?(?<value4type>px|ch|rem)?|(?<value4snap>${Snapping}))` +
       `(?<pseudo>:hover|:focus)?${CustomClass}$`,
     `gi`
   );
