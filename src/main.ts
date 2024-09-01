@@ -12,11 +12,9 @@ import {
 import {
   double_hyphen_then_colon,
   single_hyphen_then_colon,
-  single_hyphen_then_colon_snappable,
   single_hyphen_then_colon_then_another_hyphen,
   single_hyphen_then_colon_box_shadow,
   no_hyphen_pixel_values,
-  // no_hyphen_snappable,
   no_hyphen,
   single_hyphen_hash_value,
   RegenerateRegExExpressions,
@@ -171,19 +169,6 @@ function FindMediaQueryClasses(
         DictionaryOfFoundMediaCSSFromAllFile
       );
 
-      result = GenericRegexMedia(
-        item,
-        single_hyphen_then_colon_snappable,
-        "single_hyphen_then_colon_snappable"
-      );
-
-      AddIndividualMdiaClassToDictionaryOfFoundMediaCSSFromAllFile(
-        result,
-        next_media_order_position,
-        filename,
-        DictionaryOfFoundMediaCSSFromAllFile
-      );
-
       result = GenericRegexMedia(item, no_hyphen, "NoHypen");
 
       AddIndividualMdiaClassToDictionaryOfFoundMediaCSSFromAllFile(
@@ -311,31 +296,6 @@ function FindCustomClasses(
           r.classMember,
           constructedClassMemberList
         ));
-      if (
-        AddCustomClassTo_DictionaryOfFoundCSSFromAllFile(
-          constructedClassName,
-          constructedClassMemberList,
-          classGenerationInProgress,
-          DictionaryOfFoundCSSFromAllFile,
-          filename,
-          "Test"
-        )
-      ) {
-        return;
-      }
-      r = GenericRegexNonMediaCustomClass(
-        item,
-        single_hyphen_then_colon_snappable,
-        "single_hyphen_then_colon_snappable_custom_class"
-      );
-
-      ({ constructedClassMemberList, constructedClassName } =
-        UpdateClassMembersOfCustomClass(
-          r.className,
-          r.classMember,
-          constructedClassMemberList
-        ));
-
       if (
         AddCustomClassTo_DictionaryOfFoundCSSFromAllFile(
           constructedClassName,
@@ -670,17 +630,6 @@ function FindNonMedia(
         item,
         single_hyphen_then_colon_box_shadow,
         "SingleHyphenBoxShadow"
-      );
-      StoreNonMediaClassIn_DictionaryOfFoundCSSFromAllFile(
-        distinctClassAndCss,
-        DictionaryOfFoundCSSFromAllFile,
-        filename
-      );
-
-      distinctClassAndCss = GenericRegexNonMedia(
-        item,
-        single_hyphen_then_colon_snappable,
-        "single_hyphen_then_colon_snappable"
       );
       StoreNonMediaClassIn_DictionaryOfFoundCSSFromAllFile(
         distinctClassAndCss,

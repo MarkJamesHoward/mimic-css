@@ -78,9 +78,13 @@ export function GenericRegexNonMediaCustomClass(
   for (const match of single_colon_matches) {
     let style = match.groups["style"];
     let value1 = match.groups["value1"];
+    let value1snap = match.groups["value1snap"];
     let value2 = match.groups["value2"];
+    let value2snap = match.groups["value2snap"];
     let value3 = match.groups["value3"];
+    let value3snap = match.groups["value3snap"];
     let value4 = match.groups["value4"];
+    let value4snap = match.groups["value4snap"];
     let media = match.groups["media"];
     let color = match.groups["color"];
     let pseudo = match.groups["pseudo"];
@@ -97,9 +101,13 @@ export function GenericRegexNonMediaCustomClass(
       source,
       style,
       value1,
+      value1snap,
       value2,
+      value2snap,
       value3,
+      value3snap,
       value4,
+      value4snap,
       value1type,
       value2type,
       value3type,
@@ -135,9 +143,13 @@ export function GenericRegexMedia(
   for (const match of single_colon_matches) {
     let style = match.groups["style"];
     let value1 = match.groups["value1"];
+    let value1snap = match.groups["value1snap"];
     let value2 = match.groups["value2"];
+    let value2snap = match.groups["value2snap"];
     let value3 = match.groups["value3"];
+    let value3snap = match.groups["value3snap"];
     let value4 = match.groups["value4"];
+    let value4snap = match.groups["value4snap"];
     let media = match.groups["media"];
     let color = match.groups["color"];
     let pseudo = match.groups["pseudo"];
@@ -152,9 +164,13 @@ export function GenericRegexMedia(
       source,
       style,
       value1,
+      value1snap,
       value2,
+      value2snap,
       value3,
+      value3snap,
       value4,
+      value4snap,
       value1type,
       value2type,
       value3type,
