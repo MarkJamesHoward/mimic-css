@@ -116,7 +116,7 @@ export function RegenerateRegExExpressions() {
   //////////////////////////////////
   // box-shadow: 10px 10px
   single_hyphen_then_colon_box_shadow = new RegExp(
-    `^(?<media>${MediaTags})?(?<style>box-shadow):` +
+    `^(?<media>${MediaTags})?(?<style>[a-z]-[a-z]):` +
       `(?<value1>[0-9]+)(?<value1type>px|ch|rem)` +
       `(?<value2>[0-9]+)(?<value2type>px|ch|rem)` +
       `(?<value3>[0-9]+)?(?<value3type>px|ch|rem)?` +
@@ -127,7 +127,7 @@ export function RegenerateRegExExpressions() {
   );
 
   single_hyphen_then_colon_box_shadow_snappable = new RegExp(
-    `^(?<media>${MediaTags})?(?<style>box-shadow):` +
+    `^(?<media>${MediaTags})?(?<style>[a-z]-[a-z]):` +
       `(?<value1>${SnappingButNotOnColor})(?<value2>${SnappingButNotOnColor})?(?<value3>${SnappingButNotOnColor})?(?<value4>${SnappingButNotOnColor})?` +
       `(?<color>[A-Z0-9]+)?` +
       `(?<pseudo>:hover|:focus)??${CustomClass}$`,
