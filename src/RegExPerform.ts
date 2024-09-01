@@ -1,17 +1,17 @@
 import {
   IClass,
   IClassNameCssSourceAndFilename,
+  IMediaClassCSSOrderFilenameAndSource,
 } from "../interfaces/ICustomClassBuilder";
 import {
-  GenerateMimicClass,
-  GenerateMimicClass_CustomClass,
-  GenerateMimicClass_NONMEDIA_Return_ClassName_Separate,
-  GenerateMimicClass_ReturnDistinctMediaAndCSS,
+  GenerateMimicCSSCustomClasses,
+  GenerateMimicCSSNonMedia,
+  GenerateMimicCSSMedia,
 } from "./GenerateMimicCss";
 
 let debug = true;
 
-export function GenericRegexNonMedia_ReturnDistinctClassAndCSS(
+export function GenericRegexNonMedia(
   item: any,
   regex: RegExp,
   source: string
@@ -36,7 +36,7 @@ export function GenericRegexNonMedia_ReturnDistinctClassAndCSS(
 
     if (media != undefined || className != undefined) return result;
 
-    result = GenerateMimicClass_NONMEDIA_Return_ClassName_Separate(
+    result = GenerateMimicCSSNonMedia(
       source,
       style,
       value1,
@@ -85,7 +85,7 @@ export function GenericRegexNonMediaCustomClass(
 
     if (className == undefined) return { classMember: "", className: "" };
 
-    classMember = GenerateMimicClass_CustomClass(
+    classMember = GenerateMimicCSSCustomClasses(
       source,
       style,
       value1,
@@ -113,9 +113,16 @@ export function GenericRegexMedia(
   item: any,
   regex: RegExp,
   source: string
-): { mediaDescription: string; mediaClass: IClass } {
+): IMediaClassCSSOrderFilenameAndSource {
   let single_colon_matches = item.matchAll(regex);
-  let result = { mediaDescription: "", mediaClass: { className: "", css: "" } };
+  let result = {
+    mediaDescription: "",
+    className: "",
+    css: "",
+    order: 0,
+    filename: "",
+    source: "",
+  };
 
   for (const match of single_colon_matches) {
     let style = match.groups["style"];
@@ -133,7 +140,7 @@ export function GenericRegexMedia(
 
     if (media == undefined || media == "") return result;
 
-    result = GenerateMimicClass_ReturnDistinctMediaAndCSS(
+    result = GenerateMimicCSSMedia(
       source,
       style,
       value1,

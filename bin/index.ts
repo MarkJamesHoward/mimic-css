@@ -2,14 +2,14 @@
 import yargs from "yargs";
 import path from "path";
 import fs from "fs";
-import { DoWork } from "../src/main";
-import { LoadConfig, mimicConfig } from "../src/configurationLoader";
+import { DoWork } from "../src/Main";
+import { LoadConfig, mimicConfig } from "../src/ConfigurationLoader";
 import {
-  IClass,
   IClassNameCssSourceAndFilename,
-  IMediaClass,
-  INonMediaClass,
+  IMediaClassCSSOrderFilenameAndSource,
+  MimicFinalCSSOutput,
 } from "../interfaces/ICustomClassBuilder";
+import { ConstructGeneratedCSS } from "../src/FinalCSSOutputGeneration";
 
 const argv = yargs(process.argv.slice(2))
   .options({
@@ -21,12 +21,16 @@ const argv = yargs(process.argv.slice(2))
   })
   .parseSync();
 
-let ExistingCSS = "";
+let ExistingCSS: MimicFinalCSSOutput = { str: "" };
+
 let DictionaryOfFoundCSSFromAllFile: Record<
   string,
   IClassNameCssSourceAndFilename
 > = {};
-let DictionaryOfFoundMediaCSSFromAllFile: Record<string, IMediaClass> = {};
+let DictionaryOfFoundMediaCSSFromAllFile: Record<
+  string,
+  IMediaClassCSSOrderFilenameAndSource
+> = {};
 
 let InputFolder = argv.i ?? "./";
 let OutputFilename = argv.o;
@@ -80,11 +84,15 @@ function searchFile(dir: string, extension: string) {
           DictionaryOfFoundMediaCSSFromAllFile
         );
 
-        ConstructGeneratedCSS();
+        ConstructGeneratedCSS(
+          ExistingCSS,
+          DictionaryOfFoundMediaCSSFromAllFile,
+          DictionaryOfFoundCSSFromAllFile
+        );
 
-        fs.writeFileSync(OutputFilename, ExistingCSS);
+        fs.writeFileSync(OutputFilename, ExistingCSS.str);
         if (EmitLitFile) {
-          WriteLitFile(OutputFilename, ExistingCSS);
+          WriteLitFile(OutputFilename, ExistingCSS.str);
         }
       } else {
         console.log(`Excluding file ${filePath}`);
@@ -153,12 +161,16 @@ async function Start() {
               DictionaryOfFoundMediaCSSFromAllFile
             );
 
-            ConstructGeneratedCSS();
+            ConstructGeneratedCSS(
+              ExistingCSS,
+              DictionaryOfFoundMediaCSSFromAllFile,
+              DictionaryOfFoundCSSFromAllFile
+            );
 
-            WriteFile(OutputFilename, ExistingCSS);
+            WriteFile(OutputFilename, ExistingCSS.str);
 
             if (EmitLitFile) {
-              WriteLitFile(OutputFilename, ExistingCSS);
+              WriteLitFile(OutputFilename, ExistingCSS.str);
             }
           } else {
             console.log(`file excluded ${path.join(InputFolder, fileName)}`);
@@ -178,49 +190,6 @@ async function Start() {
       }
     }
   );
-}
-
-function ConstructGeneratedCSS() {
-  ExistingCSS = "";
-
-  for (const key in DictionaryOfFoundCSSFromAllFile) {
-    if (key !== undefined && key !== "") {
-      let TempCustomClass = `/*${DictionaryOfFoundCSSFromAllFile[key].filename}*/\r\n/*${DictionaryOfFoundCSSFromAllFile[key].source}*/\r\n.${key} ${DictionaryOfFoundCSSFromAllFile[key].css}`;
-      ExistingCSS += TempCustomClass.trim() + "\r\n";
-    }
-  }
-
-  ExistingCSS += ConstructOrderedMediaClasses_EnsuringMostRecentAreAtTheBottom(
-    DictionaryOfFoundMediaCSSFromAllFile
-  );
-}
-
-function ConstructOrderedMediaClasses_EnsuringMostRecentAreAtTheBottom(
-  dict: Record<string, IMediaClass>
-): string {
-  let css = "";
-
-  let sortedMediaItems = [];
-
-  sortedMediaItems = Object.keys(dict).map((key: string) => {
-    return [key, dict[key].order];
-  });
-
-  // Sort the array based on the second element
-  // @ts-ignore
-  sortedMediaItems.sort(function (first: Array<number>, second: Array<number>) {
-    return first[1] - second[1];
-  });
-
-  sortedMediaItems.forEach((item) => {
-    if (item[0] !== undefined && item[0] !== "") {
-      let TempCustomClass = `${item[0]}${dict[item[0]].className}${
-        dict[item[0]].css
-      }`;
-      css += TempCustomClass.trim() + "\r\n";
-    }
-  });
-  return css;
 }
 
 function WriteFile(filename: string, data: string) {

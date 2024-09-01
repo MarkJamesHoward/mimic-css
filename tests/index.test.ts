@@ -1,4 +1,4 @@
-import { DoWork } from "../src/main";
+import { DoWork } from "../src/Main";
 import {
   BorderSizes,
   FontSizes,
@@ -9,16 +9,13 @@ import {
   LineHeight,
   color_palette_1,
   BoxShadowSizes,
-  Sizes,
   color_palette_2,
-} from "../src/Sizes";
+  ColorSizes,
+} from "../src/Snapping/Sizes";
 import {
   MediaBreakPointsValue,
   MediaBreakPointsText,
-} from "../src/mediaBreakpoints";
-import { INonMediaClass } from "../interfaces/ICustomClassBuilder";
-
-let {}: Record<string, INonMediaClass> = {};
+} from "../src/Snapping/MediaBreakpoints";
 
 describe("Box Shadow", () => {
   test("Box Shadow Focus", () => {
@@ -67,17 +64,29 @@ describe("Box Shadow", () => {
     );
   });
 
-  // test("Box Shadow 2 Values With Color Snap to SM", () => {
-  //   expect(
-  //     DoWork(
-  //       "./tests/box-shadow/box-shadow-2-values-with-color-snap-sm.html",
-  //       {},
-  //       {}
-  //     )
-  //   ).toContain(
-  //     `.box-shadow\\:smsmred {\r\n\tbox-shadow: ${BoxShadowSizes.sm} ${BoxShadowSizes.sm} red;\r\n}`
-  //   );
-  // });
+  test("Box Shadow 2 Values With Color Snap to SM", () => {
+    expect(
+      DoWork(
+        "./tests/box-shadow/box-shadow-2-values-with-color-snap-sm.html",
+        {},
+        {}
+      )
+    ).toContain(
+      `.box-shadow\\:smsmred {\r\n\tbox-shadow: ${BoxShadowSizes.sm} ${BoxShadowSizes.sm} red;\r\n}`
+    );
+  });
+
+  test("Box Shadow 2 Values With Color Snap to SM Snap to c1a", () => {
+    expect(
+      DoWork(
+        "./tests/box-shadow/box-shadow-2-values-with-color-snap-sm-snap-c1a.html",
+        {},
+        {}
+      )
+    ).toContain(
+      `.box-shadow\\:smsmc1a {\r\n\tbox-shadow: ${BoxShadowSizes.sm} ${BoxShadowSizes.sm} ${color_palette_1.c1a};\r\n}`
+    );
+  });
 
   test("Box Shadow Hover", () => {
     expect(
@@ -194,6 +203,18 @@ describe("Text Decoration", () => {
       `.text-decoration-color\\:\\#444444 {\r\n\ttext-decoration-color: #444444;\r\n}`
     );
   });
+
+  test("Text Decoration Color - Snap c1a", () => {
+    expect(
+      DoWork(
+        "./tests/text-decoration/text-decoration-color-snap-c1a.html",
+        {},
+        {}
+      )
+    ).toContain(
+      `.text-decoration-color\\:${ColorSizes.c1a} {\r\n\ttext-decoration-color: ${color_palette_1.c1a};\r\n}`
+    );
+  });
 });
 
 describe("Border Style", () => {
@@ -266,15 +287,9 @@ describe("display flex", () => {
   });
 
   test("flex gap", () => {
-    expect(
-      DoWork(
-        "./tests/flex/flex_gap.html",
-        {},
-        {
-          mediaClass: { className: "", css: "", order: 0, filename: "" },
-        }
-      )
-    ).toContain(`.gap\\:md {\r\n\tgap: ${GapSizes.md};\r\n}`);
+    expect(DoWork("./tests/flex/flex_gap.html", {}, {})).toContain(
+      `.gap\\:md {\r\n\tgap: ${GapSizes.md};\r\n}`
+    );
   });
 });
 
@@ -382,89 +397,45 @@ describe("Padding", () => {
 /////////////////////////////////
 describe("Color", () => {
   test("Color Snap C1", () => {
-    expect(
-      DoWork(
-        "./tests/color/color.html",
-        {},
-        {
-          mediaClass: { className: "", css: "", order: 0, filename: "" },
-        }
-      )
-    ).toContain(`.color\\:c1a {\r\n\tcolor: ${color_palette_1.c1a};\r\n}`);
+    expect(DoWork("./tests/color/color.html", {}, {})).toContain(
+      `.color\\:c1a {\r\n\tcolor: ${color_palette_1.c1a};\r\n}`
+    );
   });
 
   test("Color", () => {
-    expect(
-      DoWork(
-        "./tests/color/color.html",
-        {},
-        {
-          mediaClass: { className: "", css: "", order: 0, filename: "" },
-        }
-      )
-    ).toContain(`.color\\:red {\r\n\tcolor: red;\r\n}`);
+    expect(DoWork("./tests/color/color.html", {}, {})).toContain(
+      `.color\\:red {\r\n\tcolor: red;\r\n}`
+    );
   });
 
   test("Color # code", () => {
-    expect(
-      DoWork(
-        "./tests/color/color.html",
-        {},
-        {
-          mediaClass: { className: "", css: "", order: 0, filename: "" },
-        }
-      )
-    ).toContain(`.color\\:\\#124356 {\r\n\tcolor: #124356;\r\n}`);
+    expect(DoWork("./tests/color/color.html", {}, {})).toContain(
+      `.color\\:\\#124356 {\r\n\tcolor: #124356;\r\n}`
+    );
   });
 
   test("Color # code Hover", () => {
-    expect(
-      DoWork(
-        "./tests/color/color.html",
-        {},
-        {
-          mediaClass: { className: "", css: "", order: 0, filename: "" },
-        }
-      )
-    ).toContain(`.color\\:\\#124356\\:hover:hover {\r\n\tcolor: #124356;\r\n}`);
+    expect(DoWork("./tests/color/color.html", {}, {})).toContain(
+      `.color\\:\\#124356\\:hover:hover {\r\n\tcolor: #124356;\r\n}`
+    );
   });
 
   test("Color # code Focus", () => {
-    expect(
-      DoWork(
-        "./tests/color/color.html",
-        {},
-        {
-          mediaClass: { className: "", css: "", order: 0, filename: "" },
-        }
-      )
-    ).toContain(`.color\\:\\#124356\\:focus:focus {\r\n\tcolor: #124356;\r\n}`);
+    expect(DoWork("./tests/color/color.html", {}, {})).toContain(
+      `.color\\:\\#124356\\:focus:focus {\r\n\tcolor: #124356;\r\n}`
+    );
   });
 
   test("Color Media Small", () => {
-    expect(
-      DoWork(
-        "./tests/color/color_media_small.html",
-        {},
-        {
-          mediaClass: { className: "", css: "", order: 0, filename: "" },
-        }
-      )
-    ).toContain(
+    expect(DoWork("./tests/color/color_media_small.html", {}, {})).toContain(
       `@media (min-width: ${MediaBreakPointsValue.small}px) {\r\n.${MediaBreakPointsText.small}\\?color\\:red {\r\n\tcolor: red;\r\n\t}\r\n}`
     );
   });
 
   test("Color Hover", () => {
-    expect(
-      DoWork(
-        "./tests/color/color_hover.html",
-        {},
-        {
-          mediaClass: { className: "", css: "", order: 0, filename: "" },
-        }
-      )
-    ).toContain(`.color\\:red\\:hover:hover {\r\n\tcolor: red;\r\n}`);
+    expect(DoWork("./tests/color/color_hover.html", {}, {})).toContain(
+      `.color\\:red\\:hover:hover {\r\n\tcolor: red;\r\n}`
+    );
   });
 });
 
@@ -537,15 +508,7 @@ describe("Background Color", () => {
   });
 
   test("BackGround Color Focus", () => {
-    expect(
-      DoWork(
-        "./tests/focus/focus.html",
-        {},
-        {
-          mediaClass: { className: "", css: "", order: 0, filename: "" },
-        }
-      )
-    ).toContain(
+    expect(DoWork("./tests/focus/focus.html", {}, {})).toContain(
       `.background-color\\:red\\:focus:focus {\r\n\tbackground-color: red;\r\n}`
     );
   });

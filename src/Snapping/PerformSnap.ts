@@ -16,7 +16,7 @@ import {
   color_palette_4,
 } from "./Sizes";
 
-import { mimicConfig } from "./configurationLoader";
+import { mimicConfig } from "../ConfigurationLoader";
 
 export function PerformSnap(type: string, value: string) {
   let result = "";
@@ -34,6 +34,7 @@ export function PerformSnap(type: string, value: string) {
 
   switch (type) {
     case "background-color":
+    case "text-decoration-color":
     case "color":
       switch (value) {
         case mimicConfig?.ColorPalette1TextOverride?.colora ?? ColorSizes.c1a:

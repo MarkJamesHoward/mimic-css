@@ -20,9 +20,15 @@ export type INonMediaClass = {
   filename: string;
 };
 
-export interface IMediaClass {
+export interface IMediaClassCSSOrderFilenameAndSource {
+  mediaDescription: string;
   className: string;
   css: string;
   order: number;
   filename: string;
+  source: string;
 }
+
+export type MimicFinalCSSOutput = {
+  str: string;
+};

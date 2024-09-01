@@ -1,6 +1,6 @@
 import { readConfig, ConfigLoaderError } from "@web/config-loader";
 import { IMimicConfig } from "../interfaces/IMimicConfig";
-import { MediaBreakPointsValue } from "./mediaBreakpoints";
+import { MediaBreakPointsValue } from "./Snapping/MediaBreakpoints";
 let mimicConfigDEFAULT: IMimicConfig;
 export let mimicConfig: IMimicConfig;
 

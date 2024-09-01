@@ -13,12 +13,12 @@ export default config = {
   //   extralarge: "1040",
   // },
 
-  ColorPalette1TextOverride: {
-    colora: "col1",
-    colorb: "col2",
-    colorc: "col3",
-    colord: "col4",
-  },
+  // ColorPalette1TextOverride: {
+  //   colora: "col1",
+  //   colorb: "col2",
+  //   colorc: "col3",
+  //   colord: "col4",
+  // },
 
   // SnappingOverride: {
   //   xs: "xs",

@@ -1,10 +1,10 @@
-import { PerformSnap } from "./performSnap";
+import { PerformSnap } from "./Snapping/PerformSnap";
 import {
   MediaBreakPointsText,
   MediaBreakPointsValue,
-} from "./mediaBreakpoints";
-import { mimicConfig } from "./configurationLoader";
-import { Escape } from "./EscapingClassNames";
+} from "./Snapping/MediaBreakpoints";
+import { mimicConfig } from "./ConfigurationLoader";
+import { Escape } from "./Utils/Utils";
 
 export function MapMediaQuery(media: string) {
   let width;
