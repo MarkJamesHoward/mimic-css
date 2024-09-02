@@ -4,3 +4,4 @@ mimic.css
 dist/
 bin/mimic.css.js
 bin/mimic.css
+coverage

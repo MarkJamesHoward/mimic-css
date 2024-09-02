@@ -9,6 +9,12 @@ mimicConfigDEFAULT = {
   excludeFolders: ["node_modules"],
 };
 
+export function SetConfigForJestTesting(config?: IMimicConfig) {
+  if (config !== undefined) {
+    mimicConfig = config;
+  }
+}
+
 export async function LoadConfig() {
   try {
     // will look for:

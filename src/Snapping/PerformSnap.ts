@@ -27,7 +27,8 @@ export function PerformSnap(type: string, value: string) {
     value?.includes("px") ||
     value?.includes("rem") ||
     value?.includes("%") ||
-    value?.includes("ch")
+    value?.includes("ch") ||
+    value === undefined
   ) {
     return value;
   }
@@ -318,6 +319,7 @@ export function PerformSnap(type: string, value: string) {
       break;
 
     case "font-size":
+      console.log(`FontSize ${mimicConfig?.SnappingOverride?.xs}`);
       switch (value) {
         case mimicConfig?.SnappingOverride?.xs ?? Sizes.xs:
           result = FontSizes.xs;

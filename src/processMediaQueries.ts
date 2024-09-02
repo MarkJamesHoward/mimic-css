@@ -9,6 +9,8 @@ import { Escape } from "./Utils/Utils";
 export function MapMediaQuery(media: string) {
   let width;
 
+  if (media === undefined) return;
+
   switch (media) {
     case mimicConfig?.MediaBreakPointsTextOverride?.extrasmall ??
       MediaBreakPointsText.extrasmall:

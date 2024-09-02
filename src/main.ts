@@ -3,6 +3,8 @@ import {
   ICustomClassBuilder,
   IMediaClassCSSOrderFilenameAndSource,
 } from "../interfaces/ICustomClassBuilder";
+import { IMimicConfig } from "../interfaces/IMimicConfig";
+import { SetConfigForJestTesting } from "./ConfigurationLoader";
 import {
   GenericRegexMedia,
   GenericRegexNonMedia,
@@ -32,8 +34,13 @@ export function DoWork(
   DictionaryOfFoundMediaCSSFromAllFile: Record<
     string,
     IMediaClassCSSOrderFilenameAndSource
-  >
+  >,
+  config?: IMimicConfig
 ): string {
+  if (config !== undefined) {
+    SetConfigForJestTesting(config);
+  }
+
   ClearExistingCSS(
     DictionaryOfFoundCSSFromAllFile,
     DictionaryOfFoundMediaCSSFromAllFile,

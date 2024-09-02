@@ -81,7 +81,8 @@ function searchFile(dir: string, extension: string) {
         let result = DoWork(
           filePath,
           DictionaryOfFoundCSSFromAllFile,
-          DictionaryOfFoundMediaCSSFromAllFile
+          DictionaryOfFoundMediaCSSFromAllFile,
+          undefined
         );
 
         ConstructGeneratedCSS(
@@ -155,10 +156,11 @@ async function Start() {
             console.log("change detected.. performing update: " + fileName);
             let filenamePlusPath = path.join(InputFolder, fileName);
 
-            let result = DoWork(
+            DoWork(
               filenamePlusPath,
               DictionaryOfFoundCSSFromAllFile,
-              DictionaryOfFoundMediaCSSFromAllFile
+              DictionaryOfFoundMediaCSSFromAllFile,
+              undefined
             );
 
             ConstructGeneratedCSS(

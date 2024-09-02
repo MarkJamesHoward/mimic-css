@@ -4,12 +4,12 @@ export interface IMimicConfig {
   excludeFiles?: Array<string>;
 
   SnappingOverride?: {
-    xs: string;
-    sm: string;
-    md: string;
-    lg: string;
-    xl: string;
-    xl2: string;
+    xs?: string;
+    sm?: string;
+    md?: string;
+    lg?: string;
+    xl?: string;
+    xl2?: string;
   };
 
   mediaBreakPointsValueOverride?: {
