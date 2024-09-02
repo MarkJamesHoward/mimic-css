@@ -17,7 +17,6 @@ export var single_hyphen_then_colon_box_shadow_snappable = new RegExp("");
 
 export var no_hyphen_pixel_values = new RegExp("");
 export var no_hyphen = new RegExp("");
-// export var no_hyphen_snappable = new RegExp("");
 
 const CustomClass: string = `(?<customclass>\@[A-Z0-9]+(?<customclass_subgroup_pseudo>:hover|:focus)?)?`;
 
@@ -88,16 +87,11 @@ export function RegenerateRegExExpressions() {
   //background-color:c1a
   single_hyphen_then_colon = new RegExp(
     `^(?<media>${MediaTags})?(?<style>[A-Z]+-[A-Z]+):` +
-      `((?<value1>(?!${Snapping})[0-9A-Z\.]+)(?<value1type>px|ch|rem|\%)?|(?<value1snap>${Snapping}))` +
+      `((?<value1>(?!${Snapping})[0-9A-Z\.#]+)(?<value1type>px|ch|rem|\%)?|(?<value1snap>${Snapping}))` +
       `((?<value2>(?!${Snapping})[0-9A-Z]+)?(?<value2type>px|ch|rem|\%)?|(?<value2snap>${Snapping}))` +
       `((?<value3>(?!${Snapping})[0-9A-Z]+)?(?<value3type>px|ch|rem|\%)?|(?<value3snap>${Snapping}))` +
       `((?<value4>(?!${Snapping})[0-9A-Z]+)?(?<value4type>px|ch|rem|\%)?|(?<value4snap>${Snapping}))` +
       `(?<pseudo>:hover|:focus)?${CustomClass}$`,
-    `gi`
-  );
-
-  single_hyphen_hash_value = new RegExp(
-    `^(?<media>${MediaTags})?(?<style>[A-Z]+-[A-Z]+):(?<value1>#[A-Z0-9]+)(?<pseudo>:hover|:focus)?${CustomClass}$`,
     `gi`
   );
 
@@ -112,10 +106,10 @@ export function RegenerateRegExExpressions() {
   // border-width: 10px 10px
   single_hyphen_then_colon_box_shadow = new RegExp(
     `^(?<media>${MediaTags})?(?<style>[A-Z]+-[A-Z]+):` +
-      `(?<value1>[0-9]+)(?<value1type>px|ch|rem)` +
-      `(?<value2>[0-9]+)(?<value2type>px|ch|rem)` +
-      `(?<value3>[0-9]+)?(?<value3type>px|ch|rem)?` +
-      `(?<value4>[0-9]+)?(?<value4type>px|ch|rem)?` +
+      `((?<value1>(?!${Snapping})[0-9]+)(?<value1type>px|ch|rem)|(?<value1snap>${Snapping}))` +
+      `((?<value2>(?!${Snapping})[0-9]+)(?<value2type>px|ch|rem)|(?<value2snap>${Snapping}))` +
+      `((?<value3>(?!${Snapping})[0-9]+)?(?<value3type>px|ch|rem)?|(?<value3snap>${Snapping})?)` +
+      `((?<value4>(?!${Snapping})[0-9]+)?(?<value4type>px|ch|rem)?|(?<value4snap>${Snapping})?)` +
       `(?<color>[A-Z]+)?` +
       `(?<pseudo>:hover|:focus)??${CustomClass}$`,
     `gi`

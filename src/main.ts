@@ -16,7 +16,6 @@ import {
   single_hyphen_then_colon_box_shadow,
   no_hyphen_pixel_values,
   no_hyphen,
-  single_hyphen_hash_value,
   RegenerateRegExExpressions,
   double_hyphen_then_colon_snappable,
   single_hyphen_then_colon_box_shadow_snappable,
@@ -195,19 +194,6 @@ function FindMediaQueryClasses(
         item,
         no_hyphen_pixel_values,
         "no_hyphen_pixel_values"
-      );
-
-      AddIndividualMdiaClassToDictionaryOfFoundMediaCSSFromAllFile(
-        result,
-        next_media_order_position,
-        filename,
-        DictionaryOfFoundMediaCSSFromAllFile
-      );
-
-      result = GenericRegexMedia(
-        item,
-        single_hyphen_hash_value,
-        "single_hyphen_hash_value"
       );
 
       AddIndividualMdiaClassToDictionaryOfFoundMediaCSSFromAllFile(
@@ -512,32 +498,6 @@ function FindCustomClasses(
       ) {
         return;
       }
-
-      r = GenericRegexNonMediaCustomClass(
-        item,
-        single_hyphen_hash_value,
-        "SingleHyphenHashValue_CustomClass"
-      );
-
-      ({ constructedClassMemberList, constructedClassName } =
-        UpdateClassMembersOfCustomClass(
-          r.className,
-          r.classMember,
-          constructedClassMemberList
-        ));
-
-      if (
-        AddCustomClassTo_DictionaryOfFoundCSSFromAllFile(
-          constructedClassName,
-          constructedClassMemberList,
-          classGenerationInProgress,
-          DictionaryOfFoundCSSFromAllFile,
-          filename,
-          "Test"
-        )
-      ) {
-        return;
-      }
     });
 
     for (const key in DictionaryOfFoundCSSFromAllFile) {
@@ -618,7 +578,7 @@ function FindNonMedia(
       distinctClassAndCss = GenericRegexNonMedia(
         item,
         double_hyphen_then_colon_snappable,
-        "DoubleHyphenTheColonSnappable"
+        "double_hyphen_then_colon_snappable"
       );
       StoreNonMediaClassIn_DictionaryOfFoundCSSFromAllFile(
         distinctClassAndCss,
@@ -629,7 +589,7 @@ function FindNonMedia(
       distinctClassAndCss = GenericRegexNonMedia(
         item,
         single_hyphen_then_colon_box_shadow,
-        "SingleHyphenBoxShadow"
+        "single_hyphen_then_colon_box_shadow"
       );
       StoreNonMediaClassIn_DictionaryOfFoundCSSFromAllFile(
         distinctClassAndCss,
@@ -670,17 +630,6 @@ function FindNonMedia(
         item,
         no_hyphen_pixel_values,
         "NoHyphenPixeValues"
-      );
-      StoreNonMediaClassIn_DictionaryOfFoundCSSFromAllFile(
-        distinctClassAndCss,
-        DictionaryOfFoundCSSFromAllFile,
-        filename
-      );
-
-      distinctClassAndCss = GenericRegexNonMedia(
-        item,
-        single_hyphen_hash_value,
-        "SingleHyphenHashValue"
       );
       StoreNonMediaClassIn_DictionaryOfFoundCSSFromAllFile(
         distinctClassAndCss,
