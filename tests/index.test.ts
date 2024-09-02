@@ -1,5 +1,4 @@
 import { DoWork } from "../src/main";
-import { SetConfigForJestTesting } from "../src/ConfigurationLoader";
 import {
   BorderSizes,
   FontSizes,
@@ -25,9 +24,21 @@ let mimicConfigDEFAULT = {
   excludeFolders: ["node_modules"],
 };
 
+let mimicConfigFontsizeSMOverrideToTiny: IMimicConfig = {
+  SnappingOverride: {
+    sm: "tiny",
+  },
+};
+
 let mimicConfigFontsizeXSOverrideToXSmall: IMimicConfig = {
   SnappingOverride: {
     xs: "xsmall",
+  },
+};
+
+let mimicConfigMediaBreakPointsTextOverride: IMimicConfig = {
+  MediaBreakPointsTextOverride: {
+    extrasmall: "xs",
   },
 };
 
@@ -331,6 +342,22 @@ describe("Border Style", () => {
       )
     ).toContain(
       `@media (min-width: ${MediaBreakPointsValue.large}px) {\r\n.${MediaBreakPointsText.large}\\?border-style\\:solid {\r\n\tborder-style: solid;\r\n\t}\r\n}`
+    );
+  });
+
+  test("Border Style - ExtraSmall - Overidden in config to - xs", () => {
+    expect(
+      DoWork(
+        "./tests/border-style/border_style_media_extrasmall_config_override_to_xs.html",
+        {},
+        {},
+        mimicConfigMediaBreakPointsTextOverride
+      )
+    ).toContain(
+      `@media (min-width: ${MediaBreakPointsValue.extrasmall}px) {\r\n.${
+        mimicConfigMediaBreakPointsTextOverride?.MediaBreakPointsTextOverride
+          ?.extrasmall ?? MediaBreakPointsText.extrasmall
+      }\\?border-style\\:solid {\r\n\tborder-style: solid;\r\n\t}\r\n}`
     );
   });
 
@@ -885,6 +912,22 @@ describe("FontSize", () => {
       `.font-size\\:${Sizes.sm} {\r\n\tfont-size: ${FontSizes.sm};\r\n}`
     );
   });
+
+  test("FontSize Snapping SM - Overridden SM->Tiny", () => {
+    expect(
+      DoWork(
+        "./tests/fontsize/fontsize_sm_overridden_sm_to_tiny.html",
+        {},
+        {},
+        mimicConfigFontsizeSMOverrideToTiny
+      )
+    ).toContain(
+      `.font-size\\:${
+        mimicConfigFontsizeSMOverrideToTiny?.SnappingOverride?.sm ?? Sizes.sm
+      } {\r\n\tfont-size: ${FontSizes.sm};\r\n}`
+    );
+  });
+
   test("Font Size Snapping MD", () => {
     expect(
       DoWork("./tests/fontsize/fontsize_md.html", {}, {}, mimicConfigDEFAULT)

@@ -13,47 +13,47 @@ export interface IMimicConfig {
   };
 
   mediaBreakPointsValueOverride?: {
-    extrasmall: "1000";
-    small: "1010";
-    medium: "1020";
-    large: "1030";
-    extralarge: "1040";
+    extrasmall?: "1000";
+    small?: "1010";
+    medium?: "1020";
+    large?: "1030";
+    extralarge?: "1040";
   };
 
   ColorPalette1TextOverride?: {
-    colora: string;
-    colorb: string;
-    colorc: string;
-    colord: string;
+    colora?: string;
+    colorb?: string;
+    colorc?: string;
+    colord?: string;
   };
 
   ColorPalette2TextOverride?: {
-    colora: string;
-    colorb: string;
-    colorc: string;
-    colord: string;
+    colora?: string;
+    colorb?: string;
+    colorc?: string;
+    colord?: string;
   };
 
   ColorPalette3TextOverride?: {
-    colora: string;
-    colorb: string;
-    colorc: string;
-    colord: string;
+    colora?: string;
+    colorb?: string;
+    colorc?: string;
+    colord?: string;
   };
 
   ColorPalette4TextOverride?: {
-    colora: string;
-    colorb: string;
-    colorc: string;
-    colord: string;
+    colora?: string;
+    colorb?: string;
+    colorc?: string;
+    colord?: string;
   };
 
   MediaBreakPointsTextOverride?: {
-    extrasmall: string;
-    small: string;
-    medium: string;
-    large: string;
-    extralarge: string;
+    extrasmall?: string;
+    small?: string;
+    medium?: string;
+    large?: string;
+    extralarge?: string;
   };
 
   lineHeightSnapping?: {
