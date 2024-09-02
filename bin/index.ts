@@ -2,7 +2,7 @@
 import yargs from "yargs";
 import path from "path";
 import fs from "fs";
-import { DoWork } from "../src/Main";
+import { DoWork } from "../src/main";
 import { LoadConfig, mimicConfig } from "../src/ConfigurationLoader";
 import {
   IClassNameCssSourceAndFilename,

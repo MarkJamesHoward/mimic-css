@@ -1,5 +1,5 @@
 import { PerformSnap } from "./Snapping/PerformSnap";
-import { MapMediaQuery } from "./ProcessMediaQueries";
+import { MapMediaQuery } from "./processMediaQueries";
 import { Escape } from "./Utils/Utils";
 import {
   IClass,

@@ -1,4 +1,4 @@
-import { DoWork } from "../src/Main";
+import { DoWork } from "../src/main";
 import { SetConfigForJestTesting } from "../src/ConfigurationLoader";
 import {
   BorderSizes,
