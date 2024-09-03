@@ -29,6 +29,6 @@ export interface IMediaClassCSSOrderFilenameAndSource {
   source: string;
 }
 
-export type MimicFinalCSSOutput = {
+export interface IMimicFinalCSSOutput {
   str: string;
-};
+}

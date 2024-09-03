@@ -7,7 +7,7 @@ import { LoadConfig, mimicConfig } from "../src/ConfigurationLoader";
 import {
   IClassNameCssSourceAndFilename,
   IMediaClassCSSOrderFilenameAndSource,
-  MimicFinalCSSOutput,
+  IMimicFinalCSSOutput,
 } from "../interfaces/ICustomClassBuilder";
 import { ConstructGeneratedCSS } from "../src/FinalCSSOutputGeneration";
 
@@ -21,7 +21,7 @@ const argv = yargs(process.argv.slice(2))
   })
   .parseSync();
 
-let ExistingCSS: MimicFinalCSSOutput = { str: "" };
+let mimicFinalCSSOutput: IMimicFinalCSSOutput = { str: "" };
 
 let DictionaryOfFoundCSSFromAllFile: Record<
   string,
@@ -33,10 +33,10 @@ let DictionaryOfFoundMediaCSSFromAllFile: Record<
 > = {};
 
 let InputFolder = argv.i ?? "./";
-let OutputFilename = argv.o;
-let ExcludeFilesFromArgs = argv.e;
-let EmitLitFile = argv.l;
-let debug = argv.d;
+const OutputFilename = argv.o;
+const ExcludeFilesFromArgs = argv.e;
+const EmitLitFile = argv.l;
+const debug = argv.d;
 
 if (InputFolder == "") {
   InputFolder = "./";
@@ -86,14 +86,15 @@ function searchFile(dir: string, extension: string) {
         );
 
         ConstructGeneratedCSS(
-          ExistingCSS,
+          mimicFinalCSSOutput,
           DictionaryOfFoundMediaCSSFromAllFile,
           DictionaryOfFoundCSSFromAllFile
         );
 
-        fs.writeFileSync(OutputFilename, ExistingCSS.str);
+        fs.writeFileSync(OutputFilename, mimicFinalCSSOutput.str);
+
         if (EmitLitFile) {
-          WriteLitFile(OutputFilename, ExistingCSS.str);
+          WriteLitFile(OutputFilename, mimicFinalCSSOutput.str);
         }
       } else {
         console.log(`Excluding file ${filePath}`);
@@ -164,15 +165,15 @@ async function Start() {
             );
 
             ConstructGeneratedCSS(
-              ExistingCSS,
+              mimicFinalCSSOutput,
               DictionaryOfFoundMediaCSSFromAllFile,
               DictionaryOfFoundCSSFromAllFile
             );
 
-            WriteFile(OutputFilename, ExistingCSS.str);
+            fs.writeFileSync(OutputFilename, mimicFinalCSSOutput.str);
 
             if (EmitLitFile) {
-              WriteLitFile(OutputFilename, ExistingCSS.str);
+              WriteLitFile(OutputFilename, mimicFinalCSSOutput.str);
             }
           } else {
             console.log(`file excluded ${path.join(InputFolder, fileName)}`);
@@ -192,10 +193,6 @@ async function Start() {
       }
     }
   );
-}
-
-function WriteFile(filename: string, data: string) {
-  fs.writeFileSync(filename, data);
 }
 
 async function WriteLitFile(filename: string, data: string) {

@@ -5,6 +5,11 @@ export default config = {
   excludeFolders: ["tests", "node_modules"],
   excludeFiles: ["toplevelpage1.html"],
 
+  MediaBreakPointsTextOverride: {
+    extrasmall: "xs",
+    small: "quite_small",
+  },
+
   // mediaBreakPointsValueOverride: {
   //   extrasmall: "1000",
   //   small: "1010",
@@ -29,27 +34,27 @@ export default config = {
   //   xl2: "2xl",
   // },
 
-  MediaBreakPointsTextOverride: {
-    extrasmall: "xs",
-    small: "sm",
-    medium: "md",
-    large: "lg",
-    extralarge: "xl",
-  },
+  // MediaBreakPointsTextOverride: {
+  //   extrasmall: "xs",
+  //   small: "sm",
+  //   medium: "md",
+  //   large: "lg",
+  //   extralarge: "xl",
+  // },
 
-  ColorPalette1Snapping: {
-    c1a: "#FF0000",
-    c1b: "#00FF00",
-    c1c: "#0000FF",
-    c1d: "#000000",
-  },
+  // ColorPalette1Snapping: {
+  //   c1a: "#FF0000",
+  //   c1b: "#00FF00",
+  //   c1c: "#0000FF",
+  //   c1d: "#000000",
+  // },
 
-  lineHeightSnapping: {
-    xs: "60%",
-    sm: "120%",
-    md: "140%",
-    lg: "160%",
-    xl: "200%",
-    xl2: "240%",
-  },
+  // lineHeightSnapping: {
+  //   xs: "60%",
+  //   sm: "120%",
+  //   md: "140%",
+  //   lg: "160%",
+  //   xl: "200%",
+  //   xl2: "240%",
+  // },
 };

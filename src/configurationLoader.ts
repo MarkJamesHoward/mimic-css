@@ -1,6 +1,5 @@
 import { readConfig, ConfigLoaderError } from "@web/config-loader";
 import { IMimicConfig } from "../interfaces/IMimicConfig";
-import { MediaBreakPointsValue } from "./Snapping/MediaBreakpoints";
 let mimicConfigDEFAULT: IMimicConfig;
 export let mimicConfig: IMimicConfig;
 
@@ -17,10 +16,7 @@ export function SetConfigForJestTesting(config?: IMimicConfig) {
 
 export async function LoadConfig() {
   try {
-    // will look for:
-    // process.cwd() + 'my-project.config.mjs'
-    // process.cwd() + 'my-project.config.cjs'
-    // process.cwd() + 'my-project.config.js'
+    // will look for process.cwd() + 'my-project.config.mjs or cjs or js'
     mimicConfig = await readConfig("mimic.config");
 
     if (mimicConfig == null) {

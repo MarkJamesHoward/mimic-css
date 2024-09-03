@@ -36,9 +36,16 @@ let mimicConfigFontsizeXSOverrideToXSmall: IMimicConfig = {
   },
 };
 
+let mimicConfigSnappingSMOverrideToQuiteSmall: IMimicConfig = {
+  SnappingOverride: {
+    sm: "quite_small",
+  },
+};
+
 let mimicConfigMediaBreakPointsTextOverride: IMimicConfig = {
   MediaBreakPointsTextOverride: {
     extrasmall: "xs",
+    small: "quite_small",
   },
 };
 
@@ -227,10 +234,6 @@ describe("Custom Classes", () => {
 });
 
 describe("Flex Basis", () => {
-  // beforeEach(() => {
-  //   LoadConfig();
-  // });
-
   test("Flex Basis", () => {
     expect(
       DoWork("./tests/flex-basis/flex-basis.html", {}, {}, mimicConfigDEFAULT)
@@ -248,6 +251,35 @@ describe("Flex Basis", () => {
     ).toContain(
       `@media (min-width: ${MediaBreakPointsValue.large}px) {\r\n.${MediaBreakPointsText.large}\\?flex-basis\\:30\\% {\r\n\tflex-basis: 30%;\r\n\t}\r\n}`
     );
+  });
+});
+
+describe("Line Height", () => {
+  test("Line Height - Snapping SM Tag Override to quite_small", () => {
+    expect(
+      DoWork(
+        "./tests/overrides/line-height.html",
+        {},
+        {},
+        mimicConfigSnappingSMOverrideToQuiteSmall
+      )
+    ).toContain(
+      `.line-height\\:${
+        mimicConfigSnappingSMOverrideToQuiteSmall?.SnappingOverride?.sm ??
+        Sizes.sm
+      } {\r\n\tline-height: ${LineHeight.sm};\r\n}`
+    );
+  });
+
+  test("Line Height - Snapping SM Tag Override to quite_small - Negative Test", () => {
+    expect(
+      DoWork(
+        "./tests/overrides/line-height-snapping-sm-override.html",
+        {},
+        {},
+        mimicConfigDEFAULT
+      )
+    ).toEqual("");
   });
 });
 

@@ -1,11 +1,11 @@
 import {
   IClassNameCssSourceAndFilename,
   IMediaClassCSSOrderFilenameAndSource,
-  MimicFinalCSSOutput,
+  IMimicFinalCSSOutput,
 } from "../interfaces/ICustomClassBuilder";
 
 export function ConstructGeneratedCSS(
-  ExistingCSS: MimicFinalCSSOutput,
+  ExistingCSS: IMimicFinalCSSOutput,
   DictionaryOfFoundMediaCSSFromAllFile: Record<
     string,
     IMediaClassCSSOrderFilenameAndSource
