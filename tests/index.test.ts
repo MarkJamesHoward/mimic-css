@@ -258,7 +258,7 @@ describe("Line Height", () => {
   test("Line Height - Snapping SM Tag Override to quite_small", () => {
     expect(
       DoWork(
-        "./tests/overrides/line-height.html",
+        "./tests/overrides/line-height-snapping-sm-override.html",
         {},
         {},
         mimicConfigSnappingSMOverrideToQuiteSmall
