@@ -1,3 +1,12 @@
-To run jest (The Typescript support is setup in the project)
+To debug jest (The Typescript support is setup in the project)
 Run from the javascript debugger terminal to allow breakpoints to work
 npx jest 
+
+
+
+---------Docker
+
+-- Docker builds
+ docker build -t mimiccss .
+
+ -- Then in Docker Desktop just run and attached to the cli
