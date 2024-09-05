@@ -4,5 +4,4 @@ COPY . /App
 
 WORKDIR /App
 
-
 ENTRYPOINT ["tail", "-f", "/dev/null"]
