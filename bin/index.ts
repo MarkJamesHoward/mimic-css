@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import "../src/instrument.js";
 import yargs from "yargs";
 import path from "path";
 import fs from "fs";
