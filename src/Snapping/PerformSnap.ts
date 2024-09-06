@@ -319,7 +319,6 @@ export function PerformSnap(type: string, value: string) {
       break;
 
     case "font-size":
-      console.log(`FontSize ${mimicConfig?.SnappingOverride?.xs}`);
       switch (value) {
         case mimicConfig?.SnappingOverride?.xs ?? Sizes.xs:
           result = FontSizes.xs;
