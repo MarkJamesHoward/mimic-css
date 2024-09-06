@@ -5,7 +5,7 @@ export let mimicConfig: IMimicConfig;
 
 mimicConfigDEFAULT = {
   extensions: [".html", ".js", ".astro", ".ts"],
-  excludeFolders: ["node_modules"],
+  excludeFolders: ["node_modules", "dist"],
 };
 
 export function SetConfigForJestTesting(config?: IMimicConfig) {
