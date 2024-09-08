@@ -97,7 +97,7 @@ export function RegenerateRegExExpressions() {
 
   //justify-content: space-between
   single_hyphen_then_colon_then_another_hyphen = new RegExp(
-    `^(?<style>[A-Z]+-[A-Z]+):(?<value1>[A-Z]+-[A-Z]+)?${CustomClass}$`,
+    `^(?<media>${MediaTags})?(?<style>[A-Z]+-[A-Z]+):(?<value1>[A-Z]+-[A-Z]+)?${CustomClass}$`,
     `gi`
   );
 

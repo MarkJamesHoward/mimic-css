@@ -284,6 +284,32 @@ describe("Line Height", () => {
 });
 
 describe("Justify Content", () => {
+  test("Justify-Content - Media - Small", () => {
+    expect(
+      DoWork(
+        "./tests/justify-content/justify_content_media_small.html",
+        {},
+        {},
+        mimicConfigDEFAULT
+      )
+    ).toContain(
+      `@media (min-width: ${MediaBreakPointsValue.small}px) {\r\n.${MediaBreakPointsText.small}\\?justify-content\\:space-between {\r\n\tjustify-content: space-between;\r\n\t}\r\n}`
+    );
+  });
+
+  test("Justify-Content - Media - Large", () => {
+    expect(
+      DoWork(
+        "./tests/justify-content/justify_content_media_large.html",
+        {},
+        {},
+        mimicConfigDEFAULT
+      )
+    ).toContain(
+      `@media (min-width: ${MediaBreakPointsValue.large}px) {\r\n.${MediaBreakPointsText.large}\\?justify-content\\:space-between {\r\n\tjustify-content: space-between;\r\n\t}\r\n}`
+    );
+  });
+
   test("Justify Content - no snapping", () => {
     expect(
       DoWork(
