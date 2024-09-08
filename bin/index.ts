@@ -89,7 +89,8 @@ function searchFile(dir: string, extension: string) {
         ConstructGeneratedCSS(
           mimicFinalCSSOutput,
           DictionaryOfFoundMediaCSSFromAllFile,
-          DictionaryOfFoundCSSFromAllFile
+          DictionaryOfFoundCSSFromAllFile,
+          debug
         );
 
         fs.writeFileSync(OutputFilename, mimicFinalCSSOutput.str);
@@ -168,7 +169,8 @@ async function Start() {
             ConstructGeneratedCSS(
               mimicFinalCSSOutput,
               DictionaryOfFoundMediaCSSFromAllFile,
-              DictionaryOfFoundCSSFromAllFile
+              DictionaryOfFoundCSSFromAllFile,
+              debug
             );
 
             fs.writeFileSync(OutputFilename, mimicFinalCSSOutput.str);

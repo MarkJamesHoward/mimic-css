@@ -2,7 +2,10 @@ To debug jest (The Typescript support is setup in the project)
 Run from the javascript debugger terminal to allow breakpoints to work
 npx jest 
 
-
+-- Publish to NPM
+run tsc
+update package.json
+npm publish --access=public
 
 ---------Docker
 

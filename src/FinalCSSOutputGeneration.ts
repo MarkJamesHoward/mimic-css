@@ -13,25 +13,32 @@ export function ConstructGeneratedCSS(
   DictionaryOfFoundCSSFromAllFile: Record<
     string,
     IClassNameCssSourceAndFilename
-  >
+  >,
+  debug: boolean
 ) {
   ExistingCSS.str = "";
 
   for (const key in DictionaryOfFoundCSSFromAllFile) {
     if (key !== undefined && key !== "") {
-      let TempCustomClass = `/*${DictionaryOfFoundCSSFromAllFile[key].filename}*/\r\n/*${DictionaryOfFoundCSSFromAllFile[key].source}*/\r\n.${key} ${DictionaryOfFoundCSSFromAllFile[key].css}`;
+      let debugData: string = "";
+      if (debug) {
+        debugData = `/*${DictionaryOfFoundCSSFromAllFile[key].filename}*/\r\n/*${DictionaryOfFoundCSSFromAllFile[key].source}*/\r\n`;
+      }
+      let TempCustomClass = `${debugData}.${key} ${DictionaryOfFoundCSSFromAllFile[key].css}`;
       ExistingCSS.str += TempCustomClass.trim() + "\r\n";
     }
   }
 
   ExistingCSS.str +=
     ConstructOrderedMediaClasses_EnsuringMostRecentAreAtTheBottom(
-      DictionaryOfFoundMediaCSSFromAllFile
+      DictionaryOfFoundMediaCSSFromAllFile,
+      debug
     );
 }
 
 function ConstructOrderedMediaClasses_EnsuringMostRecentAreAtTheBottom(
-  dict: Record<string, IMediaClassCSSOrderFilenameAndSource>
+  dict: Record<string, IMediaClassCSSOrderFilenameAndSource>,
+  debug: boolean
 ): string {
   let css = "";
 
@@ -49,9 +56,15 @@ function ConstructOrderedMediaClasses_EnsuringMostRecentAreAtTheBottom(
 
   sortedMediaItems.forEach((item) => {
     if (item[0] !== undefined && item[0] !== "") {
-      let TempCustomClass = `/*${dict[item[0]].filename}/*\r\n/*${
-        dict[item[0]].source
-      }*/\r\n${item[0]}${dict[item[0]].className}${dict[item[0]].css}`;
+      let debugData: string = "";
+      if (debug) {
+        debugData = `/*${dict[item[0]].filename}/*\r\n/*${
+          dict[item[0]].source
+        }*/\r\n`;
+      }
+      let TempCustomClass = `${debugData}${item[0]}${dict[item[0]].className}${
+        dict[item[0]].css
+      }`;
       css += TempCustomClass.trim() + "\r\n";
     }
   });
