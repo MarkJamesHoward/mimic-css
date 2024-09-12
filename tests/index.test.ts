@@ -18,6 +18,7 @@ import {
   MediaBreakPointsText,
 } from "../src/Snapping/MediaBreakpoints";
 import { IMimicConfig } from "../interfaces/IMimicConfig";
+import { DataType } from "../interfaces/Enums";
 
 let mimicConfigDEFAULT = {
   extensions: [".html", ".js", ".astro", ".ts"],
@@ -54,6 +55,7 @@ describe("Box Shadow", () => {
     expect(
       DoWork(
         "./tests/box-shadow/box-shadow-focus.html",
+        DataType.file,
         {},
         {},
         mimicConfigDEFAULT
@@ -67,6 +69,7 @@ describe("Box Shadow", () => {
     expect(
       DoWork(
         "./tests/box-shadow/box-shadow-snapping.html",
+        DataType.file,
         {},
         {},
         mimicConfigDEFAULT
@@ -80,6 +83,7 @@ describe("Box Shadow", () => {
     expect(
       DoWork(
         "./tests/box-shadow/box-shadow-custombutton.html",
+        DataType.file,
         {},
         {},
         mimicConfigDEFAULT
@@ -91,7 +95,13 @@ describe("Box Shadow", () => {
 
   test("Box Shadow", () => {
     expect(
-      DoWork("./tests/box-shadow/box-shadow.html", {}, {}, mimicConfigDEFAULT)
+      DoWork(
+        "./tests/box-shadow/box-shadow.html",
+        DataType.file,
+        {},
+        {},
+        mimicConfigDEFAULT
+      )
     ).toContain(`.box-shadow\\:10px10px {\r\n\tbox-shadow: 10px 10px;\r\n}`);
   });
 
@@ -99,6 +109,7 @@ describe("Box Shadow", () => {
     expect(
       DoWork(
         "./tests/box-shadow/box-shadow-with-color.html",
+        DataType.file,
         {},
         {},
         mimicConfigDEFAULT
@@ -112,6 +123,7 @@ describe("Box Shadow", () => {
     expect(
       DoWork(
         "./tests/box-shadow/box-shadow-2-values-with-color.html",
+        DataType.file,
         {},
         {},
         mimicConfigDEFAULT
@@ -125,6 +137,7 @@ describe("Box Shadow", () => {
     expect(
       DoWork(
         "./tests/box-shadow/box-shadow-2-values-with-color-snap-sm.html",
+        DataType.file,
         {},
         {}
       )
@@ -137,6 +150,7 @@ describe("Box Shadow", () => {
     expect(
       DoWork(
         "./tests/box-shadow/box-shadow-2-values-with-color-snap-sm-snap-c1a.html",
+        DataType.file,
         {},
         {}
       )
@@ -149,6 +163,7 @@ describe("Box Shadow", () => {
     expect(
       DoWork(
         "./tests/box-shadow/box-shadow-hover.html",
+        DataType.file,
         {},
         {},
         mimicConfigDEFAULT
@@ -161,7 +176,8 @@ describe("Box Shadow", () => {
   test("Box Shadow Media Large", () => {
     expect(
       DoWork(
-        "./tests/box-shadow/box-shadow-media.html",
+        `<div class="${MediaBreakPointsText.large}?box-shadow:10px10px">Two</div>`,
+        DataType.string,
         {},
         {},
         mimicConfigDEFAULT
@@ -175,19 +191,37 @@ describe("Box Shadow", () => {
 describe("Line Height", () => {
   test("Line Height 1.0", () => {
     expect(
-      DoWork("./tests/line-height/line-height.html", {}, {}, mimicConfigDEFAULT)
+      DoWork(
+        "./tests/line-height/line-height.html",
+        DataType.file,
+        {},
+        {},
+        mimicConfigDEFAULT
+      )
     ).toContain(`.line-height\\:1 {\r\n\tline-height: 1;\r\n}`);
   });
 
   test("Line Height 2.2", () => {
     expect(
-      DoWork("./tests/line-height/line-height.html", {}, {}, mimicConfigDEFAULT)
+      DoWork(
+        "./tests/line-height/line-height.html",
+        DataType.file,
+        {},
+        {},
+        mimicConfigDEFAULT
+      )
     ).toContain(`.line-height\\:2.2 {\r\n\tline-height: 2.2;\r\n}`);
   });
 
   test("Line Height xl", () => {
     expect(
-      DoWork("./tests/line-height/line-height.html", {}, {}, mimicConfigDEFAULT)
+      DoWork(
+        "./tests/line-height/line-height.html",
+        DataType.file,
+        {},
+        {},
+        mimicConfigDEFAULT
+      )
     ).toContain(
       `.line-height\\:${Sizes.xl} {\r\n\tline-height: ${LineHeight.xl};\r\n}`
     );
@@ -199,6 +233,7 @@ describe("Custom Classes", () => {
     expect(
       DoWork(
         "./tests/custom-classes/my-button-one.html",
+        DataType.file,
         {},
         {},
         mimicConfigDEFAULT
@@ -210,6 +245,7 @@ describe("Custom Classes", () => {
     expect(
       DoWork(
         "./tests/custom-classes/my-button-two.html",
+        DataType.file,
         {},
         {},
         mimicConfigDEFAULT
@@ -223,6 +259,7 @@ describe("Custom Classes", () => {
     expect(
       DoWork(
         "./tests/custom-classes/my-button-three.html",
+        DataType.file,
         {},
         {},
         mimicConfigDEFAULT
@@ -236,14 +273,21 @@ describe("Custom Classes", () => {
 describe("Flex Basis", () => {
   test("Flex Basis", () => {
     expect(
-      DoWork("./tests/flex-basis/flex-basis.html", {}, {}, mimicConfigDEFAULT)
+      DoWork(
+        "./tests/flex-basis/flex-basis.html",
+        DataType.file,
+        {},
+        {},
+        mimicConfigDEFAULT
+      )
     ).toContain(`.flex-basis\\:30\\% {\r\n\tflex-basis: 30%;\r\n}`);
   });
 
   test("Flex Basis - Large", () => {
     expect(
       DoWork(
-        "./tests/flex-basis/flex-basis-media-large.html",
+        `<div class="${MediaBreakPointsText.large}?flex-basis:30%">Two</div>`,
+        DataType.string,
         {},
         {},
         mimicConfigDEFAULT
@@ -259,6 +303,7 @@ describe("Line Height", () => {
     expect(
       DoWork(
         "./tests/overrides/line-height-snapping-sm-override.html",
+        DataType.file,
         {},
         {},
         mimicConfigSnappingSMOverrideToQuiteSmall
@@ -275,6 +320,7 @@ describe("Line Height", () => {
     expect(
       DoWork(
         "./tests/overrides/line-height-snapping-sm-override.html",
+        DataType.file,
         {},
         {},
         mimicConfigDEFAULT
@@ -287,7 +333,8 @@ describe("Justify Content", () => {
   test("Justify-Content - Media - Small", () => {
     expect(
       DoWork(
-        "./tests/justify-content/justify_content_media_small.html",
+        `<div class="${MediaBreakPointsText.small}?justify-content:space-between">Two</div>`,
+        DataType.string,
         {},
         {},
         mimicConfigDEFAULT
@@ -300,7 +347,8 @@ describe("Justify Content", () => {
   test("Justify-Content - Media - Large", () => {
     expect(
       DoWork(
-        "./tests/justify-content/justify_content_media_large.html",
+        `<div class="${MediaBreakPointsText.large}?justify-content:space-between">Two</div>`,
+        DataType.string,
         {},
         {},
         mimicConfigDEFAULT
@@ -314,6 +362,7 @@ describe("Justify Content", () => {
     expect(
       DoWork(
         "./tests/justify-content/justify_content.html",
+        DataType.file,
         {},
         {},
         mimicConfigDEFAULT
@@ -327,13 +376,25 @@ describe("Justify Content", () => {
 describe("Font Weight", () => {
   test("Font Weight - no snapping", () => {
     expect(
-      DoWork("./tests/font-weight/font_weight.html", {}, {}, mimicConfigDEFAULT)
+      DoWork(
+        "./tests/font-weight/font_weight.html",
+        DataType.file,
+        {},
+        {},
+        mimicConfigDEFAULT
+      )
     ).toContain(`.font-weight\\:800 {\r\n\tfont-weight: 800;\r\n}`);
   });
 
   test("Font Weight - no snapping", () => {
     expect(
-      DoWork("./tests/font-weight/font_weight.html", {}, {}, mimicConfigDEFAULT)
+      DoWork(
+        "./tests/font-weight/font_weight.html",
+        DataType.file,
+        {},
+        {},
+        mimicConfigDEFAULT
+      )
     ).toContain(
       `.font-weight\\:md {\r\n\tfont-weight: ${FontWeights.md};\r\n}`
     );
@@ -345,6 +406,7 @@ describe("Text Decoration", () => {
     expect(
       DoWork(
         "./tests/text-decoration/text-decoration.html",
+        DataType.file,
         {},
         {},
         mimicConfigDEFAULT
@@ -356,6 +418,7 @@ describe("Text Decoration", () => {
     expect(
       DoWork(
         "./tests/text-decoration/text-decoration-color.html",
+        DataType.file,
         {},
         {},
         mimicConfigDEFAULT
@@ -369,6 +432,7 @@ describe("Text Decoration", () => {
     expect(
       DoWork(
         "./tests/text-decoration/text-decoration-color-snap-c1a.html",
+        DataType.file,
         {},
         {}
       )
@@ -383,6 +447,7 @@ describe("Border Style", () => {
     expect(
       DoWork(
         "./tests/border-style/border_style.html",
+        DataType.file,
         {},
         {},
         mimicConfigDEFAULT
@@ -393,7 +458,8 @@ describe("Border Style", () => {
   test("Border Style - Large", () => {
     expect(
       DoWork(
-        "./tests/border-style/border_style_media_large.html",
+        `<div class="${MediaBreakPointsText.large}?border-style:solid">Two</div>`,
+        DataType.string,
         {},
         {},
         mimicConfigDEFAULT
@@ -407,6 +473,7 @@ describe("Border Style", () => {
     expect(
       DoWork(
         "./tests/border-style/border_style_media_extrasmall_config_override_to_xs.html",
+        DataType.file,
         {},
         {},
         mimicConfigMediaBreakPointsTextOverride
@@ -422,7 +489,8 @@ describe("Border Style", () => {
   test("Border Style - Small", () => {
     expect(
       DoWork(
-        "./tests/border-style/border_style_media_small.html",
+        `<div class="${MediaBreakPointsText.small}?border-style:solid">Two</div>`,
+        DataType.string,
         {},
         {},
         mimicConfigDEFAULT
@@ -438,6 +506,7 @@ describe("Border Radius", () => {
     expect(
       DoWork(
         "./tests/border-radius/border_radius_xs.html",
+        DataType.file,
         {},
         {},
         mimicConfigDEFAULT
@@ -451,6 +520,7 @@ describe("Border Radius", () => {
     expect(
       DoWork(
         "./tests/border-radius/border_radius_sm.html",
+        DataType.file,
         {},
         {},
         mimicConfigDEFAULT
@@ -464,6 +534,7 @@ describe("Border Radius", () => {
     expect(
       DoWork(
         "./tests/border-radius/border_radius_xl.html",
+        DataType.file,
         {},
         {},
         mimicConfigDEFAULT
@@ -477,13 +548,25 @@ describe("Border Radius", () => {
 describe("display flex", () => {
   test("display flex", () => {
     expect(
-      DoWork("./tests/flex/display_flex.html", {}, {}, mimicConfigDEFAULT)
+      DoWork(
+        "./tests/flex/display_flex.html",
+        DataType.file,
+        {},
+        {},
+        mimicConfigDEFAULT
+      )
     ).toContain(`.display\\:flex {\r\n\tdisplay: flex;\r\n}`);
   });
 
   test("display flex with Media Large", () => {
     expect(
-      DoWork("./tests/flex/display_flex.html", {}, {}, mimicConfigDEFAULT)
+      DoWork(
+        `<div class="${MediaBreakPointsText.large}?display:flex">Two</div>`,
+        DataType.string,
+        {},
+        {},
+        mimicConfigDEFAULT
+      )
     ).toContain(
       `@media (min-width: ${MediaBreakPointsValue.large}px) {\r\n.${MediaBreakPointsText.large}\\?display\\:flex {\r\n\tdisplay: flex;\r\n\t}\r\n}`
     );
@@ -491,7 +574,13 @@ describe("display flex", () => {
 
   test("display flex with Media Medium", () => {
     expect(
-      DoWork("./tests/flex/display_flex.html", {}, {}, mimicConfigDEFAULT)
+      DoWork(
+        `<div class="${MediaBreakPointsText.medium}?display:flex">Two</div>`,
+        DataType.string,
+        {},
+        {},
+        mimicConfigDEFAULT
+      )
     ).toContain(
       `@media (min-width: ${MediaBreakPointsValue.medium}px) {\r\n.${MediaBreakPointsText.medium}\\?display\\:flex {\r\n\tdisplay: flex;\r\n\t}\r\n}`
     );
@@ -499,7 +588,13 @@ describe("display flex", () => {
 
   test("flex gap", () => {
     expect(
-      DoWork("./tests/flex/flex_gap.html", {}, {}, mimicConfigDEFAULT)
+      DoWork(
+        "./tests/flex/flex_gap.html",
+        DataType.file,
+        {},
+        {},
+        mimicConfigDEFAULT
+      )
     ).toContain(`.gap\\:md {\r\n\tgap: ${GapSizes.md};\r\n}`);
   });
 });
@@ -508,14 +603,21 @@ describe("display flex", () => {
 describe("flex direction", () => {
   test("flex direction", () => {
     expect(
-      DoWork("./tests/flex/flex_direction.html", {}, {}, mimicConfigDEFAULT)
+      DoWork(
+        "./tests/flex/flex_direction.html",
+        DataType.file,
+        {},
+        {},
+        mimicConfigDEFAULT
+      )
     ).toContain(`.flex-direction\\:row {\r\n\tflex-direction: row;\r\n}`);
   });
 
   test("flex direction with Media Small", () => {
     expect(
       DoWork(
-        "./tests/flex/flex_direction_media_small.html",
+        `<div class="${MediaBreakPointsText.small}?flex-direction:row">Two</div>`,
+        DataType.string,
         {},
         {},
         mimicConfigDEFAULT
@@ -530,7 +632,13 @@ describe("flex direction", () => {
 describe("Padding", () => {
   test("Padding 10px", () => {
     expect(
-      DoWork("./tests/padding/padding_10px.html", {}, {}, mimicConfigDEFAULT)
+      DoWork(
+        "./tests/padding/padding_10px.html",
+        DataType.file,
+        {},
+        {},
+        mimicConfigDEFAULT
+      )
     ).toContain(`.padding\\:10px {\r\n\tpadding: 10px;\r\n}`);
   });
 
@@ -538,6 +646,7 @@ describe("Padding", () => {
     expect(
       DoWork(
         "./tests/padding/padding_10px10px.html",
+        DataType.file,
         {},
         {},
         mimicConfigDEFAULT
@@ -549,6 +658,7 @@ describe("Padding", () => {
     expect(
       DoWork(
         "./tests/padding/padding_10px10px10px10px.html",
+        DataType.file,
         {},
         {},
         mimicConfigDEFAULT
@@ -562,6 +672,7 @@ describe("Padding", () => {
     expect(
       DoWork(
         "./tests/padding/padding_10px10px10px10px_hover.html",
+        DataType.file,
         {},
         {},
         mimicConfigDEFAULT
@@ -573,36 +684,72 @@ describe("Padding", () => {
 
   test("Padding Snapping XS", () => {
     expect(
-      DoWork("./tests/padding/padding_xs.html", {}, {}, mimicConfigDEFAULT)
+      DoWork(
+        "./tests/padding/padding_xs.html",
+        DataType.file,
+        {},
+        {},
+        mimicConfigDEFAULT
+      )
     ).toContain(`.padding\\:xs {\r\n\tpadding: ${PaddingSizes.xs};\r\n}`);
   });
   test("Padding Snapping SM", () => {
     expect(
-      DoWork("./tests/padding/padding_sm.html", {}, {}, mimicConfigDEFAULT)
+      DoWork(
+        "./tests/padding/padding_sm.html",
+        DataType.file,
+        {},
+        {},
+        mimicConfigDEFAULT
+      )
     ).toContain(
       `.padding\\:${Sizes.sm} {\r\n\tpadding: ${PaddingSizes.sm};\r\n}`
     );
   });
   test("Padding Snapping MD", () => {
     expect(
-      DoWork("./tests/padding/padding_md.html", {}, {}, mimicConfigDEFAULT)
+      DoWork(
+        "./tests/padding/padding_md.html",
+        DataType.file,
+        {},
+        {},
+        mimicConfigDEFAULT
+      )
     ).toContain(`.padding\\:md {\r\n\tpadding: ${PaddingSizes.md};\r\n}`);
   });
   test("Padding Snapping LG", () => {
     expect(
-      DoWork("./tests/padding/padding_lg.html", {}, {}, mimicConfigDEFAULT)
+      DoWork(
+        "./tests/padding/padding_lg.html",
+        DataType.file,
+        {},
+        {},
+        mimicConfigDEFAULT
+      )
     ).toContain(`.padding\\:lg {\r\n\tpadding: ${PaddingSizes.lg};\r\n}`);
   });
   test("Padding Snapping XL", () => {
     expect(
-      DoWork("./tests/padding/padding_xl.html", {}, {}, mimicConfigDEFAULT)
+      DoWork(
+        "./tests/padding/padding_xl.html",
+        DataType.file,
+        {},
+        {},
+        mimicConfigDEFAULT
+      )
     ).toContain(
       `.padding\\:${Sizes.xl} {\r\n\tpadding: ${PaddingSizes.xl};\r\n}`
     );
   });
   test("Padding Snapping 2XL", () => {
     expect(
-      DoWork("./tests/padding/padding_2xl.html", {}, {}, mimicConfigDEFAULT)
+      DoWork(
+        "./tests/padding/padding_2xl.html",
+        DataType.file,
+        {},
+        {},
+        mimicConfigDEFAULT
+      )
     ).toContain(`.padding\\:2xl {\r\n\tpadding: ${PaddingSizes.xl2};\r\n}`);
   });
 
@@ -610,6 +757,7 @@ describe("Padding", () => {
     expect(
       DoWork(
         "./tests/padding/padding_2_value_shorthand.html",
+        DataType.file,
         {},
         {},
         mimicConfigDEFAULT
@@ -623,6 +771,7 @@ describe("Padding", () => {
     expect(
       DoWork(
         "./tests/padding/padding_1_value_shorthand.html",
+        DataType.file,
         {},
         {},
         mimicConfigDEFAULT
@@ -634,6 +783,7 @@ describe("Padding", () => {
     expect(
       DoWork(
         "./tests/padding/padding_4_value_shorthand.html",
+        DataType.file,
         {},
         {},
         mimicConfigDEFAULT
@@ -648,37 +798,73 @@ describe("Padding", () => {
 describe("Color", () => {
   test("Color Snap C1", () => {
     expect(
-      DoWork("./tests/color/color.html", {}, {}, mimicConfigDEFAULT)
+      DoWork(
+        "./tests/color/color.html",
+        DataType.file,
+        {},
+        {},
+        mimicConfigDEFAULT
+      )
     ).toContain(`.color\\:c1a {\r\n\tcolor: ${color_palette_1.c1a};\r\n}`);
   });
 
   test("Color", () => {
     expect(
-      DoWork("./tests/color/color.html", {}, {}, mimicConfigDEFAULT)
+      DoWork(
+        "./tests/color/color.html",
+        DataType.file,
+        {},
+        {},
+        mimicConfigDEFAULT
+      )
     ).toContain(`.color\\:red {\r\n\tcolor: red;\r\n}`);
   });
 
   test("Color # code", () => {
     expect(
-      DoWork("./tests/color/color.html", {}, {}, mimicConfigDEFAULT)
+      DoWork(
+        "./tests/color/color.html",
+        DataType.file,
+        {},
+        {},
+        mimicConfigDEFAULT
+      )
     ).toContain(`.color\\:\\#124356 {\r\n\tcolor: #124356;\r\n}`);
   });
 
   test("Color # code Hover", () => {
     expect(
-      DoWork("./tests/color/color.html", {}, {}, mimicConfigDEFAULT)
+      DoWork(
+        "./tests/color/color.html",
+        DataType.file,
+        {},
+        {},
+        mimicConfigDEFAULT
+      )
     ).toContain(`.color\\:\\#124356\\:hover:hover {\r\n\tcolor: #124356;\r\n}`);
   });
 
   test("Color # code Focus", () => {
     expect(
-      DoWork("./tests/color/color.html", {}, {}, mimicConfigDEFAULT)
+      DoWork(
+        "./tests/color/color.html",
+        DataType.file,
+        {},
+        {},
+        mimicConfigDEFAULT
+      )
     ).toContain(`.color\\:\\#124356\\:focus:focus {\r\n\tcolor: #124356;\r\n}`);
   });
 
   test("Color Media Small", () => {
     expect(
-      DoWork("./tests/color/color_media_small.html", {}, {}, mimicConfigDEFAULT)
+      DoWork(
+        `<div class="${MediaBreakPointsText.small}?color:red">Two</div>`,
+        DataType.string,
+        {},
+        {},
+        mimicConfigDEFAULT
+      )
     ).toContain(
       `@media (min-width: ${MediaBreakPointsValue.small}px) {\r\n.${MediaBreakPointsText.small}\\?color\\:red {\r\n\tcolor: red;\r\n\t}\r\n}`
     );
@@ -686,7 +872,13 @@ describe("Color", () => {
 
   test("Color Hover", () => {
     expect(
-      DoWork("./tests/color/color_hover.html", {}, {}, mimicConfigDEFAULT)
+      DoWork(
+        "./tests/color/color_hover.html",
+        DataType.file,
+        {},
+        {},
+        mimicConfigDEFAULT
+      )
     ).toContain(`.color\\:red\\:hover:hover {\r\n\tcolor: red;\r\n}`);
   });
 });
@@ -697,6 +889,7 @@ describe("Background Color", () => {
     expect(
       DoWork(
         "./tests/background-color/background_color.html",
+        DataType.file,
         {},
         {},
         mimicConfigDEFAULT
@@ -710,6 +903,7 @@ describe("Background Color", () => {
     expect(
       DoWork(
         "./tests/background-color/background_color_color_palette_c2a.html",
+        DataType.file,
         {},
         {}
       )
@@ -722,6 +916,7 @@ describe("Background Color", () => {
     expect(
       DoWork(
         "./tests/background-color/background_color.html",
+        DataType.file,
         {},
         {},
         mimicConfigDEFAULT
@@ -733,6 +928,7 @@ describe("Background Color", () => {
     expect(
       DoWork(
         "./tests/background-color/background_color.html",
+        DataType.file,
         {},
         {},
         mimicConfigDEFAULT
@@ -746,6 +942,7 @@ describe("Background Color", () => {
     expect(
       DoWork(
         "./tests/background-color/background_color.html",
+        DataType.file,
         {},
         {},
         mimicConfigDEFAULT
@@ -759,6 +956,7 @@ describe("Background Color", () => {
     expect(
       DoWork(
         "./tests/background-color/background_color.html",
+        DataType.file,
         {},
         {},
         mimicConfigDEFAULT
@@ -771,7 +969,8 @@ describe("Background Color", () => {
   test("BackGround Color Media Small", () => {
     expect(
       DoWork(
-        "./tests/background-color/background_color.html",
+        `<div class="${MediaBreakPointsText.small}?background-color:red">Two</div>`,
+        DataType.string,
         {},
         {},
         mimicConfigDEFAULT
@@ -785,6 +984,7 @@ describe("Background Color", () => {
     expect(
       DoWork(
         "./tests/background-color/background_color.html",
+        DataType.file,
         {},
         {},
         mimicConfigDEFAULT
@@ -796,7 +996,13 @@ describe("Background Color", () => {
 
   test("BackGround Color Focus", () => {
     expect(
-      DoWork("./tests/focus/focus.html", {}, {}, mimicConfigDEFAULT)
+      DoWork(
+        "./tests/focus/focus.html",
+        DataType.file,
+        {},
+        {},
+        mimicConfigDEFAULT
+      )
     ).toContain(
       `.background-color\\:red\\:focus:focus {\r\n\tbackground-color: red;\r\n}`
     );
@@ -807,42 +1013,78 @@ describe("Background Color", () => {
 describe("Border", () => {
   test("Border Width Snapping XS", () => {
     expect(
-      DoWork("./tests/border-width/border_xs.html", {}, {}, mimicConfigDEFAULT)
+      DoWork(
+        "./tests/border-width/border_xs.html",
+        DataType.file,
+        {},
+        {},
+        mimicConfigDEFAULT
+      )
     ).toContain(
       `.border-width\\:xs {\r\n\tborder-width: ${BorderSizes.xs};\r\n}`
     );
   });
   test("Border Width Snapping SM", () => {
     expect(
-      DoWork("./tests/border-width/border_sm.html", {}, {}, mimicConfigDEFAULT)
+      DoWork(
+        "./tests/border-width/border_sm.html",
+        DataType.file,
+        {},
+        {},
+        mimicConfigDEFAULT
+      )
     ).toContain(
       `.border-width\\:${Sizes.sm} {\r\n\tborder-width: ${BorderSizes.sm};\r\n}`
     );
   });
   test("Border Width Snapping MD", () => {
     expect(
-      DoWork("./tests/border-width/border_md.html", {}, {}, mimicConfigDEFAULT)
+      DoWork(
+        "./tests/border-width/border_md.html",
+        DataType.file,
+        {},
+        {},
+        mimicConfigDEFAULT
+      )
     ).toContain(
       `.border-width\\:md {\r\n\tborder-width: ${BorderSizes.md};\r\n}`
     );
   });
   test("Border Width Snapping LG", () => {
     expect(
-      DoWork("./tests/border-width/border_lg.html", {}, {}, mimicConfigDEFAULT)
+      DoWork(
+        "./tests/border-width/border_lg.html",
+        DataType.file,
+        {},
+        {},
+        mimicConfigDEFAULT
+      )
     ).toContain(
       `.border-width\\:lg {\r\n\tborder-width: ${BorderSizes.lg};\r\n}`
     );
   });
   test("Border Width Snapping XL", () => {
     expect(
-      DoWork("./tests/border-width/border_xl.html", {}, {}, mimicConfigDEFAULT)
+      DoWork(
+        "./tests/border-width/border_xl.html",
+        DataType.file,
+        {},
+        {},
+        mimicConfigDEFAULT
+      )
     ).toContain(
       `.border-width\\:${Sizes.xl} {\r\n\tborder-width: ${BorderSizes.xl};\r\n}`
     );
   });
   test("Border Width Snapping 2XL", () => {
     expect(
-      DoWork("./tests/border-width/border_2xl.html", {}, {}, mimicConfigDEFAULT)
+      DoWork(
+        "./tests/border-width/border_2xl.html",
+        DataType.file,
+        {},
+        {},
+        mimicConfigDEFAULT
+      )
     ).toContain(
       `.border-width\\:2xl {\r\n\tborder-width: ${BorderSizes.xl2};\r\n}`
     );
@@ -852,6 +1094,7 @@ describe("Border", () => {
     expect(
       DoWork(
         "./tests/border-width/border_focus.html",
+        DataType.file,
         {},
         {},
         mimicConfigDEFAULT
@@ -865,6 +1108,7 @@ describe("Border", () => {
     expect(
       DoWork(
         "./tests/border-width/border_10px.html",
+        DataType.file,
         {},
         {},
         mimicConfigDEFAULT
@@ -876,6 +1120,7 @@ describe("Border", () => {
     expect(
       DoWork(
         "./tests/border-width/border_10px10px.html",
+        DataType.file,
         {},
         {},
         mimicConfigDEFAULT
@@ -889,6 +1134,7 @@ describe("Border", () => {
     expect(
       DoWork(
         "./tests/border-width/border_10px10px10px10px.html",
+        DataType.file,
         {},
         {},
         mimicConfigDEFAULT
@@ -902,6 +1148,7 @@ describe("Border", () => {
     expect(
       DoWork(
         "./tests/border-width/border_10px10px10px10px_hover.html",
+        DataType.file,
         {},
         {},
         mimicConfigDEFAULT
@@ -915,6 +1162,7 @@ describe("Border", () => {
     expect(
       DoWork(
         "./tests/border-width/border_lgxl.html",
+        DataType.file,
         {},
         {},
         mimicConfigDEFAULT
@@ -928,6 +1176,7 @@ describe("Border", () => {
     expect(
       DoWork(
         "./tests/border-width/border_lgxlxsxs.html",
+        DataType.file,
         {},
         {},
         mimicConfigDEFAULT
@@ -944,6 +1193,7 @@ describe("FontSize", () => {
     expect(
       DoWork(
         "./tests/fontsize/fontsize_xs_config_override_xsmall.html",
+        DataType.file,
         {},
         {},
         mimicConfigFontsizeXSOverrideToXSmall
@@ -957,7 +1207,13 @@ describe("FontSize", () => {
 
   test("FontSize XS", () => {
     expect(
-      DoWork("./tests/fontsize/fontsize_xs.html", {}, {}, mimicConfigDEFAULT)
+      DoWork(
+        "./tests/fontsize/fontsize_xs.html",
+        DataType.file,
+        {},
+        {},
+        mimicConfigDEFAULT
+      )
     ).toContain(
       `.font-size\\:${Sizes.xs} {\r\n\tfont-size: ${FontSizes.xs};\r\n}`
     );
@@ -965,7 +1221,13 @@ describe("FontSize", () => {
 
   test("FontSize Snapping SM", () => {
     expect(
-      DoWork("./tests/fontsize/fontsize_sm.html", {}, {}, mimicConfigDEFAULT)
+      DoWork(
+        "./tests/fontsize/fontsize_sm.html",
+        DataType.file,
+        {},
+        {},
+        mimicConfigDEFAULT
+      )
     ).toContain(
       `.font-size\\:${Sizes.sm} {\r\n\tfont-size: ${FontSizes.sm};\r\n}`
     );
@@ -975,6 +1237,7 @@ describe("FontSize", () => {
     expect(
       DoWork(
         "./tests/fontsize/fontsize_sm_overridden_sm_to_tiny.html",
+        DataType.file,
         {},
         {},
         mimicConfigFontsizeSMOverrideToTiny
@@ -988,30 +1251,60 @@ describe("FontSize", () => {
 
   test("Font Size Snapping MD", () => {
     expect(
-      DoWork("./tests/fontsize/fontsize_md.html", {}, {}, mimicConfigDEFAULT)
+      DoWork(
+        "./tests/fontsize/fontsize_md.html",
+        DataType.file,
+        {},
+        {},
+        mimicConfigDEFAULT
+      )
     ).toContain(`.font-size\\:md {\r\n\tfont-size: ${FontSizes.md};\r\n}`);
   });
   test("Font Size Snapping LG", () => {
     expect(
-      DoWork("./tests/fontsize/fontsize_lg.html", {}, {}, mimicConfigDEFAULT)
+      DoWork(
+        "./tests/fontsize/fontsize_lg.html",
+        DataType.file,
+        {},
+        {},
+        mimicConfigDEFAULT
+      )
     ).toContain(`.font-size\\:lg {\r\n\tfont-size: ${FontSizes.lg};\r\n}`);
   });
   test("Font Size Snapping XL", () => {
     expect(
-      DoWork("./tests/fontsize/fontsize_xl.html", {}, {}, mimicConfigDEFAULT)
+      DoWork(
+        "./tests/fontsize/fontsize_xl.html",
+        DataType.file,
+        {},
+        {},
+        mimicConfigDEFAULT
+      )
     ).toContain(
       `.font-size\\:${Sizes.xl} {\r\n\tfont-size: ${FontSizes.xl};\r\n}`
     );
   });
   test("Font Size Snapping 2XL", () => {
     expect(
-      DoWork("./tests/fontsize/fontsize_2xl.html", {}, {}, mimicConfigDEFAULT)
+      DoWork(
+        "./tests/fontsize/fontsize_2xl.html",
+        DataType.file,
+        {},
+        {},
+        mimicConfigDEFAULT
+      )
     ).toContain(`.font-size\\:2xl {\r\n\tfont-size: ${FontSizes.xl2};\r\n}`);
   });
 
   test("Font Size Media Medium", () => {
     expect(
-      DoWork("./tests/fontsize/fontsize_media.html", {}, {}, mimicConfigDEFAULT)
+      DoWork(
+        `<div class="${MediaBreakPointsText.medium}?font-size:xl">Two</div>`,
+        DataType.string,
+        {},
+        {},
+        mimicConfigDEFAULT
+      )
     ).toContain(
       `@media (min-width: ${MediaBreakPointsValue.medium}px) {\r\n.${MediaBreakPointsText.medium}\\?font-size\\:${Sizes.xl} {\r\n\tfont-size: ${FontSizes.xl};\r\n\t}\r\n}`
     );

@@ -19,9 +19,9 @@ export const MediaBreakPointsValue = {
 };
 
 export const MediaBreakPointsText = {
-  extrasmall: "extrasmall",
-  small: "small",
-  medium: "medium",
-  large: "large",
-  extralarge: "extralarge",
+  extrasmall: "mobile",
+  small: "tablet",
+  medium: "small",
+  large: "medium",
+  extralarge: "large",
 };

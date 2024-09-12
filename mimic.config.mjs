@@ -5,10 +5,10 @@ export default config = {
   excludeFolders: ["tests", "node_modules"],
   excludeFiles: ["toplevelpage1.html"],
 
-  MediaBreakPointsTextOverride: {
-    extrasmall: "xs",
-    small: "quite_small",
-  },
+  // MediaBreakPointsTextOverride: {
+  //   extrasmall: "xs",
+  //   small: "quite_small",
+  // },
 
   // mediaBreakPointsValueOverride: {
   //   extrasmall: "1000",

@@ -1,3 +1,4 @@
+import { DataType } from "../interfaces/Enums";
 import {
   IClassNameCssSourceAndFilename,
   ICustomClassBuilder,
@@ -26,7 +27,8 @@ import {
 import fs from "fs";
 
 export function DoWork(
-  filename: string,
+  file_or_string_data: string,
+  type: DataType,
   DictionaryOfFoundCSSFromAllFile: Record<
     string,
     IClassNameCssSourceAndFilename
@@ -44,18 +46,32 @@ export function DoWork(
   ClearExistingCSS(
     DictionaryOfFoundCSSFromAllFile,
     DictionaryOfFoundMediaCSSFromAllFile,
-    filename
+    file_or_string_data
   );
 
-  const data = fs.readFileSync(filename, "utf8");
+  let data;
+
+  if (type === DataType.file) {
+    data = fs.readFileSync(file_or_string_data, "utf8");
+  } else if (type === DataType.string) {
+    data = file_or_string_data;
+  } else {
+    throw new Error(
+      "Unknown type of data supplied - should be either a string for file"
+    );
+  }
 
   RegenerateRegExExpressions();
 
-  FindNonMedia(data, DictionaryOfFoundCSSFromAllFile, filename);
+  FindNonMedia(data, DictionaryOfFoundCSSFromAllFile, file_or_string_data);
 
-  FindMediaQueryClasses(data, DictionaryOfFoundMediaCSSFromAllFile, filename);
+  FindMediaQueryClasses(
+    data,
+    DictionaryOfFoundMediaCSSFromAllFile,
+    file_or_string_data
+  );
 
-  FindCustomClasses(data, DictionaryOfFoundCSSFromAllFile, filename);
+  FindCustomClasses(data, DictionaryOfFoundCSSFromAllFile, file_or_string_data);
 
   let ExistingCSS = GenerateCSSStringForUnitTests(
     DictionaryOfFoundCSSFromAllFile,

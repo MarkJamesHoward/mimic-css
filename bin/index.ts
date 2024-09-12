@@ -11,6 +11,7 @@ import {
   IMimicFinalCSSOutput,
 } from "../interfaces/ICustomClassBuilder";
 import { ConstructGeneratedCSS } from "../src/FinalCSSOutputGeneration";
+import { DataType } from "../interfaces/Enums.js";
 
 const argv = yargs(process.argv.slice(2))
   .options({
@@ -37,7 +38,7 @@ let InputFolder = argv.i ?? "./";
 const OutputFilename = argv.o;
 const ExcludeFilesFromArgs = argv.e;
 const EmitLitFile = argv.l;
-const debug = argv.d;
+const debug = true; //argv.d;
 
 if (InputFolder == "") {
   InputFolder = "./";
@@ -81,6 +82,7 @@ function searchFile(dir: string, extension: string) {
         console.log("Performing first run check on file " + filePath);
         let result = DoWork(
           filePath,
+          DataType.file,
           DictionaryOfFoundCSSFromAllFile,
           DictionaryOfFoundMediaCSSFromAllFile,
           undefined
@@ -161,6 +163,7 @@ async function Start() {
 
             DoWork(
               filenamePlusPath,
+              DataType.file,
               DictionaryOfFoundCSSFromAllFile,
               DictionaryOfFoundMediaCSSFromAllFile,
               undefined
