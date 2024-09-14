@@ -37,6 +37,9 @@ export function PerformSnap(type: string, value: string) {
     case "background-color":
     case "text-decoration-color":
     case "color":
+    case "border-color":
+    case "border":
+    case "background":
       switch (value) {
         case mimicConfig?.ColorPalette1TextOverride?.colora ?? ColorSizes.c1a:
           result =

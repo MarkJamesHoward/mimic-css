@@ -109,7 +109,7 @@ export function RegenerateRegExExpressions() {
     `^(?<media>${MediaTags})?(?<style>[A-Z]+):` +
       `((?<value1>(?!${Snapping})[0-9]+)(?<value1type>px)|(?<value1snap>${Snapping}))` +
       `((?<value2>solid|dashed|dotted))` +
-      `(?<color>[A-Z]+)?` +
+      `(?<color>[A-Z0-9#]+)?` +
       `(?<pseudo>:hover|:focus)??${CustomClass}$`,
     `gi`
   );
