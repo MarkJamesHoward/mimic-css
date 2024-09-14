@@ -38,7 +38,7 @@ let InputFolder = argv.i ?? "./";
 const OutputFilename = argv.o;
 const ExcludeFilesFromArgs = argv.e;
 const EmitLitFile = argv.l;
-const debug = true; //argv.d;
+const debug = argv.d;
 
 if (InputFolder == "") {
   InputFolder = "./";
