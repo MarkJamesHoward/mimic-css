@@ -442,6 +442,62 @@ describe("Text Decoration", () => {
   });
 });
 
+describe("Border Shorthand", () => {
+  test("Border Shorthand No Snapping", () => {
+    expect(
+      DoWork(
+        `<div class="border:16pxsolidred">`,
+        DataType.string,
+        {},
+        {},
+        mimicConfigDEFAULT
+      )
+    ).toContain(`.border\\:16pxsolidred {\r\n\tborder: 16px solid red;\r\n}`);
+  });
+
+  test("Border Shorthand Media Query", () => {
+    expect(
+      DoWork(
+        `<div class="${MediaBreakPointsText.medium}?border:xlsolidred">`,
+        DataType.string,
+        {},
+        {},
+        mimicConfigDEFAULT
+      )
+    ).toContain(
+      `@media (min-width: ${MediaBreakPointsValue.medium}px) {\r\n.${MediaBreakPointsText.medium}\\?border\\:xlsolidred {\r\n\tborder: ${BorderSizes.xl} solid red;\r\n\t}\r\n}`
+    );
+  });
+
+  test("Border Shorthand With Snapping on Color", () => {
+    expect(
+      DoWork(
+        `<div class="border:xlsolidc1a">`,
+        DataType.string,
+        {},
+        {},
+        mimicConfigDEFAULT
+      )
+    ).toContain(
+      `.border\\:xlsolidc1a {\r\n\tborder: ${BorderSizes.xl} solid ${color_palette_1.c1a};\r\n}`
+    );
+  });
+
+  test("Border Shorthand snapping", () => {
+    expect(
+      DoWork(
+        `<div class="border:xlsolidc1b">`,
+        DataType.string,
+        {},
+        {},
+        mimicConfigDEFAULT
+      )
+    ).toContain(
+      `.border\\:xlsolidc1b {\r\n\tborder: ${BorderSizes.xl} solid ${color_palette_1.c1b};\r\n}`
+    );
+  });
+});
+
 describe("Border Style", () => {
   test("Border Style", () => {
     expect(
