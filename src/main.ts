@@ -22,6 +22,7 @@ import {
   RegenerateRegExExpressions,
   double_hyphen_then_colon_snappable,
   single_hyphen_then_colon_box_shadow_snappable,
+  border_shorthand,
 } from "./RegExp/RegExDefinitions";
 
 import fs from "fs";
@@ -63,15 +64,39 @@ export function DoWork(
 
   RegenerateRegExExpressions();
 
-  FindNonMedia(data, DictionaryOfFoundCSSFromAllFile, file_or_string_data);
+  // Find Non Media
+  let RegExToTryList = [
+    single_hyphen_then_colon,
+    single_hyphen_then_colon_then_another_hyphen,
+    double_hyphen_then_colon,
+    double_hyphen_then_colon_snappable,
+    single_hyphen_then_colon_box_shadow,
+    single_hyphen_then_colon_box_shadow_snappable,
+    no_hyphen,
+    no_hyphen_pixel_values,
+    border_shorthand,
+  ];
+
+  FindNonMedia(
+    RegExToTryList,
+    data,
+    DictionaryOfFoundCSSFromAllFile,
+    file_or_string_data
+  );
 
   FindMediaQueryClasses(
+    RegExToTryList,
     data,
     DictionaryOfFoundMediaCSSFromAllFile,
     file_or_string_data
   );
 
-  FindCustomClasses(data, DictionaryOfFoundCSSFromAllFile, file_or_string_data);
+  FindCustomClasses(
+    RegExToTryList,
+    data,
+    DictionaryOfFoundCSSFromAllFile,
+    file_or_string_data
+  );
 
   let ExistingCSS = GenerateCSSStringForUnitTests(
     DictionaryOfFoundCSSFromAllFile,
@@ -100,6 +125,7 @@ export function FindCurrentMaxMediaOrder(
 }
 
 function FindMediaQueryClasses(
+  RegExToTryList: Array<RegExp>,
   data: string,
   DictionaryOfFoundMediaCSSFromAllFile: Record<
     string,
@@ -127,104 +153,29 @@ function FindMediaQueryClasses(
 
       let result: IMediaClassCSSOrderFilenameAndSource;
 
-      result = GenericRegexMedia(
-        item,
-        single_hyphen_then_colon,
-        "single_hyphen_then_colon"
-      );
-      AddIndividualMdiaClassToDictionaryOfFoundMediaCSSFromAllFile(
-        result,
-        next_media_order_position,
-        filename,
-        DictionaryOfFoundMediaCSSFromAllFile
-      );
+      // let RegExToTryList = [
+      //   single_hyphen_then_colon,
+      //   single_hyphen_then_colon_then_another_hyphen,
+      //   double_hyphen_then_colon_snappable,
+      //   double_hyphen_then_colon,
+      //   single_hyphen_then_colon_box_shadow,
+      //   single_hyphen_then_colon_box_shadow_snappable,
+      //   no_hyphen,
+      //   no_hyphen_pixel_values,
+      //   border_shorthand,
+      // ];
 
-      result = GenericRegexMedia(
-        item,
-        single_hyphen_then_colon_then_another_hyphen,
-        "single_hyphen_then_colon_then_another_hyphen"
-      );
+      let ProcessingComplete: boolean = false;
 
-      AddIndividualMdiaClassToDictionaryOfFoundMediaCSSFromAllFile(
-        result,
-        next_media_order_position,
-        filename,
-        DictionaryOfFoundMediaCSSFromAllFile
-      );
-
-      result = GenericRegexMedia(
-        item,
-        double_hyphen_then_colon,
-        "double_hyphen_then_colon"
-      );
-
-      AddIndividualMdiaClassToDictionaryOfFoundMediaCSSFromAllFile(
-        result,
-        next_media_order_position,
-        filename,
-        DictionaryOfFoundMediaCSSFromAllFile
-      );
-
-      result = GenericRegexMedia(
-        item,
-        single_hyphen_then_colon_box_shadow,
-        "single_hyphen_then_colon_box_shadow"
-      );
-
-      AddIndividualMdiaClassToDictionaryOfFoundMediaCSSFromAllFile(
-        result,
-        next_media_order_position,
-        filename,
-        DictionaryOfFoundMediaCSSFromAllFile
-      );
-
-      result = GenericRegexMedia(
-        item,
-        single_hyphen_then_colon_box_shadow_snappable,
-        "single_hyphen_then_colon_box_shadow_snappable"
-      );
-
-      AddIndividualMdiaClassToDictionaryOfFoundMediaCSSFromAllFile(
-        result,
-        next_media_order_position,
-        filename,
-        DictionaryOfFoundMediaCSSFromAllFile
-      );
-
-      result = GenericRegexMedia(item, no_hyphen, "NoHypen");
-
-      AddIndividualMdiaClassToDictionaryOfFoundMediaCSSFromAllFile(
-        result,
-        next_media_order_position,
-        filename,
-        DictionaryOfFoundMediaCSSFromAllFile
-      );
-
-      // result = GenericRegexMedia(
-      //   item,
-      //   no_hyphen_snappable,
-      //   "NoHyphenSnapableMedia"
-      // );
-
-      // AddIndividualMdiaClassToDictionaryOfFoundMediaCSSFromAllFile(
-      //   result,
-      //   next_media_order_position,
-      //   filename,
-      //   DictionaryOfFoundMediaCSSFromAllFile
-      // );
-
-      result = GenericRegexMedia(
-        item,
-        no_hyphen_pixel_values,
-        "no_hyphen_pixel_values"
-      );
-
-      AddIndividualMdiaClassToDictionaryOfFoundMediaCSSFromAllFile(
-        result,
-        next_media_order_position,
-        filename,
-        DictionaryOfFoundMediaCSSFromAllFile
-      );
+      RegExToTryList.forEach((RegExToTry) => {
+        result = GenericRegexMedia(item, RegExToTry, RegExToTry.source);
+        AddIndividualMdiaClassToDictionaryOfFoundMediaCSSFromAllFile(
+          result,
+          next_media_order_position,
+          filename,
+          DictionaryOfFoundMediaCSSFromAllFile
+        );
+      });
     });
   }
 }
@@ -267,6 +218,7 @@ function StoreNonMediaClassIn_DictionaryOfFoundCSSFromAllFile(
 }
 
 function FindCustomClasses(
+  RegExToTryList: Array<RegExp>,
   data: string,
   DictionaryOfFoundCSSFromAllFile: Record<
     string,
@@ -291,236 +243,49 @@ function FindCustomClasses(
       if (item == "") return;
 
       constructedClassName = "";
-      // display:flex@MYBUTTON
-      // background:red@MYBUTTON
-      let r = GenericRegexNonMediaCustomClass(
-        item,
-        no_hyphen,
-        "no_hyphen_custom_class"
-      );
 
-      ({ constructedClassMemberList, constructedClassName } =
-        UpdateClassMembersOfCustomClass(
-          r.className,
-          r.classMember,
-          constructedClassMemberList
-        ));
-      if (
-        AddCustomClassTo_DictionaryOfFoundCSSFromAllFile(
-          constructedClassName,
-          constructedClassMemberList,
-          classGenerationInProgress,
-          DictionaryOfFoundCSSFromAllFile,
-          filename,
-          "Test"
-        )
-      ) {
-        return;
-      }
+      // let RegExToTryList = [
+      //   no_hyphen,
+      //   single_hyphen_then_colon,
+      //   single_hyphen_then_colon_then_another_hyphen,
+      //   double_hyphen_then_colon_snappable,
+      //   double_hyphen_then_colon,
+      //   single_hyphen_then_colon_box_shadow_snappable,
+      //   single_hyphen_then_colon_box_shadow,
+      //   no_hyphen_pixel_values,
+      //   border_shorthand,
+      // ];
 
-      r = GenericRegexNonMediaCustomClass(
-        item,
-        single_hyphen_then_colon,
-        "SingleHypenThenColon_CustomClass"
-      );
+      let ProcessingComplete: boolean = false;
 
-      ({ constructedClassMemberList, constructedClassName } =
-        UpdateClassMembersOfCustomClass(
-          r.className,
-          r.classMember,
-          constructedClassMemberList
-        ));
-      if (
-        AddCustomClassTo_DictionaryOfFoundCSSFromAllFile(
-          constructedClassName,
-          constructedClassMemberList,
-          classGenerationInProgress,
-          DictionaryOfFoundCSSFromAllFile,
-          filename,
-          "Test"
-        )
-      ) {
-        return;
-      }
+      RegExToTryList.forEach((RegExToTry) => {
+        if (ProcessingComplete) return;
 
-      r = GenericRegexNonMediaCustomClass(
-        item,
-        single_hyphen_then_colon_then_another_hyphen,
-        "SingleHypenThenColonThenAnotherHyphen_CustomClass"
-      );
+        let r = GenericRegexNonMediaCustomClass(
+          item,
+          RegExToTry,
+          RegExToTry.source
+        );
 
-      ({ constructedClassMemberList, constructedClassName } =
-        UpdateClassMembersOfCustomClass(
-          r.className,
-          r.classMember,
-          constructedClassMemberList
-        ));
-      if (
-        AddCustomClassTo_DictionaryOfFoundCSSFromAllFile(
-          constructedClassName,
-          constructedClassMemberList,
-          classGenerationInProgress,
-          DictionaryOfFoundCSSFromAllFile,
-          filename,
-          "Test"
-        )
-      ) {
-        return;
-      }
-
-      r = GenericRegexNonMediaCustomClass(
-        item,
-        double_hyphen_then_colon_snappable,
-        "DoubleHyphenTheColonSnappable_CustomClass"
-      );
-
-      ({ constructedClassMemberList, constructedClassName } =
-        UpdateClassMembersOfCustomClass(
-          r.className,
-          r.classMember,
-          constructedClassMemberList
-        ));
-      if (
-        AddCustomClassTo_DictionaryOfFoundCSSFromAllFile(
-          constructedClassName,
-          constructedClassMemberList,
-          classGenerationInProgress,
-          DictionaryOfFoundCSSFromAllFile,
-          filename,
-          "Test"
-        )
-      ) {
-        return;
-      }
-
-      r = GenericRegexNonMediaCustomClass(
-        item,
-        double_hyphen_then_colon,
-        "DoubleHyphenTheColon_CustomClass"
-      );
-
-      ({ constructedClassMemberList, constructedClassName } =
-        UpdateClassMembersOfCustomClass(
-          r.className,
-          r.classMember,
-          constructedClassMemberList
-        ));
-      if (
-        AddCustomClassTo_DictionaryOfFoundCSSFromAllFile(
-          constructedClassName,
-          constructedClassMemberList,
-          classGenerationInProgress,
-          DictionaryOfFoundCSSFromAllFile,
-          filename,
-          "Test"
-        )
-      ) {
-        return;
-      }
-
-      r = GenericRegexNonMediaCustomClass(
-        item,
-        single_hyphen_then_colon_box_shadow_snappable,
-        "single_hyphen_then_colon_box_shadow_snappable"
-      );
-
-      ({ constructedClassMemberList, constructedClassName } =
-        UpdateClassMembersOfCustomClass(
-          r.className,
-          r.classMember,
-          constructedClassMemberList
-        ));
-
-      if (
-        AddCustomClassTo_DictionaryOfFoundCSSFromAllFile(
-          constructedClassName,
-          constructedClassMemberList,
-          classGenerationInProgress,
-          DictionaryOfFoundCSSFromAllFile,
-          filename,
-          "Test"
-        )
-      ) {
-        return;
-      }
-
-      r = GenericRegexNonMediaCustomClass(
-        item,
-        single_hyphen_then_colon_box_shadow,
-        "SingleHyphenBoxShadow_CUstomClass"
-      );
-
-      ({ constructedClassMemberList, constructedClassName } =
-        UpdateClassMembersOfCustomClass(
-          r.className,
-          r.classMember,
-          constructedClassMemberList
-        ));
-
-      if (
-        AddCustomClassTo_DictionaryOfFoundCSSFromAllFile(
-          constructedClassName,
-          constructedClassMemberList,
-          classGenerationInProgress,
-          DictionaryOfFoundCSSFromAllFile,
-          filename,
-          "Test"
-        )
-      ) {
-        return;
-      }
-
-      // r = GenericRegexNonMediaCustomClass(
-      //   item,
-      //   no_hyphen_snappable,
-      //   "NoHyphenSnapable_CustomClass"
-      // );
-
-      // ({ constructedClassMemberList, constructedClassName } =
-      //   UpdateClassMembersOfCustomClass(
-      //     r.className,
-      //     r.classMember,
-      //     constructedClassMemberList
-      //   ));
-
-      // if (
-      //   AddCustomClassTo_DictionaryOfFoundCSSFromAllFile(
-      //     constructedClassName,
-      //     constructedClassMemberList,
-      //     classGenerationInProgress,
-      //     DictionaryOfFoundCSSFromAllFile,
-      //     filename,
-      //     "Test"
-      //   )
-      // ) {
-      //   return;
-      // }
-
-      r = GenericRegexNonMediaCustomClass(
-        item,
-        no_hyphen_pixel_values,
-        "NoHyphenPixeValues_CustomClass"
-      );
-
-      ({ constructedClassMemberList, constructedClassName } =
-        UpdateClassMembersOfCustomClass(
-          r.className,
-          r.classMember,
-          constructedClassMemberList
-        ));
-
-      if (
-        AddCustomClassTo_DictionaryOfFoundCSSFromAllFile(
-          constructedClassName,
-          constructedClassMemberList,
-          classGenerationInProgress,
-          DictionaryOfFoundCSSFromAllFile,
-          filename,
-          "Test"
-        )
-      ) {
-        return;
-      }
+        ({ constructedClassMemberList, constructedClassName } =
+          UpdateClassMembersOfCustomClass(
+            r.className,
+            r.classMember,
+            constructedClassMemberList
+          ));
+        if (
+          AddCustomClassTo_DictionaryOfFoundCSSFromAllFile(
+            constructedClassName,
+            constructedClassMemberList,
+            classGenerationInProgress,
+            DictionaryOfFoundCSSFromAllFile,
+            filename,
+            "Test"
+          )
+        ) {
+          ProcessingComplete = true;
+        }
+      });
     });
 
     for (const key in DictionaryOfFoundCSSFromAllFile) {
@@ -534,6 +299,7 @@ function FindCustomClasses(
 }
 
 function FindNonMedia(
+  RegExToTryList: Array<RegExp>,
   data: string,
   DictionaryOfFoundCSSFromAllFile: Record<
     string,
@@ -553,112 +319,31 @@ function FindNonMedia(
 
       let distinctClassAndCss: IClassNameCssSourceAndFilename;
 
-      distinctClassAndCss = GenericRegexNonMedia(
-        item,
-        single_hyphen_then_colon,
-        "SingleHypenThenColon"
-      );
+      // let RegExToTryList = [
+      //   single_hyphen_then_colon,
+      //   single_hyphen_then_colon_then_another_hyphen,
+      //   double_hyphen_then_colon,
+      //   double_hyphen_then_colon_snappable,
+      //   single_hyphen_then_colon_box_shadow,
+      //   single_hyphen_then_colon_box_shadow_snappable,
+      //   no_hyphen,
+      //   no_hyphen_pixel_values,
+      //   border_shorthand,
+      // ];
 
-      StoreNonMediaClassIn_DictionaryOfFoundCSSFromAllFile(
-        distinctClassAndCss,
-        DictionaryOfFoundCSSFromAllFile,
-        filename
-      );
+      RegExToTryList.forEach((RegExToTry) => {
+        distinctClassAndCss = GenericRegexNonMedia(
+          item,
+          RegExToTry,
+          RegExToTry.source
+        );
 
-      distinctClassAndCss = GenericRegexNonMedia(
-        item,
-        single_hyphen_then_colon,
-        "SingleHypenThenColon"
-      );
-      StoreNonMediaClassIn_DictionaryOfFoundCSSFromAllFile(
-        distinctClassAndCss,
-        DictionaryOfFoundCSSFromAllFile,
-        filename
-      );
-
-      distinctClassAndCss = GenericRegexNonMedia(
-        item,
-        single_hyphen_then_colon_then_another_hyphen,
-        "SingleHypenThenColonThenAnotherHyphen"
-      );
-      StoreNonMediaClassIn_DictionaryOfFoundCSSFromAllFile(
-        distinctClassAndCss,
-        DictionaryOfFoundCSSFromAllFile,
-        filename
-      );
-
-      distinctClassAndCss = GenericRegexNonMedia(
-        item,
-        double_hyphen_then_colon,
-        "DoubleHyphenTheColon"
-      );
-      StoreNonMediaClassIn_DictionaryOfFoundCSSFromAllFile(
-        distinctClassAndCss,
-        DictionaryOfFoundCSSFromAllFile,
-        filename
-      );
-
-      distinctClassAndCss = GenericRegexNonMedia(
-        item,
-        double_hyphen_then_colon_snappable,
-        "double_hyphen_then_colon_snappable"
-      );
-      StoreNonMediaClassIn_DictionaryOfFoundCSSFromAllFile(
-        distinctClassAndCss,
-        DictionaryOfFoundCSSFromAllFile,
-        filename
-      );
-
-      distinctClassAndCss = GenericRegexNonMedia(
-        item,
-        single_hyphen_then_colon_box_shadow,
-        "single_hyphen_then_colon_box_shadow"
-      );
-      StoreNonMediaClassIn_DictionaryOfFoundCSSFromAllFile(
-        distinctClassAndCss,
-        DictionaryOfFoundCSSFromAllFile,
-        filename
-      );
-
-      distinctClassAndCss = GenericRegexNonMedia(
-        item,
-        single_hyphen_then_colon_box_shadow_snappable,
-        "single_hyphen_then_colon_box_shadow_snappable"
-      );
-      StoreNonMediaClassIn_DictionaryOfFoundCSSFromAllFile(
-        distinctClassAndCss,
-        DictionaryOfFoundCSSFromAllFile,
-        filename
-      );
-
-      distinctClassAndCss = GenericRegexNonMedia(item, no_hyphen, "NoHypen");
-      StoreNonMediaClassIn_DictionaryOfFoundCSSFromAllFile(
-        distinctClassAndCss,
-        DictionaryOfFoundCSSFromAllFile,
-        filename
-      );
-
-      // distinctClassAndCss = GenericRegexNonMedia(
-      //   item,
-      //   no_hyphen_snappable,
-      //   "NoHyphenSnapable"
-      // );
-      // StoreNonMediaClassIn_DictionaryOfFoundCSSFromAllFile(
-      //   distinctClassAndCss,
-      //   DictionaryOfFoundCSSFromAllFile,
-      //   filename
-      // );
-
-      distinctClassAndCss = GenericRegexNonMedia(
-        item,
-        no_hyphen_pixel_values,
-        "NoHyphenPixeValues"
-      );
-      StoreNonMediaClassIn_DictionaryOfFoundCSSFromAllFile(
-        distinctClassAndCss,
-        DictionaryOfFoundCSSFromAllFile,
-        filename
-      );
+        StoreNonMediaClassIn_DictionaryOfFoundCSSFromAllFile(
+          distinctClassAndCss,
+          DictionaryOfFoundCSSFromAllFile,
+          filename
+        );
+      });
     });
   }
 }

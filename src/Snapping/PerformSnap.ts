@@ -252,6 +252,7 @@ export function PerformSnap(type: string, value: string) {
       }
       break;
     case "border-width":
+    case "border":
       switch (value) {
         case mimicConfig?.SnappingOverride?.xs ?? Sizes.xs:
           result = mimicConfig?.BorderWidthSnapping?.xs ?? BorderSizes.xs;

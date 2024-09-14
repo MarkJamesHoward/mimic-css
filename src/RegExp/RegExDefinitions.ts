@@ -18,6 +18,8 @@ export var single_hyphen_then_colon_box_shadow_snappable = new RegExp("");
 export var no_hyphen_pixel_values = new RegExp("");
 export var no_hyphen = new RegExp("");
 
+export var border_shorthand = new RegExp("");
+
 const CustomClass: string = `(?<customclass>\@[A-Z0-9]+(?<customclass_subgroup_pseudo>:hover|:focus)?)?`;
 
 export function RegenerateRegExExpressions() {
@@ -45,6 +47,12 @@ export function RegenerateRegExExpressions() {
   }|${mimicConfig?.SnappingOverride?.lg ?? Sizes.lg}|${
     mimicConfig?.SnappingOverride?.xl ?? Sizes.xl
   }|${mimicConfig?.SnappingOverride?.xl2 ?? Sizes.xl2}`;
+
+  const SnappingColorOnly = `${
+    mimicConfig?.ColorPalette1TextOverride?.colora ?? ColorSizes.c1a
+  }|${mimicConfig?.ColorPalette1TextOverride?.colorb ?? ColorSizes.c1b}|${
+    mimicConfig?.ColorPalette1TextOverride?.colorc ?? ColorSizes.c1c
+  }|${mimicConfig?.ColorPalette1TextOverride?.colord ?? ColorSizes.c1d}`;
 
   const Snapping = `${mimicConfig?.SnappingOverride?.xs ?? Sizes.xs}|${
     mimicConfig?.SnappingOverride?.sm ?? Sizes.sm
@@ -92,6 +100,17 @@ export function RegenerateRegExExpressions() {
       `((?<value3>(?!${Snapping})[0-9A-Z]+)?(?<value3type>px|ch|rem|\%)?|(?<value3snap>${Snapping}))` +
       `((?<value4>(?!${Snapping})[0-9A-Z]+)?(?<value4type>px|ch|rem|\%)?|(?<value4snap>${Snapping}))` +
       `(?<pseudo>:hover|:focus)?${CustomClass}$`,
+    `gi`
+  );
+
+  //Border Shorthand
+  //border:10px solid red
+  border_shorthand = new RegExp(
+    `^(?<media>${MediaTags})?(?<style>[A-Z]+):` +
+      `((?<value1>(?!${Snapping})[0-9]+)(?<value1type>px)|(?<value1snap>${Snapping}))` +
+      `((?<value2>solid|dashed|dotted))` +
+      `(?<color>[A-Z]+)?` +
+      `(?<pseudo>:hover|:focus)??${CustomClass}$`,
     `gi`
   );
 
