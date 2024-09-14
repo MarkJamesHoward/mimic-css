@@ -21,7 +21,7 @@ export const MediaBreakPointsValue = {
 export const MediaBreakPointsText = {
   extrasmall: "mobile",
   small: "tablet",
-  medium: "small",
-  large: "medium",
-  extralarge: "large",
+  medium: "pc",
+  large: "pcwide",
+  extralarge: "pcultrawide",
 };

@@ -25,6 +25,16 @@ Generates the below class ensuring that the flex container is only applied when 
 }
 ```
 
+## Media BreakPoints
+
+<ul>
+  <li>mobile</li>
+  <li>tablet</li>
+  <li>pc</li>
+  <li>pcwide</li>
+  <li>pcultrawide</li>
+</ul>
+
 ## Design System
 
 To ensure consistency there is a set of standard Tags that can be used in place of specific pixel values.
