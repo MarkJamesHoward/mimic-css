@@ -28,11 +28,11 @@ Generates the below class ensuring that the flex container is only applied when 
 ## Media BreakPoints
 
 <ul>
-  <li>mobile</li>
-  <li>tablet</li>
-  <li>pc</li>
-  <li>pcwide</li>
-  <li>pcultrawide</li>
+  <li>xs</li>
+  <li>sm</li>
+  <li>md</li>
+  <li>lg</li>
+  <li>xl</li>
 </ul>
 
 ## Design System
