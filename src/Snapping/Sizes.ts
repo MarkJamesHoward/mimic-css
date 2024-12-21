@@ -32,10 +32,10 @@ export const ColorSizes = {
 // https://colorhunt.co/palettes/popular
 
 export const color_palette_1 = {
-  c1a: "#222831",
-  c1b: "#393E46",
-  c1c: "#00ADB5",
-  c1d: "#EEEEEE",
+  c1a: "#041514",
+  c1b: "#042B2B",
+  c1c: "#001A1A",
+  c1d: "#1A959C",
 };
 
 export const color_palette_2 = {
