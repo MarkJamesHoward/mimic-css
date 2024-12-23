@@ -10,53 +10,61 @@ export const Sizes = {
 };
 
 export const ColorSizes = {
-  c1a: "c1a",
-  c1b: "c1b",
-  c1c: "c1c",
-  c1d: "c1d",
-  c2a: "c2a",
-  c2b: "c2b",
-  c2c: "c2c",
-  c2d: "c2d",
-  c3a: "c3a",
-  c3b: "c3b",
-  c3c: "c3c",
-  c3d: "c3d",
-  c4a: "c4a",
-  c4b: "c4b",
-  c4c: "c4c",
-  c4d: "c4d",
+  c1a: "c1text1",
+  c1b: "c1text2",
+  c1c: "c1background1",
+  c1d: "c1background2",
+  c1e: "c1background3",
+  c2a: "c2text1",
+  c2b: "c2text2",
+  c2c: "c2background1",
+  c2d: "c2background2",
+  c2e: "c2background3",
+  c3a: "c3text1",
+  c3b: "c3text2",
+  c3c: "c3background1",
+  c3d: "c3background2",
+  c3e: "c3background3",
+  c4a: "c4text1",
+  c4b: "c4text2",
+  c4c: "c4background1",
+  c4d: "c4background2",
+  c4e: "c4background3",
 };
 
 ////////////////////////////////////////
 // https://colorhunt.co/palettes/popular
 
 export const color_palette_1 = {
-  c1a: "#041514",
-  c1b: "#042B2B",
-  c1c: "#001A1A",
-  c1d: "#1A959C",
+  c1text1: "#041514",
+  c1text2: "#042B2B",
+  c1background1: "#001A1A",
+  c1background2: "#1A959C",
+  c1background3: "#1A959C",
 };
 
 export const color_palette_2 = {
-  c2a: "#FFC7C7",
-  c2b: "#FFE2E2",
-  c2c: "#F6F6F6",
-  c2d: "#8785A2",
+  c2text1: "#FFC7C7",
+  c2text2: "#FFE2E2",
+  c2background1: "#F6F6F6",
+  c2background2: "#8785A2",
+  c2background3: "#8785A2",
 };
 
 export const color_palette_3 = {
-  c3a: "#B7C4CF",
-  c3b: "#EEE3CB",
-  c3c: "#D7C0AE",
-  c3d: "#967E76",
+  c3text1: "#B7C4CF",
+  c3text2: "#EEE3CB",
+  c3background1: "#D7C0AE",
+  c3background2: "#967E76",
+  c3background3: "#967E76",
 };
 
 export const color_palette_4 = {
-  c4a: "#F9ED69",
-  c4b: "#F08A5D",
-  c4c: "#B83B5E",
-  c4d: "#6A2C70",
+  c4text1: "#B7C4CF",
+  c4text2: "#EEE3CB",
+  c4background1: "#D7C0AE",
+  c4background2: "#967E76",
+  c4background3: "#967E76",
 };
 
 export const BorderRadius = {

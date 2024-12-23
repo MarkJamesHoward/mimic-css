@@ -42,82 +42,113 @@ export function PerformSnap(type: string, value: string) {
       switch (value) {
         case mimicConfig?.ColorPalette1TextOverride?.colora ?? ColorSizes.c1a:
           result =
-            mimicConfig?.ColorPalette1Snapping?.c1a ?? color_palette_1.c1a;
+            mimicConfig?.ColorPalette1Snapping?.c1a ?? color_palette_1.c1text1;
           break;
 
         case mimicConfig?.ColorPalette1TextOverride?.colorb ?? ColorSizes.c1b:
           result =
-            mimicConfig?.ColorPalette1Snapping?.c1b ?? color_palette_1.c1b;
+            mimicConfig?.ColorPalette1Snapping?.c1b ?? color_palette_1.c1text2;
           break;
 
         case mimicConfig?.ColorPalette1TextOverride?.colorc ?? ColorSizes.c1c:
           result =
-            mimicConfig?.ColorPalette1Snapping?.c1c ?? color_palette_1.c1c;
+            mimicConfig?.ColorPalette1Snapping?.c1c ??
+            color_palette_1.c1background1;
           break;
 
         case mimicConfig?.ColorPalette1TextOverride?.colord ?? ColorSizes.c1d:
           result =
-            mimicConfig?.ColorPalette1Snapping?.c1d ?? color_palette_1.c1d;
+            mimicConfig?.ColorPalette1Snapping?.c1d ??
+            color_palette_1.c1background2;
+          break;
+
+        case mimicConfig?.ColorPalette1TextOverride?.colore ?? ColorSizes.c1e:
+          result =
+            mimicConfig?.ColorPalette1Snapping?.c1e ??
+            color_palette_1.c1background3;
           break;
 
         case mimicConfig?.ColorPalette2TextOverride?.colora ?? ColorSizes.c2a:
           result =
-            mimicConfig?.ColorPalette2Snapping?.c2a ?? color_palette_2.c2a;
+            mimicConfig?.ColorPalette2Snapping?.c2a ?? color_palette_2.c2text1;
           break;
 
         case mimicConfig?.ColorPalette2TextOverride?.colorb ?? ColorSizes.c2b:
           result =
-            mimicConfig?.ColorPalette2Snapping?.c2b ?? color_palette_2.c2b;
+            mimicConfig?.ColorPalette2Snapping?.c2b ?? color_palette_2.c2text2;
           break;
 
         case mimicConfig?.ColorPalette2TextOverride?.colorc ?? ColorSizes.c2c:
           result =
-            mimicConfig?.ColorPalette2Snapping?.c2c ?? color_palette_2.c2c;
+            mimicConfig?.ColorPalette2Snapping?.c2c ??
+            color_palette_2.c2background1;
           break;
 
         case mimicConfig?.ColorPalette2TextOverride?.colord ?? ColorSizes.c2d:
           result =
-            mimicConfig?.ColorPalette2Snapping?.c2d ?? color_palette_2.c2d;
+            mimicConfig?.ColorPalette2Snapping?.c2d ??
+            color_palette_2.c2background2;
+          break;
+
+        case mimicConfig?.ColorPalette2TextOverride?.colore ?? ColorSizes.c2e:
+          result =
+            mimicConfig?.ColorPalette2Snapping?.c2e ??
+            color_palette_2.c2background3;
           break;
 
         case mimicConfig?.ColorPalette3TextOverride?.colora ?? ColorSizes.c3a:
           result =
-            mimicConfig?.ColorPalette3Snapping?.c3a ?? color_palette_3.c3a;
+            mimicConfig?.ColorPalette3Snapping?.c3a ?? color_palette_3.c3text1;
           break;
 
         case mimicConfig?.ColorPalette3TextOverride?.colorb ?? ColorSizes.c3b:
           result =
-            mimicConfig?.ColorPalette3Snapping?.c3b ?? color_palette_3.c3b;
+            mimicConfig?.ColorPalette3Snapping?.c3b ?? color_palette_3.c3text2;
           break;
 
         case mimicConfig?.ColorPalette3TextOverride?.colorc ?? ColorSizes.c3c:
           result =
-            mimicConfig?.ColorPalette3Snapping?.c3c ?? color_palette_3.c3c;
+            mimicConfig?.ColorPalette3Snapping?.c3c ??
+            color_palette_3.c3background1;
           break;
 
         case mimicConfig?.ColorPalette3TextOverride?.colord ?? ColorSizes.c3d:
           result =
-            mimicConfig?.ColorPalette3Snapping?.c3d ?? color_palette_3.c3d;
+            mimicConfig?.ColorPalette3Snapping?.c3d ??
+            color_palette_3.c3background2;
+          break;
+
+        case mimicConfig?.ColorPalette3TextOverride?.colore ?? ColorSizes.c3e:
+          result =
+            mimicConfig?.ColorPalette3Snapping?.c3d ??
+            color_palette_3.c3background3;
           break;
 
         case mimicConfig?.ColorPalette4TextOverride?.colora ?? ColorSizes.c4a:
           result =
-            mimicConfig?.ColorPalette4Snapping?.c4a ?? color_palette_4.c4a;
+            mimicConfig?.ColorPalette4Snapping?.c4a ?? color_palette_4.c4text1;
           break;
 
         case mimicConfig?.ColorPalette4TextOverride?.colorb ?? ColorSizes.c4b:
           result =
-            mimicConfig?.ColorPalette4Snapping?.c4b ?? color_palette_4.c4b;
+            mimicConfig?.ColorPalette4Snapping?.c4b ?? color_palette_4.c4text2;
           break;
 
         case mimicConfig?.ColorPalette4TextOverride?.colorc ?? ColorSizes.c4c:
           result =
-            mimicConfig?.ColorPalette4Snapping?.c4c ?? color_palette_4.c4c;
+            mimicConfig?.ColorPalette4Snapping?.c4c ??
+            color_palette_4.c4background1;
           break;
 
         case mimicConfig?.ColorPalette4TextOverride?.colord ?? ColorSizes.c4d:
           result =
-            mimicConfig?.ColorPalette4Snapping?.c4d ?? color_palette_4.c4d;
+            mimicConfig?.ColorPalette4Snapping?.c4d ??
+            color_palette_4.c4background2;
+          break;
+        case mimicConfig?.ColorPalette4TextOverride?.colore ?? ColorSizes.c4e:
+          result =
+            mimicConfig?.ColorPalette4Snapping?.c4e ??
+            color_palette_4.c4background3;
           break;
 
         default:
@@ -258,82 +289,114 @@ export function PerformSnap(type: string, value: string) {
       switch (value) {
         case mimicConfig?.ColorPalette1TextOverride?.colora ?? ColorSizes.c1a:
           result =
-            mimicConfig?.ColorPalette1Snapping?.c1a ?? color_palette_1.c1a;
+            mimicConfig?.ColorPalette1Snapping?.c1a ?? color_palette_1.c1text1;
           break;
 
         case mimicConfig?.ColorPalette1TextOverride?.colorb ?? ColorSizes.c1b:
           result =
-            mimicConfig?.ColorPalette1Snapping?.c1b ?? color_palette_1.c1b;
+            mimicConfig?.ColorPalette1Snapping?.c1b ?? color_palette_1.c1text2;
           break;
 
         case mimicConfig?.ColorPalette1TextOverride?.colorc ?? ColorSizes.c1c:
           result =
-            mimicConfig?.ColorPalette1Snapping?.c1c ?? color_palette_1.c1c;
+            mimicConfig?.ColorPalette1Snapping?.c1c ??
+            color_palette_1.c1background1;
           break;
 
         case mimicConfig?.ColorPalette1TextOverride?.colord ?? ColorSizes.c1d:
           result =
-            mimicConfig?.ColorPalette1Snapping?.c1d ?? color_palette_1.c1d;
+            mimicConfig?.ColorPalette1Snapping?.c1d ??
+            color_palette_1.c1background2;
+          break;
+
+        case mimicConfig?.ColorPalette1TextOverride?.colore ?? ColorSizes.c1e:
+          result =
+            mimicConfig?.ColorPalette1Snapping?.c1e ??
+            color_palette_1.c1background3;
           break;
 
         case mimicConfig?.ColorPalette2TextOverride?.colora ?? ColorSizes.c2a:
           result =
-            mimicConfig?.ColorPalette2Snapping?.c2a ?? color_palette_2.c2a;
+            mimicConfig?.ColorPalette2Snapping?.c2a ?? color_palette_2.c2text1;
           break;
 
         case mimicConfig?.ColorPalette2TextOverride?.colorb ?? ColorSizes.c2b:
           result =
-            mimicConfig?.ColorPalette2Snapping?.c2b ?? color_palette_2.c2b;
+            mimicConfig?.ColorPalette2Snapping?.c2b ?? color_palette_2.c2text2;
           break;
 
         case mimicConfig?.ColorPalette2TextOverride?.colorc ?? ColorSizes.c2c:
           result =
-            mimicConfig?.ColorPalette2Snapping?.c2c ?? color_palette_2.c2c;
+            mimicConfig?.ColorPalette2Snapping?.c2c ??
+            color_palette_2.c2background1;
           break;
 
         case mimicConfig?.ColorPalette2TextOverride?.colord ?? ColorSizes.c2d:
           result =
-            mimicConfig?.ColorPalette2Snapping?.c2d ?? color_palette_2.c2d;
+            mimicConfig?.ColorPalette2Snapping?.c2d ??
+            color_palette_2.c2background2;
+          break;
+
+        case mimicConfig?.ColorPalette2TextOverride?.colore ?? ColorSizes.c2e:
+          result =
+            mimicConfig?.ColorPalette2Snapping?.c2e ??
+            color_palette_2.c2background3;
           break;
 
         case mimicConfig?.ColorPalette3TextOverride?.colora ?? ColorSizes.c3a:
           result =
-            mimicConfig?.ColorPalette3Snapping?.c3a ?? color_palette_3.c3a;
+            mimicConfig?.ColorPalette3Snapping?.c3a ?? color_palette_3.c3text1;
           break;
 
         case mimicConfig?.ColorPalette3TextOverride?.colorb ?? ColorSizes.c3b:
           result =
-            mimicConfig?.ColorPalette3Snapping?.c3b ?? color_palette_3.c3b;
+            mimicConfig?.ColorPalette3Snapping?.c3b ?? color_palette_3.c3text2;
           break;
 
         case mimicConfig?.ColorPalette3TextOverride?.colorc ?? ColorSizes.c3c:
           result =
-            mimicConfig?.ColorPalette3Snapping?.c3c ?? color_palette_3.c3c;
+            mimicConfig?.ColorPalette3Snapping?.c3c ??
+            color_palette_3.c3background1;
           break;
 
         case mimicConfig?.ColorPalette3TextOverride?.colord ?? ColorSizes.c3d:
           result =
-            mimicConfig?.ColorPalette3Snapping?.c3d ?? color_palette_3.c3d;
+            mimicConfig?.ColorPalette3Snapping?.c3d ??
+            color_palette_3.c3background2;
+          break;
+
+        case mimicConfig?.ColorPalette3TextOverride?.colore ?? ColorSizes.c3e:
+          result =
+            mimicConfig?.ColorPalette3Snapping?.c3e ??
+            color_palette_3.c3background3;
           break;
 
         case mimicConfig?.ColorPalette4TextOverride?.colora ?? ColorSizes.c4a:
           result =
-            mimicConfig?.ColorPalette4Snapping?.c4a ?? color_palette_4.c4a;
+            mimicConfig?.ColorPalette4Snapping?.c4a ?? color_palette_4.c4text1;
           break;
 
         case mimicConfig?.ColorPalette4TextOverride?.colorb ?? ColorSizes.c4b:
           result =
-            mimicConfig?.ColorPalette4Snapping?.c4b ?? color_palette_4.c4b;
+            mimicConfig?.ColorPalette4Snapping?.c4b ?? color_palette_4.c4text2;
           break;
 
         case mimicConfig?.ColorPalette4TextOverride?.colorc ?? ColorSizes.c4c:
           result =
-            mimicConfig?.ColorPalette4Snapping?.c4c ?? color_palette_4.c4c;
+            mimicConfig?.ColorPalette4Snapping?.c4c ??
+            color_palette_4.c4background1;
           break;
 
         case mimicConfig?.ColorPalette4TextOverride?.colord ?? ColorSizes.c4d:
           result =
-            mimicConfig?.ColorPalette4Snapping?.c4d ?? color_palette_4.c4d;
+            mimicConfig?.ColorPalette4Snapping?.c4d ??
+            color_palette_4.c4background2;
+          break;
+
+        case mimicConfig?.ColorPalette4TextOverride?.colore ?? ColorSizes.c4e:
+          result =
+            mimicConfig?.ColorPalette4Snapping?.c4e ??
+            color_palette_4.c4background3;
           break;
 
         case mimicConfig?.SnappingOverride?.xs ?? Sizes.xs:

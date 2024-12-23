@@ -25,6 +25,7 @@ export interface IMimicConfig {
     colorb?: string;
     colorc?: string;
     colord?: string;
+    colore?: string;
   };
 
   ColorPalette2TextOverride?: {
@@ -32,6 +33,7 @@ export interface IMimicConfig {
     colorb?: string;
     colorc?: string;
     colord?: string;
+    colore?: string;
   };
 
   ColorPalette3TextOverride?: {
@@ -39,6 +41,7 @@ export interface IMimicConfig {
     colorb?: string;
     colorc?: string;
     colord?: string;
+    colore?: string;
   };
 
   ColorPalette4TextOverride?: {
@@ -46,6 +49,7 @@ export interface IMimicConfig {
     colorb?: string;
     colorc?: string;
     colord?: string;
+    colore?: string;
   };
 
   MediaBreakPointsTextOverride?: {
@@ -110,6 +114,7 @@ export interface IMimicConfig {
     c1b: string;
     c1c: string;
     c1d: string;
+    c1e: string;
   };
 
   ColorPalette2Snapping?: {
@@ -117,6 +122,7 @@ export interface IMimicConfig {
     c2b: string;
     c2c: string;
     c2d: string;
+    c2e: string;
   };
 
   ColorPalette3Snapping?: {
@@ -124,6 +130,7 @@ export interface IMimicConfig {
     c3b: string;
     c3c: string;
     c3d: string;
+    c3e: string;
   };
 
   ColorPalette4Snapping?: {
@@ -131,5 +138,6 @@ export interface IMimicConfig {
     c4b: string;
     c4c: string;
     c4d: string;
+    c4e: string;
   };
 }

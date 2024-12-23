@@ -155,7 +155,7 @@ describe("Box Shadow", () => {
         {}
       )
     ).toContain(
-      `.box-shadow\\:${Sizes.sm}${Sizes.sm}c1a {\r\n\tbox-shadow: ${BoxShadowSizes.sm} ${BoxShadowSizes.sm} ${color_palette_1.c1a};\r\n}`
+      `.box-shadow\\:${Sizes.sm}${Sizes.sm}c1text1 {\r\n\tbox-shadow: ${BoxShadowSizes.sm} ${BoxShadowSizes.sm} ${color_palette_1.c1text1};\r\n}`
     );
   });
 
@@ -437,7 +437,7 @@ describe("Text Decoration", () => {
         {}
       )
     ).toContain(
-      `.text-decoration-color\\:${ColorSizes.c1a} {\r\n\ttext-decoration-color: ${color_palette_1.c1a};\r\n}`
+      `.text-decoration-color\\:${ColorSizes.c1a} {\r\n\ttext-decoration-color: ${color_palette_1.c1text1};\r\n}`
     );
   });
 });
@@ -472,28 +472,28 @@ describe("Border Shorthand", () => {
   test("Border Shorthand With Snapping on Color", () => {
     expect(
       DoWork(
-        `<div class="border:xlsolidc1a">`,
+        `<div class="border:xlsolidc1text1">`,
         DataType.string,
         {},
         {},
         mimicConfigDEFAULT
       )
     ).toContain(
-      `.border\\:xlsolidc1a {\r\n\tborder: ${BorderSizes.xl} solid ${color_palette_1.c1a};\r\n}`
+      `.border\\:xlsolidc1text1 {\r\n\tborder: ${BorderSizes.xl} solid ${color_palette_1.c1text1};\r\n}`
     );
   });
 
   test("Border Shorthand snapping", () => {
     expect(
       DoWork(
-        `<div class="border:xlsolidc1b">`,
+        `<div class="border:xlsolidc1text2">`,
         DataType.string,
         {},
         {},
         mimicConfigDEFAULT
       )
     ).toContain(
-      `.border\\:xlsolidc1b {\r\n\tborder: ${BorderSizes.xl} solid ${color_palette_1.c1b};\r\n}`
+      `.border\\:xlsolidc1text2 {\r\n\tborder: ${BorderSizes.xl} solid ${color_palette_1.c1text2};\r\n}`
     );
   });
 });
@@ -861,7 +861,9 @@ describe("Color", () => {
         {},
         mimicConfigDEFAULT
       )
-    ).toContain(`.color\\:c1a {\r\n\tcolor: ${color_palette_1.c1a};\r\n}`);
+    ).toContain(
+      `.color\\:c1text1 {\r\n\tcolor: ${color_palette_1.c1text1};\r\n}`
+    );
   });
 
   test("Color", () => {
@@ -941,7 +943,7 @@ describe("Color", () => {
 
 /////////////////////////////////
 describe("Background Color", () => {
-  test("BackGround Color Snap C1a", () => {
+  test("BackGround Color Snap c1text1", () => {
     expect(
       DoWork(
         "./tests/background-color/background_color.html",
@@ -951,7 +953,7 @@ describe("Background Color", () => {
         mimicConfigDEFAULT
       )
     ).toContain(
-      `.background-color\\:c1a {\r\n\tbackground-color: ${color_palette_1.c1a};\r\n}`
+      `.background-color\\:c1text1 {\r\n\tbackground-color: ${color_palette_1.c1text1};\r\n}`
     );
   });
 
@@ -964,7 +966,7 @@ describe("Background Color", () => {
         {}
       )
     ).toContain(
-      `.background-color\\:c2a {\r\n\tbackground-color: ${color_palette_2.c2a};\r\n}`
+      `.background-color\\:c2text1 {\r\n\tbackground-color: ${color_palette_2.c2text1};\r\n}`
     );
   });
 
