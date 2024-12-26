@@ -39,7 +39,7 @@ export const color_palette_1 = {
   c1text1: "#041514",
   c1text2: "#DDDDDD",
   c1background1: "#001A1A",
-  c1background2: "#1A959C",
+  c1background2: "#91B58D",
   c1background3: "#042B2B",
 };
 
