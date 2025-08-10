@@ -1,3 +1,4 @@
+
 export interface IMimicConfig {
   extensions?: Array<string>;
   excludeFolders?: Array<string>;
@@ -139,5 +140,21 @@ export interface IMimicConfig {
     c4c: string;
     c4d: string;
     c4e: string;
+  };
+
+  ColorPalette5TextOverride?: {
+    colora?: string;
+    colorb?: string;
+    colorc?: string;
+    colord?: string;
+    colore?: string;
+  };
+
+  ColorPalette5Snapping?: {
+    c1a?: string;
+    c1b?: string;
+    c1c?: string;
+    c1d?: string;
+    c1e?: string;
   };
 }

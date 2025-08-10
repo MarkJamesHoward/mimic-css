@@ -43,6 +43,14 @@ export const color_palette_1 = {
   c1background3: "#042B2B",
 };
 
+export const color_palette_5 = {
+  c1text1: "#041514",
+  c1text2: "#DDDDDD",
+  c1background1: "linear-gradient(135deg, #001A1A 0%, #042B2B 100%)",
+  c1background2: "linear-gradient(90deg, #91B58D 0%, #001A1A 100%)",
+  c1background3: "linear-gradient(45deg, #042B2B 0%, #91B58D 100%)",
+};
+
 export const color_palette_2 = {
   c2text1: "#FFC7C7",
   c2text2: "#FFE2E2",
