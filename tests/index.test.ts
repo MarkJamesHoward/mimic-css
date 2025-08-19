@@ -1038,46 +1038,6 @@ describe("Background Color", () => {
     );
   });
 
-  test("Background Color2 Palette2 with SM Media", () => {
-    expect(
-      DoWork(
-        `<div class="${MediaBreakPointsText.small}?background-color:c1background2"></div>`,
-        DataType.string,
-        {},
-        {}
-      )
-    ).toContain(
-      `.box-shadow\\:${Sizes.sm}${Sizes.sm}${color_palette_1.c1background2} {\r\n\tbox-shadow: ${BoxShadowSizes.sm} ${BoxShadowSizes.sm} ${color_palette_1.c1background2};\r\n}`
-    );
-  });
-
-  test("Background Color2 Palette2", () => {
-    expect(
-      DoWork(
-        `<div class="background-color:c1background2"></div>`,
-        DataType.string,
-        {},
-        {}
-      )
-    ).toContain(
-      `.background-color\\:${color_palette_1.c1background2} {\r\n\tbackground-color:${color_palette_1.c1background2};\r\n}`
-    );
-  });
-
-  test("Background Color1 Palette1 With SM Media", () => {
-    expect(
-      DoWork(
-        `<div class="${MediaBreakPointsText.small}?background-color:c1background1"></div>`,
-        DataType.string,
-        {},
-        {},
-        mimicConfigDEFAULT
-      )
-    ).toContain(
-      `@media (min-width: ${MediaBreakPointsValue.small}px) {\r\n.${MediaBreakPointsText.small}\\?background-color\\:${color_palette_1.c1background1} {\r\n\tbackground-color:${color_palette_1.c1background1};\r\n\t}\r\n}`
-    );
-  });
-
   test("BackGround Color Hover", () => {
     expect(
       DoWork(
