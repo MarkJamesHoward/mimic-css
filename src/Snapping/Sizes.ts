@@ -30,6 +30,11 @@ export const ColorSizes = {
   c4c: "c4background1",
   c4d: "c4background2",
   c4e: "c4background3",
+  c5a: "c5text1",
+  c5b: "c5text2",
+  c5c: "c5background1",
+  c5d: "c5background2",
+  c5e: "c5background3",
 };
 
 ////////////////////////////////////////
@@ -44,11 +49,11 @@ export const color_palette_1 = {
 };
 
 export const color_palette_5 = {
-  c1text1: "#041514",
-  c1text2: "#DDDDDD",
-  c1background1: "linear-gradient(135deg, #001A1A 0%, #042B2B 100%)",
-  c1background2: "linear-gradient(90deg, #91B58D 0%, #001A1A 100%)",
-  c1background3: "linear-gradient(45deg, #042B2B 0%, #91B58D 100%)",
+  c5text1: "#041514",
+  c5text2: "#DDDDDD",
+  c5background1: "linear-gradient(135deg, #001A1A 0%, #042B2B 100%)",
+  c5background2: "linear-gradient(90deg, #91B58D 0%, #001A1A 100%)",
+  c5background3: "linear-gradient(45deg, #042B2B 0%, #91B58D 100%)",
 };
 
 export const color_palette_2 = {

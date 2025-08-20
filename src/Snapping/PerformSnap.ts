@@ -41,66 +41,35 @@ export function PerformSnap(type: string, value: string) {
     case "border-color":
     case "background":
       switch (value) {
-        // Palette 5 (gradient) support with overrides for border
-        case "palette5_c1a":
+        case mimicConfig?.ColorPalette5TextOverride?.colora ?? ColorSizes.c5a:
           result =
-            mimicConfig?.ColorPalette5Snapping?.c1a ??
-            color_palette_5.c1text1;
+            mimicConfig?.ColorPalette5Snapping?.c1a ?? color_palette_5.c5text1;
+          break;
+        
+        case mimicConfig?.ColorPalette5TextOverride?.colorb ?? ColorSizes.c5b:
+          result =
+            mimicConfig?.ColorPalette5Snapping?.c1b ?? color_palette_5.c5text2;
           break;
 
-        case "palette5_c1b":
-          result =
-            mimicConfig?.ColorPalette5Snapping?.c1b ??
-            color_palette_5.c1text2;
-          break;
-
-        case "palette5_c1c":
+        case mimicConfig?.ColorPalette5TextOverride?.colorc ?? ColorSizes.c5c:
           result =
             mimicConfig?.ColorPalette5Snapping?.c1c ??
-            color_palette_5.c1background1;
+            color_palette_5.c5background1;
           break;
 
-        case "palette5_c1d":
+        case mimicConfig?.ColorPalette5TextOverride?.colord ?? ColorSizes.c5d:
           result =
             mimicConfig?.ColorPalette5Snapping?.c1d ??
-            color_palette_5.c1background2;
+            color_palette_5.c5background2;
           break;
 
-        case "palette5_c1e":
+        case mimicConfig?.ColorPalette5TextOverride?.colore ?? ColorSizes.c5e:
           result =
             mimicConfig?.ColorPalette5Snapping?.c1e ??
-            color_palette_5.c1background3;
-          break;
-        // Palette 5 (gradient) support with overrides
-        case "palette5_c1a":
-          result =
-            mimicConfig?.ColorPalette5Snapping?.c1a ??
-            color_palette_5.c1text1;
+            color_palette_5.c5background3;
           break;
 
-        case "palette5_c1b":
-          result =
-            mimicConfig?.ColorPalette5Snapping?.c1b ??
-            color_palette_5.c1text2;
-          break;
 
-        case "palette5_c1c":
-          result =
-            mimicConfig?.ColorPalette5Snapping?.c1c ??
-            color_palette_5.c1background1;
-          break;
-
-        case "palette5_c1d":
-          result =
-            mimicConfig?.ColorPalette5Snapping?.c1d ??
-            color_palette_5.c1background2;
-          break;
-
-        case "palette5_c1e":
-          result =
-            mimicConfig?.ColorPalette5Snapping?.c1e ??
-            color_palette_5.c1background3;
-          break;
         case mimicConfig?.ColorPalette1TextOverride?.colora ?? ColorSizes.c1a:
           result =
             mimicConfig?.ColorPalette1Snapping?.c1a ?? color_palette_1.c1text1;

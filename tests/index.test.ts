@@ -10,6 +10,7 @@ import {
   color_palette_1,
   BoxShadowSizes,
   color_palette_2,
+  color_palette_5,
   ColorSizes,
   Sizes,
 } from "../src/Snapping/Sizes";
@@ -942,7 +943,23 @@ describe("Color", () => {
 });
 
 /////////////////////////////////
+
 describe("Background Color", () => {
+
+    test("BackGround Color Snap c5background1", () => {
+    expect(
+      DoWork(
+        "./tests/background-color/background_color_palette_5.html",
+        DataType.file,
+        {},
+        {},
+        mimicConfigDEFAULT
+      )
+    ).toContain(
+      `.background-color\\:c5background1 {\r\n\tbackground-color: ${color_palette_5.c5background1};\r\n}`
+    );
+  });
+  
   test("BackGround Color Snap c1text1", () => {
     expect(
       DoWork(

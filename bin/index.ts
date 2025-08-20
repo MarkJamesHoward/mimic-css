@@ -4,7 +4,7 @@ import yargs from "yargs";
 import path from "path";
 import fs from "fs";
 import { DoWork } from "../src/main";
-import { LoadConfig, mimicConfig } from "../src/ConfigurationLoader";
+import { LoadConfig, mimicConfig } from "../src/ConfigurationLoader.js";
 import {
   IClassNameCssSourceAndFilename,
   IMediaClassCSSOrderFilenameAndSource,

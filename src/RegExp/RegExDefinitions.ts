@@ -52,7 +52,11 @@ export function RegenerateRegExExpressions() {
     mimicConfig?.ColorPalette1TextOverride?.colora ?? ColorSizes.c1a
   }|${mimicConfig?.ColorPalette1TextOverride?.colorb ?? ColorSizes.c1b}|${
     mimicConfig?.ColorPalette1TextOverride?.colorc ?? ColorSizes.c1c
-  }|${mimicConfig?.ColorPalette1TextOverride?.colord ?? ColorSizes.c1d}`;
+  }|${mimicConfig?.ColorPalette1TextOverride?.colord ?? ColorSizes.c1d}|
+   ${mimicConfig?.ColorPalette5TextOverride?.colora ?? ColorSizes.c5a
+  }|${mimicConfig?.ColorPalette5TextOverride?.colorb ?? ColorSizes.c5b}|${
+    mimicConfig?.ColorPalette5TextOverride?.colorc ?? ColorSizes.c5c
+  }|${mimicConfig?.ColorPalette5TextOverride?.colord ?? ColorSizes.c5d}`;
 
   const Snapping = `${mimicConfig?.SnappingOverride?.xs ?? Sizes.xs}|${
     mimicConfig?.SnappingOverride?.sm ?? Sizes.sm
@@ -64,6 +68,10 @@ export function RegenerateRegExExpressions() {
     mimicConfig?.ColorPalette1TextOverride?.colorb ?? ColorSizes.c1b
   }|${mimicConfig?.ColorPalette1TextOverride?.colorc ?? ColorSizes.c1c}|${
     mimicConfig?.ColorPalette1TextOverride?.colord ?? ColorSizes.c1d
+  }|${mimicConfig?.ColorPalette5TextOverride?.colora ?? ColorSizes.c5a}|${
+    mimicConfig?.ColorPalette5TextOverride?.colorb ?? ColorSizes.c5b
+  }|${mimicConfig?.ColorPalette5TextOverride?.colorc ?? ColorSizes.c5c}|${
+    mimicConfig?.ColorPalette5TextOverride?.colord ?? ColorSizes.c5d
   }`;
 
   double_hyphen_then_colon = new RegExp(
