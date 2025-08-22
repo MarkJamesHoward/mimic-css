@@ -946,6 +946,34 @@ describe("Color", () => {
 
 describe("Background Color", () => {
 
+   test("Background c5background1", () => {
+    expect(
+      DoWork(
+        "./tests/background-color/background.html",
+        DataType.file,
+        {},
+        {},
+        mimicConfigDEFAULT
+      )
+    ).toContain(
+      `.background\\:c5background1 {\r\n\tbackground: ${color_palette_5.c5background1};\r\n}`
+    );
+  });
+
+   test("Background c1background1", () => {
+    expect(
+      DoWork(
+        "./tests/background-color/background.html",
+        DataType.file,
+        {},
+        {},
+        mimicConfigDEFAULT
+      )
+    ).toContain(
+      `.background\\:c1background1 {\r\n\tbackground: ${color_palette_1.c1background1};\r\n}`
+    );
+  });
+
     test("BackGround Color Snap c5background1", () => {
     expect(
       DoWork(
