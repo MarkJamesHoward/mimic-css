@@ -51,9 +51,9 @@ export const color_palette_1 = {
 export const color_palette_5 = {
   c5text1: "#041514",
   c5text2: "#DDDDDD",
-  c5background1: "linear-gradient(135deg, #001A1A 0%, #042B2B 100%)",
-  c5background2: "linear-gradient(90deg, #91B58D 0%, #001A1A 100%)",
-  c5background3: "linear-gradient(45deg, #042B2B 0%, #91B58D 100%)",
+  c5background1: "linear-gradient(135deg, #001A1A 0%, #002222 100%)",
+  c5background2: "linear-gradient(90deg, #91B58D 0%, #A1C59D 100%)",
+  c5background3: "linear-gradient(45deg, #042B2B 0%, #0A3232 100%)",
 };
 
 export const color_palette_2 = {
