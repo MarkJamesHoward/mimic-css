@@ -37,6 +37,7 @@ export function GenericRegexNonMedia(
     let value3type = match.groups["value3type"];
     let value4type = match.groups["value4type"];
     let className = match.groups["customclass"];
+    let slash = match.groups["slash"];
 
     if (media != undefined || className != undefined) return result;
 
@@ -57,7 +58,8 @@ export function GenericRegexNonMedia(
       value4type,
       media,
       pseudo,
-      color
+      color,
+      slash
     );
   }
   return result;
@@ -94,6 +96,7 @@ export function GenericRegexNonMediaCustomClass(
     let value4type = match.groups["value4type"];
     className = match.groups["customclass"];
     classNamePseudo = match.groups["customclass_subgroup_pseudo"];
+    let slash = match.groups["slash"];
 
     if (className == undefined) return { classMember: "", className: "" };
 
@@ -115,7 +118,8 @@ export function GenericRegexNonMediaCustomClass(
       media,
       pseudo,
       color,
-      classNamePseudo
+      classNamePseudo,
+      slash
     );
   }
   // const classNameWithMaybePseudoAppended =
@@ -157,6 +161,7 @@ export function GenericRegexMedia(
     let value2type = match.groups["value2type"];
     let value3type = match.groups["value3type"];
     let value4type = match.groups["value4type"];
+    let slash = match.groups["slash"];
 
     if (media == undefined || media == "") return result;
 
@@ -177,7 +182,8 @@ export function GenericRegexMedia(
       value4type,
       media,
       pseudo,
-      color
+      color,
+      slash
     );
   }
   return result;

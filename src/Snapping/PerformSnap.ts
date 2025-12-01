@@ -17,7 +17,7 @@ import {
   color_palette_5,
 } from "./Sizes";
 
-import { mimicConfig } from "../ConfigurationLoader";
+import { mimicConfig } from "../configurationLoader";
 
 export function PerformSnap(type: string, value: string) {
   let result = "";
@@ -45,7 +45,7 @@ export function PerformSnap(type: string, value: string) {
           result =
             mimicConfig?.ColorPalette5Snapping?.c1a ?? color_palette_5.c5text1;
           break;
-        
+
         case mimicConfig?.ColorPalette5TextOverride?.colorb ?? ColorSizes.c5b:
           result =
             mimicConfig?.ColorPalette5Snapping?.c1b ?? color_palette_5.c5text2;
@@ -68,7 +68,6 @@ export function PerformSnap(type: string, value: string) {
             mimicConfig?.ColorPalette5Snapping?.c1e ??
             color_palette_5.c5background3;
           break;
-
 
         case mimicConfig?.ColorPalette1TextOverride?.colora ?? ColorSizes.c1a:
           result =

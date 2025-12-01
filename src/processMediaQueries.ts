@@ -3,7 +3,7 @@ import {
   MediaBreakPointsText,
   MediaBreakPointsValue,
 } from "./Snapping/MediaBreakpoints";
-import { mimicConfig } from "./ConfigurationLoader";
+import { mimicConfig } from "./configurationLoader";
 import { Escape } from "./Utils/Utils";
 
 export function MapMediaQuery(media: string) {

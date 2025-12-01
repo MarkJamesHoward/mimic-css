@@ -587,6 +587,34 @@ describe("Border Radius", () => {
     );
   });
 
+  test("Border Radius Snapping - MD", () => {
+    expect(
+      DoWork(
+        "./tests/border-radius/border_radius_md.html",
+        DataType.file,
+        {},
+        {},
+        mimicConfigDEFAULT
+      )
+    ).toContain(
+      `.border-radius\\:md {\r\n\tborder-radius: ${BorderRadius.md};\r\n}`
+    );
+  });
+
+  test("Border Radius Snapping - LG", () => {
+    expect(
+      DoWork(
+        "./tests/border-radius/border_radius_lg.html",
+        DataType.file,
+        {},
+        {},
+        mimicConfigDEFAULT
+      )
+    ).toContain(
+      `.border-radius\\:lg {\r\n\tborder-radius: ${BorderRadius.lg};\r\n}`
+    );
+  });
+
   test("Border Radius Snapping - XL", () => {
     expect(
       DoWork(
@@ -598,6 +626,236 @@ describe("Border Radius", () => {
       )
     ).toContain(
       `.border-radius\\:${Sizes.xl} {\r\n\tborder-radius: ${BorderRadius.xl};\r\n}`
+    );
+  });
+
+  test("Border Radius Snapping - 2XL", () => {
+    expect(
+      DoWork(
+        "./tests/border-radius/border_radius_2xl.html",
+        DataType.file,
+        {},
+        {},
+        mimicConfigDEFAULT
+      )
+    ).toContain(
+      `.border-radius\\:2xl {\r\n\tborder-radius: ${BorderRadius.xl2};\r\n}`
+    );
+  });
+
+  test("Border Radius - 10px", () => {
+    expect(
+      DoWork(
+        "./tests/border-radius/border_radius_10px.html",
+        DataType.file,
+        {},
+        {},
+        mimicConfigDEFAULT
+      )
+    ).toContain(`.border-radius\\:10px {\r\n\tborder-radius: 10px;\r\n}`);
+  });
+
+  test("Border Radius - 50%", () => {
+    expect(
+      DoWork(
+        "./tests/border-radius/border_radius_50percent.html",
+        DataType.file,
+        {},
+        {},
+        mimicConfigDEFAULT
+      )
+    ).toContain(`.border-radius\\:50\\% {\r\n\tborder-radius: 50%;\r\n}`);
+  });
+
+  test("Border Radius - Hover", () => {
+    expect(
+      DoWork(
+        "./tests/border-radius/border_radius_hover.html",
+        DataType.file,
+        {},
+        {},
+        mimicConfigDEFAULT
+      )
+    ).toContain(
+      `.border-radius\\:lg\\:hover:hover {\r\n\tborder-radius: ${BorderRadius.lg};\r\n}`
+    );
+  });
+
+  test("Border Radius - Focus", () => {
+    expect(
+      DoWork(
+        "./tests/border-radius/border_radius_focus.html",
+        DataType.file,
+        {},
+        {},
+        mimicConfigDEFAULT
+      )
+    ).toContain(
+      `.border-radius\\:${Sizes.xl}\\:focus:focus {\r\n\tborder-radius: ${BorderRadius.xl};\r\n}`
+    );
+  });
+
+  test("Border Radius - Media Small", () => {
+    expect(
+      DoWork(
+        "./tests/border-radius/border_radius_media_small.html",
+        DataType.file,
+        {},
+        {},
+        mimicConfigDEFAULT
+      )
+    ).toContain(
+      `@media (min-width: ${MediaBreakPointsValue.small}px) {\r\n.${MediaBreakPointsText.small}\\?border-radius\\:md {\r\n\tborder-radius: ${BorderRadius.md};\r\n\t}\r\n}`
+    );
+  });
+
+  test("Border Radius - Media Large", () => {
+    expect(
+      DoWork(
+        "./tests/border-radius/border_radius_media_large.html",
+        DataType.file,
+        {},
+        {},
+        mimicConfigDEFAULT
+      )
+    ).toContain(
+      `@media (min-width: ${MediaBreakPointsValue.large}px) {\r\n.${MediaBreakPointsText.large}\\?border-radius\\:2xl {\r\n\tborder-radius: ${BorderRadius.xl2};\r\n\t}\r\n}`
+    );
+  });
+
+  test("Border Radius - Media Extrasmall", () => {
+    expect(
+      DoWork(
+        "./tests/border-radius/border_radius_media_extrasmall.html",
+        DataType.file,
+        {},
+        {},
+        mimicConfigDEFAULT
+      )
+    ).toContain(
+      `@media (min-width: ${MediaBreakPointsValue.extrasmall}px) {\r\n.${MediaBreakPointsText.extrasmall}\\?border-radius\\:xs {\r\n\tborder-radius: ${BorderRadius.xs};\r\n\t}\r\n}`
+    );
+  });
+
+  test("Border Radius - Media Extralarge", () => {
+    expect(
+      DoWork(
+        "./tests/border-radius/border_radius_media_extralarge.html",
+        DataType.file,
+        {},
+        {},
+        mimicConfigDEFAULT
+      )
+    ).toContain(
+      `@media (min-width: ${MediaBreakPointsValue.extralarge}px) {\r\n.${MediaBreakPointsText.extralarge}\\?border-radius\\:2xl {\r\n\tborder-radius: ${BorderRadius.xl2};\r\n\t}\r\n}`
+    );
+  });
+
+  test("Border Radius - 10px10px (Two Values)", () => {
+    expect(
+      DoWork(
+        "./tests/border-radius/border_radius_10px10px.html",
+        DataType.file,
+        {},
+        {},
+        mimicConfigDEFAULT
+      )
+    ).toContain(
+      `.border-radius\\:10px10px {\r\n\tborder-radius: 10px 10px;\r\n}`
+    );
+  });
+
+  test("Border Radius - smmd (Two Snapped Values)", () => {
+    expect(
+      DoWork(
+        "./tests/border-radius/border_radius_smmd.html",
+        DataType.file,
+        {},
+        {},
+        mimicConfigDEFAULT
+      )
+    ).toContain(
+      `.border-radius\\:smmd {\r\n\tborder-radius: ${BorderRadius.sm} ${BorderRadius.md};\r\n}`
+    );
+  });
+
+  test("Border Radius - 10px10px10px10px (Four Values)", () => {
+    expect(
+      DoWork(
+        "./tests/border-radius/border_radius_10px10px10px10px.html",
+        DataType.file,
+        {},
+        {},
+        mimicConfigDEFAULT
+      )
+    ).toContain(
+      `.border-radius\\:10px10px10px10px {\r\n\tborder-radius: 10px 10px 10px 10px;\r\n}`
+    );
+  });
+
+  test("Border Radius - smmdlgxl (Four Snapped Values)", () => {
+    expect(
+      DoWork(
+        "./tests/border-radius/border_radius_smmdlgxl.html",
+        DataType.file,
+        {},
+        {},
+        mimicConfigDEFAULT
+      )
+    ).toContain(
+      `.border-radius\\:smmdlgxl {\r\n\tborder-radius: ${BorderRadius.sm} ${BorderRadius.md} ${BorderRadius.lg} ${BorderRadius.xl};\r\n}`
+    );
+  });
+
+  test("Border Radius - smmdlgxl with Hover", () => {
+    expect(
+      DoWork(
+        "./tests/border-radius/border_radius_smmdlgxl_hover.html",
+        DataType.file,
+        {},
+        {},
+        mimicConfigDEFAULT
+      )
+    ).toContain(
+      `.border-radius\\:smmdlgxl\\:hover:hover {\r\n\tborder-radius: ${BorderRadius.sm} ${BorderRadius.md} ${BorderRadius.lg} ${BorderRadius.xl};\r\n}`
+    );
+  });
+
+  test("Border Radius - 0 (Zero)", () => {
+    expect(
+      DoWork(
+        "./tests/border-radius/border_radius_0.html",
+        DataType.file,
+        {},
+        {},
+        mimicConfigDEFAULT
+      )
+    ).toContain(`.border-radius\\:0 {\r\n\tborder-radius: 0;\r\n}`);
+  });
+
+  test("Border Radius - 1rem (REM units)", () => {
+    expect(
+      DoWork(
+        "./tests/border-radius/border_radius_1rem.html",
+        DataType.file,
+        {},
+        {},
+        mimicConfigDEFAULT
+      )
+    ).toContain(`.border-radius\\:1rem {\r\n\tborder-radius: 1rem;\r\n}`);
+  });
+
+  test("Border Radius - 5px_10px (Slash notation)", () => {
+    expect(
+      DoWork(
+        "./tests/border-radius/border_radius_5px_10px.html",
+        DataType.file,
+        {},
+        {},
+        mimicConfigDEFAULT
+      )
+    ).toContain(
+      `.border-radius\\:5px_10px {\r\n\tborder-radius: 5px / 10px;\r\n}`
     );
   });
 });
@@ -945,8 +1203,7 @@ describe("Color", () => {
 /////////////////////////////////
 
 describe("Background Color", () => {
-
-   test("Background c5background1", () => {
+  test("Background c5background1", () => {
     expect(
       DoWork(
         "./tests/background-color/background.html",
@@ -960,7 +1217,7 @@ describe("Background Color", () => {
     );
   });
 
-   test("Background c1background1", () => {
+  test("Background c1background1", () => {
     expect(
       DoWork(
         "./tests/background-color/background.html",
@@ -974,7 +1231,7 @@ describe("Background Color", () => {
     );
   });
 
-    test("BackGround Color Snap c5background1", () => {
+  test("BackGround Color Snap c5background1", () => {
     expect(
       DoWork(
         "./tests/background-color/background_color_palette_5.html",
@@ -987,7 +1244,7 @@ describe("Background Color", () => {
       `.background-color\\:c5background1 {\r\n\tbackground-color: ${color_palette_5.c5background1};\r\n}`
     );
   });
-  
+
   test("BackGround Color Snap c1text1", () => {
     expect(
       DoWork(

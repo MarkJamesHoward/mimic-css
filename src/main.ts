@@ -5,7 +5,7 @@ import {
   IMediaClassCSSOrderFilenameAndSource,
 } from "../interfaces/ICustomClassBuilder";
 import { IMimicConfig } from "../interfaces/IMimicConfig";
-import { SetConfigForJestTesting } from "./ConfigurationLoader";
+import { SetConfigForJestTesting } from "./configurationLoader";
 import {
   GenericRegexMedia,
   GenericRegexNonMedia,
@@ -23,6 +23,7 @@ import {
   double_hyphen_then_colon_snappable,
   single_hyphen_then_colon_box_shadow_snappable,
   border_shorthand,
+  border_radius_slash,
 } from "./RegExp/RegExDefinitions";
 
 import fs from "fs";
@@ -66,6 +67,7 @@ export function DoWork(
 
   // Find Non Media
   let RegExToTryList = [
+    border_radius_slash,
     single_hyphen_then_colon,
     single_hyphen_then_colon_then_another_hyphen,
     double_hyphen_then_colon,

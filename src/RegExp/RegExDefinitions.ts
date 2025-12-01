@@ -1,4 +1,4 @@
-import { mimicConfig } from "../ConfigurationLoader";
+import { mimicConfig } from "../configurationLoader";
 import { MediaBreakPointsText } from "../Snapping/MediaBreakpoints";
 import { ColorSizes, Sizes } from "../Snapping/Sizes";
 
@@ -19,6 +19,7 @@ export var no_hyphen_pixel_values = new RegExp("");
 export var no_hyphen = new RegExp("");
 
 export var border_shorthand = new RegExp("");
+export var border_radius_slash = new RegExp("");
 
 const CustomClass: string = `(?<customclass>\@[A-Z0-9]+(?<customclass_subgroup_pseudo>:hover|:focus)?)?`;
 
@@ -53,10 +54,11 @@ export function RegenerateRegExExpressions() {
   }|${mimicConfig?.ColorPalette1TextOverride?.colorb ?? ColorSizes.c1b}|${
     mimicConfig?.ColorPalette1TextOverride?.colorc ?? ColorSizes.c1c
   }|${mimicConfig?.ColorPalette1TextOverride?.colord ?? ColorSizes.c1d}|
-   ${mimicConfig?.ColorPalette5TextOverride?.colora ?? ColorSizes.c5a
-  }|${mimicConfig?.ColorPalette5TextOverride?.colorb ?? ColorSizes.c5b}|${
-    mimicConfig?.ColorPalette5TextOverride?.colorc ?? ColorSizes.c5c
-  }|${mimicConfig?.ColorPalette5TextOverride?.colord ?? ColorSizes.c5d}`;
+   ${mimicConfig?.ColorPalette5TextOverride?.colora ?? ColorSizes.c5a}|${
+    mimicConfig?.ColorPalette5TextOverride?.colorb ?? ColorSizes.c5b
+  }|${mimicConfig?.ColorPalette5TextOverride?.colorc ?? ColorSizes.c5c}|${
+    mimicConfig?.ColorPalette5TextOverride?.colord ?? ColorSizes.c5d
+  }`;
 
   const Snapping = `${mimicConfig?.SnappingOverride?.xs ?? Sizes.xs}|${
     mimicConfig?.SnappingOverride?.sm ?? Sizes.sm
@@ -168,6 +170,16 @@ export function RegenerateRegExExpressions() {
       `(?<value1type>px|ch|rem)?(?<value2>[0-9]+)?(?<value2type>px|ch|rem)?(?<value3>[0-9]+)?` +
       `(?<value3type>px|ch|rem)?` +
       `(?<value4>[0-9]+)?(?<value4type>px|ch|rem)?` +
+      `(?<pseudo>:hover|:focus)?${CustomClass}$`,
+    `gi`
+  );
+
+  // Border-radius with slash notation: border-radius:5px_10px becomes border-radius: 5px / 10px
+  border_radius_slash = new RegExp(
+    `^(?<media>${MediaTags})?(?<style>BORDER-RADIUS):` +
+      `(?<value1>[0-9A-Z\.#]+)(?<value1type>px|ch|rem|\%)?` +
+      `(?<slash>_)` +
+      `(?<value2>[0-9A-Z]+)(?<value2type>px|ch|rem|\%)?` +
       `(?<pseudo>:hover|:focus)?${CustomClass}$`,
     `gi`
   );

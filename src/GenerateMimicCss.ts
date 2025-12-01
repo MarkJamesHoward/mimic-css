@@ -26,7 +26,8 @@ export function GenerateMimicCSSNonMedia(
   value4type: string,
   media: string,
   pseudo: string,
-  color: string
+  color: string,
+  slash?: string
 ): IClassNameCssSourceAndFilename {
   let width = MapMediaQuery(media?.replace("?", ""));
 
@@ -58,10 +59,13 @@ export function GenerateMimicCSSNonMedia(
   value3 = value3 == "" || value3 == undefined ? "" : value3;
   value4 = value4 == "" || value4 == undefined ? "" : value4;
 
+  // Handle slash notation for border-radius elliptical corners
+  const slashSeparator = slash === "_" ? " / " : " ";
+
   snappedvalue2 =
     snappedvalue2 == "" || snappedvalue2 == undefined
       ? ""
-      : " " + snappedvalue2;
+      : slashSeparator + snappedvalue2;
   snappedvalue3 =
     snappedvalue3 == "" || snappedvalue3 == undefined
       ? ""
@@ -82,7 +86,7 @@ export function GenerateMimicCSSNonMedia(
   return {
     className: `${style}\\:${Escape(
       value1 === "" ? value1snap ?? "" : value1
-    )}${Escape(value1type)}${
+    )}${Escape(value1type)}${slash === "_" ? "_" : ""}${
       value2 === "" ? value2snap ?? "" : value2
     }${value2type}${value3 === "" ? value3snap ?? "" : value3}${value3type}${
       value4 === "" ? value4snap ?? "" : value4
@@ -118,7 +122,8 @@ export function GenerateMimicCSSMedia(
   value4type: string,
   media: string,
   pseudo: string,
-  color: string
+  color: string,
+  slash?: string
 ): IMediaClassCSSOrderFilenameAndSource {
   let width = MapMediaQuery(media?.replace("?", ""));
 
@@ -144,10 +149,13 @@ export function GenerateMimicCSSMedia(
   value3 = value3 == "" || value3 == undefined ? "" : value3;
   value4 = value4 == "" || value4 == undefined ? "" : value4;
 
+  // Handle slash notation for border-radius elliptical corners
+  const slashSeparator = slash === "_" ? " / " : " ";
+
   snappedvalue2 =
     snappedvalue2 == "" || snappedvalue2 == undefined
       ? ""
-      : " " + snappedvalue2;
+      : slashSeparator + snappedvalue2;
   snappedvalue3 =
     snappedvalue3 == "" || snappedvalue3 == undefined
       ? ""
@@ -167,7 +175,7 @@ export function GenerateMimicCSSMedia(
 
   className = `${style}\\:${Escape(
     value1 === "" ? value1snap ?? "" : value1
-  )}${Escape(value1type)}${
+  )}${Escape(value1type)}${slash === "_" ? "_" : ""}${
     value2 === "" ? value2snap ?? "" : value2
   }${value2type}${value3 === "" ? value3snap ?? "" : value3}${value3type}${
     value4 === "" ? value4snap ?? "" : value4
@@ -208,7 +216,8 @@ export function GenerateMimicCSSCustomClasses(
   media: string,
   pseudo: string,
   color: string,
-  classNamePseudo: string
+  classNamePseudo: string,
+  slash?: string
 ): string {
   let width = MapMediaQuery(media?.replace("?", ""));
 
@@ -234,10 +243,13 @@ export function GenerateMimicCSSCustomClasses(
   value3 = value3 == "" || value3 == undefined ? "" : value3;
   value4 = value4 == "" || value4 == undefined ? "" : value4;
 
+  // Handle slash notation for border-radius elliptical corners
+  const slashSeparator = slash === "_" ? " / " : " ";
+
   snappedvalue2 =
     snappedvalue2 == "" || snappedvalue2 == undefined
       ? ""
-      : " " + snappedvalue2;
+      : slashSeparator + snappedvalue2;
   snappedvalue3 =
     snappedvalue3 == "" || snappedvalue3 == undefined
       ? ""
