@@ -14,7 +14,7 @@
     "@sentry/node": "^10.27.0",
     "@sentry/profiling-node": "^10.27.0",
     "@web/config-loader": "^0.3.1",
-    "yargs": "^17.7.2"
+    "yargs": "^18.0.0"
   },
   "repository": {
     "type": "git",
