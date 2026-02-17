@@ -31,6 +31,7 @@
     "typescript": "^5.4.5"
   },
   "scripts": {
+    "test": "jest --runInBand",
     "sentry:sourcemaps": "sentry-cli sourcemaps inject --org howard-67 --project mimic-css ./dist && sentry-cli sourcemaps upload --org howard-67 --project mimic-css ./dist"
   }
 }

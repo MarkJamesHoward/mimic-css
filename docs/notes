@@ -1,0 +1,8 @@
+-- Astro website run locally
+npm run dev
+
+-- This is an Astro website - to deploy perform the below
+npm run build
+netlify deploy --prod -d dist
+
+set-executionpolicy remotesigned

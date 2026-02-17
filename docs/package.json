@@ -1,0 +1,22 @@
+{
+  "name": "",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "concurrently \"astro dev\" \"mimic -i .\\src\\pages\" ",
+    "start": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.9.4",
+    "@astrojs/lit": "^4.3.0",
+    "@webcomponents/template-shadowroot": "^0.2.1",
+    "astro": "^5.0.5",
+    "concurrently": "^8.2.2",
+    "lit": "^3.1.4",
+    "mimic-css": "^0.3.7",
+    "typescript": "^5.4.5"
+  }
+}

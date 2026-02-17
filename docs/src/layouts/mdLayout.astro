@@ -1,0 +1,9 @@
+---
+const {frontmatter} = Astro.props;
+---
+<html>
+  <!-- ... -->
+  <!-- <h1 class="font-size:lg">{frontmatter.title}</h1> -->
+  <slot /> <!-- Markdown content is injected here -->
+   <!-- ... -->
+</html>

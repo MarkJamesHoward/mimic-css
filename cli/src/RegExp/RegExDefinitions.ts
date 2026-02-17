@@ -55,10 +55,10 @@ export function RegenerateRegExExpressions() {
     mimicConfig?.ColorPalette1TextOverride?.colorc ?? ColorSizes.c1c
   }|${mimicConfig?.ColorPalette1TextOverride?.colord ?? ColorSizes.c1d}|
    ${mimicConfig?.ColorPalette5TextOverride?.colora ?? ColorSizes.c5a}|${
-    mimicConfig?.ColorPalette5TextOverride?.colorb ?? ColorSizes.c5b
-  }|${mimicConfig?.ColorPalette5TextOverride?.colorc ?? ColorSizes.c5c}|${
-    mimicConfig?.ColorPalette5TextOverride?.colord ?? ColorSizes.c5d
-  }`;
+     mimicConfig?.ColorPalette5TextOverride?.colorb ?? ColorSizes.c5b
+   }|${mimicConfig?.ColorPalette5TextOverride?.colorc ?? ColorSizes.c5c}|${
+     mimicConfig?.ColorPalette5TextOverride?.colord ?? ColorSizes.c5d
+   }`;
 
   const Snapping = `${mimicConfig?.SnappingOverride?.xs ?? Sizes.xs}|${
     mimicConfig?.SnappingOverride?.sm ?? Sizes.sm
@@ -78,7 +78,7 @@ export function RegenerateRegExExpressions() {
 
   double_hyphen_then_colon = new RegExp(
     `^(?<media>${MediaTags})?(?<style>[A-Z]+-[A-Z]+-[A-Z]+):(?<value1>[A-Z0-9\%\.#]+)${CustomClass}$`,
-    `gi`
+    `gi`,
   );
 
   // text-decoration-color: c1a
@@ -86,21 +86,21 @@ export function RegenerateRegExExpressions() {
     `^(?<media>${MediaTags})?(?<style>[A-Z]+-[A-Z]+-[A-Z]+):` +
       `(?<value1>${Snapping})(?<value2>${Snapping})?(?<value3>${Snapping})?(?<value4>${Snapping})?` +
       `(?<pseudo>:hover|:focus)?${CustomClass}$`,
-    `gi`
+    `gi`,
   );
 
   // text-decoration-color: red
   double_hyphen_no_colon = new RegExp(
     `^(?<media>${MediaTags})?(?<style>[A-Z0-9]+-[A-Z0-9]+)-(?<value1>[A-Z0-9]+)${CustomClass}$`,
-    `gi`
+    `gi`,
   );
 
   //border-width:5
   //border-width:md
   //border-width:xl
   //border-width:5:hover
-  //large?border-width:5
-  //large?border-width:5:hover
+  //lg?border-width:5
+  //lg?border-width:5:hover
   //background-color:red
   //background-color:c1a
   single_hyphen_then_colon = new RegExp(
@@ -110,7 +110,7 @@ export function RegenerateRegExExpressions() {
       `((?<value3>(?!${Snapping})[0-9A-Z]+)?(?<value3type>px|ch|rem|\%)?|(?<value3snap>${Snapping}))` +
       `((?<value4>(?!${Snapping})[0-9A-Z]+)?(?<value4type>px|ch|rem|\%)?|(?<value4snap>${Snapping}))` +
       `(?<pseudo>:hover|:focus)?${CustomClass}$`,
-    `gi`
+    `gi`,
   );
 
   //Border Shorthand
@@ -121,13 +121,13 @@ export function RegenerateRegExExpressions() {
       `((?<value2>solid|dashed|dotted))` +
       `(?<color>[A-Z0-9#]+)?` +
       `(?<pseudo>:hover|:focus)??${CustomClass}$`,
-    `gi`
+    `gi`,
   );
 
   //justify-content: space-between
   single_hyphen_then_colon_then_another_hyphen = new RegExp(
     `^(?<media>${MediaTags})?(?<style>[A-Z]+-[A-Z]+):(?<value1>[A-Z]+-[A-Z]+)?${CustomClass}$`,
-    `gi`
+    `gi`,
   );
 
   //////////////////////////////////
@@ -141,7 +141,7 @@ export function RegenerateRegExExpressions() {
       `((?<value4>(?!${Snapping})[0-9]+)?(?<value4type>px|ch|rem)?|(?<value4snap>${Snapping})?)` +
       `(?<color>[A-Z]+)?` +
       `(?<pseudo>:hover|:focus)??${CustomClass}$`,
-    `gi`
+    `gi`,
   );
 
   single_hyphen_then_colon_box_shadow_snappable = new RegExp(
@@ -149,7 +149,7 @@ export function RegenerateRegExExpressions() {
       `(?<value1>${SnappingButNotOnColor})(?<value2>${SnappingButNotOnColor})?(?<value3>${SnappingButNotOnColor})?(?<value4>${SnappingButNotOnColor})?` +
       `(?<color>[A-Z0-9]+)?` +
       `(?<pseudo>:hover|:focus)??${CustomClass}$`,
-    `gi`
+    `gi`,
   );
 
   //display: flex
@@ -162,7 +162,7 @@ export function RegenerateRegExExpressions() {
       `((?<value3>(?!${Snapping})[0-9A-Z]+)?(?<value3type>px|ch|rem)?|(?<value3snap>${Snapping}))` +
       `((?<value4>(?!${Snapping})[0-9A-Z]+)?(?<value4type>px|ch|rem)?|(?<value4snap>${Snapping}))` +
       `(?<pseudo>:hover|:focus)?${CustomClass}$`,
-    `gi`
+    `gi`,
   );
 
   no_hyphen_pixel_values = new RegExp(
@@ -171,7 +171,7 @@ export function RegenerateRegExExpressions() {
       `(?<value3type>px|ch|rem)?` +
       `(?<value4>[0-9]+)?(?<value4type>px|ch|rem)?` +
       `(?<pseudo>:hover|:focus)?${CustomClass}$`,
-    `gi`
+    `gi`,
   );
 
   // Border-radius with slash notation: border-radius:5px_10px becomes border-radius: 5px / 10px
@@ -181,6 +181,6 @@ export function RegenerateRegExExpressions() {
       `(?<slash>_)` +
       `(?<value2>[0-9A-Z]+)(?<value2type>px|ch|rem|\%)?` +
       `(?<pseudo>:hover|:focus)?${CustomClass}$`,
-    `gi`
+    `gi`,
   );
 }

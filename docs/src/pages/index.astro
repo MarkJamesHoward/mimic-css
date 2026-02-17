@@ -1,0 +1,132 @@
+---
+import MySiteLayout from '../layouts/Layout.astro';
+import {Content as DesignSystem } from './DesignSystem.md';
+import {Content as PseudoClasses } from './PseudoClasses.md';
+import {Content as Install } from './Install.md';
+import {Content as Usage } from './Usage.md';
+import {Content as DesignSystemMappings } from './DesignSystemMappings.md';
+import {Content as ExampleSnapping } from './ExampleSnapping.md';
+import {Content as Overview } from './Overview.md';
+import {Content as MediaBreakPoints} from './MediaBreakPoints.md'
+import {Content as Configuration} from './Configuration.md'
+import {Content as LitIntegration} from './LitIntegration.md'
+import {Content as CustomClasses} from './CustomClasses.md'
+import {Content as OverridingDefaults} from './OverridingDefaults.md'
+import {Content as ColorPalette} from './ColorPalette.md'
+
+import { ScrollToTop } from  '../components/index.ts';
+
+import '../../mimic.css';
+---
+
+<MySiteLayout title="MimicCSS">
+
+  <div class="color:white display:flex flex-direction:column">
+
+      
+      <div class="width:100% medium?display:flex flex-direction:row">
+        
+        <div class=" display:none medium?display:block display:flex flex-direction:column medium?flex-basis:20% position:sticky top:0px height:200px">
+          <div class="font-size:lg line-height:md" >
+            <ul class="list-style-type:none" id="sidebar-nav">
+              <li onclick="Scroll('Overview')" data-section="Overview" class="sidebar-link text-decoration:none background-color:#010101:hover cursor:pointer:hover">Overview</li>
+              <li onclick="Scroll('DesignSystem')" data-section="DesignSystem" class="sidebar-link text-decoration:none background-color:#010101:hover cursor:pointer:hover">Design System</li>
+              <li onclick="Scroll('PseudoClasses')" data-section="PseudoClasses" class="sidebar-link text-decoration:none background-color:#010101:hover cursor:pointer:hover">Pseudo Classes</li>
+              <li onclick="Scroll('CustomClasses')" data-section="CustomClasses" class="sidebar-link text-decoration:none background-color:#010101:hover cursor:pointer:hover">Custom Classes</li>
+              <li onclick="Scroll('Install')" data-section="Install" class="sidebar-link text-decoration:none background-color:#010101:hover cursor:pointer:hover">Install</li>
+              <li onclick="Scroll('Usage')" data-section="Usage" class="sidebar-link text-decoration:none background-color:#010101:hover cursor:pointer:hover">Usage</li>
+              <li onclick="Scroll('DesignSystemMappings')" data-section="DesignSystemMappings" class="sidebar-link text-decoration:none background-color:#010101:hover cursor:pointer:hover">Design System Mappings</li>
+              <li onclick="Scroll('ExampleSnapping')" data-section="ExampleSnapping" class="sidebar-link text-decoration:none background-color:#010101:hover cursor:pointer:hover">Example Snapping</li>
+              <li onclick="Scroll('MediaBreakPoints')" data-section="MediaBreakPoints" class="sidebar-link text-decoration:none background-color:#010101:hover cursor:pointer:hover">Media Break Points</li>
+              <li onclick="Scroll('Configuration')" data-section="Configuration" class="sidebar-link text-decoration:none background-color:#010101:hover cursor:pointer:hover">Configuration</li>
+              <li onclick="Scroll('ColorPalette')" data-section="ColorPalette" class="sidebar-link text-decoration:none background-color:#010101:hover cursor:pointer:hover">Color Palette</li>
+              <li onclick="Scroll('OverridingDefaults')" data-section="OverridingDefaults" class="sidebar-link text-decoration:none background-color:#010101:hover cursor:pointer:hover">Overriding Defaults</li>
+              <li onclick="Scroll('LitIntegration')" data-section="LitIntegration" class="sidebar-link text-decoration:none background-color:#010101:hover cursor:pointer:hover">Lit Integration</li>
+            </ul>
+          </div>
+          
+        </div>
+
+        <div class="medium?flex-basis:80% margin-left:lg margin-right:sm medium?margin-right:lg">
+
+          <div class="position:sticky top:0px margin-bottom:xl font-size:xl extralarge?font-size:2xl font-weight:2xl background-color:black color:white text-align:center">Mimic CSS</div>
+
+          <div>
+            <div>
+              <section id="Overview" style="scroll-margin-top: 72px;"><Overview/></section>
+              <section id="DesignSystem" style="scroll-margin-top: 72px;"><DesignSystem/></section>
+              <hr class="margin:xl">
+              <section id="PseudoClasses" style="scroll-margin-top: 72px;"><PseudoClasses/></section>
+              <hr class="margin:xl">
+              <section id="CustomClasses" style="scroll-margin-top: 72px;"><CustomClasses/></section>
+              <hr class="margin:xl">
+              <section id="Install" style="scroll-margin-top: 72px;"><Install/></section>
+              <hr class="margin:xl">
+              <section id="Usage" style="scroll-margin-top: 72px;"><Usage/></section>
+              <hr class="margin:xl">
+              <section id="DesignSystemMappings" style="scroll-margin-top: 72px;"><DesignSystemMappings/></section>
+              <hr class="margin:xl">
+              <section id="ExampleSnapping" style="scroll-margin-top: 72px;"><ExampleSnapping/></section>
+              <hr class="margin:xl">
+              <section id="MediaBreakPoints" style="scroll-margin-top: 72px;"><MediaBreakPoints/></section>
+              <hr class="margin:xl">
+              <section id="Configuration" style="scroll-margin-top: 72px;"><Configuration/></section>
+              <hr class="margin:xl">
+              <section id="ColorPalette" style="scroll-margin-top: 72px;"><ColorPalette/></section>
+              <hr class="margin:xl">
+              <section id="OverridingDefaults" style="scroll-margin-top: 72px;"><OverridingDefaults/></section>
+              <hr class="margin:xl">
+              <section id="LitIntegration" style="scroll-margin-top: 72px;"><LitIntegration/></section>
+              <div class="height:300px"></div>
+            </div>
+            <ScrollToTop client:load/>
+          </div>
+
+        </div>
+
+      </div>
+
+
+  </div>
+</MySiteLayout>
+
+
+
+<style>
+.sidebar-link.active {
+  background-color: #222 !important;
+  color: #fff !important;
+  font-weight: bold;
+  border-left: 4px solid rgb(var(--accent,136,58,234));
+}
+</style>
+<script is:inline>
+  function Scroll(location) {
+    const section = document.getElementById(location);
+    if (!section) return;
+    section.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  // Scroll spy logic
+  document.addEventListener('DOMContentLoaded', function() {
+    const sectionIds = [
+      'Overview','DesignSystem','PseudoClasses','CustomClasses','Install','Usage','DesignSystemMappings','ExampleSnapping','MediaBreakPoints','Configuration','ColorPalette','OverridingDefaults','LitIntegration'
+    ];
+    const navLinks = Array.from(document.querySelectorAll('.sidebar-link'));
+    const sections = sectionIds.map(id => document.getElementById(id));
+    function onScroll() {
+      let activeIdx = 0;
+      for (let i = 0; i < sections.length; i++) {
+        const rect = sections[i].getBoundingClientRect();
+        if (rect.top <= 80) activeIdx = i;
+      }
+      navLinks.forEach((link, idx) => {
+        if (idx === activeIdx) link.classList.add('active');
+        else link.classList.remove('active');
+      });
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  });
+</script>
+
