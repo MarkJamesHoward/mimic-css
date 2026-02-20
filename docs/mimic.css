@@ -1,0 +1,138 @@
+.font-size\:lg {
+	font-size: 24px;
+}
+.font-size\:xs {
+	font-size: 8px;
+}
+.font-size\:sm {
+	font-size: 12px;
+}
+.font-size\:md {
+	font-size: 16px;
+}
+.font-size\:xl {
+	font-size: 48px;
+}
+.font-size\:2xl {
+	font-size: 92px;
+}
+.padding\:xs {
+	padding: 2px;
+}
+.border-color\:black {
+	border-color: black;
+}
+.border-width\:sm {
+	border-width: 2px;
+}
+.border-style\:solid {
+	border-style: solid;
+}
+.padding\:sm {
+	padding: 4px;
+}
+.padding\:md {
+	padding: 8px;
+}
+.padding\:lg {
+	padding: 20px;
+}
+.padding\:xl {
+	padding: 50px;
+}
+.padding\:2xl {
+	padding: 200px;
+}
+.color\:white {
+	color: white;
+}
+.display\:flex {
+	display: flex;
+}
+.flex-direction\:column {
+	flex-direction: column;
+}
+.width\:100\% {
+	width: 100%;
+}
+.flex-direction\:row {
+	flex-direction: row;
+}
+.display\:none {
+	display: none;
+}
+.position\:sticky {
+	position: sticky;
+}
+.top\:0px {
+	top: 0px;
+}
+.height\:200px {
+	height: 200px;
+}
+.line-height\:md {
+	line-height: 140%;
+}
+.text-decoration\:none {
+	text-decoration: none;
+}
+.background-color\:\#010101\:hover:hover {
+	background-color: #010101;
+}
+.cursor\:pointer\:hover:hover {
+	cursor: pointer;
+}
+.margin-left\:lg {
+	margin-left: 20px;
+}
+.margin-right\:sm {
+	margin-right: 4px;
+}
+.margin-bottom\:xl {
+	margin-bottom: 50px;
+}
+.font-weight\:2xl {
+	font-weight: 900;
+}
+.background-color\:black {
+	background-color: black;
+}
+.text-align\:center {
+	text-align: center;
+}
+.margin\:xl {
+	margin: 50px;
+}
+.height\:300px {
+	height: 300px;
+}
+/*5*/@media (min-width: 1024px) {
+.medium\?display\:flex {
+	display: flex;
+	}
+}
+/*8*/@media (min-width: 1024px) {
+.medium\?display\:block {
+	display: block;
+	}
+}
+/*11*/@media (min-width: 1024px) {
+.medium\?flex-basis\:20\% {
+	flex-basis: 20%;
+	}
+}
+/*71*/@media (min-width: 1024px) {
+.medium\?flex-basis\:80\% {
+	flex-basis: 80%;
+	}
+}
+/*74*/@media (min-width: 1024px) {
+.medium\?margin-right\:lg {
+	margin-right: 20px;
+	}
+}
+/*79*/@media (min-width: 1536px) {
+.extralarge\?font-size\:2xl {
+	font-size: 92px;
+	}
+}
