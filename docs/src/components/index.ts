@@ -62,8 +62,7 @@ export class ScrollToTop extends LitElement {
         <div class="card">
           <div
             part="container"
-            class="${this.showToast ? "showToast " : "hideToast "} +
-            ${this.fancy ? " fancy" : " "} "
+            class="${this.showToast ? "showToast" : "hideToast"}${this.fancy ? " fancy" : ""}"
             @click="${this.topFunction}"
           >
             <slot name="text">Top</slot>
